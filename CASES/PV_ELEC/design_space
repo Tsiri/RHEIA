@@ -1,0 +1,18 @@
+n_dcdc_pv var 1e-8 10
+n_elec var 1e-8 10
+n_dcdc_elec var 1e-8 10
+n_pv par 5
+sol_irr par  1
+capex_pv par  605
+opex_pv par  17.5
+power_tol_pv par  2.5
+capex_elec par  1750
+opex_elec par  0.04
+life_elec par  80000
+repl_elec par  0.175
+eff_elec par 0.65
+eff_dcdc par  0.925
+capex_dcdc par  150
+opex_dcdc par  0.03
+int_rate par  0.06
+infl_rate par  0.02

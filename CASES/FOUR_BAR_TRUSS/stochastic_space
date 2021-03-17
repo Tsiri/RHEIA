@@ -1,0 +1,5 @@
+F absolute Gaussian 1
+E_1 relative uniform 0.1
+E_2 relative Gaussian 0.3
+E_3 absolute uniform 1000
+E_4 absolute uniform 1000
