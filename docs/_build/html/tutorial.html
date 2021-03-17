@@ -1,0 +1,627 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>4. Tutorial &mdash; rheia  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Examples" href="example.html" />
+    <link rel="prev" title="3. Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> rheia
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="functionalities.html">1. A short description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting%20your%20own%20model.html">2. Connecting your own model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#photovoltaic-electrolyzer-model-characterization">4.1. Photovoltaic-electrolyzer model characterization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deterministic-design-optimization">4.2. deterministic design optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#robust-design-optimization">4.3. Robust design optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#determination-of-the-polynomial-order">4.3.1. Determination of the polynomial order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reducing-the-stochastic-dimension">4.3.2. Reducing the stochastic dimension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-robust-design-optimization">4.3.3. Run robust design optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#uncertainty-quantification">4.4. Uncertainty Quantification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">5. Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stochastic%20design%20space.html">6. Stochastic design space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">7. Run the optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty%20quantification.html">8. Run the uncertainty quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post_processing.html">9. post-processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">10. Details on the methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy%20system%20models.html">11. Details on the energy system models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">13. How to contribute</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rheia</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">4. </span>Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial">
+<span id="lab-tutorial"></span><h1><span class="section-number">4. </span>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, the deterministic optimization, robust optimization and uncertainty quantification procedure
+is applied on a photovoltaic-electrolyzer system.</p>
+<div class="section" id="photovoltaic-electrolyzer-model-characterization">
+<h2><span class="section-number">4.1. </span>Photovoltaic-electrolyzer model characterization<a class="headerlink" href="#photovoltaic-electrolyzer-model-characterization" title="Permalink to this headline">¶</a></h2>
+<p>The system model evaluates the levelized cost of hydrogen and hydrogen production of a photovoltaic array coupled to an electrolyzer stack.
+This coupling is realised through DC-DC converters. Additional details on the system operation are presented in <a class="reference internal" href="energy%20system%20models.html#lab-pvelectrolyzermodel"><span class="std std-ref">Power-to-fuel</span></a>.</p>
+<p>The system model information is collected in a case folder <code class="file docutils literal notranslate"><span class="pre">PV_ELEC</span></code>, which is located in the folder that contains all the cases (<code class="file docutils literal notranslate"><span class="pre">CASES</span></code>).</p>
+<p>The directory structure of <code class="file docutils literal notranslate"><span class="pre">PV_ELEC</span></code> looks as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PV_ELEC</span>
+  <span class="n">design_space</span>
+  <span class="n">stochastic_space</span>
+  <span class="n">pv_electrolyzer_lib</span><span class="o">.</span><span class="n">py</span>
+  <span class="n">case_despcription</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>where <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> characterizes the design variables and model parameters,
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">pv_electrolyzer_lib</span></code> is the module that defines and evaluates the system model
+and <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description.</span></code> is the module importing the design space and calling the system model.
+An optional file is <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>, which describes the uncertainty on stochastic parameters.
+This file is required only to perform uncertainty quantification and robust optimization.</p>
+<p>The <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file includes information on all the parameters and variables that require a quantification from outside the system model.
+For the photovoltaic-electrolyzer model, 18 parameters require a quantification, including the capacity, CAPEX, OPEX and efficiency of the components.
+Depending on the procedure, the parameters are considered as a parameter or a variable
+(e.g. during uncertainty quantification, only model parameters are considered, while during optimization, the capacities are design variables).
+More information on the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> characterization can be found in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssdesignspace"><span class="std std-ref">design_space</span></a>.</p>
+<p>The Python wrapper <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description</span></code> module couples the system model to the optimization and uncertainty quantification algorithms.
+More information on the Python wrapper is discussed in <a class="reference internal" href="connecting%20your%20own%20model.html#lab-wrapper"><span class="std std-ref">Python wrapper</span></a>.
+First, the photovoltaic-electrolyzer module is imported:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pv_electrolyzer_lib</span> <span class="k">as</span> <span class="nn">pv_elec</span>
+</pre></div>
+</div>
+<p>Additionally, datasets and constants that remain constant during the multiple model evaluations are defined in the module <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_params()</span></code>
+and stored in the instance variable <cite>self.params</cite>.
+In this tutorial, only the solar irradiance dataset is loaded for Brussels, using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">load_climate()</span></code> method from <code class="xref py py-class docutils literal notranslate"><span class="pre">ReadData</span></code> in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">pv_electrolyzer_lib</span></code> module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="n">filename_climate</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span>
+                                    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+                                                 <span class="n">os</span><span class="o">.</span><span class="n">pardir</span><span class="p">)),</span>
+                                    <span class="s1">&#39;DATA&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;climate&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;climate_Brussels.csv&#39;</span><span class="p">)</span>
+
+    <span class="n">my_data</span> <span class="o">=</span> <span class="n">pv_elec</span><span class="o">.</span><span class="n">ReadData</span><span class="p">(</span><span class="n">filename_climate</span><span class="p">)</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">my_data</span><span class="o">.</span><span class="n">load_climate</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">G</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The model is evaluated in the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code>. The method’s argument is an enumerate object <cite>x</cite> which represents the input sample.
+The input sample (<cite>x[1]</cite>) is integrated in a dictionary in the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">convert_into_dictionary()</span></code>,
+where the sample values are linked with the corresponding parameter name in each dictionary item.
+This input sample dictionary and the list with fixed datasets <cite>self.params</cite> are the arguments
+for the instantiation operator of <code class="xref py py-class docutils literal notranslate"><span class="pre">pv_elec.Evaluation</span></code>. The new class instance is saved as an object in <cite>my_evaluation</cite>.
+The <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code> method is called to return the objective values.
+These objective values are stored in the local variables <cite>lcoh</cite> and <cite>mh2</cite> and returned to the optimizer or uncertainty quantification algorithm. This process in the <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code> method is presented as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+
+            <span class="n">x_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_into_dictionary</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="n">arguments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">+</span> <span class="p">[</span><span class="n">x_dict</span><span class="p">]</span>
+
+            <span class="n">my_evaluation</span> <span class="o">=</span> <span class="n">pv_elec</span><span class="o">.</span><span class="n">Evaluation</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
+
+            <span class="n">my_evaluation</span><span class="o">.</span><span class="n">evaluation</span><span class="p">()</span>
+
+            <span class="n">lcoh</span><span class="p">,</span> <span class="n">mh2</span> <span class="o">=</span> <span class="n">my_evaluation</span><span class="o">.</span><span class="n">get_objectives</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">lcoh</span><span class="p">,</span> <span class="n">mh2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deterministic-design-optimization">
+<h2><span class="section-number">4.2. </span>deterministic design optimization<a class="headerlink" href="#deterministic-design-optimization" title="Permalink to this headline">¶</a></h2>
+<p>For a fixed photovoltaic array, the capacity of the electrolyzer stack and the capacity of the DC-DC converters can be designed
+to optimize the Levelized Cost Of Hydrogen (<span class="math notranslate nohighlight">\(\mathrm{LCOH}\)</span>) and hydrogen production <span class="math notranslate nohighlight">\(\dot{m}_{\mathrm{H}_2}\)</span>.
+Therefore, in the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file, the capacities for these components are characterized as design variables:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_dcdc_pv</span>   <span class="n">var</span> <span class="mf">1e-8</span> <span class="mi">10</span>
+<span class="n">n_elec</span>      <span class="n">var</span> <span class="mf">1e-8</span> <span class="mi">10</span>
+<span class="n">n_dcdc_elec</span> <span class="n">var</span> <span class="mf">1e-8</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>With this characterization, the optimizer can configurate design samples with values between <span class="math notranslate nohighlight">\(0~\mathrm{kW}\)</span> and <span class="math notranslate nohighlight">\(10~\mathrm{kW}\)</span> for the DC-DC converters and electrolyzer stack.
+The photovoltaic array is fixed at <span class="math notranslate nohighlight">\(5~\mathrm{kW}_\mathrm{p}\)</span>, and the remaining deterministic parameters are predefined in the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file.
+Detailed information on constructing this file is available in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssdesignspace"><span class="std std-ref">design_space</span></a>.</p>
+<p>To perform a deterministic optimization, the optimization dictionary has to be completed.
+The detailed explanation for each item is described in <a class="reference internal" href="optimization.html#lab-optimization"><span class="std std-ref">Run the optimization</span></a>.
+In this tutorial, the deterministic optimization is imported and the optimization dictionary is configured as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.OPT.optimization</span> <span class="k">as</span> <span class="nn">rheia_opt</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">dict_opt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                <span class="s1">&#39;PV_ELEC&#39;</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;objectives&#39;</span><span class="p">:</span>          <span class="p">{</span><span class="s1">&#39;DET&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)},</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;stop&#39;</span><span class="p">:</span>                <span class="p">(</span><span class="s1">&#39;BUDGET&#39;</span><span class="p">,</span> <span class="mi">3000</span><span class="p">),</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>              <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;population size&#39;</span><span class="p">:</span>     <span class="mi">30</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>         <span class="s1">&#39;run_1&#39;</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="p">}</span>
+</pre></div>
+</div>
+<p>In the dictionary, the case folder name <cite>PV_ELEC</cite> is provided, followed by the optimization type <cite>DET</cite> and the weigths for both objectives,
+i.e. minimization for the first returned objective <cite>lcoh</cite> and maximization for the second returned objective <cite>mH2</cite>.
+A computational budget of 3000 model evaluations is selected as stopping criterium and the number of available physical cores are used
+to parallelize the evaluations. The population contains 30 samples. These samples are generated based on Latin Hypercube Sampling
+and the NSGA-II optimizer is characterized with a crossover probability of 0.9, mutation probability of 0.1 and eta of 0.2.
+As Latin Hypercube Sampling is selected for the characterization of the population and the NSGA-II characteristics are equal to
+the standard settings, these specific items are not mentioned in the optimization dictionary.
+More information on defining the values for these NSGA-II parameters are illustrated in <a class="reference internal" href="methods.html#lab-choosepop"><span class="std std-ref">Choosing the population size</span></a>.
+Finally, the population and fitness values for each generation are saved in the folder <cite>run_1</cite>.
+To run the optimization, the <code class="xref py py-func docutils literal notranslate"><span class="pre">run_opt()</span></code> function is called:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">rheia_opt</span><span class="o">.</span><span class="n">run_opt</span><span class="p">(</span><span class="n">dict_opt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When the run is complete (i.e. the computational budget is spent), the results are saved in <code class="file docutils literal notranslate"><span class="pre">RESULTS\PV_ELEC\DET\run_1</span></code>.
+To plot the objectives and the corresponding inputs in function of the LCOH, a <code class="xref py py-class docutils literal notranslate"><span class="pre">post_process</span></code> instance is instantiated first:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.POST_PROCESS.lib_post_process</span> <span class="k">as</span> <span class="nn">rheia_pp</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">case</span> <span class="o">=</span> <span class="s1">&#39;PV_ELEC&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">my_post_process</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Followed by an <code class="xref py py-class docutils literal notranslate"><span class="pre">optimization_plot</span></code> instance which contains specific information on the optimization results:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">LIGHT</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">eval_type</span> <span class="o">=</span> <span class="s1">&#39;DET&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">my_opt_plot</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process_opt</span><span class="p">(</span><span class="n">my_post_process</span><span class="p">,</span> <span class="n">LIGHT</span><span class="p">,</span> <span class="n">eval_type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The fitness values and design samples can be plotted for the final generation through the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_fitness_population()</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">result_dir</span> <span class="o">=</span> <span class="s1">&#39;run_1&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="n">xx</span><span class="p">]:</span> <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">my_opt_plot</span><span class="o">.</span><span class="n">get_fitness_population</span><span class="p">(</span><span class="n">result_dir</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The function enables to print out the Pareto front and the design variables on the same x-axis (LCOH) after 109 generations:</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/tut_det_109.png"><img alt="_images/tut_det_109.png" src="_images/tut_det_109.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">A trade-off exists between minimizing the LCOH and maximizing the hydrogen production. The capacities of the system components
+increases gradually to improve the hydrogen production, at the expense of an increase in LCOH.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Note that due to the crossover and mutation probability being below 1, a new generation does not always contain new design samples.
+The old design samples are not evaluated again, which reduces the computation cost for the next generation and thus allows to generate
+a higher number of generations (&gt;100) with the computational budget provided.
+To analyze the convergence of the Pareto front, generation 70, 90 and 109 are plotted:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">70</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">109</span><span class="p">]:</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">my_opt_plot</span><span class="o">.</span><span class="n">get_fitness_population</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">gen</span> <span class="o">=</span> <span class="n">i</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/tut_det_109_ev.png"><img alt="_images/tut_det_109_ev.png" src="_images/tut_det_109_ev.png" style="width: 80%;" /></a>
+</div>
+<p>Adding another 6000 model evaluations to the budget, results in a smoother evolution of the design variables in function of LCOH,
+but does not affect the outcome of the Pareto front dramatically:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/tut_det_330.png"><img alt="_images/tut_det_330.png" src="_images/tut_det_330.png" style="width: 80%;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/tut_det_330_ev.png"><img alt="_images/tut_det_330_ev.png" src="_images/tut_det_330_ev.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="section" id="robust-design-optimization">
+<h2><span class="section-number">4.3. </span>Robust design optimization<a class="headerlink" href="#robust-design-optimization" title="Permalink to this headline">¶</a></h2>
+<p>The robust design optimization procedure simultaneously minimizes the mean and standard deviation of the quantity of interest.
+These statistical moments are quantified following the propagation of the input parameter uncertainties.
+The stochastic input parameters are characterized in the <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> file, which is added to the case folder <cite>PV_ELEC</cite>.
+More information on the construction of <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> is found in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssstochastic-space"><span class="std std-ref">stochastic_space</span></a>.
+In this tutorial, 14 parameters are considered uncertain, for which the uncertainty is characterized by a uniform distribution with
+an absolute range with respect to the mean value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol_irr</span>      <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.099</span>
+<span class="n">capex_pv</span>     <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">175</span>
+<span class="n">opex_pv</span>      <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">1.5</span>
+<span class="n">power_tol_pv</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">2.5</span>
+<span class="n">capex_elec</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">350</span>
+<span class="n">opex_elec</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
+<span class="n">repl_elec</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.025</span>
+<span class="n">life_elec</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">20000</span>
+<span class="n">eff_elec</span>     <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
+<span class="n">eff_dcdc</span>     <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.025</span>
+<span class="n">capex_dcdc</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">50</span>
+<span class="n">opex_dcdc</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
+<span class="n">int_rate</span>     <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
+<span class="n">infl_rate</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+<div class="section" id="determination-of-the-polynomial-order">
+<h3><span class="section-number">4.3.1. </span>Determination of the polynomial order<a class="headerlink" href="#determination-of-the-polynomial-order" title="Permalink to this headline">¶</a></h3>
+<p>Based on the PCE trunctation scheme, the number of model evaluations required to construct a PCE for each design sample
+corresponds to 30, 240 and 1360 for a maximum polynomial degree of 1,2 and 3, respectively. The polynomial degree
+that leads to an accurate expansion is not known a priori and should, therefore, be determined iteratively.
+In a robust optimization framework, the expansion should be sufficiently accurate over the entire design space.
+To determine the polynomial order, first a representative set of design samples is constructed using Latin Hypercube Sampling.
+Then, a PCE for a specific polynomial degree is constructed for each design sample.
+Finally, the highest Leave-One-Out error from the PCEs is stored. If this error is acceptable,
+the polynomial order is selected for the robust optimization procedure. We refer to <a class="reference internal" href="uncertainty%20quantification.html#lab-detpolorder"><span class="std std-ref">Determine the polynomial order</span></a> for more details on the method.</p>
+<p>First, the design samples are constructed based on Latin Hypercube Sampling. 30 design samples are selected, based on a rule of thumb that states that
+10 samples per design variable are sufficient to evaluate the design space. The functions <code class="xref py py-func docutils literal notranslate"><span class="pre">get_design_variables()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">set_design_samples()</span></code>
+are used to store information on the design variables and to generate the samples through Latin Hypercube Sampling, respectively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.UQ.uncertainty_quantification</span> <span class="k">as</span> <span class="nn">rheia_uq</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">n_des_var</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">var_dict</span> <span class="o">=</span> <span class="n">rheia_uq</span><span class="o">.</span><span class="n">get_design_variables</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">X</span> <span class="o">=</span> <span class="n">rheia_uq</span><span class="o">.</span><span class="n">set_design_samples</span><span class="p">(</span><span class="n">var_dict</span><span class="p">,</span> <span class="n">n_des_var</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A PCE can be constructed for each design sample. This is performed by constructing <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> files through <code class="xref py py-func docutils literal notranslate"><span class="pre">write_design_space()</span></code>
+– one for each design sample – and evaluating the respective uncertainty quantification dictionaries.
+At first, a polynomial degree of 1 is selected for evaluation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="k">for</span> <span class="n">iteration</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+   <span class="o">....</span><span class="p">:</span>     <span class="n">rheia_uq</span><span class="o">.</span><span class="n">write_design_space</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">iteration</span><span class="p">,</span> <span class="n">var_dict</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+   <span class="o">....</span><span class="p">:</span>     <span class="n">dict_uq</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                  <span class="n">case</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>                <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+   <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;pol order&#39;</span><span class="p">:</span>             <span class="mi">1</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;objective names&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;lcoh&#39;</span><span class="p">,</span><span class="s1">&#39;mh2&#39;</span><span class="p">],</span>
+   <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;objective of interest&#39;</span><span class="p">:</span> <span class="s1">&#39;lcoh&#39;</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>           <span class="s1">&#39;sample_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">iteration</span>
+   <span class="o">....</span><span class="p">:</span>               <span class="p">}</span>
+   <span class="o">....</span><span class="p">:</span>     <span class="n">rheia_uq</span><span class="o">.</span><span class="n">run_uq</span><span class="p">(</span><span class="n">dict_uq</span><span class="p">,</span> <span class="n">design_space</span> <span class="o">=</span> <span class="s1">&#39;design_space_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">iteration</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This results in a PCE for each design sample, for which the information is stored in <code class="file docutils literal notranslate"><span class="pre">RESULTS\PV_ELEC\UQ</span></code>.
+To determine the worst-case LOO error for the 30 design samples, a <code class="xref py py-class docutils literal notranslate"><span class="pre">post_process_uq</span></code> class object is instantiated,
+followed by the call of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_LOO()</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">pol_order</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="n">my_post_process_uq</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process_uq</span><span class="p">(</span><span class="n">my_post_process</span><span class="p">,</span> <span class="n">pol_order</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">result_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sample_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="n">objective</span> <span class="o">=</span> <span class="s1">&#39;lcoh&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">loo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">30</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">result_dir</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result_dirs</span><span class="p">):</span>
+   <span class="o">....</span><span class="p">:</span>     <span class="n">loo</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_LOO</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">objective</span><span class="p">))</span>
+   <span class="o">....</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">loo</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>For a maximum polynomial order 1, the worst-case LOO error is 0.035.
+Increasing the order to 2 and generating the PCE for the same design samples (i.e. the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> files are not overwritten)
+decreases the worst-case LOO error down to 0.013. Finally, for a maximum polynomial degree of 3, the
+worst-case LOO error equals 0.006. However, the gain in accuracy is limited when compared to the increase in computational cost
+(1360 model evaluations per design sample to construct the PCE, as opposed to 240 model evaluations for a polynomial degree of 2).
+Therefore, a maximum polynomial degree of 2 is selected for the PCE truncation scheme.</p>
+</div>
+<div class="section" id="reducing-the-stochastic-dimension">
+<h3><span class="section-number">4.3.2. </span>Reducing the stochastic dimension<a class="headerlink" href="#reducing-the-stochastic-dimension" title="Permalink to this headline">¶</a></h3>
+<p>Within the current truncation scheme, the number of stochastic parameters and the polynomial order define the number of model evaluations required to construct the PCE.
+However, the contribution of each parameter uncertainty to the variance of the quantity of interest is different.
+If the stochastic parameters that contribute little to the output variance are considered deterministic,
+the computational efficiency can be improved dramatically, with a negligible loss in accuracy on the statistical moments.
+To determine this contribution, the Sobol’ indices for each stochastic parameter are quantified.
+To make sure that the Sobol’ index for a specific parameter is negligible over the entire design space,
+the Sobol’ indices are quantified for the representative set of design samples.
+The highest Sobol’ index found for each stochastic parameter over the set of design samples
+determines the Sobol’ index on which the decision is made in this conservative approach.
+During the determination of the PCE polynomial degree in the previous section,
+the Sobol’ indices for a representative set of design samples has already been evaluated.
+The corresponding Sobol’ indices are saved for each sample in the folders <code class="file docutils literal notranslate"><span class="pre">sample_0</span></code>, <code class="file docutils literal notranslate"><span class="pre">sample_1</span></code>,…, <code class="file docutils literal notranslate"><span class="pre">sample_29</span></code>.
+The stochastic parameters with negligible effect are printed through the following commands,
+where a threshold for the Sobol’ index is set at 1/14 (= 1/number of uncertain parameters):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="n">pol_order</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="n">my_post_process_uq</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process_uq</span><span class="p">(</span><span class="n">my_post_process</span><span class="p">,</span><span class="n">pol_order</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_max_sobol</span><span class="p">(</span><span class="n">result_dirs</span><span class="p">,</span><span class="n">objective</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mf">14.</span><span class="p">)</span>
+<span class="n">significant</span> <span class="n">Sobol</span> <span class="n">indices</span><span class="p">:</span>
+<span class="n">capex_elec</span><span class="p">:</span> <span class="mf">0.451568</span>
+<span class="n">int_rate</span><span class="p">:</span> <span class="mf">0.292728</span>
+<span class="n">sol_irr</span><span class="p">:</span> <span class="mf">0.165832</span>
+<span class="n">eff_elec</span><span class="p">:</span> <span class="mf">0.128880</span>
+<span class="n">infl_rate</span><span class="p">:</span> <span class="mf">0.081605</span>
+<span class="n">opex_elec</span><span class="p">:</span> <span class="mf">0.085673</span>
+<span class="n">capex_dcdc</span><span class="p">:</span> <span class="mf">0.361644</span>
+<span class="n">capex_pv</span><span class="p">:</span> <span class="mf">0.197958</span>
+<span class="n">opex_dcdc</span><span class="p">:</span> <span class="mf">0.126053</span>
+
+<span class="n">negligible</span> <span class="n">Sobol</span> <span class="n">indices</span><span class="p">:</span>
+<span class="n">eff_dcdc</span><span class="p">:</span> <span class="mf">0.062278</span>
+<span class="n">life_elec</span><span class="p">:</span> <span class="mf">0.024846</span>
+<span class="n">power_tol_pv</span><span class="p">:</span> <span class="mf">0.010984</span>
+<span class="n">repl_elec</span><span class="p">:</span> <span class="mf">0.001914</span>
+<span class="n">opex_pv</span><span class="p">:</span> <span class="mf">0.002429</span>
+</pre></div>
+</div>
+<p>5 out of 14 stochastic parameters have a maximum Sobol’ index below the threshold,
+which indicates that these parameters can be considered deterministic without losing significant statistical accuracy on the LCOH.
+This reduction results in a decrease of 54% in computational cost, as only 110 model evaluations are required to
+construct a PCE for 9 uncertain parameters in the current truncation scheme, as opposed to 240 model evaluations with 14 uncertain parameters.
+Thus, the 5 parameters with negligible contribution can be removed from <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol_irr</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.099</span>
+<span class="n">capex_pv</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">175</span>
+<span class="n">capex_elec</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">350</span>
+<span class="n">opex_elec</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
+<span class="n">eff_elec</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
+<span class="n">capex_dcdc</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">50</span>
+<span class="n">opex_dcdc</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
+<span class="n">int_rate</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
+<span class="n">infl_rate</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-robust-design-optimization">
+<h3><span class="section-number">4.3.3. </span>Run robust design optimization<a class="headerlink" href="#run-robust-design-optimization" title="Permalink to this headline">¶</a></h3>
+<p>With the design variables, model parameters, uncertainties and maximum polynomial degree characterized, the robust design optimization can be performed.
+Again, a population of 30 samples is selected. With 110 model evaluations required per design sample, a computational budget of 495000 is selected to reach at least 150 generations.
+The optimization dictionary is configurated as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="n">dict_opt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                  <span class="s1">&#39;PV_ELEC&#39;</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objectives&#39;</span><span class="p">:</span>            <span class="p">{</span><span class="s1">&#39;ROB&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)},</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;stop&#39;</span><span class="p">:</span>                  <span class="p">(</span><span class="s1">&#39;BUDGET&#39;</span><span class="p">,</span> <span class="mi">495000</span><span class="p">),</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>                <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;population size&#39;</span><span class="p">:</span>       <span class="mi">30</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;pol order&#39;</span><span class="p">:</span>             <span class="mi">2</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objective names&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;lcoh&#39;</span><span class="p">,</span><span class="s1">&#39;mh2&#39;</span><span class="p">],</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objective of interest&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lcoh&#39;</span><span class="p">],</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>           <span class="s1">&#39;run_1&#39;</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>            <span class="p">}</span>
+</pre></div>
+</div>
+<p>Followed by the command to initiate the robust design optimization:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="n">rheia_opt</span><span class="o">.</span><span class="n">run_opt</span><span class="p">(</span><span class="n">dict_opt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The results show a single design, which indicates that there is no trade-off between minimizing the LCOH mean and minimizing the LCOH standard deviation.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/tut_rob_50.png"><img alt="_images/tut_rob_50.png" src="_images/tut_rob_50.png" style="width: 80%;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="uncertainty-quantification">
+<h2><span class="section-number">4.4. </span>Uncertainty Quantification<a class="headerlink" href="#uncertainty-quantification" title="Permalink to this headline">¶</a></h2>
+<p>Following the robust design optimization, a single optimized design is characterized that optimizes both mean and standard deviation of the LCOH.
+The Sobol’ indices for this design can illustrate the main drivers of the uncertainty on the LCOH, which can provide guidelines
+to effectively reduce the uncertainty by gathering more information on the dominant parameters.
+The design is specified in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, by replacing the design variable ranges with the specified capacities:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_dcdc_pv</span>   <span class="n">par</span> <span class="mf">1.81</span>
+<span class="n">n_elec</span>      <span class="n">par</span> <span class="mf">1.55</span>
+<span class="n">n_dcdc_elec</span> <span class="n">par</span> <span class="mf">1.67</span>
+</pre></div>
+</div>
+<p>The uncertainty quantification dictionary is characterized as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">26</span><span class="p">]:</span> <span class="n">dict_uq</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                  <span class="s1">&#39;PV_ELEC&#39;</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>            <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>                <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+   <span class="o">....</span><span class="p">:</span>            <span class="s1">&#39;pol order&#39;</span><span class="p">:</span>             <span class="mi">2</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>            <span class="s1">&#39;objective names&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;lcoh&#39;</span><span class="p">,</span><span class="s1">&#39;mh2&#39;</span><span class="p">],</span>
+   <span class="o">....</span><span class="p">:</span>            <span class="s1">&#39;objective of interest&#39;</span><span class="p">:</span> <span class="s1">&#39;lcoh&#39;</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>            <span class="s1">&#39;draw pdf cdf&#39;</span><span class="p">:</span>          <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="mf">1e5</span><span class="p">],</span>
+   <span class="o">....</span><span class="p">:</span>            <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>           <span class="s1">&#39;opt_design&#39;</span>
+   <span class="o">....</span><span class="p">:</span>           <span class="p">}</span>
+</pre></div>
+</div>
+<p>And the UQ is started with <code class="xref py py-func docutils literal notranslate"><span class="pre">run_uq()</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">27</span><span class="p">]:</span> <span class="n">rheia_uq</span><span class="o">.</span><span class="n">run_uq</span><span class="p">(</span><span class="n">dict_uq</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting Sobol’ indices can be plotted in a bar chart. The process is similar to the determination of the worst-case LOO error,
+but the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sobol()</span></code> method is used instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">30</span><span class="p">]:</span> <span class="n">result_dir</span> <span class="o">=</span> <span class="s1">&#39;opt_design&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">names</span><span class="p">,</span> <span class="n">sobol</span> <span class="o">=</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_sobol</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">objective</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">sobol</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/sobol_indices.png"><img alt="_images/sobol_indices.png" src="_images/sobol_indices.png" style="width: 80%;" /></a>
+</div>
+<p>The Sobol’ indices illustrate that the uncertainty on the interest rate and the investment cost of the PV array and electrolyzer stack
+dominate the uncertainty on the LCOH.</p>
+<p>Finally, the probability density function is plotted with the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_pdf()</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_pdf</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span><span class="n">objective</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/tut_pdf.png"><img alt="_images/tut_pdf.png" src="_images/tut_pdf.png" style="width: 80%;" /></a>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="example.html" class="btn btn-neutral float-right" title="5. Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="3. Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Diederik Coppitters, Panagiotis Tsirikoglou.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
