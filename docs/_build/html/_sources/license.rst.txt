@@ -1,0 +1,6 @@
+.. _lab:license:
+
+license
+================================
+
+nothing yet

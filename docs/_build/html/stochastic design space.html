@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>6. Stochastic design space &mdash; rheia  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Run the optimization" href="optimization.html" />
+    <link rel="prev" title="5. Examples" href="example.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> rheia
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="functionalities.html">1. A short description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting%20your%20own%20model.html">2. Connecting your own model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">4. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">5. Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Stochastic design space</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#design-space">6.1. design_space</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#design-variables">6.1.1. design variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-parameters">6.1.2. model parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-design-space">6.1.3. example design_space</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#stochastic-space">6.2. stochastic_space</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uncertainty-characterization">6.2.1. uncertainty characterization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-stochastic-space">6.2.2. example stochastic_space</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">7. Run the optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty%20quantification.html">8. Run the uncertainty quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post_processing.html">9. post-processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">10. Details on the methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy%20system%20models.html">11. Details on the energy system models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">13. How to contribute</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rheia</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">6. </span>Stochastic design space</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/stochastic design space.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stochastic-design-space">
+<span id="lab-stochasticdesignspace"></span><h1><span class="section-number">6. </span>Stochastic design space<a class="headerlink" href="#stochastic-design-space" title="Permalink to this headline">¶</a></h1>
+<p>In this section, the characterization of the model parameters and design variables is described.
+This characterization is performed through two files: <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> and <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>.
+In <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, the deterministic values for the model parameters and the range for the design variables are provided.
+In <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>, uncertainty is allocated to the specific model parameters and design variables.
+When a deterministic optimization is performed, only the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file is required.
+In the other cases, i.e. uncertainty quantification and robust optimization, both files are required.</p>
+<div class="section" id="design-space">
+<span id="lab-ssdesignspace"></span><h2><span class="section-number">6.1. </span>design_space<a class="headerlink" href="#design-space" title="Permalink to this headline">¶</a></h2>
+<p>In this file, you define the model parameters which need a quantification in your model.
+When performing uncertainty quantification, the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file consists only of <a class="reference internal" href="#lab-ssmodelparameters"><span class="std std-ref">model parameters</span></a>.
+In the case of deterministic optimization or robust optimization, the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file requires <a class="reference internal" href="#lab-ssdesignvariables"><span class="std std-ref">design variables</span></a>.
+Additionally, if some model parameters require a quantification outside the model, the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file includes both <a class="reference internal" href="#lab-ssdesignvariables"><span class="std std-ref">design variables</span></a> and <a class="reference internal" href="#lab-ssmodelparameters"><span class="std std-ref">model parameters</span></a>.
+The file uses whitespace as delimiter between the inputs related to the parameters and variables.</p>
+<div class="section" id="design-variables">
+<span id="lab-ssdesignvariables"></span><h3><span class="section-number">6.1.1. </span>design variables<a class="headerlink" href="#design-variables" title="Permalink to this headline">¶</a></h3>
+<p>The design variables are parameters that are controllable by the designer within a certain range.
+This range should be provided, to shape the search space for the optimizer.
+To define a design variable, the set-up in the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="n">parameter_type</span> <span class="n">lb</span> <span class="n">ub</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>name: name of the variable;</p></li>
+<li><p>parameter_type: a variable is indicated with <cite>var</cite>;</p></li>
+<li><p>lb: lower bound value for the design variable;</p></li>
+<li><p>ub: upper bound value for the design variable.</p></li>
+</ul>
+<p>An example for a configured design variable <cite>n_pv</cite> with a range between 1e-8 and 50 is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_pv</span> <span class="n">var</span> <span class="mf">1e-8</span> <span class="mi">50</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="model-parameters">
+<span id="lab-ssmodelparameters"></span><h3><span class="section-number">6.1.2. </span>model parameters<a class="headerlink" href="#model-parameters" title="Permalink to this headline">¶</a></h3>
+<p>A model parameter corresponds to a parameter that usually cannot be controlled by the designer, or the decision on this parameter value is fixed.
+Such a parameter can be considered deterministic or uncertain. In this file <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, the deterministic value (or mean value when the parameter is considered uncertain) is provided.
+The configuration of a model parameter is similar to the configuration of a design variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="n">parameter_type</span> <span class="n">mean</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>name: name of the variable;</p></li>
+<li><p>parameter_type: a parameter is indicated with <cite>par</cite>;</p></li>
+<li><p>mean: mean value (or deterministic value if parameter is deterministic).</p></li>
+</ul>
+<p>An example of a configured model parameter <cite>opex_dcdc</cite> with a mean value of 0.03 is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">opex_dcdc</span> <span class="n">par</span> <span class="mf">0.03</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-design-space">
+<span id="lab-ssexampleds"></span><h3><span class="section-number">6.1.3. </span>example design_space<a class="headerlink" href="#example-design-space" title="Permalink to this headline">¶</a></h3>
+<p>Conclusively, an example of a configured <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file, which consists of 3 model parameters (par_1, par_2 and par_3) and 2 design variables (design_var_1 and design_var_2), is presented:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">par_1</span>        <span class="n">par</span> <span class="mi">4</span>
+<span class="n">par_2</span>        <span class="n">par</span> <span class="mf">2.5</span>
+<span class="n">par_3</span>        <span class="n">par</span> <span class="mi">175</span>
+<span class="n">design_var_1</span> <span class="n">var</span> <span class="mi">1</span> <span class="mi">3</span>
+<span class="n">design_var_2</span> <span class="n">var</span> <span class="mf">1e-8</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="stochastic-space">
+<span id="lab-ssstochastic-space"></span><h2><span class="section-number">6.2. </span>stochastic_space<a class="headerlink" href="#stochastic-space" title="Permalink to this headline">¶</a></h2>
+<p>This file is required when performing robust optimization and uncertainty quantification, where several parameters are subjected to uncertainty.
+This uncertainty can be allocated through the file <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>.
+For every design variable and model parameter defined in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, an uncertainty can be defined.
+Defining the uncertainty of a parameter can be done through the following syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="n">abs_rel</span> <span class="n">distribution</span> <span class="n">deviation</span>
+</pre></div>
+</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>name: name of the parameter or variable, equal to the name of the parameter or variable in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>;</p></li>
+<li><p>abs_rel: absolute or relative uncertainty to the mean, defined with <cite>absolute</cite> or <cite>relative</cite>, respectively;</p></li>
+<li><p>distribution: The distribution of the uncertainty;</p></li>
+<li><p>deviation: uncertainty on the mean.</p></li>
+</ul>
+</div></blockquote>
+<p>A more detailed description of these parameters is available in <a class="reference internal" href="#lab-ssdistributions"><span class="std std-ref">uncertainty characterization</span></a></p>
+<p>An example of a configured uncertain parameter <cite>par_2</cite>, characterized by a uniform distribution with a <span class="math notranslate nohighlight">\(\pm 1\)</span> deviation from the mean value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">par_2</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Note that it is not required to allocate an uncertainty to every design variable and model parameter defined in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>.
+In other words, when a parameter (or variable) is defined in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, but not in U, the parameter (or variable) is considered deterministic.
+Moreover, the order of appearance of parameters and variables in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> should not be kept in U.</p>
+<div class="section" id="uncertainty-characterization">
+<span id="lab-ssdistributions"></span><h3><span class="section-number">6.2.1. </span>uncertainty characterization<a class="headerlink" href="#uncertainty-characterization" title="Permalink to this headline">¶</a></h3>
+<p>The following distributions are available:</p>
+<ul class="simple">
+<li><p>uniform</p></li>
+<li><p>Gaussian</p></li>
+</ul>
+<p>The meaning of deviation at the end of the line depends on the distribution. When a uniform distribution is considered,
+the deviation refers to the absolute difference between the upper bound of the uniform distribution and the mean: for <span class="math notranslate nohighlight">\(\mathcal{U}(a,b)\)</span>, <span class="math notranslate nohighlight">\(deviation = (b-a)/2\)</span>).
+When a Gaussian distribution is considered, the value corresponds to the standard deviation: <span class="math notranslate nohighlight">\(\mathcal{N}(mean,deviation)\)</span>.</p>
+</div>
+<div class="section" id="example-stochastic-space">
+<h3><span class="section-number">6.2.2. </span>example stochastic_space<a class="headerlink" href="#example-stochastic-space" title="Permalink to this headline">¶</a></h3>
+<p>In summary, a <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> file corresponding to the illustrative <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> example file in <a class="reference internal" href="#lab-ssexampleds"><span class="std std-ref">example design_space</span></a> might look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">par_1</span>        <span class="n">relative</span> <span class="n">Gaussian</span> <span class="mf">0.5</span>
+<span class="n">par_2</span>        <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1</span>
+<span class="n">design_var_2</span> <span class="n">relative</span> <span class="n">uniform</span>  <span class="mf">0.1</span>
+</pre></div>
+</div>
+<p>Where the model parameter <cite>par_3</cite> and design variable <cite>design_var_1</cite> are considered deterministic,
+<cite>par_1</cite> is characterized by a Gaussian distribution with a
+relative standard deviation of 0.5 (i.e. <span class="math notranslate nohighlight">\(\mathcal{N}(4,2)\)</span>),
+<cite>par_2</cite> is characterized by a uniform distribution with an
+absolute deviation of 1 (i.e. <span class="math notranslate nohighlight">\(\mathcal{U}(1.5,3.5)\)</span>) and
+<cite>design_var_2</cite> is characterized by a uniform distribution with a
+relative deviation of 0.1. For <cite>design_var_2</cite>, the actual uniform distribution depends on the mean value selected by the optimizer for each evaluated design.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="optimization.html" class="btn btn-neutral float-right" title="7. Run the optimization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="example.html" class="btn btn-neutral float-left" title="5. Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Diederik Coppitters, Panagiotis Tsirikoglou.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

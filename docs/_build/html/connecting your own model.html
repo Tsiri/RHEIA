@@ -1,0 +1,606 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>2. Connecting your own model &mdash; rheia  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Installation" href="installation.html" />
+    <link rel="prev" title="1. A short description" href="functionalities.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> rheia
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="functionalities.html">1. A short description</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Connecting your own model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#python-wrapper">2.1. Python wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#four-bar-truss-python-model">2.2. Four-bar truss Python model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#four-bar-truss-system-description">2.2.1. Four-bar truss system description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-the-model-to-the-framework">2.2.2. Connecting the model to the framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-optimization">2.2.3. Run the optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#energyplan-closed-source-model">2.3. EnergyPLAN closed-source model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.3.1. Connecting the model to the framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-uncertainty-quantification">2.3.2. run uncertainty quantification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">4. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">5. Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stochastic%20design%20space.html">6. Stochastic design space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">7. Run the optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty%20quantification.html">8. Run the uncertainty quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post_processing.html">9. post-processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">10. Details on the methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy%20system%20models.html">11. Details on the energy system models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">13. How to contribute</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rheia</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">2. </span>Connecting your own model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/connecting your own model.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="connecting-your-own-model">
+<span id="lab-connectingyourownmodel"></span><h1><span class="section-number">2. </span>Connecting your own model<a class="headerlink" href="#connecting-your-own-model" title="Permalink to this headline">¶</a></h1>
+<p>The design optimization and uncertainty quantification algorithms are introduced on hydrogen-based energy systems.
+However, these algorithms can be applied on any system model. Therefore, RHEIA allows to evaluate and connect your own model.
+In this section, first, the Python wrapper is described that integrates the system model into the optimization and uncertainty quantification algorithms.
+Thereafter, the integration of a Python-based model and a closed-source model is described.</p>
+<div class="section" id="python-wrapper">
+<span id="lab-wrapper"></span><h2><span class="section-number">2.1. </span>Python wrapper<a class="headerlink" href="#python-wrapper" title="Permalink to this headline">¶</a></h2>
+<p>The Python wrapper module <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description</span></code> enables to connect the system model to the uncertainty quantification and optimization algorithm.
+First, the system model evaluation function is imported from the respective module, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">system_model_module</span> <span class="kn">import</span> <span class="n">system_model_evaluation</span>
+</pre></div>
+</div>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">CASE</span></code> instance variables contain information on the stochastic design space,
+which is provided through the <code class="xref py py-class docutils literal notranslate"><span class="pre">stochastic_design_space</span></code> instance.
+In <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_params()</span></code>, data can be imported before the model evaluations commence.
+In this way, the computational cost of importing data is spent only once,
+before the evaluation loop. The data is assigned to the instance variable <cite>self.params</cite>.
+To illustrate, importing data from 3 data files (e.g. <code class="file docutils literal notranslate"><span class="pre">datafile_1.csv</span></code>, <code class="file docutils literal notranslate"><span class="pre">datafile_2.csv</span></code>, <code class="file docutils literal notranslate"><span class="pre">datafile_3.csv</span></code>) is performed as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;datafile_1.csv&#39;</span><span class="p">))[</span><span class="s1">&#39;data1&#39;</span><span class="p">]</span>
+    <span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;datafile_2.csv&#39;</span><span class="p">))[</span><span class="s1">&#39;data2&#39;</span><span class="p">]</span>
+    <span class="n">data3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;datafile_3.csv&#39;</span><span class="p">))[</span><span class="s1">&#39;data3&#39;</span><span class="p">]</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">data3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>After assigning the data to the instance variable <cite>self.params</cite>, the model can be evaluated.
+This is done in the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code>. This method is called
+by the optimization or uncertainty quantification algorithm,
+which provides the sample as an argument in the form of an enumerate object <code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code>.
+The array <cite>x[1]</cite> in the enumerate object <code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code> consists of the following format:
+<cite>x[1] = [xp1, xp2, …, xpm, xv1, xv2, …, xvn]</cite>,
+where <cite>xp</cite> and <cite>xv</cite> refer to the values allocated to a model parameter and a variable, respectively.
+<cite>m</cite> and <cite>n</cite> refer to the number of parameters and variables present in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, respectively.
+This formation can be anticipated in the system model function. To illustrate,
+when 4 model parameters and 3 design variables are present and <code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code> is passed as an argument to the
+system model evaluation function (e.g. <code class="xref py py-func docutils literal notranslate"><span class="pre">system_model_evaluation()</span></code>), <code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code> can be unpacked
+in the system model evaluation function as e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">par_1</span><span class="p">,</span> <span class="n">par_2</span><span class="p">,</span> <span class="n">par_3</span><span class="p">,</span> <span class="n">par_4</span><span class="p">,</span> <span class="n">var_1</span><span class="p">,</span> <span class="n">var_2</span><span class="p">,</span> <span class="n">var_3</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Alternatively, the array <cite>x[1]</cite> can be converted into a dictionary,
+where the keys refer to the name of the parameters and variables.
+This can be executed by calling the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">convert_into_dictionary()</span></code> and passing <code class="xref py py-obj docutils literal notranslate"><span class="pre">x[1]</span></code> as an argument.
+The method returns a dictionary, for which an example looks as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;par_1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+ <span class="s1">&#39;par_2&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
+ <span class="s1">&#39;par_3&#39;</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">,</span>
+ <span class="s1">&#39;par_4&#39;</span><span class="p">:</span> <span class="mf">165.0</span><span class="p">,</span>
+ <span class="s1">&#39;var_1&#39;</span><span class="p">:</span> <span class="mf">1.996</span><span class="p">,</span>
+ <span class="s1">&#39;var_2&#39;</span><span class="p">:</span> <span class="mf">12.342</span><span class="p">,</span>
+ <span class="s1">&#39;var_3&#39;</span><span class="p">:</span> <span class="mf">130.782</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In summary, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code> method can be defined as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+
+    <span class="n">x_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_into_dictionary</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">arguments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">+</span> <span class="p">[</span><span class="n">x_dict</span><span class="p">]</span>
+
+    <span class="n">obj_1</span><span class="p">,</span> <span class="n">obj_2</span> <span class="o">=</span> <span class="n">system_model_evaluation</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">obj_1</span><span class="p">,</span> <span class="n">obj_2</span>
+</pre></div>
+</div>
+<p>Alternatively, when the input samples <cite>x[1]</cite> are provided directly as an argument for the model evaluation function,
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code> method can be completed as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+
+    <span class="n">arguments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="n">obj_1</span><span class="p">,</span> <span class="n">obj_2</span> <span class="o">=</span> <span class="n">system_model_evaluation</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">obj_1</span><span class="p">,</span> <span class="n">obj_2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="four-bar-truss-python-model">
+<h2><span class="section-number">2.2. </span>Four-bar truss Python model<a class="headerlink" href="#four-bar-truss-python-model" title="Permalink to this headline">¶</a></h2>
+<p>To illustrate the connecting of a Python-based model to RHEIA, a model of a four-bar truss is adopted.
+First, the system is briefly illustrated, followed by the model connection and the optimization commands.</p>
+<div class="section" id="four-bar-truss-system-description">
+<h3><span class="section-number">2.2.1. </span>Four-bar truss system description<a class="headerlink" href="#four-bar-truss-system-description" title="Permalink to this headline">¶</a></h3>
+<p>The four-bar truss is presented below:</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/fbt.png"><img alt="_images/fbt.png" src="_images/fbt.png" style="width: 618.0px; height: 352.0px;" /></a>
+<p class="caption"><span class="caption-text">The four-bar truss</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The aim is to minimize the volume of the truss and to minimize
+the deflection of the outermost joint by controlling the cross-sectional areas of the bars.
+The volume <span class="math notranslate nohighlight">\(V\)</span> and deflection <span class="math notranslate nohighlight">\(d\)</span> are defined as:</p>
+<p><span class="math notranslate nohighlight">\(V = L (2A_1 + \sqrt{2} A_2 + \sqrt{A_3} + A_4 )\)</span></p>
+<p><span class="math notranslate nohighlight">\(d = F L \left( \dfrac{2}{A_1 E_1} + \dfrac{2 \sqrt{2}}{A_2 E_2} - \dfrac{2 \sqrt{2}}{A_3 E_3} + \dfrac{2}{A_4} \right)\)</span></p>
+<p>Where <span class="math notranslate nohighlight">\(F, L, E, A\)</span> are the exerted force, length, Young’s modulus and cross-sectional area, respectively.
+The cross-sectional areas are designed between the following bounds:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_1 \in [1,3] ~\mathrm{cm}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_2 \in [\sqrt{2},3] ~\mathrm{cm}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_3 \in [\sqrt{2},3] ~\mathrm{cm}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_4 \in [1,3] ~\mathrm{cm}^2\)</span></p></li>
+</ul>
+<p>And the model parameters are defined as follows:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L = 200 ~ \mathrm{cm}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F \in \mathcal{N}(10,1) ~ \mathrm{kN}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E_1 \in \mathcal{U}(19000,21000) ~ \mathrm{kN}/ \mathrm{cm}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E_2 \in \mathcal{U}(19000,21000) ~ \mathrm{kN}/ \mathrm{cm}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E_3 \in \mathcal{U}(19000,21000) ~ \mathrm{kN}/ \mathrm{cm}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E_4 \in \mathcal{U}(19000,21000) ~ \mathrm{kN}/ \mathrm{cm}^2\)</span></p></li>
+</ul>
+<p>Conclusively, the system model evaluation is coded as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">four_bar_truss</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+
+        <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">E_1</span><span class="p">,</span> <span class="n">E_2</span><span class="p">,</span> <span class="n">E_3</span><span class="p">,</span> <span class="n">E_4</span><span class="p">,</span> <span class="n">A_1</span><span class="p">,</span> <span class="n">A_2</span><span class="p">,</span> <span class="n">A_3</span><span class="p">,</span> <span class="n">A_4</span> <span class="o">=</span> <span class="n">x</span>
+
+        <span class="n">V</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="n">A_1</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">A_2</span> <span class="o">+</span> <span class="n">A_3</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="n">A_4</span><span class="p">)</span>
+
+        <span class="n">d</span> <span class="o">=</span> <span class="n">F</span> <span class="o">*</span> <span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">A_1</span> <span class="o">*</span> <span class="n">E_1</span><span class="p">)</span> <span class="o">+</span>
+                                 <span class="mf">2.</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">A_2</span> <span class="o">*</span> <span class="n">E_2</span><span class="p">)</span> <span class="o">-</span>
+                                 <span class="mf">2.</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">A_3</span> <span class="o">*</span> <span class="n">E_3</span><span class="p">)</span> <span class="o">+</span>
+                                 <span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">A_4</span> <span class="o">*</span> <span class="n">E_4</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">V</span><span class="p">,</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p>Where the function argument <cite>x</cite> can be a list or array with values for the model parameters, i.e. <span class="math notranslate nohighlight">\(L, F, E_1, E_2, E_3, E_4\)</span>
+and values for the design variables, i.e. <span class="math notranslate nohighlight">\(A_1, A_2, A_3, A_4\)</span>.
+This function is saved in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">four_bar_truss</span></code> module.</p>
+</div>
+<div class="section" id="connecting-the-model-to-the-framework">
+<h3><span class="section-number">2.2.2. </span>Connecting the model to the framework<a class="headerlink" href="#connecting-the-model-to-the-framework" title="Permalink to this headline">¶</a></h3>
+<p>To connect the model to the optimization and uncertainty quantification framework, a specific folder for the model
+should be created in the general <code class="file docutils literal notranslate"><span class="pre">CASES</span></code> folder. In the <code class="file docutils literal notranslate"><span class="pre">CASES</span></code> folder, a reference folder <code class="file docutils literal notranslate"><span class="pre">CASES\REF</span></code> is present, which includes the necessary
+files to characterize and connect a system model.
+Make a copy of the <code class="file docutils literal notranslate"><span class="pre">REF</span></code> folder, paste it in the <code class="file docutils literal notranslate"><span class="pre">CASES</span></code> folder and rename it, e.g. into <code class="file docutils literal notranslate"><span class="pre">FOUR_BAR_TRUSS</span></code>.
+Hence, a new case folder is present: <code class="file docutils literal notranslate"><span class="pre">CASES\FOUR_BAR_TRUSS</span></code>.
+This folder includes <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> and <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description</span></code>.
+Finally, include the <code class="xref py py-mod docutils literal notranslate"><span class="pre">four_bar_truss</span></code> module in the folder.
+The <code class="file docutils literal notranslate"><span class="pre">FOUR_BAR_TRUSS</span></code> folder now includes all necessary files and the structure looks as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CASES</span>
+  <span class="n">FOUR_BAR_TRUSS</span>
+    <span class="n">design_space</span>
+    <span class="n">stochastic_space</span>
+    <span class="n">case_despcription</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">four_bar_truss</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>In <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, the design variables and model parameters are defined.
+More information on the characterization of the design space is presented in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssdesignspace"><span class="std std-ref">design_space</span></a>.
+In the four-bar truss example, 4 design variables (the cross-sectional areas) and 6 model parameters (the force, length and 4 Young’s moduli) exist.
+The corresponding <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file for the four-bar truss is configured as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A_1</span> <span class="n">var</span> <span class="mi">1</span> <span class="mi">3</span>
+<span class="n">A_2</span> <span class="n">var</span> <span class="mf">1.414</span> <span class="mi">3</span>
+<span class="n">A_3</span> <span class="n">var</span> <span class="mf">1.414</span> <span class="mi">3</span>
+<span class="n">A_4</span> <span class="n">var</span> <span class="mi">1</span> <span class="mi">3</span>
+<span class="n">L</span>   <span class="n">par</span> <span class="mi">200</span>
+<span class="n">F</span>   <span class="n">par</span> <span class="mi">10</span>
+<span class="n">E_1</span> <span class="n">par</span> <span class="mi">20000</span>
+<span class="n">E_2</span> <span class="n">par</span> <span class="mi">20000</span>
+<span class="n">E_3</span> <span class="n">par</span> <span class="mi">20000</span>
+<span class="n">E_4</span> <span class="n">par</span> <span class="mi">20000</span>
+</pre></div>
+</div>
+<p>The uncertainty on the stochastic parameters should be defined in <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>.
+More information on the uncertainty characterization is described in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssstochastic-space"><span class="std std-ref">stochastic_space</span></a>.
+The exerted force and the Young’s moduli are subject to uncertainty.
+The corresponding <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> file for the four-bar truss file is configured as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span>   <span class="n">absolute</span> <span class="n">Gaussian</span> <span class="mi">1</span>
+<span class="n">E_1</span> <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1000</span>
+<span class="n">E_2</span> <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1000</span>
+<span class="n">E_3</span> <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1000</span>
+<span class="n">E_4</span> <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1000</span>
+</pre></div>
+</div>
+<p>To evaluate the system model in the optimization and uncertainty quantification algorithm, the model should be
+connected to the algorithms. This connection is established in the module <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description</span></code>.
+Additional details on this module are provided in <a class="reference internal" href="#lab-wrapper"><span class="std std-ref">Python wrapper</span></a>.
+At the top of the file, import the module or function that evaluates your model. In the example of the four-bar truss,
+this is performed as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">four_bar_truss</span> <span class="kn">import</span> <span class="n">four_bar_truss</span>
+</pre></div>
+</div>
+<p>After the import, the model can be evaluated. This is done in the <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code> method.
+The <code class="xref py py-func docutils literal notranslate"><span class="pre">four_bar_truss()</span></code> function anticipates the order of values in the argument <cite>x</cite>.
+Therefore, the array with the input sample values <cite>x[1]</cite> is passed directly as an argument to the <code class="xref py py-func docutils literal notranslate"><span class="pre">four_bar_truss()</span></code> function.
+The <code class="xref py py-func docutils literal notranslate"><span class="pre">four_bar_truss()</span></code> function returns the values for the optimization objectives, i.e. the volume <span class="math notranslate nohighlight">\(V\)</span> and deflection <span class="math notranslate nohighlight">\(d\)</span>.
+Conclusively, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code> method is completed as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+
+    <span class="n">V</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">four_bar_truss</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">V</span><span class="p">,</span><span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-the-optimization">
+<h3><span class="section-number">2.2.3. </span>Run the optimization<a class="headerlink" href="#run-the-optimization" title="Permalink to this headline">¶</a></h3>
+<p>Once the characterization and coupling of the case is completed,
+the optimization dictionary can be completed to perform the design optimization.
+To illustrate, for a deterministic optimization:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.OPT.optimization</span> <span class="k">as</span> <span class="nn">rheia_opt</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">dict_opt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                <span class="s1">&#39;FOUR_BAR_TRUSS&#39;</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;objectives&#39;</span><span class="p">:</span>          <span class="p">{</span><span class="s1">&#39;DET&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)},</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;stop&#39;</span><span class="p">:</span>                <span class="p">(</span><span class="s1">&#39;BUDGET&#39;</span><span class="p">,</span> <span class="mi">9000</span><span class="p">),</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;population size&#39;</span><span class="p">:</span>     <span class="mi">30</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>         <span class="s1">&#39;run_1&#39;</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>            <span class="p">}</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">rheia_opt</span><span class="o">.</span><span class="n">run_opt</span><span class="p">(</span><span class="n">dict_opt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this dictionary, a deterministic optimization is specified, for which both objectives should be minimized. The computational budget is set at 9000,
+which leads to at least 300 generations with a population size of 30. The number of jobs, crossover probability, mutation probability, eta, starting population
+and result printing are adopted from the standard setting and are therefore not specified in the dictionary.
+Similarly, the optimization dictionary for robust optimization on the mean and standard deviation of the displacement can be characterized as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.OPT.optimization</span> <span class="k">as</span> <span class="nn">rheia_opt</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">dict_opt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                  <span class="s1">&#39;FOUR_BAR_TRUSS&#39;</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;objectives&#39;</span><span class="p">:</span>            <span class="p">{</span><span class="s1">&#39;ROB&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)},</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;stop&#39;</span><span class="p">:</span>                  <span class="p">(</span><span class="s1">&#39;BUDGET&#39;</span><span class="p">,</span> <span class="mi">90000</span><span class="p">),</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;population size&#39;</span><span class="p">:</span>       <span class="mi">30</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;pol order&#39;</span><span class="p">:</span>             <span class="mi">2</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;objective names&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">],</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;objective of interest&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">],</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>           <span class="s1">&#39;run_1&#39;</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>            <span class="p">}</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">rheia_opt</span><span class="o">.</span><span class="n">run_opt</span><span class="p">(</span><span class="n">dict_opt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The details on running optimization or uncertainty quantification are provided in
+<a class="reference internal" href="optimization.html#lab-optimization"><span class="std std-ref">Run the optimization</span></a> and <a class="reference internal" href="uncertainty%20quantification.html#lab-uncertaintyquantification"><span class="std std-ref">Run the uncertainty quantification</span></a>, respectively.
+The post-processing of the results is described in <a class="reference internal" href="post_processing.html#lab-postprocessing"><span class="std std-ref">post-processing</span></a>.</p>
+</div>
+</div>
+<div class="section" id="energyplan-closed-source-model">
+<h2><span class="section-number">2.3. </span>EnergyPLAN closed-source model<a class="headerlink" href="#energyplan-closed-source-model" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.energyplan.eu/">EnergyPLAN</a> is a software that evaluates national energy system operation.
+It is used by industry, researchers and policy-makers worldwide.
+The software includes the electricity, heating, cooling, industry and transport sector to characterize, among others, the primary energy consumption and CO2 emission.
+Generally, the software is used through a user-friendly user interface, but it can be called through an external command as well.
+When calling EnergyPLAN through an external command, the input parameters are provided and the outputs are written in external text files.</p>
+<p>In this tutorial, the EnergyPLAN software is connected to the framework. The specific case is based on <a class="reference external" href="https://www.energyplan.eu/training/exercises/">exercise 3</a> in the EnergyPLAN training session.</p>
+<p>The energy system is characterized as follows:</p>
+<ul class="simple">
+<li><p>Electricity demand: <span class="math notranslate nohighlight">\(\mathrm{elec\_demand} \in \mathcal{U}(33.3,35.3) ~ \mathrm{TWh/year}\)</span>;</p></li>
+<li><p>Condensing coal-fired power plant: 9000 MW;</p></li>
+<li><p>On-shore wind power: 4000 MW;</p></li>
+<li><p>Off-shore wind power: 3000 MW;</p></li>
+<li><p>Annual district heating demand: 27.43 TWh (1.59 TWh district heating oil-boilers, 10 TWh small-scale CHP, 15.84 TWh large-scale CHP extraction plants);</p></li>
+<li><p>Decentralised natural-gas fired CHP: 1350 MW, with a thermal efficiency of <span class="math notranslate nohighlight">\(\mathrm{CHP\_eff\_ht} \in \mathcal{U}(0.45,0.55)\)</span> and electrical efficiency of <span class="math notranslate nohighlight">\(\mathrm{CHP\_eff\_el} \in \mathcal{U}(0.36,0.46)\)</span>;</p></li>
+<li><p>Large-scale coal-fired CHP: 2000 MW, with a thermal efficiency of 50% and electrical efficiency of 41%;</p></li>
+<li><p>Heat Pump of 300 MWe with a <span class="math notranslate nohighlight">\(\mathrm{COP} \in \mathcal{U}(2.5,3.5)\)</span>;</p></li>
+<li><p>Individual house Fuel demand for heating:14.42 TWh (0.01 coal, 4.2 oil, 5.66 natural gas and 4.55 biomass);</p></li>
+<li><p>Industrial fuel demand: 53.66 TWh (3.37 coal, 26.92 oil, 18.19 natural gas and 5.18 biomass);</p></li>
+<li><p>Industrial district heating production: 1.73 TWh;</p></li>
+<li><p>Industrial district electricity production: 2.41 TWh;</p></li>
+<li><p>Transportation fuel demand: 13.25 TWh Jet Petrol, 27.50 TWh Diesel, 23.35 TWh Petrol and 2.55 TWh hydrogen;</p></li>
+<li><p>900 MWe electrolyzers at <span class="math notranslate nohighlight">\(\mathrm{eff\_H2} \in \mathcal{U}(0.6,0.7)\)</span> efficiency for hydrogen production for transport.</p></li>
+</ul>
+<div class="section" id="id1">
+<h3><span class="section-number">2.3.1. </span>Connecting the model to the framework<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>First, a specific folder for the model should be created in the <code class="file docutils literal notranslate"><span class="pre">CASES</span></code> folder, e.g. <code class="file docutils literal notranslate"><span class="pre">ENERGYPLAN</span></code>.
+The necessary files are <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, the <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description</span></code> module( and <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> for uncertainty quantification and robust optimization).
+In addition, a module to call the EnergyPLAN software <code class="xref py py-mod docutils literal notranslate"><span class="pre">run_energyplan</span></code>
+and a .txt file to provide the input that represent the current case (<code class="file docutils literal notranslate"><span class="pre">case.txt</span></code>) are included.
+This results in the following structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CASES</span>
+  <span class="n">ENERGYPLAN</span>
+    <span class="n">design_space</span>
+    <span class="n">stochastic_space</span>
+    <span class="n">case_despcription</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">run_energyplan</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">case</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file includes the mean values for the stochastic model parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elec_demand</span> <span class="n">par</span> <span class="mf">34.3</span>
+<span class="n">COP</span>         <span class="n">par</span> <span class="mi">3</span>
+<span class="n">eff_H2</span>      <span class="n">par</span> <span class="mf">0.65</span>
+<span class="n">CHP_eff_el</span>  <span class="n">par</span> <span class="mf">0.41</span>
+<span class="n">CHP_eff_ht</span>  <span class="n">par</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+<p>More information on the characterization of the design space is presented in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssdesignspace"><span class="std std-ref">design_space</span></a>.
+The stochastic space is defined in <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elec_demand</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">1</span>
+<span class="n">COP</span>         <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.5</span>
+<span class="n">eff_H2</span>      <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
+<span class="n">CHP_eff_el</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
+<span class="n">CHP_eff_ht</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
+</pre></div>
+</div>
+<p>More information on the uncertainty characterization is described in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssstochastic-space"><span class="std std-ref">stochastic_space</span></a>.</p>
+<p>In the <code class="xref py py-mod docutils literal notranslate"><span class="pre">run_energyplan</span></code> module, the <code class="xref py py-func docutils literal notranslate"><span class="pre">energyplan()</span></code> Python wrapper function evaluates the EnergyPLAN model and returns the model outputs of interest.
+In this function, first, the index and sample are splitted from the <cite>x_tup</cite> argument.
+Then, the path of the <cite>energyPLAN.exe</cite> executable and the <code class="file docutils literal notranslate"><span class="pre">case.txt</span></code> file with input parameters are provided:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x_tup</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">x_tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">ep_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\energyPLAN\energyPLAN.exe&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="n">input_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;case.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A new input file is created for the energyPLAN model,
+where the initial values of the model parameters are overwritten by the new values, provided by the input sample <cite>x</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_input_file</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_</span><span class="si">%i</span><span class="s1">.txt&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">input_file</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">],</span> <span class="n">index</span><span class="p">)</span>
+
+<span class="n">create_new_input_file</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">new_input_file</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This new input file, with updated values on the model parameters for each evaluation, has a name that ends with the index of the input sample,
+i.e. the sample position in the array of samples created for uncertainty quantification.
+In this way, a unique input file is generated for each input sample, which ensures that during the parallelization of the model evaluations over the available CPUs,
+the input file that corresponds to the input sample is evaluated. Following a similar logic, the result file name is defined as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;result_</span><span class="si">%i</span><span class="s1">.txt&#39;</span> <span class="o">%</span> <span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the EnergyPLAN input file is characterized, the command to run EnergyPLAN is called:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="p">[</span><span class="n">ep_path</span><span class="p">,</span> <span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="n">new_input_file</span><span class="p">,</span> <span class="s1">&#39;-ascii&#39;</span><span class="p">,</span> <span class="n">result_file</span><span class="p">]</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Followed by reading the values for the quantities of interest:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">co2</span><span class="p">,</span> <span class="n">fuel</span> <span class="o">=</span> <span class="n">read_output_file</span><span class="p">(</span><span class="n">result_file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We refer to the <code class="xref py py-mod docutils literal notranslate"><span class="pre">run_energyplan</span></code> module for additional details on the <code class="xref py py-func docutils literal notranslate"><span class="pre">create_new_input_file()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">read_output_file()</span></code> functions.</p>
+<p>In the <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description</span></code> module, the function to run the case in EnergyPLAN is imported from the <code class="xref py py-func docutils literal notranslate"><span class="pre">run_energyplan()</span></code> module at the top of the script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">run_energyplan</span> <span class="kn">import</span> <span class="n">energyplan</span>
+</pre></div>
+</div>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">run_energyplan()</span></code> function is evaluated in <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code>, where the enumerate object <cite>x</cite> is provided as an argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+
+    <span class="n">fuel</span><span class="p">,</span> <span class="n">co2</span> <span class="o">=</span> <span class="n">energyplan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">co2</span><span class="p">,</span> <span class="n">fuel</span>
+</pre></div>
+</div>
+<p>The enumerate object <cite>x</cite> contains the sample to be evaluated and the index of the sample in the list of samples.</p>
+</div>
+<div class="section" id="run-uncertainty-quantification">
+<h3><span class="section-number">2.3.2. </span>run uncertainty quantification<a class="headerlink" href="#run-uncertainty-quantification" title="Permalink to this headline">¶</a></h3>
+<p>With the characterization complete for uncertainty quantification, the algorithm can be initiated with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.UQ.uncertainty_quantification</span> <span class="k">as</span> <span class="nn">rheia_uq</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">dict_uq</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                  <span class="s1">&#39;ENERGYPLAN&#39;</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>            <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>                <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+   <span class="o">...</span><span class="p">:</span>            <span class="s1">&#39;pol order&#39;</span><span class="p">:</span>             <span class="mi">1</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>            <span class="s1">&#39;objective names&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;fuel&#39;</span><span class="p">,</span><span class="s1">&#39;co2&#39;</span><span class="p">],</span>
+   <span class="o">...</span><span class="p">:</span>            <span class="s1">&#39;objective of interest&#39;</span><span class="p">:</span> <span class="s1">&#39;fuel&#39;</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>            <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>           <span class="s1">&#39;run_1&#39;</span>
+   <span class="o">...</span><span class="p">:</span>           <span class="p">}</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">rheia_uq</span><span class="o">.</span><span class="n">run_uq</span><span class="p">(</span><span class="n">dict_uq</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The details on running optimization or uncertainty quantification are provided in
+<a class="reference internal" href="optimization.html#lab-optimization"><span class="std std-ref">Run the optimization</span></a> and <a class="reference internal" href="uncertainty%20quantification.html#lab-uncertaintyquantification"><span class="std std-ref">Run the uncertainty quantification</span></a>, respectively.
+The post-processing of the results is described in <a class="reference internal" href="post_processing.html#lab-postprocessing"><span class="std std-ref">post-processing</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="installation.html" class="btn btn-neutral float-right" title="3. Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="functionalities.html" class="btn btn-neutral float-left" title="1. A short description" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Diederik Coppitters, Panagiotis Tsirikoglou.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

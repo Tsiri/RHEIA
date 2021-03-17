@@ -1,0 +1,366 @@
+.. _lab:robustoptimization:
+
+robust optimization
+===================
+
+detailed information on what you need to provide to run a robust optimization.
+This includes:
+
+- characterizing the NSGA-II
+- characterizing the PCE
+- the design variables
+- the stochastic space
+- tips for population and generation size
+- setting up the dictionary
+- ...
+
+
+The robust optimization procedure optimizes the mean and minimizes the standard deviation of a quantity of interest by controlling the design variables. 
+The multi-objective optimization algorithm is NSGA-II. More information on NSGA-II is available in :ref:`lab:ssnsga2`.
+The design variables and model parameters are characterized in the :file:`design_space` folder.
+In addition, the uncertainty on the respective design variables and model parameters is characterized in the :file:`stochastic_space` folder.
+More information on characterizing these files is available in :ref:`lab:ssdesignspace` and :ref:`lab:ssstochastic_space`,respectively.  
+The model returns the values for the quantity of interest in :file:`tc_description.py`, as illustrated in tc_description REF.
+
+
+run robust optimization
+-----------------------
+
+
+
+To characterize the optimization, the following dictionary with parameters related to the case, optimization and uncertainty quantification should be completed::
+
+    dict_opt = {'case':                case_name,
+                'objectives':          {opt_type: weights}, 
+                'stop':                ('BUDGET', comp_budget),
+                'nProcs':              n_jobs, 
+
+                'population number':   n_pop,
+                'x0':                  (pop_type, pop_method), 
+                'cxProb':              c_prob,
+                'mutProb':             mut_prob,
+                'eta':                 eta,
+
+                'pol order': pol_order,
+                'sampling method': sampling_method,
+                'objective names': obj_names,
+                'objective of interest': obj_of_interest,
+
+                'print results light': [light_bool, gen_step],
+                'results dir':         directory,
+                }
+
+The items of the optimization dictionary are described in the following subsections. This dictionary is used as the argument for the `run_opt()` function, 
+which initiates the optimization procedure::
+
+    run_opt(dict_opt)
+
+The dictionary is predefined in :file:`run_optimization.py`.
+
+'case': case_name
+^^^^^^^^^^^^^^^^^
+
+The string `case_name` corresponds to the name of the case. 
+This name should be equal to the name of the folder that comprises the case, which situates in the folder that contains the cases `TC`. 
+The name of the folder should be written in capital letters. To illustrate, if the optimization case is defined in :file:`TC\\CASE_1`, 
+the dictionary includes the following item::
+
+		'case': 'CASE_1'
+
+'objectives': {opt_type: (weights)} 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In the `objectives` key, the optimization type and the weigths for the objectives should be specified. 
+Two optimization types are available: deterministic optimization 'DET' and robust optimization 'ROB'. 
+In this case, robust optimization is desired, which means that the opt_type string should be defined by 'ROB'. 
+The weights are defined in a tuple and determine if the objective is either maximized or minimized.
+When minimization of an objective is desired, the weigth corresponds to a negative number (i.e. -1). 
+Instead, when maximization is desired, the weight corresponds to a positive number (e.g. 1). 
+In the robust optimization performed in this framework, 2 objectives can be optimized, which correspond to the mean and standard deviation of the quantity of interest, respectively.
+Hence, the second objective, i.e. the standard deviation, is always minimized.
+To illustrate, when both mean and standard deviation are desired to be minimized, the dictionary item reads::
+
+	'objectives': {'ROB': (-1,-1)}
+
+Alternatively, maximizing the mean and minimizing the standard deviation corresponds to::
+
+	'objectives': {'ROB': (1,-1)}
+
+'stop': ('BUDGET', comp_budget)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The stopping criterium for the optimization is defined by the computational budget, i.e. the number of model evaluations. 
+This is a common engineering stopping criterium, which is defined based on the time available
+to perform the optimization. To illustrate, when the system model takes 10 seconds to evaluate and 4 cores are available for parallel processing, 
+the computational budget for an optimization procedure of 1 hour is equal to 1440.
+The allocation of this computational budget through the integer `comp_budget` is illustrated below::
+
+	'stop': ('BUDGET', 1440)
+
+'nProcs': n_jobs
+^^^^^^^^^^^^^^^^
+
+The number of parallel processes can be defined by the number of available cores on the CPU. 
+To illustrate, when 4 cores are available, the item can be defined by::
+
+	'nProcs': 4
+ 
+'population number': n_pop
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The population number corresponds to the number of samples contained in a single population. 
+After each evaluation of the entire population, the optimizer generates a new population with an equal number of samples.
+This iterative process continues until the predefined computational budget is met.
+For each sample in the population, a Polynomial Chaos Expansion is constructed, following a specific number of model evaluations based on the truncation scheme. 
+Hence, in the previous example with a computational budget of 1440 model evaluations, a population size of 20, 
+where for each sample in the population 6 model evaluations are required to construct the PCE,
+will lead to 12 generations::
+
+	'population number': 20
+
+Note that when the population number and computational budget do not result in an integer for the number of generations, 
+the number of generations is rounded up to the nearest integer.  
+
+
+.. _lab:ssx0rob:
+
+'x0': (pop_type, pop_method) 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Information can be provided to characterize the starting population. If no information is available on the starting population, 
+the population can be generated automatically
+by defining the string `pop_type` with 'AUTO'. When 'AUTO' is selected, there are two ways of generating the population automatically: 
+randomly (`pop_method` = 'RANDOM') or through 
+Latin Hypercube Sampling (`pop_method` = 'LHS'). To illustrate, generating the first population through LHS is done through the following item in the dictionary::
+
+	'x0': ('AUTO', 'LHS')
+
+Alternatively, when information on the starting population is available, the `pop_type` should be defined by 'CUSTOM'. 
+In that case, the starting population should be provided in a separate file,
+located in the case folder. The name of the file corresponds to the string that defines `pop_method`. 
+To illustrate for CASE_1, with a starting population saved in :file:`TC\\CASE_1\\x0_start`, the item is defined as::
+
+	'x0': ('CUSTOM', 'x0_start')
+
+The starting population file
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The extensionless file should contain a number of samples equal to the population size. 
+Each sample is characterized by the a number of values equal to the number of design variables, delimited by a white space.
+Each value should situate between the lower bound and upper bound of the corresponding design variable, 
+in the order of appearance of the design variables in the :file:`design_space` file.
+The file should start with a `-` on the first line. The sample characterization starts from the second line.
+
+Example: 
+The following design variables are defined in :file:`design_space`::
+
+	var_1 var 1 3
+	var_2 var 0.4 0.9
+	var_3 var 12 15
+
+Then, for a population size of 5, a suitable characterization of the starting population file is::
+
+	-
+	1.43 0.78 13.9
+	2.97 0.44 12.1
+	1.12 0.64 14.2
+	2.31 0.51 14.5
+	2.05 0.88 13.6
+
+'cxProb': c_prob
+^^^^^^^^^^^^^^^^
+
+The crossover probability `c_prob`.
+
+'mutProb': mut_prob
+^^^^^^^^^^^^^^^^^^^
+
+The mutation probability `mut_prob`.
+
+'eta': eta
+^^^^^^^^^^
+
+
+'pol order': pol_order
+^^^^^^^^^^^^^^^^^^^^^^
+
+The polynomial order corresponds to the maximum polynomial degree in the PCE. This parameter is predefined and equal for each design sample.
+The polynomial order is characterized by an integer, e.g. for a polynomial order of 2::
+
+	'pol order': 2
+	
+Determining the appropriate polynomial order is case-specific. A method to determine the order is presented in the next section :ref:`lab:detpolorder`.
+
+'sampling method': sampling_method
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For the construction of a PCE, a number of model evaluation are required. These samples can be generated
+in two different ways: randomly, or through a Sobol' sequence. 
+The random generation is called through the string 'Random', while the Sobol' sequence is initiated through 'SOBOL'.
+To illustrate, generating the samples for PCE through a Sobol' sequence is initiated by::
+
+	'sampling method': 'SOBOL'
+ 
+
+'objective names': obj_names
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The PCE is constructed for only 1 quantity of interest. However, the statistical moments for several model outputs can be of interest.
+To avoid that for each model output, a new set of model evaluations need to be performed, different model outputs are stored for model evaluation.
+The names of the different model outputs can be provided in the list `objective_names`. These names are chosen freely by the user, but should be formatted in a string.
+If the model returns 3 outputs, the list can be constructed as::
+
+	'objective names': ['output_1', 'output_2', 'output_3']
+ 
+'objective of interest': obj_of_interest
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Despite that several outputs can be returned for each model evaluation, only one output can be selected as quantity of interest for the PCE.
+The name of this quantity of interest `obj_of_interest` should be provided. This name should be present in the list of all the objective names.
+To illustrate, if the quantity of interest is 'output_2', out of the list ['output_1', 'output_2', 'output_3'], then is the item in the dictionary configurated as::
+
+	'objective of interest': 'output_2'
+
+
+.. _lab:robprintreslight:
+
+'print results light': [light_bool, gen_step]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For every optimization case, three different files are generated and continuously appended while the optimization is running:
+A status file which saves the generation number and the computational budget spent after each generation;
+a file with the population for each generation; a file with the fitness values for each population.
+When the computational budget is large and a significant number of design variables are present in the optimization problem,
+these three result files can become large, i.e. several MB. Therefore, the framework provides the option to avoid saving each generation.
+By setting the light_bool to True and providing the step size `gen_step` for each saved generation, the files size can be significantly reduced.
+To illustrate, to save only generation 4, 8, 12, 16 and 20 in a case for which 20 generations are expected based on the computational budget, the following item can be provided in the dictionary::
+
+'print results light': [True, 4]
+
+Alternatively, when every generation can be saved, the item results in::
+
+'print results light': [False]
+
+'results dir': directory
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The results directory corresponds to the folder where the results are stored. 
+For an illustrative CASE_1, the results can be saved in the folder :file:`RESULTS\\CASE_1\\ROB\\results_1` by initiating the following key-value pair in the dictionary::
+
+'results dir': results_1
+
+If previous results exist in this directory, the optimization procedure continues from the last, previously generated, population. 
+Also the characterization of the initial population in :ref:`lab:ssx0rob` is ignored. However, the computational budget is renewed. 
+
+optimization dictionary example
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When combining the examples in the previous section, a configurated optimization dictionary looks as follows::
+
+    dict_opt = {'case':                'CASE_1',
+                'objectives':          {'ROB': (-1,-1)}, 
+                'stop':                ('BUDGET', 1440),
+                'nProcs':              4, 
+
+                'population number':   20,
+                'x0':                  ('AUTO', 'LHS'), 
+                'cxProb':              6,
+                'mutProb':             0.9,
+                'eta':                 0.2,
+
+                'pol order': 2,
+                'sampling method': 'SOBOL',
+                'objective names': ['output_1', 'output_2', 'output_3'],
+                'objective of interest': 'output_2',
+
+                'print results light': [False],
+                'results dir':         'results_1',
+                }
+
+The post-processing of the results is described in :ref:`lab:optimizationresults`.
+
+
+
+.. _lab:detpolorder:
+
+Determine the polynomial order
+------------------------------
+
+The maximum polynomial degree for the multivariate polynomials needs to be determined up front and its value should ensure accurate
+statistical moments on the quantity of interest in the considered stochastic space. An indication on the accuracy of the PCE is
+the Leave-One-Out (LOO) error. If the error is below a certain threshold, the PCE achieves an acceptable accuracy. This threshold is a user-defined constant. 
+To ensure accurate statistical moments during the robust optimization procedure, the polynomial order should be sufficient 
+over the entire design space. In other words, for each design sample, the polynomial order should be sufficient to construct an accuracte PCE.
+Latin Hypercube Sampling is used to construct a set of design samples, which provides a representation of the design space. If the worst-case LOO 
+for the corresponding PCEs is still below a certain threshold, the corresponding polynomial order can be considered sufficient to be used during
+the robust optimization procedure.
+
+After providing the name of the case, a dictionary with the design variable names, lower bounds and upper bounds can be characterized::
+
+    case = 'case_name'    
+    var_dict = get_design_variables(case)
+
+From this dictionary, the design samples can be constructed through LHS. The number of design samples should be provided as well.
+
+    n_samples = 5
+    X = set_design_samples(var_dict, n_samples)
+
+Then, for each design sample in the array `X`, a `designSpace` file is constructed through the function `write_design_space()`. 
+For each `designSpace` file, the PCE can be constructed through the characterization of the uncertainty quantification dictionary. 
+For more information on the characterization of this dictionary, we refer to :ref:`lab:uncertaintyquantification`.
+The uncertainty quantification dictionary and the specific `designSpace` file is then provided to the `run_uq` function.
+In a for loop with iterations equal to the number of design samples, the PCEs are constructed::
+
+    for iteration,x in enumerate(X):
+
+        write_design_space(case, iteration, var_dict, x)
+
+        dict_uq = {'case': case,
+                   'n jobs': int(mp.cpu_count()/2),
+
+                   'pol order': 2,
+                   'sampling method': 'SOBOL',
+                   'objective names': ['obj_1','obj_2'],
+                   'objective of interest': 'obj_1',
+
+                   'create only samples': False,
+                   'draw pdf cdf': [False],
+                    
+                   'results dir': 'res_%i' %iteration      
+
+                  }  
+
+        run_uq(dict_uq, designSpace = 'designSpace_%i' %iteration)
+		
+This results in a PCE for each design sample, with a corresponding LOO error. That LOO error is stored in the RESULTS folder.
+Considering the specific dictionary determined above, the results for the different design samples are stored in :file:`\\RESULTS\\case\\UQ`::
+ 
+	res_1
+	res_2
+	res_3
+	res_4
+	res_5
+	
+Where in each folder, the LOO error is stored in `full_PCE_order_2_obj_1`.
+
+The worst-case LOO error (i.e. the highest LOO error over the diffferent design samples) can be determined through the post-processing library :file:`post_process_lib.py`.
+Initiating the post_process class is done by providing the case name::
+
+	import post_process_lib as lb
+	
+	tc = 'case_name'
+	my_analysis = lb.post_process(tc)
+
+Then, the `read_LOO()` function returns the worst_case LOO error, considering the arguments related to the polynomial order, 
+number of design variables, the results directory and the objective name (i.e. quantity of interest)::
+
+	pol_order = 2
+	n_des_var = 5
+	result_dir = 'res_'
+	objective = 'obj_1'
+
+	worst_case_LOO = my_analysis.read_LOO(pol_order,n_des_var,result_dir,objective)
+
+Based on the worst-case LOO error, the maximum polynomial degree of the PCE for the robust design optimization can be evaluated.
+
+ 	

@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>5. Examples &mdash; rheia  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Stochastic design space" href="stochastic%20design%20space.html" />
+    <link rel="prev" title="4. Tutorial" href="tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> rheia
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="functionalities.html">1. A short description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting%20your%20own%20model.html">2. Connecting your own model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">4. Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#power-to-power-for-a-grid-connected-household">5.1. Power-to-power for a grid-connected household</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stochastic-dimension-reduction">5.1.1. Stochastic dimension reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#robust-design-optimization">5.1.2. robust design optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-sensitivity-analysis-on-relevant-designs">5.1.3. Global sensitivity analysis on relevant designs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stochastic%20design%20space.html">6. Stochastic design space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">7. Run the optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty%20quantification.html">8. Run the uncertainty quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post_processing.html">9. post-processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">10. Details on the methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy%20system%20models.html">11. Details on the energy system models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">13. How to contribute</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rheia</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">5. </span>Examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/example.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="examples">
+<span id="lab-examples"></span><h1><span class="section-number">5. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="power-to-power-for-a-grid-connected-household">
+<h2><span class="section-number">5.1. </span>Power-to-power for a grid-connected household<a class="headerlink" href="#power-to-power-for-a-grid-connected-household" title="Permalink to this headline">¶</a></h2>
+<p>In this first example, a robust design optimization is performed on a grid-connected household in Brussels, supported by a photovoltaic-hydrogen system.
+The hydrogen energy system consists of an electrolyzer stack, hydrogen storage tank and fuel cell stack.
+To optimize the system, 7 design variables are considered: the photovoltaic array capacity, electrolyzer stack capacity, fuel cell stack capacity,
+hydrogen tank capacity and the DC-DC converter capacities of the photovoltaic array, electrolyzer stack and fuel cell stack.
+The mean and standard deviation of the Levelized Cost Of Electricity (LCOE) are selected as objectives.
+The CAPEX, OPEX, replacement cost and lifetime of the components are considered uncertain, as well as the wholesale electricity price, electricity demand,
+interest rate and inflation rate. A detailed illustration of the energy system model and the stochastic space is provided in <a class="reference internal" href="energy%20system%20models.html#lab-pvh2model"><span class="std std-ref">Power-to-power</span></a>.</p>
+<p>The design space and stochastic space are defined in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> and <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>, respectively. These files are located in
+the case folder <code class="file docutils literal notranslate"><span class="pre">CASES\PV_H2</span></code>. Detailed information on characterizing these files is available in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssdesignspace"><span class="std std-ref">design_space</span></a> and in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssstochastic-space"><span class="std std-ref">stochastic_space</span></a>, respectively.</p>
+<p>The system is modelled in the module <code class="xref py py-mod docutils literal notranslate"><span class="pre">pv_h2_lib</span></code>, where the <code class="xref py py-class docutils literal notranslate"><span class="pre">ReadData</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">Evaluation</span></code> classes provide methods to import
+the climate data and to evaluate the LCOE for a system design, respectively. The Python wrapper <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description</span></code> enables to store the climate data
+and to couple the design evaluation to the optimization and uncertainty quantification algorithms. Detailed information on the structure of <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description</span></code>
+is provided in <a class="reference internal" href="connecting%20your%20own%20model.html#lab-wrapper"><span class="std std-ref">Python wrapper</span></a>.</p>
+<div class="section" id="stochastic-dimension-reduction">
+<h3><span class="section-number">5.1.1. </span>Stochastic dimension reduction<a class="headerlink" href="#stochastic-dimension-reduction" title="Permalink to this headline">¶</a></h3>
+<p>The system is characterized with 27 uncertain parameters, which results in 56, 812 and 8120 model evaluations
+to construct a PCE with a maximum polynomial degree of 1, 2 and 3, respectively.
+First, PCEs are constructed for a representative set of design samples to determine the required LOO error (see <a class="reference internal" href="uncertainty%20quantification.html#lab-detpolorder"><span class="std std-ref">Determine the polynomial order</span></a> for additional information):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.UQ.uncertainty_quantification</span> <span class="k">as</span> <span class="nn">rheia_uq</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">case</span> <span class="o">=</span> <span class="s1">&#39;PV_H2&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">var_dict</span> <span class="o">=</span> <span class="n">rheia_uq</span><span class="o">.</span><span class="n">get_design_variables</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">X</span> <span class="o">=</span> <span class="n">rheia_uq</span><span class="o">.</span><span class="n">set_design_samples</span><span class="p">(</span><span class="n">var_dict</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="k">for</span> <span class="n">iteration</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+  <span class="o">....</span><span class="p">:</span>     <span class="n">rheia_uq</span><span class="o">.</span><span class="n">write_design_space</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">iteration</span><span class="p">,</span> <span class="n">var_dict</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+  <span class="o">....</span><span class="p">:</span>     <span class="n">dict_uq</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                  <span class="n">case</span><span class="p">,</span>
+  <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>                <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+  <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;pol order&#39;</span><span class="p">:</span>             <span class="mi">1</span><span class="p">,</span>
+  <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;objective names&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;lcoe&#39;</span><span class="p">,</span><span class="s1">&#39;ssr&#39;</span><span class="p">],</span>
+  <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;objective of interest&#39;</span><span class="p">:</span> <span class="s1">&#39;lcoe&#39;</span><span class="p">,</span>
+  <span class="o">....</span><span class="p">:</span>                <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>           <span class="s1">&#39;sample_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">iteration</span>
+  <span class="o">....</span><span class="p">:</span>               <span class="p">}</span>
+  <span class="o">....</span><span class="p">:</span>     <span class="n">rheia_uq</span><span class="o">.</span><span class="n">run_uq</span><span class="p">(</span><span class="n">dict_uq</span><span class="p">,</span> <span class="n">design_space</span> <span class="o">=</span> <span class="s1">&#39;design_space_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">iteration</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The worst-case LOO error over the design samples set is determined:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.POST_PROCESS.lib_post_process</span> <span class="k">as</span> <span class="nn">rheia_pp</span>
+
+    <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">my_post_process</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+
+    <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">pol_order</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="n">my_post_process_uq</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process_uq</span><span class="p">(</span><span class="n">my_post_process</span><span class="p">,</span> <span class="n">pol_order</span><span class="p">)</span>
+
+    <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">result_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sample_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">35</span><span class="p">)]</span>
+
+    <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">objective</span> <span class="o">=</span> <span class="s1">&#39;lcoe&#39;</span>
+
+    <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">loo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">35</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">result_dir</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result_dirs</span><span class="p">):</span>
+   <span class="o">....</span><span class="p">:</span>     <span class="n">loo</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_LOO</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">objective</span><span class="p">))</span>
+   <span class="o">....</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">loo</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The worst-case LOO error for a polynomial degree of 1 is equal to 0.061.
+The same procedure is repeated for a polynomial degree of 2, which leads to a worst-case LOO error of 0.006.
+Using this polynomial degree, the stochastic dimension is reduced, to increase the computational efficiency of the robust optimization procedure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_max_sobol</span><span class="p">(</span><span class="n">result_dirs</span><span class="p">,</span><span class="n">objective</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mf">14.</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The significant Sobol’ indices result in the following reduced <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load_elec</span>       <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.22</span>
+<span class="n">elec_cost</span>       <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">15.5</span>
+<span class="n">elec_cost_ratio</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.1</span>
+<span class="n">capex_pv</span>        <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">175</span>
+<span class="n">capex_elec</span>      <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">350</span>
+<span class="n">opex_elec</span>       <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
+<span class="n">capex_fc</span>        <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">450</span>
+<span class="n">opex_fc</span>         <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mf">0.045</span>
+<span class="n">int_rate</span>        <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
+<span class="n">infl_rate</span>       <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="robust-design-optimization">
+<h3><span class="section-number">5.1.2. </span>robust design optimization<a class="headerlink" href="#robust-design-optimization" title="Permalink to this headline">¶</a></h3>
+<p>With the stochastic dimension reduced, the robust design optimization is initiated for a population of 35 samples
+and a computational budget of 1155000 model evaluation (i.e. at least 250 generations):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.OPT.optimization</span> <span class="k">as</span> <span class="nn">rheia_opt</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">dict_opt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                  <span class="s1">&#39;PV_H2&#39;</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objectives&#39;</span><span class="p">:</span>            <span class="p">{</span><span class="s1">&#39;ROB&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)},</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;stop&#39;</span><span class="p">:</span>                  <span class="p">(</span><span class="s1">&#39;BUDGET&#39;</span><span class="p">,</span> <span class="mi">1155000</span><span class="p">),</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>                <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;population size&#39;</span><span class="p">:</span>       <span class="mi">35</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;pol order&#39;</span><span class="p">:</span>             <span class="mi">2</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objective names&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;lcoe&#39;</span><span class="p">,</span><span class="s1">&#39;ssr&#39;</span><span class="p">],</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objective of interest&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lcoe&#39;</span><span class="p">],</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>           <span class="s1">&#39;run_1&#39;</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>            <span class="p">}</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">rheia_opt</span><span class="o">.</span><span class="n">run_opt</span><span class="p">(</span><span class="n">dict_opt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>More information on setting the NSGA-II parameters are illustrated in <a class="reference internal" href="methods.html#lab-choosepop"><span class="std std-ref">Choosing the population size</span></a> and on the robust optimization procedure in <a class="reference internal" href="optimization.html#lab-optimization"><span class="std std-ref">Run the optimization</span></a>.
+The Pareto front can be initiated as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">my_opt_plot</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process_opt</span><span class="p">(</span><span class="n">my_post_process</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;ROB&#39;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">my_opt_plot</span><span class="o">.</span><span class="n">get_fitness_population</span><span class="p">(</span><span class="s1">&#39;run_1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With the information on the objectives (<cite>y</cite>) and on the population (<cite>x</cite>),
+the results can be plotted:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/ex_rob_pv_h2_453.png"><img alt="_images/ex_rob_pv_h2_453.png" src="_images/ex_rob_pv_h2_453.png" style="width: 70%;" /></a>
+</div>
+<p>The Pareto front illustrates a trade-off between minimizing the LCOE mean and LCOE standard deviation. This means that no single design exists
+that simulateounsly achieves the minimum LCOE mean and minimum LCOE standard deviation. When zooming in on the design variables,
+a gain in robustness is achieved by increasing the system component capacities. To illustrate, the optimized LCOE mean design
+consists of a <span class="math notranslate nohighlight">\(2.5~\mathrm{kW}_\mathrm{p}\)</span> photovoltaic array, while the robust design consists of
+a <span class="math notranslate nohighlight">\(4.9~\mathrm{kW}_\mathrm{p}\)</span> photovoltaic array with a <span class="math notranslate nohighlight">\(1.2~\mathrm{kW}\)</span> DC-DC converter,
+a <span class="math notranslate nohighlight">\(598~\mathrm{W}\)</span> electrolyzer stack with a <span class="math notranslate nohighlight">\(684~\mathrm{W}\)</span> DC-DC converter,
+a <span class="math notranslate nohighlight">\(232~\mathrm{W}\)</span> fuel cell stack with a <span class="math notranslate nohighlight">\(224~\mathrm{W}\)</span> DC-DC converter and
+a <span class="math notranslate nohighlight">\(8~\mathrm{kWh}\)</span> hydrogen storage tank.</p>
+</div>
+<div class="section" id="global-sensitivity-analysis-on-relevant-designs">
+<h3><span class="section-number">5.1.3. </span>Global sensitivity analysis on relevant designs<a class="headerlink" href="#global-sensitivity-analysis-on-relevant-designs" title="Permalink to this headline">¶</a></h3>
+<p>In the final section, uncertainty quantification is performed on the optimized mean design
+and robust design. First, the design variables are modified into model parameters to perform UQ in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>.
+For the optimized mean design, this leads to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_pv</span>        <span class="n">par</span> <span class="mf">2.45</span>
+<span class="n">n_dcdc_pv</span>   <span class="n">par</span> <span class="mf">0.55</span>
+<span class="n">n_elec</span>      <span class="n">par</span> <span class="mf">1e-8</span>
+<span class="n">n_dcdc_elec</span> <span class="n">par</span> <span class="mf">1e-8</span>
+<span class="n">n_fc</span>        <span class="n">par</span> <span class="mf">1e-8</span>
+<span class="n">n_dcdc_fc</span>   <span class="n">par</span> <span class="mf">1e-8</span>
+<span class="n">n_tank</span>      <span class="n">par</span> <span class="mf">1e-8</span>
+</pre></div>
+</div>
+<p>The resulting Sobol’ indices indicate that for the mean design, due to the limited photovoltaic array capacity and no energy storage,
+the main drivers of the LCOE uncertainty are the parameters related to the grid electricity price:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/ex_sobol_pv_h2_mean.png"><img alt="_images/ex_sobol_pv_h2_mean.png" src="_images/ex_sobol_pv_h2_mean.png" style="width: 70%;" /></a>
+</div>
+<p>Alternatively, the robust design has an increased renewable energy system capacity, including energy storage in the form of hydrogen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_pv</span>        <span class="n">par</span> <span class="mf">4.952</span>
+<span class="n">n_dcdc_pv</span>   <span class="n">par</span> <span class="mf">1.17</span>
+<span class="n">n_elec</span>      <span class="n">par</span> <span class="mf">0.598</span>
+<span class="n">n_dcdc_elec</span> <span class="n">par</span> <span class="mf">0.684</span>
+<span class="n">n_fc</span>        <span class="n">par</span> <span class="mf">0.232</span>
+<span class="n">n_dcdc_fc</span>   <span class="n">par</span> <span class="mf">0.225</span>
+<span class="n">n_tank</span>      <span class="n">par</span> <span class="mf">8.06</span>
+</pre></div>
+</div>
+<p>In this case, the uncertainty on the demand, interest rate and capex of the photovoltaic array gain importance:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/ex_sobol_pv_h2_rob.png"><img alt="_images/ex_sobol_pv_h2_rob.png" src="_images/ex_sobol_pv_h2_rob.png" style="width: 70%;" /></a>
+</div>
+<p>Comparing the probability density functions on the LCOE for both design illustrates an overlap. For the robust design,
+the mean is clearly higher, but due to the smaller standard deviation, the probability density function has a slightly smaller width:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/ex_pdf_pv_h2_all.png"><img alt="_images/ex_pdf_pv_h2_all.png" src="_images/ex_pdf_pv_h2_all.png" style="width: 70%;" /></a>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="stochastic%20design%20space.html" class="btn btn-neutral float-right" title="6. Stochastic design space" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tutorial.html" class="btn btn-neutral float-left" title="4. Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Diederik Coppitters, Panagiotis Tsirikoglou.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
