@@ -1,44 +1,6 @@
 SOME EXAMPLE LOGOS
 
-.. figure:: logo.svg
-   :width: 30%
-   :align: center
-
-.. figure:: logo_2.svg
-   :width: 30%
-   :align: center
-
-.. figure:: logo_3.svg
-   :width: 30%
-   :align: center
-
-.. figure:: logo_4.svg
-   :width: 60%
-   :align: center
-
-.. figure:: logo_5.svg
-   :width: 60%
-   :align: center
-
-
-.. toctree::
-   :maxdepth: 4
-   :numbered:
-   :hidden:
-   
-   functionalities
-   connecting your own model
-   installation
-   tutorial
-   example
-   stochastic design space
-   optimization
-   uncertainty quantification
-   post_processing
-   methods
-   energy system models
-   API
-   contribution
+test test
 
 Introduction
 ============
