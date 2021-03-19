@@ -3,11 +3,13 @@
 How to contribute
 =================
 
+To be completed.
+
 Contribute
 ----------
 
-- Issue Tracker: github.com/RHEIA/issues
-- Source Code: github.com/RHEIA
+- Issue Tracker: https://github.com/DCoppitters/RHEIA/issues
+- Source Code: https://github.com/DCoppitters/RHEIA
 
 
 how to contribute
@@ -19,5 +21,4 @@ how to contribute
 code style
 ----------
 
-If you contribute, please consider PEP-8 coding style
-
+PEP-8

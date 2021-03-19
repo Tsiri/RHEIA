@@ -108,6 +108,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribution.html">13. How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 </ul>
 
             
@@ -186,9 +187,9 @@ In each context, an energy system model is described in the following sections.<
 <span id="lab-pvelectrolyzermodel"></span><h2><span class="section-number">11.1. </span>Power-to-fuel<a class="headerlink" href="#power-to-fuel" title="Permalink to this headline">¶</a></h2>
 <p>In the photovoltaic-electrolyzer model, a photovoltaic array is coupled to an electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking.
 The electricity produced by the photovoltaic array is used to convert water into hydrogen and oxygen.</p>
-<div class="figure align-center" id="id1">
+<div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="_images/PV_ELEC_SCHEME.svg"><img alt="_images/PV_ELEC_SCHEME.svg" src="_images/PV_ELEC_SCHEME.svg" width="80%" /></a>
-<p class="caption"><span class="caption-text">The photovoltaic array is connected to the electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">The photovoltaic array is connected to the electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>The performance indicators of the system are the Levelized Cost Of Hydrogen (LCOH) and the produced hydrogen <span class="math notranslate nohighlight">\(\dot{m}_{\mathrm{H}_2}\)</span>.
 The produced hydrogen is equal to the sum of the hourly produced hydrogen:</p>
@@ -201,9 +202,9 @@ for the photovoltaic array, electrolyzer stack and DC-DC converter, while <span 
 Due to commissioning and maintenance quality, evolving market conditions and a
 significant timeframe between the design stage and investment stage, the CAPEX, OPEX, replacement cost
 and interest rate are considered uncertain.
-More details on the characterization of the stochastic parameters are described by Coppitters et al. [1].</p>
-<table class="colwidths-given docutils align-default" id="id2">
-<caption><span class="caption-text">Stochastic space for the photovoltaic-electrolyzer system</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+More details on the characterization of the stochastic parameters are described by Coppitters et al. <span id="id1">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span>.</p>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">Stochastic space for the photovoltaic-electrolyzer system</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
@@ -217,8 +218,8 @@ More details on the characterization of the stochastic parameters are described 
 </thead>
 <tbody>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{sol\_irr}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.901,1.099)\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\mathrm{W}/ \mathrm{m}^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(90.1,109.9)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{annual} ~ \mathrm{solar} ~ \mathrm{irradiance}\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{CAPEX}_\mathrm{PV}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(430,780)\)</span></p></td>
@@ -226,29 +227,29 @@ More details on the characterization of the stochastic parameters are described 
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{OPEX}_\mathrm{PV}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(16,19)\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}_\mathrm{p}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}_\mathrm{p} / \mathrm{year}\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{power\_tol}_\mathrm{PV}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0,0.05)\)</span></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{CAPEX}_\mathrm{elec}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{CAPEX}_\mathrm{pem}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(1400,2100)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{OPEX}_\mathrm{elec}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{OPEX}_\mathrm{pem}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(3,5)\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{elec}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{pem}\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_\mathrm{c,elec}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_\mathrm{c,pem}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(15,20)\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{elec}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{pem}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n_\mathrm{elec}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n_\mathrm{pem}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(60000,100000)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(h\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\eta_\mathrm{elec}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\eta_\mathrm{pem}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.6,0.7)\)</span></p></td>
 <td></td>
 </tr>
@@ -282,10 +283,10 @@ The grid is considered permanently available and able to cover the required powe
 The PV array is coupled to a DC bus bar through a DC-DC converter with Maximum Power Point Tracking.
 An electrolyzer stack with storage tank are integrated to store the excess of PV array electricity.
 A fuel cell array is implemented to produce electricity from the stored hydrogen. To transfer the DC electricity from the photovoltaic array and fuel cell array to the AC load, a DC-AC converter is connected.</p>
-<div class="figure align-center" id="id3">
+<div class="figure align-center" id="id5">
 <span id="fig-pvh2scheme"></span><a class="reference internal image-reference" href="_images/PV_H2_SCHEME.svg"><img alt="_images/PV_H2_SCHEME.svg" src="_images/PV_H2_SCHEME.svg" width="80%" /></a>
 <p class="caption"><span class="caption-text">The considered system includes the load connected to the grid and supported by a photovoltaic array and hydrogen-based energy system.
-The hydrogen-based energy system (electrolyzer, fuel cell and storage tank) enable the system to store an excess of PV array electricity and to comply, up to the available energy, with the demand when the solar irradiance is insufficient.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+The hydrogen-based energy system (electrolyzer, fuel cell and storage tank) enable the system to store an excess of PV array electricity and to comply, up to the available energy, with the demand when the solar irradiance is insufficient.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>To set the hierarchy between the subsystems, a typical power management strategy is implemented, which primarily aims to satisfy the demand.
 In this strategy, excess PV power (i.e. remaining PV power after complying with the power required by the load) is supplied to the electrolyzer stack.
@@ -317,8 +318,8 @@ which increases the possibility for the market conditions to change between the 
 Therefore, the CAPEX and OPEX for each component (i.e. photovoltaic array, electrolyzer stack, hydrogen storage tank, fuel cell stack, DC-DC converters and DC-AC inverter)
 are considered uncertain. In the case that the expected lifetime does not exceed the system lifetime, the lifetime and replacement cost are considered uncertain as well.
 More details on the characterization of the stochastic parameters are described by Coppitters et al. [1].</p>
-<table class="colwidths-given docutils align-default" id="id4">
-<caption><span class="caption-text">Stochastic space for the photovoltaic-hydrogen system</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id6">
+<caption><span class="caption-text">Stochastic space for the photovoltaic-hydrogen system</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
@@ -333,7 +334,7 @@ More details on the characterization of the stochastic parameters are described 
 <tbody>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{sol\_irr}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.901,1.099)\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\mathrm{W}/ \mathrm{m}^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{annual} ~ \mathrm{solar} ~ \mathrm{irradiance}\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{load\_elec}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(3.20,4.32)\)</span></p></td>
@@ -359,23 +360,23 @@ More details on the characterization of the stochastic parameters are described 
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0,0.05)\)</span></p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{CAPEX}_\mathrm{elec}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{CAPEX}_\mathrm{pem}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(1400,2100)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{OPEX}_\mathrm{elec}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{OPEX}_\mathrm{pem}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(3,5)\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{elec}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{pem}\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_\mathrm{c,elec}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(15,20)\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{elec}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{pem}\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(n_\mathrm{elec}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(n_\mathrm{pem}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(60000,100000)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(h\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\eta_\mathrm{elec}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\eta_\mathrm{pem}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.6,0.7)\)</span></p></td>
 <td></td>
 </tr>
@@ -399,11 +400,11 @@ More details on the characterization of the stochastic parameters are described 
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(25,30)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{fc}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n_\mathrm{elec}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n_\mathrm{fc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(20000,30000)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(h\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\eta_\mathrm{elec}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\eta_\mathrm{fc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.45,0.55)\)</span></p></td>
 <td></td>
 </tr>
@@ -461,7 +462,7 @@ As the energy demand is affected by the weather (i.e. space heating demand corre
 the analysis should be conducted with climate data that corresponds to the energy demand profiles.
 Therefore, we adopt the Typical Meteorological Year data, hourly electricity demand data and hourly heat demand data provided by the National Renewable Energy Laboratory,
 as the former is used to construct the latter. To adapt the climate and demand profiles to the considered location,
-we implemented the method from Montero~Carrero~et~al.cite{Engine2019}.</p>
+we implemented the method from Montero Carrero et al.<span id="id2">[<a class="reference internal" href="bibliography.html#id123">MonteroCarreroSanchezP+19</a>]</span>.</p>
 <p>In the provided hydrogen-based energy systems dependend on the solar irradiance, the yearly annual solar irradiance is provided as a model parameter in the form of a relative number
 to the provided yearly annual solar irradiance. In other words, characterizing ‘sol_irr’ with 1 in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> results
 in a yearly annual solar irradiance equal to the sum of the hourly solar irradiance values provided in the dataset for the specific location.
@@ -485,9 +486,6 @@ based on the number of demands (e.g. a community of 500 dwellings) or based on s
 </dl>
 </li>
 </ul>
-<p>[1] Coppitters, D., De Paepe, W., &amp; Contino, F. (2020).
-Robust design optimization and stochastic performance analysis of a grid-connected photovoltaic system with battery storage and hydrogen storage.
-Energy, 213, 118798. <a class="reference external" href="https://doi.org/10.1016/j.energy.2020.118798">https://doi.org/10.1016/j.energy.2020.118798</a></p>
 </div>
 </div>
 

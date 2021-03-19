@@ -52,19 +52,19 @@ First, PCEs are constructed for a representative set of design samples to determ
 
 The worst-case LOO error over the design samples set is determined::
 
-	In [6]: import rheia.POST_PROCESS.lib_post_process as rheia_pp
+    In [6]: import rheia.POST_PROCESS.lib_post_process as rheia_pp
 
-	In [7]: my_post_process = rheia_pp.post_process(case)
+    In [7]: my_post_process = rheia_pp.post_process(case)
 
-	In [7]: pol_order = 2
+    In [7]: pol_order = 2
 
     In [19]: my_post_process_uq = rheia_pp.post_process_uq(my_post_process, pol_order)
 
-	In [8]: result_dirs = ['sample_%i' %i for i in range(35)]
+    In [8]: result_dirs = ['sample_%i' %i for i in range(35)]
 
-	In [9]: objective = 'lcoe'
+    In [9]: objective = 'lcoe'
 
-	In [9]: loo = [0]*35
+    In [9]: loo = [0]*35
 
     In [11]: for index,result_dir in enumerate(result_dirs):
        ....:     loo[index] = my_post_process_uq.get_LOO(result_dir, objective))
@@ -78,16 +78,16 @@ Using this polynomial degree, the stochastic dimension is reduced, to increase t
 
 The significant Sobol' indices result in the following reduced :file:`stochastic_space`::
 
-	load_elec       absolute uniform 0.22
-	elec_cost       absolute uniform 15.5
-	elec_cost_ratio absolute uniform 0.1
-	capex_pv        absolute uniform 175
-	capex_elec      absolute uniform 350
-	opex_elec       absolute uniform 0.01
-	capex_fc        absolute uniform  450
-	opex_fc         absolute uniform  0.045
-	int_rate        absolute uniform 0.02
-	infl_rate       absolute uniform 0.01
+	load_elec       absolute Uniform 0.22
+	elec_cost       absolute Uniform 15.5
+	elec_cost_ratio absolute Uniform 0.1
+	capex_pv        absolute Uniform 175
+	capex_elec      absolute Uniform 350
+	opex_elec       absolute Uniform 0.01
+	capex_fc        absolute Uniform  450
+	opex_fc         absolute Uniform  0.045
+	int_rate        absolute Uniform 0.02
+	infl_rate       absolute Uniform 0.01
 
 robust design optimization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^

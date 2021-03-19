@@ -354,10 +354,10 @@ More information on the uncertainty characterization is described in <a class="r
 The exerted force and the Young’s moduli are subject to uncertainty.
 The corresponding <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> file for the four-bar truss file is configured as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span>   <span class="n">absolute</span> <span class="n">Gaussian</span> <span class="mi">1</span>
-<span class="n">E_1</span> <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1000</span>
-<span class="n">E_2</span> <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1000</span>
-<span class="n">E_3</span> <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1000</span>
-<span class="n">E_4</span> <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1000</span>
+<span class="n">E_1</span> <span class="n">absolute</span> <span class="n">Uniform</span>  <span class="mi">1000</span>
+<span class="n">E_2</span> <span class="n">absolute</span> <span class="n">Uniform</span>  <span class="mi">1000</span>
+<span class="n">E_3</span> <span class="n">absolute</span> <span class="n">Uniform</span>  <span class="mi">1000</span>
+<span class="n">E_4</span> <span class="n">absolute</span> <span class="n">Uniform</span>  <span class="mi">1000</span>
 </pre></div>
 </div>
 <p>To evaluate the system model in the optimization and uncertainty quantification algorithm, the model should be
@@ -473,11 +473,11 @@ This results in the following structure:</p>
 </div>
 <p>More information on the characterization of the design space is presented in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssdesignspace"><span class="std std-ref">design_space</span></a>.
 The stochastic space is defined in <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elec_demand</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">1</span>
-<span class="n">COP</span>         <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.5</span>
-<span class="n">eff_H2</span>      <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
-<span class="n">CHP_eff_el</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
-<span class="n">CHP_eff_ht</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elec_demand</span> <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">1</span>
+<span class="n">COP</span>         <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.5</span>
+<span class="n">eff_H2</span>      <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.05</span>
+<span class="n">CHP_eff_el</span>  <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.05</span>
+<span class="n">CHP_eff_ht</span>  <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.05</span>
 </pre></div>
 </div>
 <p>More information on the uncertainty characterization is described in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssstochastic-space"><span class="std std-ref">stochastic_space</span></a>.</p>

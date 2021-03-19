@@ -99,9 +99,9 @@ where:
 
 A more detailed description of these parameters is available in :ref:`lab:ssdistributions`
 
-An example of a configured uncertain parameter `par_2`, characterized by a uniform distribution with a :math:`\pm 1` deviation from the mean value::
+An example of a configured uncertain parameter `par_2`, characterized by a Uniform distribution with a :math:`\pm 1` deviation from the mean value::
 
-	par_2 absolute uniform 1
+	par_2 absolute Uniform 1
 
 Note that it is not required to allocate an uncertainty to every design variable and model parameter defined in :file:`design_space`.
 In other words, when a parameter (or variable) is defined in :file:`design_space`, but not in U, the parameter (or variable) is considered deterministic. 
@@ -114,11 +114,11 @@ uncertainty characterization
 
 The following distributions are available:
 
-- uniform
+- Uniform
 - Gaussian
 
-The meaning of deviation at the end of the line depends on the distribution. When a uniform distribution is considered,
-the deviation refers to the absolute difference between the upper bound of the uniform distribution and the mean: for :math:`\mathcal{U}(a,b)`, :math:`deviation = (b-a)/2`).
+The meaning of deviation at the end of the line depends on the distribution. When a Uniform distribution is considered,
+the deviation refers to the absolute difference between the upper bound of the Uniform distribution and the mean: for :math:`\mathcal{U}(a,b)`, :math:`deviation = (b-a)/2`).
 When a Gaussian distribution is considered, the value corresponds to the standard deviation: :math:`\mathcal{N}(mean,deviation)`.
 
 example stochastic_space
@@ -127,16 +127,16 @@ example stochastic_space
 In summary, a :file:`stochastic_space` file corresponding to the illustrative :file:`design_space` example file in :ref:`lab:ssexampleds` might look like this::
 
 	par_1        relative Gaussian 0.5
-	par_2        absolute uniform  1
-	design_var_2 relative uniform  0.1
+	par_2        absolute Uniform  1
+	design_var_2 relative Uniform  0.1
 
 Where the model parameter `par_3` and design variable `design_var_1` are considered deterministic, 
 `par_1` is characterized by a Gaussian distribution with a 
 relative standard deviation of 0.5 (i.e. :math:`\mathcal{N}(4,2)`),    
-`par_2` is characterized by a uniform distribution with an 
+`par_2` is characterized by a Uniform distribution with an 
 absolute deviation of 1 (i.e. :math:`\mathcal{U}(1.5,3.5)`) and    
-`design_var_2` is characterized by a uniform distribution with a 
-relative deviation of 0.1. For `design_var_2`, the actual uniform distribution depends on the mean value selected by the optimizer for each evaluated design.
+`design_var_2` is characterized by a Uniform distribution with a 
+relative deviation of 0.1. For `design_var_2`, the actual Uniform distribution depends on the mean value selected by the optimizer for each evaluated design.
 
 
 

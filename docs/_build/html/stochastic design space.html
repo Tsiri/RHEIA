@@ -265,8 +265,8 @@ Defining the uncertainty of a parameter can be done through the following syntax
 </ul>
 </div></blockquote>
 <p>A more detailed description of these parameters is available in <a class="reference internal" href="#lab-ssdistributions"><span class="std std-ref">uncertainty characterization</span></a></p>
-<p>An example of a configured uncertain parameter <cite>par_2</cite>, characterized by a uniform distribution with a <span class="math notranslate nohighlight">\(\pm 1\)</span> deviation from the mean value:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">par_2</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">1</span>
+<p>An example of a configured uncertain parameter <cite>par_2</cite>, characterized by a Uniform distribution with a <span class="math notranslate nohighlight">\(\pm 1\)</span> deviation from the mean value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">par_2</span> <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>Note that it is not required to allocate an uncertainty to every design variable and model parameter defined in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>.
@@ -276,28 +276,28 @@ Moreover, the order of appearance of parameters and variables in <code class="fi
 <span id="lab-ssdistributions"></span><h3><span class="section-number">6.2.1. </span>uncertainty characterization<a class="headerlink" href="#uncertainty-characterization" title="Permalink to this headline">¶</a></h3>
 <p>The following distributions are available:</p>
 <ul class="simple">
-<li><p>uniform</p></li>
+<li><p>Uniform</p></li>
 <li><p>Gaussian</p></li>
 </ul>
-<p>The meaning of deviation at the end of the line depends on the distribution. When a uniform distribution is considered,
-the deviation refers to the absolute difference between the upper bound of the uniform distribution and the mean: for <span class="math notranslate nohighlight">\(\mathcal{U}(a,b)\)</span>, <span class="math notranslate nohighlight">\(deviation = (b-a)/2\)</span>).
+<p>The meaning of deviation at the end of the line depends on the distribution. When a Uniform distribution is considered,
+the deviation refers to the absolute difference between the upper bound of the Uniform distribution and the mean: for <span class="math notranslate nohighlight">\(\mathcal{U}(a,b)\)</span>, <span class="math notranslate nohighlight">\(deviation = (b-a)/2\)</span>).
 When a Gaussian distribution is considered, the value corresponds to the standard deviation: <span class="math notranslate nohighlight">\(\mathcal{N}(mean,deviation)\)</span>.</p>
 </div>
 <div class="section" id="example-stochastic-space">
 <h3><span class="section-number">6.2.2. </span>example stochastic_space<a class="headerlink" href="#example-stochastic-space" title="Permalink to this headline">¶</a></h3>
 <p>In summary, a <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> file corresponding to the illustrative <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> example file in <a class="reference internal" href="#lab-ssexampleds"><span class="std std-ref">example design_space</span></a> might look like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">par_1</span>        <span class="n">relative</span> <span class="n">Gaussian</span> <span class="mf">0.5</span>
-<span class="n">par_2</span>        <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">1</span>
-<span class="n">design_var_2</span> <span class="n">relative</span> <span class="n">uniform</span>  <span class="mf">0.1</span>
+<span class="n">par_2</span>        <span class="n">absolute</span> <span class="n">Uniform</span>  <span class="mi">1</span>
+<span class="n">design_var_2</span> <span class="n">relative</span> <span class="n">Uniform</span>  <span class="mf">0.1</span>
 </pre></div>
 </div>
 <p>Where the model parameter <cite>par_3</cite> and design variable <cite>design_var_1</cite> are considered deterministic,
 <cite>par_1</cite> is characterized by a Gaussian distribution with a
 relative standard deviation of 0.5 (i.e. <span class="math notranslate nohighlight">\(\mathcal{N}(4,2)\)</span>),
-<cite>par_2</cite> is characterized by a uniform distribution with an
+<cite>par_2</cite> is characterized by a Uniform distribution with an
 absolute deviation of 1 (i.e. <span class="math notranslate nohighlight">\(\mathcal{U}(1.5,3.5)\)</span>) and
-<cite>design_var_2</cite> is characterized by a uniform distribution with a
-relative deviation of 0.1. For <cite>design_var_2</cite>, the actual uniform distribution depends on the mean value selected by the optimizer for each evaluated design.</p>
+<cite>design_var_2</cite> is characterized by a Uniform distribution with a
+relative deviation of 0.1. For <cite>design_var_2</cite>, the actual Uniform distribution depends on the mean value selected by the optimizer for each evaluated design.</p>
 </div>
 </div>
 </div>

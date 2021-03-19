@@ -246,7 +246,7 @@ These objective values are stored in the local variables <cite>lcoh</cite> and <
 
             <span class="n">my_evaluation</span><span class="o">.</span><span class="n">evaluation</span><span class="p">()</span>
 
-            <span class="n">lcoh</span><span class="p">,</span> <span class="n">mh2</span> <span class="o">=</span> <span class="n">my_evaluation</span><span class="o">.</span><span class="n">get_objectives</span><span class="p">()</span>
+    <span class="n">lcoh</span><span class="p">,</span> <span class="n">mh2</span> <span class="o">=</span> <span class="n">my_evaluation</span><span class="o">.</span><span class="n">lcoh</span><span class="p">,</span> <span class="n">my_evaluation</span><span class="o">.</span><span class="n">m_h2</span>
 
             <span class="k">return</span> <span class="n">lcoh</span><span class="p">,</span> <span class="n">mh2</span>
 </pre></div>
@@ -254,15 +254,14 @@ These objective values are stored in the local variables <cite>lcoh</cite> and <
 </div>
 <div class="section" id="deterministic-design-optimization">
 <h2><span class="section-number">4.2. </span>deterministic design optimization<a class="headerlink" href="#deterministic-design-optimization" title="Permalink to this headline">¶</a></h2>
-<p>For a fixed photovoltaic array, the capacity of the electrolyzer stack and the capacity of the DC-DC converters can be designed
+<p>For a fixed photovoltaic array, the capacity of the electrolyzer stack and the capacity of the DC-DC converter can be designed
 to optimize the Levelized Cost Of Hydrogen (<span class="math notranslate nohighlight">\(\mathrm{LCOH}\)</span>) and hydrogen production <span class="math notranslate nohighlight">\(\dot{m}_{\mathrm{H}_2}\)</span>.
 Therefore, in the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file, the capacities for these components are characterized as design variables:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_dcdc_pv</span>   <span class="n">var</span> <span class="mf">1e-8</span> <span class="mi">10</span>
 <span class="n">n_elec</span>      <span class="n">var</span> <span class="mf">1e-8</span> <span class="mi">10</span>
-<span class="n">n_dcdc_elec</span> <span class="n">var</span> <span class="mf">1e-8</span> <span class="mi">10</span>
 </pre></div>
 </div>
-<p>With this characterization, the optimizer can configurate design samples with values between <span class="math notranslate nohighlight">\(0~\mathrm{kW}\)</span> and <span class="math notranslate nohighlight">\(10~\mathrm{kW}\)</span> for the DC-DC converters and electrolyzer stack.
+<p>With this characterization, the optimizer can configurate design samples with values between <span class="math notranslate nohighlight">\(0~\mathrm{kW}\)</span> and <span class="math notranslate nohighlight">\(10~\mathrm{kW}\)</span> for the DC-DC converter and electrolyzer stack.
 The photovoltaic array is fixed at <span class="math notranslate nohighlight">\(5~\mathrm{kW}_\mathrm{p}\)</span>, and the remaining deterministic parameters are predefined in the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file.
 Detailed information on constructing this file is available in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssdesignspace"><span class="std std-ref">design_space</span></a>.</p>
 <p>To perform a deterministic optimization, the optimization dictionary has to be completed.
@@ -272,10 +271,10 @@ In this tutorial, the deterministic optimization is imported and the optimizatio
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">dict_opt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                <span class="s1">&#39;PV_ELEC&#39;</span><span class="p">,</span>
-   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;objectives&#39;</span><span class="p">:</span>          <span class="p">{</span><span class="s1">&#39;DET&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)},</span>
-   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;stop&#39;</span><span class="p">:</span>                <span class="p">(</span><span class="s1">&#39;BUDGET&#39;</span><span class="p">,</span> <span class="mi">3000</span><span class="p">),</span>
-   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>              <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
-   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;population size&#39;</span><span class="p">:</span>     <span class="mi">30</span><span class="p">,</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;objectives&#39;</span><span class="p">:</span>          <span class="p">{</span><span class="s1">&#39;DET&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)},</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;stop&#39;</span><span class="p">:</span>                <span class="p">(</span><span class="s1">&#39;BUDGET&#39;</span><span class="p">,</span> <span class="mi">2000</span><span class="p">),</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>              <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+   <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;population size&#39;</span><span class="p">:</span>     <span class="mi">20</span><span class="p">,</span>
    <span class="o">...</span><span class="p">:</span>             <span class="s1">&#39;results dir&#39;</span><span class="p">:</span>         <span class="s1">&#39;run_1&#39;</span><span class="p">,</span>
    <span class="o">...</span><span class="p">:</span>             <span class="p">}</span>
 </pre></div>
@@ -317,37 +316,48 @@ To plot the objectives and the corresponding inputs in function of the LCOH, a <
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;-o&#39;</span><span class="p">)</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="k">for</span> <span class="n">x_in</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+   <span class="o">...</span><span class="p">:</span>         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_in</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;n_dcdc_pv&#39;</span><span class="p">,</span> <span class="s1">&#39;n_elec&#39;</span><span class="p">])</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The function enables to print out the Pareto front and the design variables on the same x-axis (LCOH) after 109 generations:</p>
+<p>The function enables to print out the Pareto front and the design variables on the same x-axis (LCOH) after 110 generations:</p>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="_images/tut_det_109.png"><img alt="_images/tut_det_109.png" src="_images/tut_det_109.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-text">A trade-off exists between minimizing the LCOH and maximizing the hydrogen production. The capacities of the system components
-increases gradually to improve the hydrogen production, at the expense of an increase in LCOH.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">A trade-off exists between minimizing the LCOH and maximizing the hydrogen production.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/tut_det_109.png"><img alt="_images/tut_det_109.png" src="_images/tut_det_109.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">The capacities of the system components increases gradually to improve the hydrogen production, at the expense of an increase in LCOH.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Note that due to the crossover and mutation probability being below 1, a new generation does not always contain new design samples.
 The old design samples are not evaluated again, which reduces the computation cost for the next generation and thus allows to generate
 a higher number of generations (&gt;100) with the computational budget provided.
-To analyze the convergence of the Pareto front, generation 70, 90 and 109 are plotted:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">70</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">109</span><span class="p">]:</span>
+To analyze the convergence of the Pareto front, generation 70, 90 and 110 are plotted:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">legend</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">70</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">110</span><span class="p">]:</span>
    <span class="o">...</span><span class="p">:</span>     <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">my_opt_plot</span><span class="o">.</span><span class="n">get_fitness_population</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">gen</span> <span class="o">=</span> <span class="n">i</span><span class="p">)</span>
    <span class="o">...</span><span class="p">:</span>     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">legend</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;gen </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">i</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">legend</span><span class="p">)</span>
    <span class="o">...</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="_images/tut_det_109_ev.png"><img alt="_images/tut_det_109_ev.png" src="_images/tut_det_109_ev.png" style="width: 80%;" /></a>
 </div>
-<p>Adding another 6000 model evaluations to the budget, results in a smoother evolution of the design variables in function of LCOH,
+<p>Adding another 4000 model evaluations to the budget, results in a smoother evolution of the design variables in function of LCOH,
 but does not affect the outcome of the Pareto front dramatically:</p>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="_images/tut_det_330.png"><img alt="_images/tut_det_330.png" src="_images/tut_det_330.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/tut_det_330_ev.png"><img alt="_images/tut_det_330_ev.png" src="_images/tut_det_330_ev.png" style="width: 80%;" /></a>
 </div>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="_images/tut_det_330_ev.png"><img alt="_images/tut_det_330_ev.png" src="_images/tut_det_330_ev.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/tut_det_330_x.png"><img alt="_images/tut_det_330_x.png" src="_images/tut_det_330_x.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="section" id="robust-design-optimization">
@@ -356,22 +366,22 @@ but does not affect the outcome of the Pareto front dramatically:</p>
 These statistical moments are quantified following the propagation of the input parameter uncertainties.
 The stochastic input parameters are characterized in the <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> file, which is added to the case folder <cite>PV_ELEC</cite>.
 More information on the construction of <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code> is found in <a class="reference internal" href="stochastic%20design%20space.html#lab-ssstochastic-space"><span class="std std-ref">stochastic_space</span></a>.
-In this tutorial, 14 parameters are considered uncertain, for which the uncertainty is characterized by a uniform distribution with
+In this tutorial, 14 parameters are considered uncertain, for which the uncertainty is characterized by a Uniform distribution with
 an absolute range with respect to the mean value:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol_irr</span>      <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.099</span>
-<span class="n">capex_pv</span>     <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">175</span>
-<span class="n">opex_pv</span>      <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">1.5</span>
-<span class="n">power_tol_pv</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">2.5</span>
-<span class="n">capex_elec</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">350</span>
-<span class="n">opex_elec</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
-<span class="n">repl_elec</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.025</span>
-<span class="n">life_elec</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">20000</span>
-<span class="n">eff_elec</span>     <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
-<span class="n">eff_dcdc</span>     <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.025</span>
-<span class="n">capex_dcdc</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">50</span>
-<span class="n">opex_dcdc</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
-<span class="n">int_rate</span>     <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
-<span class="n">infl_rate</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol_irr</span>      <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.099</span>
+<span class="n">capex_pv</span>     <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">175</span>
+<span class="n">opex_pv</span>      <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">1.5</span>
+<span class="n">power_tol_pv</span> <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">2.5</span>
+<span class="n">capex_elec</span>   <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">350</span>
+<span class="n">opex_elec</span>    <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.01</span>
+<span class="n">repl_elec</span>    <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.025</span>
+<span class="n">life_elec</span>    <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">20000</span>
+<span class="n">eff_elec</span>     <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.05</span>
+<span class="n">eff_dcdc</span>     <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.025</span>
+<span class="n">capex_dcdc</span>   <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">50</span>
+<span class="n">opex_dcdc</span>    <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.02</span>
+<span class="n">int_rate</span>     <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.02</span>
+<span class="n">infl_rate</span>    <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.01</span>
 </pre></div>
 </div>
 <div class="section" id="determination-of-the-polynomial-order">
@@ -389,7 +399,7 @@ the polynomial order is selected for the robust optimization procedure. We refer
 are used to store information on the design variables and to generate the samples through Latin Hypercube Sampling, respectively:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.UQ.uncertainty_quantification</span> <span class="k">as</span> <span class="nn">rheia_uq</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">n_des_var</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">n_des_var</span> <span class="o">=</span> <span class="mi">20</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">var_dict</span> <span class="o">=</span> <span class="n">rheia_uq</span><span class="o">.</span><span class="n">get_design_variables</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
 
@@ -412,27 +422,27 @@ At first, a polynomial degree of 1 is selected for evaluation:</p>
 </pre></div>
 </div>
 <p>This results in a PCE for each design sample, for which the information is stored in <code class="file docutils literal notranslate"><span class="pre">RESULTS\PV_ELEC\UQ</span></code>.
-To determine the worst-case LOO error for the 30 design samples, a <code class="xref py py-class docutils literal notranslate"><span class="pre">post_process_uq</span></code> class object is instantiated,
+To determine the worst-case LOO error for the 20 design samples, a <code class="xref py py-class docutils literal notranslate"><span class="pre">post_process_uq</span></code> class object is instantiated,
 followed by the call of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_LOO()</span></code> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">pol_order</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="n">my_post_process_uq</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process_uq</span><span class="p">(</span><span class="n">my_post_process</span><span class="p">,</span> <span class="n">pol_order</span><span class="p">)</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">result_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sample_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">result_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sample_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="n">objective</span> <span class="o">=</span> <span class="s1">&#39;lcoh&#39;</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">loo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">30</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">loo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">20</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">result_dir</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result_dirs</span><span class="p">):</span>
    <span class="o">....</span><span class="p">:</span>     <span class="n">loo</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_LOO</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">objective</span><span class="p">))</span>
    <span class="o">....</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">loo</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>For a maximum polynomial order 1, the worst-case LOO error is 0.035.
+<p>For a maximum polynomial order 1, the worst-case LOO error is 0.0379.
 Increasing the order to 2 and generating the PCE for the same design samples (i.e. the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> files are not overwritten)
-decreases the worst-case LOO error down to 0.013. Finally, for a maximum polynomial degree of 3, the
-worst-case LOO error equals 0.006. However, the gain in accuracy is limited when compared to the increase in computational cost
+decreases the worst-case LOO error down to 0.0137. Finally, for a maximum polynomial degree of 3, the
+worst-case LOO error equals 0.007. However, the gain in accuracy is limited when compared to the increase in computational cost
 (1360 model evaluations per design sample to construct the PCE, as opposed to 240 model evaluations for a polynomial degree of 2).
 Therefore, a maximum polynomial degree of 2 is selected for the PCE truncation scheme.</p>
 </div>
@@ -457,52 +467,52 @@ where a threshold for the Sobol’ index is set at 1/14 (= 1/number of uncertain
 <span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="n">my_post_process_uq</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process_uq</span><span class="p">(</span><span class="n">my_post_process</span><span class="p">,</span><span class="n">pol_order</span><span class="p">)</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_max_sobol</span><span class="p">(</span><span class="n">result_dirs</span><span class="p">,</span><span class="n">objective</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mf">14.</span><span class="p">)</span>
+
 <span class="n">significant</span> <span class="n">Sobol</span> <span class="n">indices</span><span class="p">:</span>
-<span class="n">capex_elec</span><span class="p">:</span> <span class="mf">0.451568</span>
-<span class="n">int_rate</span><span class="p">:</span> <span class="mf">0.292728</span>
-<span class="n">sol_irr</span><span class="p">:</span> <span class="mf">0.165832</span>
-<span class="n">eff_elec</span><span class="p">:</span> <span class="mf">0.128880</span>
-<span class="n">infl_rate</span><span class="p">:</span> <span class="mf">0.081605</span>
-<span class="n">opex_elec</span><span class="p">:</span> <span class="mf">0.085673</span>
-<span class="n">capex_dcdc</span><span class="p">:</span> <span class="mf">0.361644</span>
-<span class="n">capex_pv</span><span class="p">:</span> <span class="mf">0.197958</span>
-<span class="n">opex_dcdc</span><span class="p">:</span> <span class="mf">0.126053</span>
+<span class="n">capex_pem</span><span class="p">:</span> <span class="mf">0.484103</span>
+<span class="n">int_rate</span><span class="p">:</span> <span class="mf">0.297882</span>
+<span class="n">sol_irr</span><span class="p">:</span> <span class="mf">0.152352</span>
+<span class="n">eff_pem</span><span class="p">:</span> <span class="mf">0.128252</span>
+<span class="n">opex_pem</span><span class="p">:</span> <span class="mf">0.089568</span>
+<span class="n">infl_rate</span><span class="p">:</span> <span class="mf">0.082414</span>
+<span class="n">capex_pv</span><span class="p">:</span> <span class="mf">0.335303</span>
+<span class="n">capex_dcdc</span><span class="p">:</span> <span class="mf">0.137550</span>
 
 <span class="n">negligible</span> <span class="n">Sobol</span> <span class="n">indices</span><span class="p">:</span>
-<span class="n">eff_dcdc</span><span class="p">:</span> <span class="mf">0.062278</span>
-<span class="n">life_elec</span><span class="p">:</span> <span class="mf">0.024846</span>
-<span class="n">power_tol_pv</span><span class="p">:</span> <span class="mf">0.010984</span>
-<span class="n">repl_elec</span><span class="p">:</span> <span class="mf">0.001914</span>
-<span class="n">opex_pv</span><span class="p">:</span> <span class="mf">0.002429</span>
+<span class="n">life_pem</span><span class="p">:</span> <span class="mf">0.026493</span>
+<span class="n">eff_dcdc</span><span class="p">:</span> <span class="mf">0.016157</span>
+<span class="n">power_tol_pv</span><span class="p">:</span> <span class="mf">0.010049</span>
+<span class="n">opex_dcdc</span><span class="p">:</span> <span class="mf">0.049349</span>
+<span class="n">opex_pv</span><span class="p">:</span> <span class="mf">0.004468</span>
+<span class="n">repl_pem</span><span class="p">:</span> <span class="mf">0.001366</span>
 </pre></div>
 </div>
-<p>5 out of 14 stochastic parameters have a maximum Sobol’ index below the threshold,
+<p>6 out of 14 stochastic parameters have a maximum Sobol’ index below the threshold,
 which indicates that these parameters can be considered deterministic without losing significant statistical accuracy on the LCOH.
-This reduction results in a decrease of 54% in computational cost, as only 110 model evaluations are required to
-construct a PCE for 9 uncertain parameters in the current truncation scheme, as opposed to 240 model evaluations with 14 uncertain parameters.
-Thus, the 5 parameters with negligible contribution can be removed from <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol_irr</span>    <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.099</span>
-<span class="n">capex_pv</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">175</span>
-<span class="n">capex_elec</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">350</span>
-<span class="n">opex_elec</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
-<span class="n">eff_elec</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.05</span>
-<span class="n">capex_dcdc</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">50</span>
-<span class="n">opex_dcdc</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
-<span class="n">int_rate</span>   <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
-<span class="n">infl_rate</span>  <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
+This reduction results in a decrease of 63% in computational cost, as only 90 model evaluations are required to
+construct a PCE for 8 uncertain parameters in the current truncation scheme, as opposed to 240 model evaluations with 14 uncertain parameters.
+Thus, the 6 parameters with negligible contribution can be removed from <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol_irr</span>      <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.099</span>
+<span class="n">capex_pv</span>     <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">175</span>
+<span class="n">capex_pem</span>    <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">350</span>
+<span class="n">opex_pem</span>     <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.01</span>
+<span class="n">eff_pem</span>      <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.05</span>
+<span class="n">capex_dcdc</span>   <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">50</span>
+<span class="n">int_rate</span>     <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.02</span>
+<span class="n">infl_rate</span>    <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.01</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="run-robust-design-optimization">
 <h3><span class="section-number">4.3.3. </span>Run robust design optimization<a class="headerlink" href="#run-robust-design-optimization" title="Permalink to this headline">¶</a></h3>
 <p>With the design variables, model parameters, uncertainties and maximum polynomial degree characterized, the robust design optimization can be performed.
-Again, a population of 30 samples is selected. With 110 model evaluations required per design sample, a computational budget of 495000 is selected to reach at least 150 generations.
+Again, a population of 30 samples is selected. With 90 model evaluations required per design sample, a computational budget of 270000 is selected to reach at least 150 generations.
 The optimization dictionary is configurated as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="n">dict_opt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                  <span class="s1">&#39;PV_ELEC&#39;</span><span class="p">,</span>
    <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objectives&#39;</span><span class="p">:</span>            <span class="p">{</span><span class="s1">&#39;ROB&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)},</span>
-   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;stop&#39;</span><span class="p">:</span>                  <span class="p">(</span><span class="s1">&#39;BUDGET&#39;</span><span class="p">,</span> <span class="mi">495000</span><span class="p">),</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;stop&#39;</span><span class="p">:</span>                  <span class="p">(</span><span class="s1">&#39;BUDGET&#39;</span><span class="p">,</span> <span class="mi">270000</span><span class="p">),</span>
    <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;n jobs&#39;</span><span class="p">:</span>                <span class="nb">int</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
-   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;population size&#39;</span><span class="p">:</span>       <span class="mi">30</span><span class="p">,</span>
+   <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;population size&#39;</span><span class="p">:</span>       <span class="mi">20</span><span class="p">,</span>
    <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;pol order&#39;</span><span class="p">:</span>             <span class="mi">2</span><span class="p">,</span>
    <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objective names&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;lcoh&#39;</span><span class="p">,</span><span class="s1">&#39;mh2&#39;</span><span class="p">],</span>
    <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objective of interest&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lcoh&#39;</span><span class="p">],</span>
@@ -514,10 +524,9 @@ The optimization dictionary is configurated as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="n">rheia_opt</span><span class="o">.</span><span class="n">run_opt</span><span class="p">(</span><span class="n">dict_opt</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The results show a single design, which indicates that there is no trade-off between minimizing the LCOH mean and minimizing the LCOH standard deviation.</p>
-<div class="figure align-center">
-<a class="reference internal image-reference" href="_images/tut_rob_50.png"><img alt="_images/tut_rob_50.png" src="_images/tut_rob_50.png" style="width: 80%;" /></a>
-</div>
+<p>The results show a single design, which indicates that there is no trade-off between minimizing the LCOH mean and minimizing the LCOH standard deviation:
+A PV DC-DC converter of <span class="math notranslate nohighlight">\(1.47 \mathrm{kW}\)</span> and an electrolyzer array of <span class="math notranslate nohighlight">\(1.30 \mathrm{kW}_\mathrm{p}\)</span>. The design achieves an
+LCOH mean of <span class="math notranslate nohighlight">\(8.41 \mathrm{euro} / \mathrm{kg}_{\mathrm{H}_2}\)</span> and a LCOH standard deviation of 1.03 mathrm{euro} / mathrm{kg}_{mathrm{H}_2}.</p>
 </div>
 </div>
 <div class="section" id="uncertainty-quantification">
@@ -526,9 +535,8 @@ The optimization dictionary is configurated as follows:</p>
 The Sobol’ indices for this design can illustrate the main drivers of the uncertainty on the LCOH, which can provide guidelines
 to effectively reduce the uncertainty by gathering more information on the dominant parameters.
 The design is specified in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code>, by replacing the design variable ranges with the specified capacities:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_dcdc_pv</span>   <span class="n">par</span> <span class="mf">1.81</span>
-<span class="n">n_elec</span>      <span class="n">par</span> <span class="mf">1.55</span>
-<span class="n">n_dcdc_elec</span> <span class="n">par</span> <span class="mf">1.67</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_dcdc_pv</span>   <span class="n">par</span> <span class="mf">1.47</span>
+<span class="n">n_elec</span>      <span class="n">par</span> <span class="mf">1.30</span>
 </pre></div>
 </div>
 <p>The uncertainty quantification dictionary is characterized as follows:</p>

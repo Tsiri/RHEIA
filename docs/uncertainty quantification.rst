@@ -257,11 +257,11 @@ In a for loop with iterations equal to the number of design samples, the PCEs ar
 
 	In [5]: for iteration,x in enumerate(X):
 	  ....:     rheia_uq.write_design_space(case, iteration, var_dict, x)
-	  ....:     dict_uq = {'case':                  case,
-	  ....:                'pol order':             1,
-	  ....:                'objective names':       ['obj_1','obj_2'],
+	  ....:     dict_uq = {'case': case,
+	  ....:                'pol order': 1,
+	  ....:                'objective names': ['obj_1','obj_2'],
 	  ....:                'objective of interest': 'obj_1',
-	  ....:                'results dir':           'res_%i' %iteration      
+	  ....:                'results dir': 'res_%i' %iteration      
 	  ....:               }   
 	  ....:     rheia_uq.run_uq(dict_uq, design_space = 'design_space_%i' %iteration)
 		

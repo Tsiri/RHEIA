@@ -39,7 +39,7 @@ The solar irradiance is subject to inter-annual variability.
 Due to commissioning and maintenance quality, evolving market conditions and a 
 significant timeframe between the design stage and investment stage, the CAPEX, OPEX, replacement cost
 and interest rate are considered uncertain.
-More details on the characterization of the stochastic parameters are described by Coppitters et al. [1].
+More details on the characterization of the stochastic parameters are described by Coppitters et al. :cite:`coppitters2020robust`.
 
 .. list-table:: Stochastic space for the photovoltaic-electrolyzer system
    :widths: 50 50 50
@@ -50,8 +50,8 @@ More details on the characterization of the stochastic parameters are described 
      - unit
 	 
    * - :math:`\mathrm{sol\_irr}`
-     - :math:`\mathcal{U}(0.901,1.099)` 
-     - :math:`\mathrm{W}/ \mathrm{m}^2`
+     - :math:`\mathcal{U}(90.1,109.9)` 
+     - :math:`\% ~ \mathrm{of} ~ \mathrm{annual} ~ \mathrm{solar} ~ \mathrm{irradiance}`
    
    * - :math:`\mathrm{CAPEX}_\mathrm{PV}`
      - :math:`\mathcal{U}(430,780)`
@@ -59,29 +59,29 @@ More details on the characterization of the stochastic parameters are described 
 
    * - :math:`\mathrm{OPEX}_\mathrm{PV}`
      - :math:`\mathcal{U}(16,19)`
-     - :math:`{\large €} / \mathrm{kW}_\mathrm{p}`
+     - :math:`{\large €} / \mathrm{kW}_\mathrm{p} / \mathrm{year}`
 
    * - :math:`\mathrm{power\_tol}_\mathrm{PV}`
      - :math:`\mathcal{U}(0,0.05)`
      -
 	 
-   * - :math:`\mathrm{CAPEX}_\mathrm{elec}`
+   * - :math:`\mathrm{CAPEX}_\mathrm{pem}`
      - :math:`\mathcal{U}(1400,2100)`
      - :math:`{\large €} / \mathrm{kW}`
 
-   * - :math:`\mathrm{OPEX}_\mathrm{elec}`
+   * - :math:`\mathrm{OPEX}_\mathrm{pem}`
      - :math:`\mathcal{U}(3,5)`
-     - :math:`\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{elec}`
+     - :math:`\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{pem}`
 
-   * - :math:`R_\mathrm{c,elec}`
+   * - :math:`R_\mathrm{c,pem}`
      - :math:`\mathcal{U}(15,20)`
-     - :math:`\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{elec}`
+     - :math:`\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{pem}`
 
-   * - :math:`n_\mathrm{elec}`
+   * - :math:`n_\mathrm{pem}`
      - :math:`\mathcal{U}(60000,100000)`
      - :math:`h`
 
-   * - :math:`\eta_\mathrm{elec}`
+   * - :math:`\eta_\mathrm{pem}`
      - :math:`\mathcal{U}(0.6,0.7)`
      -
 
@@ -176,7 +176,7 @@ More details on the characterization of the stochastic parameters are described 
 
    * - :math:`\mathrm{sol\_irr}`
      - :math:`\mathcal{U}(0.901,1.099)` 
-     - :math:`\mathrm{W}/ \mathrm{m}^2`
+     - :math:`\% ~ \mathrm{of} ~ \mathrm{annual} ~ \mathrm{solar} ~ \mathrm{irradiance}`
    
    * - :math:`\mathrm{load\_elec}`
      - :math:`\mathcal{U}(3.20,4.32)` 
@@ -202,23 +202,23 @@ More details on the characterization of the stochastic parameters are described 
      - :math:`\mathcal{U}(0,0.05)`
      -
 	 
-   * - :math:`\mathrm{CAPEX}_\mathrm{elec}`
+   * - :math:`\mathrm{CAPEX}_\mathrm{pem}`
      - :math:`\mathcal{U}(1400,2100)`
      - :math:`{\large €} / \mathrm{kW}`
 
-   * - :math:`\mathrm{OPEX}_\mathrm{elec}`
+   * - :math:`\mathrm{OPEX}_\mathrm{pem}`
      - :math:`\mathcal{U}(3,5)`
-     - :math:`\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{elec}`
+     - :math:`\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{pem}`
 
    * - :math:`R_\mathrm{c,elec}`
      - :math:`\mathcal{U}(15,20)`
-     - :math:`\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{elec}`
+     - :math:`\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{pem}`
 
-   * - :math:`n_\mathrm{elec}`
+   * - :math:`n_\mathrm{pem}`
      - :math:`\mathcal{U}(60000,100000)`
      - :math:`h`
 
-   * - :math:`\eta_\mathrm{elec}`
+   * - :math:`\eta_\mathrm{pem}`
      - :math:`\mathcal{U}(0.6,0.7)`
      -
 
@@ -242,11 +242,11 @@ More details on the characterization of the stochastic parameters are described 
      - :math:`\mathcal{U}(25,30)`
      - :math:`\% ~ \mathrm{of} ~ \mathrm{CAPEX}_\mathrm{fc}`
 
-   * - :math:`n_\mathrm{elec}`
+   * - :math:`n_\mathrm{fc}`
      - :math:`\mathcal{U}(20000,30000)`
      - :math:`h`
 
-   * - :math:`\eta_\mathrm{elec}`
+   * - :math:`\eta_\mathrm{fc}`
      - :math:`\mathcal{U}(0.45,0.55)`
      -
 
@@ -307,7 +307,7 @@ As the energy demand is affected by the weather (i.e. space heating demand corre
 the analysis should be conducted with climate data that corresponds to the energy demand profiles. 
 Therefore, we adopt the Typical Meteorological Year data, hourly electricity demand data and hourly heat demand data provided by the National Renewable Energy Laboratory,
 as the former is used to construct the latter. To adapt the climate and demand profiles to the considered location, 
-we implemented the method from Montero~Carrero~et~al.\ \cite{Engine2019}.
+we implemented the method from Montero Carrero et al.\ :cite:`Engine2019`.
 
 In the provided hydrogen-based energy systems dependend on the solar irradiance, the yearly annual solar irradiance is provided as a model parameter in the form of a relative number
 to the provided yearly annual solar irradiance. In other words, characterizing 'sol_irr' with 1 in :file:`design_space` results 
@@ -324,10 +324,3 @@ The typical values for the energy demand are:
 		- electricity: 3.76 MWh/year
 		- heat: 16.59 MWh/year
 	
-
-
-
-
-[1] Coppitters, D., De Paepe, W., & Contino, F. (2020). 
-Robust design optimization and stochastic performance analysis of a grid-connected photovoltaic system with battery storage and hydrogen storage. 
-Energy, 213, 118798. https://doi.org/10.1016/j.energy.2020.118798

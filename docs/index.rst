@@ -39,6 +39,7 @@ SOME EXAMPLE LOGOS
    energy system models
    API
    contribution
+   bibliography
 
 Introduction
 ============

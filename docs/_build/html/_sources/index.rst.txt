@@ -39,6 +39,7 @@ SOME EXAMPLE LOGOS
    energy system models
    API
    contribution
+   bibliography
 
 Introduction
 ============
@@ -68,7 +69,7 @@ rheia.framework@gmail.com
 License
 =======
 
-The project is licensed under xxx. 
+The project is licensed under MIT license. 
 
 
 Indices and tables

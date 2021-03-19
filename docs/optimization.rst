@@ -15,7 +15,7 @@ More information on this Python wrapper is discussed in :ref:`lab:wrapper`.
 
 .. _lab:ssrundetopt:
 
-run deterministic optimization
+Run deterministic optimization
 ------------------------------
 
 To run a deterministic optimization, first the optimization module should be imported::
@@ -248,7 +248,7 @@ The default configuration stores each generation::
 
 'print results light': [False]
 
-deterministic optimization dictionary examples
+Deterministic optimization dictionary examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When combining the examples in the previous section, a configurated optimization dictionary with the necessary items looks as follows::
@@ -302,13 +302,13 @@ and uncertainty quantification should be completed::
                 'objective names':       obj_names,
                 'objective of interest': obj_of_interest,
 
-                'x0':                  (pop_type, pop_method), #optional, default is ('AUTO', 'LHS')
-                'cx prob':             c_prob,                 #optional, default is 0.9
-                'mut prob':            mut_prob,               #optional, default is 0.1
-                'eta':                 eta,                    #optional, default is 0.2
-                'n jobs':              n_jobs,                 #optional, default is 1 
-                'print results light': [light_bool, gen_step], #optional, default is [False]
-                'sampling method':       sampling_method       #optional, default is 'SOBOL'
+                'x0':                    (pop_type, pop_method), #optional, default is ('AUTO', 'LHS')
+                'cx prob':               c_prob,                 #optional, default is 0.9
+                'mut prob':              mut_prob,               #optional, default is 0.1
+                'eta':                   eta,                    #optional, default is 0.2
+                'n jobs':                n_jobs,                 #optional, default is 1 
+                'print results light':   [light_bool, gen_step], #optional, default is [False]
+                'sampling method':       sampling_method         #optional, default is 'SOBOL'
                 }
 
 This dictionary is used as the argument for the `run_opt()` function, which starts the optimization procedure::
@@ -378,8 +378,8 @@ The default configuration for generating the samples for PCE is through a Sobol'
 
 	'sampling method': 'SOBOL'
 
-Robust optimization dictionary example
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Robust optimization dictionary examples
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When combining the examples in the previous section, a configurated optimization dictionary with only necessary items for robust optimization looks as follows::
 

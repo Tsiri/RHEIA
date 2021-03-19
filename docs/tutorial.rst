@@ -76,22 +76,21 @@ These objective values are stored in the local variables `lcoh` and `mh2` and re
 
 		my_evaluation.evaluation()
 
-		lcoh, mh2 = my_evaluation.get_objectives()
+        lcoh, mh2 = my_evaluation.lcoh, my_evaluation.m_h2
 
 		return lcoh, mh2
 
 deterministic design optimization
 ---------------------------------
 
-For a fixed photovoltaic array, the capacity of the electrolyzer stack and the capacity of the DC-DC converters can be designed 
+For a fixed photovoltaic array, the capacity of the electrolyzer stack and the capacity of the DC-DC converter can be designed 
 to optimize the Levelized Cost Of Hydrogen (:math:`\mathrm{LCOH}`) and hydrogen production :math:`\dot{m}_{\mathrm{H}_2}`.
 Therefore, in the :file:`design_space` file, the capacities for these components are characterized as design variables::
 
 	n_dcdc_pv   var 1e-8 10
 	n_elec      var 1e-8 10
-	n_dcdc_elec var 1e-8 10
 
-With this characterization, the optimizer can configurate design samples with values between :math:`0~\mathrm{kW}` and :math:`10~\mathrm{kW}` for the DC-DC converters and electrolyzer stack. 
+With this characterization, the optimizer can configurate design samples with values between :math:`0~\mathrm{kW}` and :math:`10~\mathrm{kW}` for the DC-DC converter and electrolyzer stack. 
 The photovoltaic array is fixed at :math:`5~\mathrm{kW}_\mathrm{p}`, and the remaining deterministic parameters are predefined in the :file:`design_space` file.
 Detailed information on constructing this file is available in :ref:`lab:ssdesignspace`.
 
@@ -103,10 +102,10 @@ In this tutorial, the deterministic optimization is imported and the optimizatio
     In [2]: import multiprocessing as mp
 
     In [3]: dict_opt = {'case':                'PV_ELEC',
-       ...:             'objectives':          {'DET': (-1,1)}, 
-       ...:             'stop':                ('BUDGET', 3000),
-       ...:             'n jobs':              int(mp.cpu_count()/2), 
-       ...:             'population size':     30,
+       ...:             'objectives':          {'DET': (-1, 1)}, 
+       ...:             'stop':                ('BUDGET', 2000),
+       ...:             'n jobs':              int(mp.cpu_count() / 2), 
+       ...:             'population size':     20,
        ...:             'results dir':         'run_1',
        ...:             }
 
@@ -148,42 +147,54 @@ The fitness values and design samples can be plotted for the final generation th
 
     In [7]: import matplotlib.pyplot as plt
 
-    In [8]: plt.plot(y[0],y[1])
+    In [8]: plt.plot(y[0], y[1], '-o')
 
     In [8]: plt.show()
 
-The function enables to print out the Pareto front and the design variables on the same x-axis (LCOH) after 109 generations:
+    In [9]: for x_in in x:
+       ...:	    plt.plot(y[0], x_in, '-o')
+       ...: plt.legend(['n_dcdc_pv', 'n_elec'])
+       ...: plt.show()
+
+The function enables to print out the Pareto front and the design variables on the same x-axis (LCOH) after 110 generations:
 
 .. figure:: tut_det_109.png
    :width: 80%
    :align: center
 
-   A trade-off exists between minimizing the LCOH and maximizing the hydrogen production. The capacities of the system components 
-   increases gradually to improve the hydrogen production, at the expense of an increase in LCOH.
+   A trade-off exists between minimizing the LCOH and maximizing the hydrogen production. 
+   
+.. figure:: tut_det_109.png
+   :width: 80%
+   :align: center
+     
+   The capacities of the system components increases gradually to improve the hydrogen production, at the expense of an increase in LCOH.
 
 Note that due to the crossover and mutation probability being below 1, a new generation does not always contain new design samples.
 The old design samples are not evaluated again, which reduces the computation cost for the next generation and thus allows to generate
 a higher number of generations (>100) with the computational budget provided.
-To analyze the convergence of the Pareto front, generation 70, 90 and 109 are plotted::
+To analyze the convergence of the Pareto front, generation 70, 90 and 110 are plotted::
 
-    In [8]: for i in [70,90,109]:
+    In [8]: legend = []
+    In [8]: for i in [70,90,110]:
        ...:     y,x = my_opt_plot.get_fitness_population(result_dir, gen = i)
        ...:     plt.plot(y[0],y[1])
+       ...:     legend.append('gen %i' %i)
+       ...: plt.legend(legend)
        ...: plt.show()
 	
 .. figure:: tut_det_109_ev.png
    :width: 80%
    :align: center
 
-Adding another 6000 model evaluations to the budget, results in a smoother evolution of the design variables in function of LCOH,
+Adding another 4000 model evaluations to the budget, results in a smoother evolution of the design variables in function of LCOH,
 but does not affect the outcome of the Pareto front dramatically:
 
-.. figure:: tut_det_330.png
+.. figure:: tut_det_330_ev.png
    :width: 80%
    :align: center
 
-
-.. figure:: tut_det_330_ev.png
+.. figure:: tut_det_330_x.png
    :width: 80%
    :align: center
 
@@ -195,23 +206,23 @@ The robust design optimization procedure simultaneously minimizes the mean and s
 These statistical moments are quantified following the propagation of the input parameter uncertainties.
 The stochastic input parameters are characterized in the :file:`stochastic_space` file, which is added to the case folder `PV_ELEC`. 
 More information on the construction of :file:`stochastic_space` is found in :ref:`lab:ssstochastic_space`.
-In this tutorial, 14 parameters are considered uncertain, for which the uncertainty is characterized by a uniform distribution with
+In this tutorial, 14 parameters are considered uncertain, for which the uncertainty is characterized by a Uniform distribution with
 an absolute range with respect to the mean value::
 
-	sol_irr      absolute uniform 0.099
-	capex_pv     absolute uniform 175
-	opex_pv      absolute uniform 1.5
-	power_tol_pv absolute uniform 2.5
-	capex_elec   absolute uniform 350
-	opex_elec    absolute uniform 0.01
-	repl_elec    absolute uniform 0.025
-	life_elec    absolute uniform 20000
-	eff_elec     absolute uniform 0.05
-	eff_dcdc     absolute uniform 0.025
-	capex_dcdc   absolute uniform 50
-	opex_dcdc    absolute uniform 0.02
-	int_rate     absolute uniform 0.02
-	infl_rate    absolute uniform 0.01
+	sol_irr      absolute Uniform 0.099
+	capex_pv     absolute Uniform 175
+	opex_pv      absolute Uniform 1.5
+	power_tol_pv absolute Uniform 2.5
+	capex_elec   absolute Uniform 350
+	opex_elec    absolute Uniform 0.01
+	repl_elec    absolute Uniform 0.025
+	life_elec    absolute Uniform 20000
+	eff_elec     absolute Uniform 0.05
+	eff_dcdc     absolute Uniform 0.025
+	capex_dcdc   absolute Uniform 50
+	opex_dcdc    absolute Uniform 0.02
+	int_rate     absolute Uniform 0.02
+	infl_rate    absolute Uniform 0.01
 	
 Determination of the polynomial order
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -231,7 +242,7 @@ are used to store information on the design variables and to generate the sample
 
 	In [1]: import rheia.UQ.uncertainty_quantification as rheia_uq
 
-	In [13]: n_des_var = 30
+	In [13]: n_des_var = 20
 
 	In [14]: var_dict = rheia_uq.get_design_variables(case)
 
@@ -253,27 +264,27 @@ At first, a polynomial degree of 1 is selected for evaluation::
 	   ....:     rheia_uq.run_uq(dict_uq, design_space = 'design_space_%i' %iteration)
 		
 This results in a PCE for each design sample, for which the information is stored in :file:`RESULTS\\PV_ELEC\\UQ`.
-To determine the worst-case LOO error for the 30 design samples, a :py:class:`post_process_uq` class object is instantiated, 
+To determine the worst-case LOO error for the 20 design samples, a :py:class:`post_process_uq` class object is instantiated, 
 followed by the call of the :py:meth:`get_LOO` method::
 
     In [16]: pol_order = 1
 
     In [19]: my_post_process_uq = rheia_pp.post_process_uq(my_post_process, pol_order)
 
-    In [8]: result_dirs = ['sample_%i' %i for i in range(30)]
+    In [8]: result_dirs = ['sample_%i' %i for i in range(20)]
 
     In [18]: objective = 'lcoh'
 
-    In [9]: loo = [0]*30
+    In [9]: loo = [0]*20
 
     In [11]: for index, result_dir in enumerate(result_dirs):
        ....:     loo[index] = my_post_process_uq.get_LOO(result_dir, objective))
        ....: print(max(loo))
  
-For a maximum polynomial order 1, the worst-case LOO error is 0.035.
+For a maximum polynomial order 1, the worst-case LOO error is 0.0379.
 Increasing the order to 2 and generating the PCE for the same design samples (i.e. the :file:`design_space` files are not overwritten)
-decreases the worst-case LOO error down to 0.013. Finally, for a maximum polynomial degree of 3, the
-worst-case LOO error equals 0.006. However, the gain in accuracy is limited when compared to the increase in computational cost
+decreases the worst-case LOO error down to 0.0137. Finally, for a maximum polynomial degree of 3, the
+worst-case LOO error equals 0.007. However, the gain in accuracy is limited when compared to the increase in computational cost
 (1360 model evaluations per design sample to construct the PCE, as opposed to 240 model evaluations for a polynomial degree of 2). 
 Therefore, a maximum polynomial degree of 2 is selected for the PCE truncation scheme.
 
@@ -300,52 +311,53 @@ where a threshold for the Sobol' index is set at 1/14 (= 1/number of uncertain p
 	In [22]: my_post_process_uq = rheia_pp.post_process_uq(my_post_process,pol_order)
 
 	In [12]: my_post_process_uq.get_max_sobol(result_dirs,objective,threshold=1./14.)	
+
 	significant Sobol indices:
-	capex_elec: 0.451568
-	int_rate: 0.292728
-	sol_irr: 0.165832
-	eff_elec: 0.128880
-	infl_rate: 0.081605
-	opex_elec: 0.085673
-	capex_dcdc: 0.361644
-	capex_pv: 0.197958
-	opex_dcdc: 0.126053
+	capex_pem: 0.484103
+	int_rate: 0.297882
+	sol_irr: 0.152352
+	eff_pem: 0.128252
+	opex_pem: 0.089568
+	infl_rate: 0.082414
+	capex_pv: 0.335303
+	capex_dcdc: 0.137550
 
 	negligible Sobol indices:
-	eff_dcdc: 0.062278
-	life_elec: 0.024846
-	power_tol_pv: 0.010984
-	repl_elec: 0.001914
-	opex_pv: 0.002429	
+	life_pem: 0.026493
+	eff_dcdc: 0.016157
+	power_tol_pv: 0.010049
+	opex_dcdc: 0.049349
+	opex_pv: 0.004468
+	repl_pem: 0.001366
   
-5 out of 14 stochastic parameters have a maximum Sobol' index below the threshold, 
+6 out of 14 stochastic parameters have a maximum Sobol' index below the threshold, 
 which indicates that these parameters can be considered deterministic without losing significant statistical accuracy on the LCOH.
-This reduction results in a decrease of 54% in computational cost, as only 110 model evaluations are required to 
-construct a PCE for 9 uncertain parameters in the current truncation scheme, as opposed to 240 model evaluations with 14 uncertain parameters. 
-Thus, the 5 parameters with negligible contribution can be removed from :file:`stochastic_space`::
+This reduction results in a decrease of 63% in computational cost, as only 90 model evaluations are required to 
+construct a PCE for 8 uncertain parameters in the current truncation scheme, as opposed to 240 model evaluations with 14 uncertain parameters. 
+Thus, the 6 parameters with negligible contribution can be removed from :file:`stochastic_space`::
 
-	sol_irr    absolute uniform 0.099
-	capex_pv   absolute uniform 175
-	capex_elec absolute uniform 350
-	opex_elec  absolute uniform 0.01
-	eff_elec   absolute uniform 0.05
-	capex_dcdc absolute uniform 50
-	opex_dcdc  absolute uniform 0.02
-	int_rate   absolute uniform 0.02
-	infl_rate  absolute uniform 0.01
+	sol_irr      absolute Uniform 0.099
+	capex_pv     absolute Uniform 175
+	capex_pem    absolute Uniform 350
+	opex_pem     absolute Uniform 0.01
+	eff_pem      absolute Uniform 0.05
+	capex_dcdc   absolute Uniform 50
+	int_rate     absolute Uniform 0.02
+	infl_rate    absolute Uniform 0.01
+
 
 Run robust design optimization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 With the design variables, model parameters, uncertainties and maximum polynomial degree characterized, the robust design optimization can be performed.
-Again, a population of 30 samples is selected. With 110 model evaluations required per design sample, a computational budget of 495000 is selected to reach at least 150 generations.
+Again, a population of 30 samples is selected. With 90 model evaluations required per design sample, a computational budget of 270000 is selected to reach at least 150 generations.
 The optimization dictionary is configurated as follows::
 
     In [24]: dict_opt = {'case':                  'PV_ELEC',
        ....:             'objectives':            {'ROB': (-1, -1)}, 
-       ....:             'stop':                  ('BUDGET', 495000),
+       ....:             'stop':                  ('BUDGET', 270000),
        ....:             'n jobs':                int(mp.cpu_count()/2), 
-       ....:             'population size':       30,
+       ....:             'population size':       20,
        ....:             'pol order':             2,
        ....:             'objective names':       ['lcoh','mh2'],
        ....:             'objective of interest': ['lcoh'],
@@ -356,12 +368,9 @@ Followed by the command to initiate the robust design optimization::
 
     In [25]: rheia_opt.run_opt(dict_opt)
 
-The results show a single design, which indicates that there is no trade-off between minimizing the LCOH mean and minimizing the LCOH standard deviation. 
-
-.. figure:: tut_rob_50.png
-   :width: 80%
-   :align: center
-
+The results show a single design, which indicates that there is no trade-off between minimizing the LCOH mean and minimizing the LCOH standard deviation:
+A PV DC-DC converter of :math:`1.47 \mathrm{kW}` and an electrolyzer array of :math:`1.30 \mathrm{kW}_\mathrm{p}`. The design achieves an
+LCOH mean of :math:`8.41 \mathrm{euro} / \mathrm{kg}_{\mathrm{H}_2}` and a LCOH standard deviation of 1.03 \mathrm{euro} / \mathrm{kg}_{\mathrm{H}_2}. 
 
 Uncertainty Quantification
 --------------------------
@@ -371,9 +380,8 @@ The Sobol' indices for this design can illustrate the main drivers of the uncert
 to effectively reduce the uncertainty by gathering more information on the dominant parameters.
 The design is specified in :file:`design_space`, by replacing the design variable ranges with the specified capacities::
 
-	n_dcdc_pv   par 1.81
-	n_elec      par 1.55
-	n_dcdc_elec par 1.67
+	n_dcdc_pv   par 1.47
+	n_elec      par 1.30
 
 The uncertainty quantification dictionary is characterized as follows::
 

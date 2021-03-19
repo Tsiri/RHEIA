@@ -219,19 +219,19 @@ First, PCEs are constructed for a representative set of design samples to determ
 </pre></div>
 </div>
 <p>The worst-case LOO error over the design samples set is determined:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.POST_PROCESS.lib_post_process</span> <span class="k">as</span> <span class="nn">rheia_pp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.POST_PROCESS.lib_post_process</span> <span class="k">as</span> <span class="nn">rheia_pp</span>
 
-    <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">my_post_process</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">my_post_process</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
 
-    <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">pol_order</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">pol_order</span> <span class="o">=</span> <span class="mi">2</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="n">my_post_process_uq</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process_uq</span><span class="p">(</span><span class="n">my_post_process</span><span class="p">,</span> <span class="n">pol_order</span><span class="p">)</span>
 
-    <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">result_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sample_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">35</span><span class="p">)]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">result_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sample_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">35</span><span class="p">)]</span>
 
-    <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">objective</span> <span class="o">=</span> <span class="s1">&#39;lcoe&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">objective</span> <span class="o">=</span> <span class="s1">&#39;lcoe&#39;</span>
 
-    <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">loo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">35</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">loo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">35</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">result_dir</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result_dirs</span><span class="p">):</span>
    <span class="o">....</span><span class="p">:</span>     <span class="n">loo</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_LOO</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">objective</span><span class="p">))</span>
@@ -245,16 +245,16 @@ Using this polynomial degree, the stochastic dimension is reduced, to increase t
 </pre></div>
 </div>
 <p>The significant Sobol’ indices result in the following reduced <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load_elec</span>       <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.22</span>
-<span class="n">elec_cost</span>       <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">15.5</span>
-<span class="n">elec_cost_ratio</span> <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.1</span>
-<span class="n">capex_pv</span>        <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">175</span>
-<span class="n">capex_elec</span>      <span class="n">absolute</span> <span class="n">uniform</span> <span class="mi">350</span>
-<span class="n">opex_elec</span>       <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
-<span class="n">capex_fc</span>        <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mi">450</span>
-<span class="n">opex_fc</span>         <span class="n">absolute</span> <span class="n">uniform</span>  <span class="mf">0.045</span>
-<span class="n">int_rate</span>        <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.02</span>
-<span class="n">infl_rate</span>       <span class="n">absolute</span> <span class="n">uniform</span> <span class="mf">0.01</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load_elec</span>       <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.22</span>
+<span class="n">elec_cost</span>       <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">15.5</span>
+<span class="n">elec_cost_ratio</span> <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.1</span>
+<span class="n">capex_pv</span>        <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">175</span>
+<span class="n">capex_elec</span>      <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mi">350</span>
+<span class="n">opex_elec</span>       <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.01</span>
+<span class="n">capex_fc</span>        <span class="n">absolute</span> <span class="n">Uniform</span>  <span class="mi">450</span>
+<span class="n">opex_fc</span>         <span class="n">absolute</span> <span class="n">Uniform</span>  <span class="mf">0.045</span>
+<span class="n">int_rate</span>        <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.02</span>
+<span class="n">infl_rate</span>       <span class="n">absolute</span> <span class="n">Uniform</span> <span class="mf">0.01</span>
 </pre></div>
 </div>
 </div>

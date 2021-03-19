@@ -189,10 +189,10 @@ The exerted force and the Young's moduli are subject to uncertainty.
 The corresponding :file:`stochastic_space` file for the four-bar truss file is configured as::
 
 	F   absolute Gaussian 1
-	E_1 absolute uniform  1000
-	E_2 absolute uniform  1000
-	E_3 absolute uniform  1000
-	E_4 absolute uniform  1000
+	E_1 absolute Uniform  1000
+	E_2 absolute Uniform  1000
+	E_3 absolute Uniform  1000
+	E_4 absolute Uniform  1000
 
 To evaluate the system model in the optimization and uncertainty quantification algorithm, the model should be 
 connected to the algorithms. This connection is established in the module :py:mod:`case_description`.
@@ -316,11 +316,11 @@ The :file:`design_space` file includes the mean values for the stochastic model 
 More information on the characterization of the design space is presented in :ref:`lab:ssdesignspace`.
 The stochastic space is defined in :file:`stochastic_space`::
 
-	elec_demand absolute uniform 1
-	COP         absolute uniform 0.5
-	eff_H2      absolute uniform 0.05
-	CHP_eff_el  absolute uniform 0.05
-	CHP_eff_ht  absolute uniform 0.05
+	elec_demand absolute Uniform 1
+	COP         absolute Uniform 0.5
+	eff_H2      absolute Uniform 0.05
+	CHP_eff_el  absolute Uniform 0.05
+	CHP_eff_ht  absolute Uniform 0.05
 
 More information on the uncertainty characterization is described in :ref:`lab:ssstochastic_space`.
 
