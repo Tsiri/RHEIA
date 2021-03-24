@@ -114,6 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="energy%20system%20models.html">11. Details on the energy system models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribution.html">13. How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 </ul>
 
             
@@ -299,19 +300,17 @@ The cross-sectional areas are designed between the following bounds:</p>
 <p>Conclusively, the system model evaluation is coded as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">four_bar_truss</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 
-        <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">E_1</span><span class="p">,</span> <span class="n">E_2</span><span class="p">,</span> <span class="n">E_3</span><span class="p">,</span> <span class="n">E_4</span><span class="p">,</span> <span class="n">A_1</span><span class="p">,</span> <span class="n">A_2</span><span class="p">,</span> <span class="n">A_3</span><span class="p">,</span> <span class="n">A_4</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;L&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;A_1&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;A_2&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;A_3&#39;</span><span class="p">]</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;A_4&#39;</span><span class="p">])</span>
 
-        <span class="n">V</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="n">A_1</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">A_2</span> <span class="o">+</span> <span class="n">A_3</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="n">A_4</span><span class="p">)</span>
-
-        <span class="n">d</span> <span class="o">=</span> <span class="n">F</span> <span class="o">*</span> <span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">A_1</span> <span class="o">*</span> <span class="n">E_1</span><span class="p">)</span> <span class="o">+</span>
-                                 <span class="mf">2.</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">A_2</span> <span class="o">*</span> <span class="n">E_2</span><span class="p">)</span> <span class="o">-</span>
-                                 <span class="mf">2.</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">A_3</span> <span class="o">*</span> <span class="n">E_3</span><span class="p">)</span> <span class="o">+</span>
-                                 <span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">A_4</span> <span class="o">*</span> <span class="n">E_4</span><span class="p">))</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;L&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;A_1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;E_1&#39;</span><span class="p">])</span> <span class="o">+</span>
+                                 <span class="mf">2.</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;A_2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;E_2&#39;</span><span class="p">])</span> <span class="o">-</span>
+                                 <span class="mf">2.</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;A_3&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;E_3&#39;</span><span class="p">])</span> <span class="o">+</span>
+                                 <span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;A_4&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;E_4&#39;</span><span class="p">]))</span>
 
         <span class="k">return</span> <span class="n">V</span><span class="p">,</span> <span class="n">d</span>
 </pre></div>
 </div>
-<p>Where the function argument <cite>x</cite> can be a list or array with values for the model parameters, i.e. <span class="math notranslate nohighlight">\(L, F, E_1, E_2, E_3, E_4\)</span>
+<p>Where the function argument <cite>x</cite> is a dictionary with values for the model parameters, i.e. <span class="math notranslate nohighlight">\(L, F, E_1, E_2, E_3, E_4\)</span>
 and values for the design variables, i.e. <span class="math notranslate nohighlight">\(A_1, A_2, A_3, A_4\)</span>.
 This function is saved in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">four_bar_truss</span></code> module.</p>
 </div>
@@ -373,11 +372,13 @@ The <code class="xref py py-func docutils literal notranslate"><span class="pre"
 Therefore, the array with the input sample values <cite>x[1]</cite> is passed directly as an argument to the <code class="xref py py-func docutils literal notranslate"><span class="pre">four_bar_truss()</span></code> function.
 The <code class="xref py py-func docutils literal notranslate"><span class="pre">four_bar_truss()</span></code> function returns the values for the optimization objectives, i.e. the volume <span class="math notranslate nohighlight">\(V\)</span> and deflection <span class="math notranslate nohighlight">\(d\)</span>.
 Conclusively, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code> method is completed as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 
-    <span class="n">V</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">four_bar_truss</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">x_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_into_dictionary</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="k">return</span> <span class="n">V</span><span class="p">,</span><span class="n">d</span>
+    <span class="n">V</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">four_bar_truss</span><span class="p">(</span><span class="n">x_dict</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">V</span><span class="p">,</span> <span class="n">d</span>
 </pre></div>
 </div>
 </div>

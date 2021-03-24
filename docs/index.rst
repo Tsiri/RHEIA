@@ -44,7 +44,7 @@ SOME EXAMPLE LOGOS
 Introduction
 ============
 
-The Robust optimization of Hydrogen systEms In renewable Applications (RHEIA) framework provides 
+The Robust optimization of renewable Hydrogen and dErIved energy cArrier systems (RHEIA) framework provides 
 a robust optimization and uncertainty quantification tool for hydrogen-based energy systems and external system models. 
 A brief overview on the features of RHEIA is provided in :ref:`lab:functionalities`, 
 followed by a detailed illustration on how to connect your own model (Python based, open source or closed source) in :ref:`lab:connectingyourownmodel`.

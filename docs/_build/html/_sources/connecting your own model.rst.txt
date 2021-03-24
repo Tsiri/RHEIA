@@ -133,18 +133,16 @@ Conclusively, the system model evaluation is coded as follows::
 
 	def four_bar_truss(x):
 
-		L, F, E_1, E_2, E_3, E_4, A_1, A_2, A_3, A_4 = x
+		V = x['L'] * (2. * x['A_1'] + 2.**(0.5) * x['A_2'] + x['A_3']**(0.5) + x['A_4'])
 
-		V = L * (2. * A_1 + 2.**(0.5) * A_2 + A_3**(0.5) + A_4)
-
-		d = F * L * (2. / (A_1 * E_1) +
-					 2. * 2**(0.5) / (A_2 * E_2) -
-					 2. * 2**(0.5) / (A_3 * E_3) +
-					 2. / (A_4 * E_4))
+		d = x['F'] * x['L'] * (2. / (x['A_1'] * x['E_1']) +
+					 2. * 2**(0.5) / (x['A_2'] * x['E_2']) -
+					 2. * 2**(0.5) / (x['A_3'] * x['E_3']) +
+					 2. / (x['A_4'] * x['E_4']))
 
 		return V, d
 
-Where the function argument `x` can be a list or array with values for the model parameters, i.e. :math:`L, F, E_1, E_2, E_3, E_4`
+Where the function argument `x` is a dictionary with values for the model parameters, i.e. :math:`L, F, E_1, E_2, E_3, E_4`
 and values for the design variables, i.e. :math:`A_1, A_2, A_3, A_4`.
 This function is saved in the :py:mod:`four_bar_truss` module.
 
@@ -208,11 +206,13 @@ Therefore, the array with the input sample values `x[1]` is passed directly as a
 The :py:func:`four_bar_truss` function returns the values for the optimization objectives, i.e. the volume :math:`V` and deflection :math:`d`.
 Conclusively, the :py:meth:`evaluate()` method is completed as follows::
 
-    def evaluate(self, x, *args):
+    def evaluate(self, x):
         
-        V,d = four_bar_truss(x[1])
-        
-        return V,d
+        x_dict = self.convert_into_dictionary(x[1])
+
+        V, d = four_bar_truss(x_dict)
+
+        return V, d
 
 Run the optimization
 ^^^^^^^^^^^^^^^^^^^^
