@@ -239,7 +239,7 @@ class NSGA2:
                 raise NameError(
                     """A sample in the list of starting design samples
                        does not match the number of design variables.""")
-
+        
         temp_samples = np.hstack((temp, np.array(pop))).tolist()
         if 'DET' in self.tc.opt_type:
 
@@ -649,6 +649,7 @@ class NSGA2:
         n_eval = 0
         invalid_indices = []
         invalid_fit_individuals = []
+        #print('offspring: ', offspring)
         for i, ind in enumerate(offspring):
 
             if not ind.fitness.valid:
@@ -656,24 +657,25 @@ class NSGA2:
                 invalid_indices.append(i)
                 invalid_fit_individuals.append(ind)
 
-        # Create samples to evaluate
-        individuals_to_eval, unc_samples = self.define_samples_to_eval(
-            invalid_fit_individuals)
+        if len(invalid_fit_individuals) > 0:
+            # Create samples to evaluate
+            individuals_to_eval, unc_samples = self.define_samples_to_eval(
+                invalid_fit_individuals)
 
-        # Evaluate samples
-        fitnesses = self.evaluate_samples(individuals_to_eval)
-        n_eval += len(individuals_to_eval)
+            # Evaluate samples
+            fitnesses = self.evaluate_samples(individuals_to_eval)
+            n_eval += len(individuals_to_eval)
 
-        # Assign fitness to the orginal samples list
-        individuals_to_assign = self.assign_fitness_to_population(
-            invalid_fit_individuals,
-            fitnesses,
-            unc_samples)
+            # Assign fitness to the orginal samples list
+            individuals_to_assign = self.assign_fitness_to_population(
+                invalid_fit_individuals,
+                fitnesses,
+                unc_samples)
 
-        # Construct offspring list
-        for i, ind in zip(invalid_indices, individuals_to_assign):
+            # Construct offspring list
+            for i, ind in zip(invalid_indices, individuals_to_assign):
 
-            offspring[i] = deepcopy(ind)
+                offspring[i] = deepcopy(ind)
 
         # SELECT NEXT POPULATION USING NSGA-II OPERATOR
         new_pop = tools.selNSGA2(current_pop + offspring, len(current_pop))

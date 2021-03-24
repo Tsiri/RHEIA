@@ -315,7 +315,7 @@ class RandomExperiment(Data):
 
                     f.write('\n')
 
-    def evaluate(self):
+    def evaluate(self, case_obj):
         """
         Evaluate the samples in the model
         and store the samples and outputs in the samples file.
@@ -341,10 +341,10 @@ class RandomExperiment(Data):
         if self.my_data.inputs['n jobs'] == 1:
             res = []
             for index, sample in enumerate(temp_unc_samples):
-                res.append(self.my_data.tc.evaluate((index, sample)))
+                res.append(case_obj.evaluate((index, sample)))
         else:
             pool = mp.Pool(processes=self.my_data.inputs['n jobs'])
-            res = pool.map(self.my_data.tc.evaluate, enumerate(temp_unc_samples))
+            res = pool.map(case_obj.evaluate, enumerate(temp_unc_samples))
             pool.close()
 
         if self.objective_position > len(res[0]) - 1:

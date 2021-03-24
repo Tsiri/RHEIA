@@ -1,6 +1,4 @@
-import os
 from four_bar_truss import four_bar_truss
-
 
 class CASE(object):
 
@@ -17,17 +15,35 @@ class CASE(object):
 
         """
         self.stochastic_design_space = stochastic_design_space
-        self.path = os.path.dirname(os.path.abspath(__file__))
-        self.case = stochastic_design_space.case
-        self.lb = stochastic_design_space.lb
-        self.ub = stochastic_design_space.ub
-        self.par_dict = stochastic_design_space.par_dict
-        self.var_dict = stochastic_design_space.var_dict
-        self.upar_dict = stochastic_design_space.upar_dict
-        self.n_dim = stochastic_design_space.n_dim
-        self.n_par = stochastic_design_space.n_par
-        self.obj = stochastic_design_space.obj
-        self.opt_type = stochastic_design_space.opt_type
+
+    def convert_into_dictionary(self, x):
+        """
+        Convert the input sample for model evaluation into a dictionary.
+
+        Parameters
+        ----------
+        x : array
+            Input sample for model evaluation.
+            x = [xp1, xp2, ..., xpm, xd1, xd2, ..., xdn]
+            parameters are included for uncertainty quantification reasons
+
+        Returns
+        -------
+        {**parameters, **inputs} : dict
+            the dictionary with the variable and parameter names as keys,
+            and the input sample values as values
+
+        """
+
+        par_dict = self.stochastic_design_space.par_dict
+        var_dict = self.stochastic_design_space.var_dict
+        parameters = dict(zip(par_dict.keys(), x[:len(par_dict)]))
+        if var_dict:
+            inputs = dict(zip(var_dict.keys(), x[-len(var_dict):]))
+        else:
+            inputs = {}
+
+        return {**parameters, **inputs}
 
     def evaluate(self, x):
         '''
@@ -57,7 +73,8 @@ class CASE(object):
         d : float
             displacement of outer node
         '''
+        x_dict = self.convert_into_dictionary(x[1])
 
-        V, d = four_bar_truss(x[1])
+        V, d = four_bar_truss(x_dict)
 
         return V, d

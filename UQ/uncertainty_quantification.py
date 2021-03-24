@@ -3,11 +3,16 @@
 Created on Tue Nov 22 14:33:58 2016
 @author: Diederik Coppitters
 """
-import os
+import os, sys
 import lib_PCE as uq
 from pyDOE import lhs
-from CASES.determine_stoch_des_space import load_case, check_dictionary
 
+
+path = os.path.split(
+    os.path.dirname(
+        os.path.abspath(__file__)))[0]
+sys.path.insert(0, os.path.join(path,'CASES'))
+from determine_stoch_des_space import load_case, check_dictionary
 
 def get_design_variables(case):
     """
@@ -169,7 +174,7 @@ def run_uq(inputs, design_space='design_space'):
     objective_position = inputs['objective names'].index(
         inputs['objective of interest'])
 
-    tc = load_case(inputs, design_space, uq=True)
+    tc, case_obj = load_case(inputs, design_space, uq=True)
 
     my_data = uq.Data(inputs, tc)
 
@@ -199,7 +204,7 @@ def run_uq(inputs, design_space='design_space'):
     if not inputs['create only samples']:
 
         if my_experiment.n_samples > len(my_experiment.x_prev):
-            my_experiment.evaluate()
+            my_experiment.evaluate(case_obj)
         elif my_experiment.n_samples == len(my_experiment.x_prev):
             my_experiment.Y = my_experiment.y_prev
         else:

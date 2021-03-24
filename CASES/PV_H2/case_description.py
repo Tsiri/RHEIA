@@ -1,6 +1,5 @@
-import lib_pv_h2 as pv_h2
 import os
-
+import lib_pv_h2 as pv_h2
 
 class CASE(object):
 
@@ -18,17 +17,6 @@ class CASE(object):
         """
         self.stochastic_design_space = stochastic_design_space
         self.path = os.path.dirname(os.path.abspath(__file__))
-        self.case = stochastic_design_space.case
-        self.lb = stochastic_design_space.lb
-        self.ub = stochastic_design_space.ub
-        self.par_dict = stochastic_design_space.par_dict
-        self.var_dict = stochastic_design_space.var_dict
-        self.upar_dict = stochastic_design_space.upar_dict
-        self.n_dim = stochastic_design_space.n_dim
-        self.n_par = stochastic_design_space.n_par
-        self.obj = stochastic_design_space.obj
-        self.opt_type = stochastic_design_space.opt_type
-
         self.params = []
 
         self.set_params()
@@ -80,9 +68,11 @@ class CASE(object):
 
         """
 
-        parameters = dict(zip(self.par_dict.keys(), x[:len(self.par_dict)]))
-        if self.var_dict:
-            inputs = dict(zip(self.var_dict.keys(), x[-len(self.var_dict):]))
+        par_dict = self.stochastic_design_space.par_dict
+        var_dict = self.stochastic_design_space.var_dict
+        parameters = dict(zip(par_dict.keys(), x[:len(par_dict)]))
+        if var_dict:
+            inputs = dict(zip(var_dict.keys(), x[-len(var_dict):]))
         else:
             inputs = {}
 

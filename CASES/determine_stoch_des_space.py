@@ -1,7 +1,7 @@
 import os
 import sys
 import collections
-
+import importlib.util
 
 def check_dictionary(run_dict, uq=False):
     """
@@ -333,7 +333,7 @@ def check_dictionary(run_dict, uq=False):
                                  removing it. """ % elem)
 
 
-def load_case(run_dict, design_space, uq=False):
+def load_case(run_dict, design_space, uq = False):
     """
     For the selected case, the design variables and model parameters
     are loaded based on information from :file:`design_space`.
@@ -395,13 +395,14 @@ def load_case(run_dict, design_space, uq=False):
 
     else:
         try:
-            sys.path.insert(1, os.path.join(tc_path, run_dict['case']))
+            sys.path.insert(0, os.path.join(tc_path, run_dict['case']))
             import case_description
             tc_obj = case_description.CASE(space)
+            
         except BaseException:
             raise ValueError('Error in test case class object!')
 
-    return tc_obj
+    return space, tc_obj
 
 
 class stochastic_design_space(object):

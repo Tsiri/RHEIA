@@ -1,5 +1,5 @@
 F absolute Gaussian 1
-E_1 absolute Gamma 0.1
-E_2 absolute Gaussian 1000
+E_1 absolute Uniform 1000
+E_2 absolute Uniform 1000
 E_3 absolute Uniform 1000
 E_4 absolute Uniform 1000

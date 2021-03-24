@@ -15,7 +15,12 @@ import lib_config
 import numpy as np
 from pyDOE import lhs
 from shutil import copyfile
-from CASES.determine_stoch_des_space import load_case, check_dictionary
+
+path = os.path.split(
+    os.path.dirname(
+        os.path.abspath(__file__)))[0]
+sys.path.insert(0, os.path.join(path,'CASES'))
+from determine_stoch_des_space import load_case, check_dictionary
 
 # OPTIMIZERS
 
@@ -45,6 +50,7 @@ def parse_available_opt():
         tmp = obj.return_opt_methods()
         for method in tmp:
             methods.append((method, obj))
+    
     return methods
 
 
@@ -294,7 +300,7 @@ def run_opt(run_dict, design_space='design_space'):
     check_dictionary(run_dict)
 
     # Load test case
-    tc = load_case(run_dict, design_space)
+    tc, case_obj = load_case(run_dict, design_space)
 
     if run_dict['print results light'][0]:
         file_add = '_light'
@@ -334,7 +340,7 @@ def run_opt(run_dict, design_space='design_space'):
     optfunc = load_optimizer('NSGA2')
 
     # Load optimizer configuration
-    conf_obj = load_configuration(run_dict, tc, 'NSGA2')
+    conf_obj = load_configuration(run_dict, case_obj, 'NSGA2')
 
     # Define starting samples
     create_starting_samples(
