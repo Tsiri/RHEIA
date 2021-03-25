@@ -99,8 +99,8 @@
 <li class="toctree-l1"><a class="reference internal" href="methods.html">10. Details on the methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="energy%20system%20models.html">11. Details on the energy system models</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">12. API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#optimization">12.1. Optimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#uncertainty-quantification">12.2. Uncertainty Quantification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rheia.OPT.lib_genetic_algorithms">12.1. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rheia.UQ.uncertainty_quantification">12.2. Uncertainty Quantification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#post-processing">12.3. Post-processing</a></li>
 </ul>
 </li>
@@ -175,14 +175,1060 @@
             
   <div class="section" id="api-reference">
 <span id="lab-apiref"></span><h1><span class="section-number">12. </span>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="optimization">
-<h2><span class="section-number">12.1. </span>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-rheia.OPT.lib_genetic_algorithms">
+<span id="optimization"></span><h2><span class="section-number">12.1. </span>Optimization<a class="headerlink" href="#module-rheia.OPT.lib_genetic_algorithms" title="Permalink to this headline">¶</a></h2>
+<p>Created on Mon May 06 13:30:57 2019</p>
+<p>&#64;author::   tsiri
+&#64;subject::  library script for the Genetic Algorithms optimizers</p>
+<dl class="py function">
+<dt id="rheia.OPT.lib_genetic_algorithms.createConfig4_NSGA2">
+<code class="sig-prename descclassname">rheia.OPT.lib_genetic_algorithms.</code><code class="sig-name descname">createConfig4_NSGA2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em>, <em class="sig-param"><span class="n">max_eval</span></em>, <em class="sig-param"><span class="n">n_pop</span><span class="o">=</span><span class="default_value">20</span></em>, <em class="sig-param"><span class="n">cx_prob</span><span class="o">=</span><span class="default_value">0.9</span></em>, <em class="sig-param"><span class="n">mut_prob</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">eta</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.createConfig4_NSGA2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the NSGA-II configuration dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>TYPE</em>) – The model evaluation method.</p></li>
+<li><p><strong>max_eval</strong> (<em>int</em>) – The available computational budget.</p></li>
+<li><p><strong>n_pop</strong> (<em>int</em><em>, </em><em>optional</em>) – The population size. The default is 20.</p></li>
+<li><p><strong>cx_prob</strong> (<em>float</em><em>, </em><em>optional</em>) – The crossover probability. The default is 0.9.</p></li>
+<li><p><strong>mut_prob</strong> (<em>float</em><em>, </em><em>optional</em>) – The mutation probability. The default is 0.1.</p></li>
+<li><p><strong>eta</strong> (<em>float</em><em>, </em><em>optional</em>) – The eta parameter. The default is 0.2.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>config</strong> – The NSGA-II configuration dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.OPT.lib_genetic_algorithms.return_opt_methods">
+<code class="sig-prename descclassname">rheia.OPT.lib_genetic_algorithms.</code><code class="sig-name descname">return_opt_methods</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.return_opt_methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the names of the available optimizers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>name_list</strong> – A list with the names of the available optimizers.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.OPT.lib_genetic_algorithms.return_opt_obj">
+<code class="sig-prename descclassname">rheia.OPT.lib_genetic_algorithms.</code><code class="sig-name descname">return_opt_obj</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.return_opt_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the optimizer fuction object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the optimizer.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The optimizer function object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2">
+<em class="property">class </em><code class="sig-prename descclassname">rheia.OPT.lib_genetic_algorithms.</code><code class="sig-name descname">NSGA2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">case</span></em>, <em class="sig-param"><span class="n">config_obj</span></em>, <em class="sig-param"><span class="n">start_from_last_gen</span></em>, <em class="sig-param"><span class="n">file_add</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.append_fitness_to_file">
+<code class="sig-name descname">append_fitness_to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fitness</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.append_fitness_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to append the population
+fitness to the fitness file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fitness</strong> (<em>list</em>) – The population fitness.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The filename where the population fitness
+should be appended.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.append_points_to_file">
+<code class="sig-name descname">append_points_to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nests</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.append_points_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to append the population
+to the population file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nests</strong> (<em>list</em>) – The samples of the population.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The filename where the population
+should be appended.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.assign_fitness_to_population">
+<code class="sig-name descname">assign_fitness_to_population</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pop</span></em>, <em class="sig-param"><span class="n">fitness</span></em>, <em class="sig-param"><span class="n">unc_samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.assign_fitness_to_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assigns the calulated fitness to the corresponding samples. In case
+of robust optimization, a PCE is constructed first, based on the
+random samples and the corresponding model output. Thereafter, the
+mean and standard deviation are extracted for the quantities of
+interest</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pop</strong> (<em>list</em>) – Set of samples in population format, considered for evaluation.</p></li>
+<li><p><strong>fitness</strong> (<em>list</em>) – The calculated fitness.</p></li>
+<li><p><strong>unc_samples</strong> (<em>list</em>) – The set of samples for uncertainty quantification.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>pop</strong> – The population, appended with the fitness values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.define_samples_to_eval">
+<code class="sig-name descname">define_samples_to_eval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pop</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.define_samples_to_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the set of samples considered for evaluation.
+Adds the list of parameters to the initial samples
+drawn form the desing space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pop</strong> (<em>list</em>) – The set of samples (population form, only variables)
+considered for evaluation</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><dl class="simple">
+<dt><strong>samples_to_eval</strong> (<em>list</em>) –  The set of samples considered for evaluation</dt><dd><dl class="simple">
+<dt>samples_to_eval = [[p11, p12, …, p1N, x11, x12, …, x1M],</dt><dd><p>[p21, p22, …, p2N, x21, x22, …, x2M]
+…
+[pk1, pk2, …, pkN, xk1, xk2, …, xkM]
+]</p>
+</dd>
+</dl>
+</dd>
+<dt>where N is the number of parameters</dt><dd><p>M is the number of variables
+k is the number of samples</p>
+</dd>
+</dl>
+</li>
+<li><p><strong>unc_samples_to_eval</strong> (<em>list</em>) – The set of samples considered for uncertainty quantification</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.eval_doe">
+<code class="sig-name descname">eval_doe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.eval_doe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluation of the Design Of Experiments (DoE). First, the DoE
+is read from the corresponding population file and stored in
+a list. Then, the design samples are evaluated in the model.
+When a population and fitness values are available from a previous
+optimization run, the method stores the final population and fitness
+values from this previous run. Finally, the population and
+corresponding fitness values are stored in the population and
+fitness file in the results directory, respectively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>current_pop</strong> – The current population.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.evaluate_samples">
+<code class="sig-name descname">evaluate_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.evaluate_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluation of the set of samples. If the number of jobs
+is larger than 1, parallel processing of the samples
+is considered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>samples</strong> (<em>list</em>) – The set of samples considered for evaluation.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fitness</strong> – The calculated fitness for the set of samples.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.find_index_of_par_var">
+<code class="sig-name descname">find_index_of_par_var</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">par_var_name</span></em>, <em class="sig-param"><span class="n">par_var_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.find_index_of_par_var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the index of the parameter or variable in the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>par_var_name</strong> (<em>str</em>) – The name of the parameter or variable.</p></li>
+<li><p><strong>par_var_list</strong> (<em>list</em>) – The design variables of the model.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>par_var_idx</strong> – The index of the parameter of variable in the list.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.init_opt">
+<code class="sig-name descname">init_opt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.init_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialization of the results directory and writing of the
+column names in the STATUS file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.make_individual">
+<code class="sig-name descname">make_individual</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.make_individual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates the instance Individual.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>solution</strong> (<em>list</em>) – The list [x1, x2,…,xn].</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ind</strong> – The Individual instance.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.nsga2_1iter">
+<code class="sig-name descname">nsga2_1iter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">current_pop</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.nsga2_1iter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run one iteration of the NSGA-II optimizer.
+Based on the crossover and mutation probabilities, the
+offsprings are created and evaluated. Based on the fitness
+of these offsprings and of the current population,
+a new population is created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>current_pop</strong> (<em>list</em>) – The initial population.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>new_pop</strong> – The updated population.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.parse_status">
+<code class="sig-name descname">parse_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.parse_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function extracts the current generation number
+and the number of model evaluations performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>ite</strong> (<em>int</em>) – The number of generations performed.</p></li>
+<li><p><strong>evals</strong> (<em>int</em>) – The number of model evaluations performed.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.read_doe">
+<code class="sig-name descname">read_doe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doe_dir</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.read_doe" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>doe_dir</strong> (<em>str</em>) – The directory of the file with the population.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>DOE</strong> – The Design Of Experiments, i.e. the samples
+to be evaluated in the system model.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.run_optimizer">
+<code class="sig-name descname">run_optimizer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.run_optimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run an optimization using the NSGA-II algorithm.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.write_status">
+<code class="sig-name descname">write_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.write_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>A message is appended to the STATUS file.
+This message consists of the generation number
+and computational budget spent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – The message, to be appended to the STATUS file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rheia.OPT.optimization"></span><p>Created on Thu Jun 06 12:55:25 2019</p>
+<p>&#64;author::   tsiri
+&#64;subject::  Run ERGO framework</p>
+<dl class="py function">
+<dt id="rheia.OPT.optimization.create_starting_samples">
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">create_starting_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">tc</span></em>, <em class="sig-param"><span class="n">conf_obj</span></em>, <em class="sig-param"><span class="n">start_from_last_gen</span></em>, <em class="sig-param"><span class="n">file_add</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.create_starting_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the starting samples of the optimization run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_dict</strong> (<em>dict</em>) – The dictionary with user-defined values for
+the characterization of the optimization.</p></li>
+<li><p><strong>tc</strong> (<em>object</em>) – The class object of the case.</p></li>
+<li><p><strong>conf_obj</strong> (<em>object</em>) – The optimizer configuration object.</p></li>
+<li><p><strong>start_from_last_gen</strong> (<em>bool</em>) – Boolean that determines if the starting samples
+start from a previously generated population.</p></li>
+<li><p><strong>file_add</strong> (<em>string</em>) – Addition to the filename in case of light printing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.OPT.optimization.load_configuration">
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">load_configuration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">tc</span></em>, <em class="sig-param"><span class="n">optimizer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.load_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load default configuration dictionary.
+This dictionary includes information on the
+characterization of the optimization, including
+the evaluation function name, the crossover and
+mutation probability, the eta parameter,
+the stopping criterion, threshold and the number
+of parallel processes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_dict</strong> (<em>dict</em>) – The dictionary with user-defined values for
+the characterization of the optimization.</p></li>
+<li><p><strong>tc</strong> (<em>object</em>) – The class object of the case.</p></li>
+<li><p><strong>optimizer</strong> (<em>string</em>) – The name of the optimizer (currently equals to ‘NSGA2’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>conf_obj</strong> – The configuration dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.OPT.optimization.load_optimizer">
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">load_optimizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optimizer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.load_optimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load selected optimizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>optimizer</strong> (<em>string</em>) – The name of the optimizer (currently equals to ‘NSGA2’).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>opt_obj</strong> – The optimization function.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>function object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.OPT.optimization.parse_available_opt">
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">parse_available_opt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.parse_available_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse all available optimizers. In this version,
+only NSGA-II is available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>methods</strong> – The available optimizers with the corresponding classes.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.OPT.optimization.run_opt">
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">run_opt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">design_space</span><span class="o">=</span><span class="default_value">'design_space'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.run_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function runs the optimization pipeline.
+First, the case, optimizer and configuration
+are loaded. Thereafter, the starting samples
+are created, the specific optimization class
+instantiated and the <code class="xref py py-meth docutils literal notranslate"><span class="pre">run_optimizer()</span></code>
+method is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_dict</strong> (<em>dict</em>) – The dictionary with user-defined values for
+the characterization of the optimization.</p></li>
+<li><p><strong>design_space</strong> (<em>string</em><em>, </em><em>optional</em>) – The design_space filename. The default is ‘design_space’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.OPT.optimization.scale_samples_to_design_space">
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">scale_samples_to_design_space</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nondim_doe</span></em>, <em class="sig-param"><span class="n">tc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.scale_samples_to_design_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scales the starting sample to the given design space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nondim_doe</strong> (<em>ndarray</em>) – The non-dimensionalized design of experiment.</p></li>
+<li><p><strong>tc</strong> (<em>object</em>) – The class object of the case.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dim_doe</strong> – The design of experiment scaled up to the design space.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.OPT.optimization.write_starting_samples">
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">write_starting_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doe</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.write_starting_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the starting samples to file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doe</strong> (<em>list</em>) – The set of starting samples.</p></li>
+<li><p><strong>filename</strong> (<em>string</em>) – The path to the filename for the starting samples.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
-<div class="section" id="uncertainty-quantification">
-<h2><span class="section-number">12.2. </span>Uncertainty Quantification<a class="headerlink" href="#uncertainty-quantification" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-rheia.UQ.uncertainty_quantification">
+<span id="uncertainty-quantification"></span><h2><span class="section-number">12.2. </span>Uncertainty Quantification<a class="headerlink" href="#module-rheia.UQ.uncertainty_quantification" title="Permalink to this headline">¶</a></h2>
+<p>Created on Tue Nov 22 14:33:58 2016
+&#64;author: Diederik Coppitters</p>
+<dl class="py function">
+<dt id="rheia.UQ.uncertainty_quantification.get_design_variables">
+<code class="sig-prename descclassname">rheia.UQ.uncertainty_quantification.</code><code class="sig-name descname">get_design_variables</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">case</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.uncertainty_quantification.get_design_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function loads the design variable names and bounds
+out of the <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>case</strong> (<em>string</em>) – The name of the case.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>var_dict</strong> – A dictionary which includes the design variables and their bounds.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.UQ.uncertainty_quantification.run_uq">
+<code class="sig-prename descclassname">rheia.UQ.uncertainty_quantification.</code><code class="sig-name descname">run_uq</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em>, <em class="sig-param"><span class="n">design_space</span><span class="o">=</span><span class="default_value">'design_space'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.uncertainty_quantification.run_uq" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is the main to run uncertainty quantification.
+First, the input distributions are created,
+followed by the reading of previously evaluated samples.
+Thereafter, the new samples are created and evaluated
+in the system model when desired. Finally, the PCE is
+constructed, the statistical moments printed and
+the distributions generated (when desired) for the
+quantity of interest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputs</strong> (<em>dict</em>) – The dictionary with information on the uncertainty quantification.</p></li>
+<li><p><strong>design_space</strong> (<em>string</em><em>, </em><em>optional</em>) – The design_space filename. The default is ‘design_space’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.UQ.uncertainty_quantification.set_design_samples">
+<code class="sig-prename descclassname">rheia.UQ.uncertainty_quantification.</code><code class="sig-name descname">set_design_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_dict</span></em>, <em class="sig-param"><span class="n">n_samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.uncertainty_quantification.set_design_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Based on the design variable characteristics,
+a set of design samples is created through
+Latin Hypercube Sampling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var_dict</strong> (<em>dict</em>) – A dictionary which includes the design variables and their bounds.</p></li>
+<li><p><strong>n_samples</strong> (<em>int</em>) – The number of design samples to be created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X</strong> – The generated design samples.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rheia.UQ.uncertainty_quantification.write_design_space">
+<code class="sig-prename descclassname">rheia.UQ.uncertainty_quantification.</code><code class="sig-name descname">write_design_space</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">case</span></em>, <em class="sig-param"><span class="n">iteration</span></em>, <em class="sig-param"><span class="n">var_dict</span></em>, <em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.uncertainty_quantification.write_design_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>A new design space file is created. In this file,
+the model parameters are copied from the original file,
+i.e. file:<cite>design_space</cite>. The design variable names are copied,
+but the bounds are loaded out of the array <cite>x</cite>.
+This function is of interest when evaluating the LOO error
+or Sobol’ indices for several design samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>case</strong> (<em>string</em>) – The name of the case.</p></li>
+<li><p><strong>iteration</strong> (<em>int</em>) – The index of the design sample
+out of the collection of generated design samples.</p></li>
+<li><p><strong>var_dict</strong> (<em>dict</em>) – A dictionary which includes the design variables and their bounds.</p></li>
+<li><p><strong>x</strong> (<em>array</em>) – The design sample out of the collection of generated design samples.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="rheia.UQ.lib_PCE.Data">
+<em class="property">class </em><code class="sig-prename descclassname">rheia.UQ.lib_PCE.</code><code class="sig-name descname">Data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em>, <em class="sig-param"><span class="n">tc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.Data" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="rheia.UQ.lib_PCE.Data.create_samples_file">
+<code class="sig-name descname">create_samples_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.Data.create_samples_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creating the file that saved the input samples and model outputs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.Data.read_stoch_parameters">
+<code class="sig-name descname">read_stoch_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_values</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.Data.read_stoch_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in the stochastic design space
+and save the information in a dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>var_values</strong> (<em>list</em><em>, </em><em>optional</em>) – The design variable values in case of robust optimization.
+The default is [].</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="rheia.UQ.lib_PCE.RandomExperiment">
+<em class="property">class </em><code class="sig-prename descclassname">rheia.UQ.lib_PCE.</code><code class="sig-name descname">RandomExperiment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">my_data</span></em>, <em class="sig-param"><span class="n">objective_position</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.RandomExperiment" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="rheia.UQ.lib_PCE.RandomExperiment.create_distributions">
+<code class="sig-name descname">create_distributions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.RandomExperiment.create_distributions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the distributions, polynomial distributions and polynomial types
+based on the stochastic design space. The available distributions
+are Uniform and Gaussian distributions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.RandomExperiment.create_only_samples">
+<code class="sig-name descname">create_only_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">create_only_samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.RandomExperiment.create_only_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the generated samples to the samples file.
+These samples can be used for model evaluation,
+when the model is not connected to the UQ algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>create_only_samples</strong> (<em>bool</em>) – the boolean that indicates
+if samples should only be created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.RandomExperiment.create_samples">
+<code class="sig-name descname">create_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.RandomExperiment.create_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the samples for model evaluations. The sampling
+methods available are random sampling and Sobol sampling.
+The number of samples generated is equal to the integer
+<cite>size</cite>. If <cite>size</cite> is equal or lower than zero, no new samples
+are generated. Instead, the required samples are extracted
+from the existing samples file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of newly created samples. The default is 0.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.RandomExperiment.evaluate">
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">case_obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.RandomExperiment.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the samples in the model
+and store the samples and outputs in the samples file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.RandomExperiment.n_terms">
+<code class="sig-name descname">n_terms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.RandomExperiment.n_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method sets the number of samples to 2*(p+n)!/p!n!,
+i.e the number of terms in the full PC
+expansion of order p in n random variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.RandomExperiment.read_previous_samples">
+<code class="sig-name descname">read_previous_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">create_only_samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.RandomExperiment.read_previous_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the previously evaluated samples
+and store them for future PCE construction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>create_only_samples</strong> (<em>bool</em>) – the boolean that indicates if samples
+should only be created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="rheia.UQ.lib_PCE.PCE">
+<em class="property">class </em><code class="sig-prename descclassname">rheia.UQ.lib_PCE.</code><code class="sig-name descname">PCE</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Experiment</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.get_permutations">
+<code class="sig-name descname">get_permutations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lis</span></em>, <em class="sig-param"><span class="n">string</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.get_permutations" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns a set of indices {ijk} (resp. {ijkl}) that are
+actually necessary for calculating the skewness (resp. kurtosis).
+It takes the repetition of the indices into account.</p>
+<p>lis : list with the indices for the range of number of terms</p>
+<dl class="simple">
+<dt>s<span class="classifier">string</span></dt><dd><p>string that can take only two different values,
+i.e. ‘skewness’ or ‘kurtosis’</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>B<span class="classifier">list</span></dt><dd><p>set of indices for skewness and curtosis calculation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.get_psi_cub">
+<code class="sig-name descname">get_psi_cub</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.get_psi_cub" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>psi_cub</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.get_psi_four">
+<code class="sig-name descname">get_psi_four</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.get_psi_four" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.get_psi_sq">
+<code class="sig-name descname">get_psi_sq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.get_psi_sq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the term &lt;psii,psij&gt;</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>psi_sq</strong> – the term &lt;psii,psij&gt;</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.get_statistics">
+<code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mean</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">variance</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">skewness</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">kurtosis</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.get_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates high order moments (up to order 4) by
+taking advantage of the fact that any permutation of indices
+will lead to the same value for the summand. See report.</p>
+<p>Returns Statistics: mean, std. deviation, skewness, kurtosis</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.n_to_sum">
+<code class="sig-name descname">n_to_sum</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.n_to_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates a list
+of all possible vectors of length ‘n’ that sum to ‘s’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – vector’s length (dimension)</p></li>
+<li><p><strong>s</strong> (<em>int</em>) – sum (total order)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>list(n_to_sum(dimension,i))</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The output is a generator object to be called as follows</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.uq_OLS">
+<code class="sig-name descname">uq_OLS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.uq_OLS" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<em>array</em>) – the matrix with the response of the basis functions to the samples</p></li>
+<li><p><strong>b</strong> (<em>array</em>) – the model output for the input samples</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>result of the ordinary least-square regression</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2_D array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.uq_calc_A">
+<code class="sig-name descname">uq_calc_A</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">multindices</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.uq_calc_A" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method builds the matrix containing the basis functions evaluated
+at sample locations, i.e. the matrix A in Au = b</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>multindices</strong> (<em>list</em>) – the list with the multi-indices</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>A</strong> – the matrix with the evaluated basis functions for the samples</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.uq_calc_LOO">
+<code class="sig-name descname">uq_calc_LOO</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.uq_calc_LOO" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the best model among a set of models.
+The best model is chosen using modified cross validation technique
+and especially using a Leave-One-Out (LOO) approach.</p>
+<p>Di = (y[i] - y_hat[i]) / (1 - h[i])</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.uq_calc_Sobol">
+<code class="sig-name descname">uq_calc_Sobol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.uq_calc_Sobol" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method calculates the Sobol’ indices Si of PCE.
+They represent the fraction of the total variance
+that can be attributed to each input variable i (Si)
+or combinations of variables (i1,i2,…,is).
+The total Sobol indices quantify the total effect
+of variable i, i.e. including the first order effect
+and the interactions with the other variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.uq_draw">
+<code class="sig-name descname">uq_draw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.uq_draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>This module creates the probability density function
+and cumulative distribution function and writes
+the corresponding values to construct these values
+in the result files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – number of samples to be created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.uq_multindices">
+<code class="sig-name descname">uq_multindices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.uq_multindices" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method returns a set of multi-indices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>idx</strong> (<em>list</em>) – the range for the number of terms in the PCE</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the list with multi-indices</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.uq_print">
+<code class="sig-name descname">uq_print</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.uq_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>This module prints an overview of the inputs and results of the PCE.
+Additionally, it writes the PCE information and Sobol’ indices
+in the result files.’</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.UQ.lib_PCE.PCE.uq_run">
+<code class="sig-name descname">uq_run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.PCE.uq_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve Ordinary Least Squares problem
+Full PC expansion is assumed containing n_terms(dimension,order)</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="post-processing">
 <h2><span class="section-number">12.3. </span>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process">
+<em class="property">class </em><code class="sig-prename descclassname">rheia.POST_PROCESS.lib_post_process.</code><code class="sig-name descname">post_process</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">case</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_opt">
+<em class="property">class </em><code class="sig-prename descclassname">rheia.POST_PROCESS.lib_post_process.</code><code class="sig-name descname">post_process_opt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">my_post_process</span></em>, <em class="sig-param"><span class="n">LIGHT</span></em>, <em class="sig-param"><span class="n">eval_type</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_opt" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_opt.determine_pop_gen">
+<code class="sig-name descname">determine_pop_gen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_opt.determine_pop_gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the number of design samples in the population
+and the number of generations performed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_opt.get_fitness_population">
+<code class="sig-name descname">get_fitness_population</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result_dir</span></em>, <em class="sig-param"><span class="n">gen</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_opt.get_fitness_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the population and corresponding fitness values
+for the generation of interest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result_dir</strong> (<em>str</em>) – The directory were the results are stored.</p></li>
+<li><p><strong>gen</strong> (<em>int</em><em>, </em><em>optional</em>) – The generation of interest. The default is 0,
+i.e. the final generation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>y</strong> (<em>ndarray</em>) – The fitness values.</p></li>
+<li><p><strong>x</strong> (<em>ndarray</em>) – The set of design samples.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_opt.get_fitness_values">
+<code class="sig-name descname">get_fitness_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gen</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_opt.get_fitness_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the fitness values for the population
+generated in the specified generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>gen</strong> (<em>int</em>) – The generation of interest.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y</strong> – The fitness values for the population of interest.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_opt.get_population_values">
+<code class="sig-name descname">get_population_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gen</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_opt.get_population_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the fitness values for the population
+generated in the specified generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>gen</strong> (<em>int</em>) – The generation of interest.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X</strong> – The population of interest.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_opt.sorted_result_file">
+<code class="sig-name descname">sorted_result_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_opt.sorted_result_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates the files that include the sorted population
+and fitness files. The population and fitness are sorted
+based on the first objective.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>ndarray</em>) – The fitness values.</p></li>
+<li><p><strong>x</strong> (<em>ndarray</em>) – The set of design samples.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_uq">
+<em class="property">class </em><code class="sig-prename descclassname">rheia.POST_PROCESS.lib_post_process.</code><code class="sig-name descname">post_process_uq</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">my_post_process</span></em>, <em class="sig-param"><span class="n">pol_order</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_uq" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_uq.get_LOO">
+<code class="sig-name descname">get_LOO</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result_dir</span></em>, <em class="sig-param"><span class="n">objective</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_uq.get_LOO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the Leave-One-Out error from the corresponding
+file in the result directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result_dir</strong> (<em>str</em>) – The result directory.</p></li>
+<li><p><strong>objective</strong> (<em>str</em>) – The name of the quantity of interest.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>loo</strong> – The Leave-One-Out error.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_uq.get_cdf">
+<code class="sig-name descname">get_cdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result_dir</span></em>, <em class="sig-param"><span class="n">objective</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_uq.get_cdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the points that define the cumulative density function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result_dir</strong> (<em>str</em>) – The result directory.</p></li>
+<li><p><strong>objective</strong> (<em>str</em>) – The name of the quantity of interest.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x</strong> (<em>ndarray</em>) – The values from the CDF on the
+quantity of interest.</p></li>
+<li><p><strong>y</strong> (<em>ndarray</em>) – The cumulative probability.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_uq.get_max_sobol">
+<code class="sig-name descname">get_max_sobol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result_dirs</span></em>, <em class="sig-param"><span class="n">objective</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">0.05</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_uq.get_max_sobol" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gathers the Sobol’ indices for each stochastic parameter
+for each sample. The highest Sobol’ index for each stochastic
+parameter is compared with the threshold value. If the highest
+Sobol’ index is higher than the threshold, the name of the
+stochastic parameter is printed under ‘significant Sobol indices’.
+If not, it is printed under ‘negligible Sobol indices’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result_dir</strong> (<em>list</em>) – The result directories.</p></li>
+<li><p><strong>objective</strong> (<em>str</em>) – The name of the quantity of interest.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold that determines if a Sobol’ index
+is considered significant. The default is 0.05.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_uq.get_pdf">
+<code class="sig-name descname">get_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result_dir</span></em>, <em class="sig-param"><span class="n">objective</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_uq.get_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the points that define the probability density function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result_dir</strong> (<em>str</em>) – The result directory.</p></li>
+<li><p><strong>objective</strong> (<em>str</em>) – The name of the quantity of interest.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x</strong> (<em>ndarray</em>) – The values from the PDF on the
+quantity of interest.</p></li>
+<li><p><strong>y</strong> (<em>ndarray</em>) – The probability density.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_uq.get_sobol">
+<code class="sig-name descname">get_sobol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result_dir</span></em>, <em class="sig-param"><span class="n">objective</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_uq.get_sobol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the information on the Sobol’ indices from
+the corresponding file in the result directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result_dir</strong> (<em>str</em>) – The result directory.</p></li>
+<li><p><strong>objective</strong> (<em>str</em>) – The name of the quantity of interest.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>names</strong> (<em>list</em>) – The names of the stochastic parameters.</p></li>
+<li><p><strong>sobol</strong> (<em>list</em>) – The total’ order Sobol’ indices.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rheia.POST_PROCESS.lib_post_process.post_process_uq.read_distr_file">
+<code class="sig-name descname">read_distr_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">distr_file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.POST_PROCESS.lib_post_process.post_process_uq.read_distr_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the file with information on the
+cumulative density function or probability
+density function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>distr_file</strong> (<em>str</em>) – The name of the distribution file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x</strong> (<em>ndarray</em>) – The values from the PDF or CDF on the
+quantity of interest.</p></li>
+<li><p><strong>y</strong> (<em>ndarray</em>) – The probability density (for the PDF)
+or cumulative probability (for the CDF).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

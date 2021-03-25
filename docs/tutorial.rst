@@ -40,14 +40,15 @@ First, the photovoltaic-electrolyzer module is imported::
 
     import pv_electrolyzer_lib as pv_elec
 
-Additionally, datasets and constants that remain constant during the multiple model evaluations are defined in the module :py:meth:`set_params()`
-and stored in the instance variable `self.params`.
+Additionally, datasets and constants that remain constant during the multiple model evaluations are defined in the function :py:func:`set_params()`
 In this tutorial, only the solar irradiance dataset is loaded for Brussels, using the :py:meth:`load_climate()` method from :py:class:`ReadData` in the :py:mod:`pv_electrolyzer_lib` module::
     	
-    def set_params(self):
+    def set_params():
+
+        path = os.path.dirname(os.path.abspath(__file__))
 
         filename_climate = os.path.join(os.path.abspath(
-                                        os.path.join(self.path,
+                                        os.path.join(path,
                                                      os.pardir)),
                                         'DATA',
                                         'climate',
@@ -56,27 +57,27 @@ In this tutorial, only the solar irradiance dataset is loaded for Brussels, usin
         my_data = pv_elec.ReadData(filename_climate)
         G = my_data.load_climate()
 
-        self.params = [G]
+        params = [G]
+		
+        return params
 
-The model is evaluated in the method :py:meth:`evaluate()`. The method's argument is an enumerate object `x` which represents the input sample. 
-The input sample (`x[1]`) is integrated in a dictionary in the method :py:meth:`convert_into_dictionary()`, 
+The model is evaluated in the function :py:func:`evaluate()`. The function argument is an enumerate object `x` which represents the input sample. 
+The input sample (`x[1]`) is integrated in a dictionary,
 where the sample values are linked with the corresponding parameter name in each dictionary item. 
-This input sample dictionary and the list with fixed datasets `self.params` are the arguments 
+This input sample dictionary and the list with fixed datasets `params` are the arguments 
 for the instantiation operator of :py:class:`pv_elec.Evaluation`. The new class instance is saved as an object in `my_evaluation`.   
 The :py:meth:`evaluate()` method is called to return the objective values.
 These objective values are stored in the local variables `lcoh` and `mh2` and returned to the optimizer or uncertainty quantification algorithm. This process in the :py:meth:`evaluate` method is presented as follows:: 
 
-    def evaluate(self, x):
+	def evaluate(x, params = []):
 
-		x_dict = self.convert_into_dictionary(x[1])
-
-		arguments = self.params + [x_dict]
+		arguments = params + [x[1]]
 
 		my_evaluation = pv_elec.Evaluation(*arguments)
 
 		my_evaluation.evaluation()
 
-        lcoh, mh2 = my_evaluation.lcoh, my_evaluation.m_h2
+		lcoh, mh2 = my_evaluation.lcoh, my_evaluation.m_h2
 
 		return lcoh, mh2
 

@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="energy%20system%20models.html">11. Details on the energy system models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribution.html">13. How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 </ul>
 
             
@@ -211,13 +212,14 @@ First, the photovoltaic-electrolyzer module is imported:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pv_electrolyzer_lib</span> <span class="k">as</span> <span class="nn">pv_elec</span>
 </pre></div>
 </div>
-<p>Additionally, datasets and constants that remain constant during the multiple model evaluations are defined in the module <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_params()</span></code>
-and stored in the instance variable <cite>self.params</cite>.
+<p>Additionally, datasets and constants that remain constant during the multiple model evaluations are defined in the function <code class="xref py py-func docutils literal notranslate"><span class="pre">set_params()</span></code>
 In this tutorial, only the solar irradiance dataset is loaded for Brussels, using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">load_climate()</span></code> method from <code class="xref py py-class docutils literal notranslate"><span class="pre">ReadData</span></code> in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">pv_electrolyzer_lib</span></code> module:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_params</span><span class="p">():</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
 
     <span class="n">filename_climate</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span>
-                                    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+                                    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
                                                  <span class="n">os</span><span class="o">.</span><span class="n">pardir</span><span class="p">)),</span>
                                     <span class="s1">&#39;DATA&#39;</span><span class="p">,</span>
                                     <span class="s1">&#39;climate&#39;</span><span class="p">,</span>
@@ -226,29 +228,29 @@ In this tutorial, only the solar irradiance dataset is loaded for Brussels, usin
     <span class="n">my_data</span> <span class="o">=</span> <span class="n">pv_elec</span><span class="o">.</span><span class="n">ReadData</span><span class="p">(</span><span class="n">filename_climate</span><span class="p">)</span>
     <span class="n">G</span> <span class="o">=</span> <span class="n">my_data</span><span class="o">.</span><span class="n">load_climate</span><span class="p">()</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">G</span><span class="p">]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">G</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">params</span>
 </pre></div>
 </div>
-<p>The model is evaluated in the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code>. The method’s argument is an enumerate object <cite>x</cite> which represents the input sample.
-The input sample (<cite>x[1]</cite>) is integrated in a dictionary in the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">convert_into_dictionary()</span></code>,
+<p>The model is evaluated in the function <code class="xref py py-func docutils literal notranslate"><span class="pre">evaluate()</span></code>. The function argument is an enumerate object <cite>x</cite> which represents the input sample.
+The input sample (<cite>x[1]</cite>) is integrated in a dictionary,
 where the sample values are linked with the corresponding parameter name in each dictionary item.
-This input sample dictionary and the list with fixed datasets <cite>self.params</cite> are the arguments
+This input sample dictionary and the list with fixed datasets <cite>params</cite> are the arguments
 for the instantiation operator of <code class="xref py py-class docutils literal notranslate"><span class="pre">pv_elec.Evaluation</span></code>. The new class instance is saved as an object in <cite>my_evaluation</cite>.
 The <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code> method is called to return the objective values.
 These objective values are stored in the local variables <cite>lcoh</cite> and <cite>mh2</cite> and returned to the optimizer or uncertainty quantification algorithm. This process in the <code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code> method is presented as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="p">[]):</span>
 
-            <span class="n">x_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_into_dictionary</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">arguments</span> <span class="o">=</span> <span class="n">params</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
 
-            <span class="n">arguments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">+</span> <span class="p">[</span><span class="n">x_dict</span><span class="p">]</span>
+        <span class="n">my_evaluation</span> <span class="o">=</span> <span class="n">pv_elec</span><span class="o">.</span><span class="n">Evaluation</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
 
-            <span class="n">my_evaluation</span> <span class="o">=</span> <span class="n">pv_elec</span><span class="o">.</span><span class="n">Evaluation</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
+        <span class="n">my_evaluation</span><span class="o">.</span><span class="n">evaluation</span><span class="p">()</span>
 
-            <span class="n">my_evaluation</span><span class="o">.</span><span class="n">evaluation</span><span class="p">()</span>
+        <span class="n">lcoh</span><span class="p">,</span> <span class="n">mh2</span> <span class="o">=</span> <span class="n">my_evaluation</span><span class="o">.</span><span class="n">lcoh</span><span class="p">,</span> <span class="n">my_evaluation</span><span class="o">.</span><span class="n">m_h2</span>
 
-    <span class="n">lcoh</span><span class="p">,</span> <span class="n">mh2</span> <span class="o">=</span> <span class="n">my_evaluation</span><span class="o">.</span><span class="n">lcoh</span><span class="p">,</span> <span class="n">my_evaluation</span><span class="o">.</span><span class="n">m_h2</span>
-
-            <span class="k">return</span> <span class="n">lcoh</span><span class="p">,</span> <span class="n">mh2</span>
+        <span class="k">return</span> <span class="n">lcoh</span><span class="p">,</span> <span class="n">mh2</span>
 </pre></div>
 </div>
 </div>
