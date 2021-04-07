@@ -6,8 +6,8 @@ Run the optimization
 The deterministic optimization procedure optimizes multiple objectives by controlling the design variables. 
 The robust optimization procedure optimizes the mean and minimizes the standard deviation of quantities of interest by controlling the design variables. 
 The multi-objective optimization algorithm is Nondominating Sorting Genetic Algorithm (NSGA-II). More information on NSGA-II is available in :ref:`lab:ssnsga2`.
-The design variables and model parameters are characterized in the :file:`design_space` folder.
-For robust optimization, the uncertainty on the respective design variables and model parameters is characterized in the :file:`stochastic_space` folder.
+The design variables and model parameters are characterized in the :file:`design_space` file.
+For robust optimization, the uncertainty on the respective design variables and model parameters is characterized in the :file:`stochastic_space` file.
 More information on characterizing these files is available in :ref:`lab:ssdesignspace` and :ref:`lab:ssstochastic_space`, respectively. 
 The system model evaluations are coupled with the optimization algorithm in :py:mod:`case_description.`.
 More information on this Python wrapper is discussed in :ref:`lab:wrapper`. 
@@ -55,7 +55,7 @@ If one of these items is not provided, the code will return an error.
 ~~~~~~~~~~~~~~~~~
 
 The string `case_name` corresponds to the name of the case. 
-This name should be equal to the name of the folder that comprises the case, which situates in the folder that contains the cases :file:`CASES`. 
+This name should be equal to the name of the folder that comprises the case, which situates in the folder that contains the cases (i.e. :file:`CASES`). 
 To illustrate, if the optimization case is defined in :file:`CASES\\CASE_1`, 
 the dictionary includes the following item::
 
@@ -123,7 +123,7 @@ The allocation of this computational budget through the integer `comp_budget` is
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 The result directory corresponds to the folder where the results are stored. 
-For an illustrative case `CASE_1`, the results are stored in the folder :file:`RESULTS\\CASE_1\\DET\\results_1` by initiating the following key-value pair in the dictionary::
+For an illustrative deterministic optimization (`DET`) of a case (`CASE_1`), the results are stored in the folder :file:`RESULTS\\CASE_1\\DET\\results_1` by initiating the following key-value pair in the dictionary::
 
 'results dir': 'results_1'
 
@@ -155,7 +155,7 @@ Information can be provided to characterize the starting population. If no infor
 the population can be generated automatically by defining the string `pop_type` with 'AUTO'. 
 When 'AUTO' is selected, there are two ways of generating the population automatically: 
 randomly (`pop_method` = 'RANDOM') or through Latin Hypercube Sampling (`pop_method` = 'LHS'). 
-The default configuration for this item is thegeneration of the first population through LHS::
+The default configuration for this item is the generation of the first population through LHS::
 
 	'x0': ('AUTO', 'LHS')
 
@@ -282,6 +282,8 @@ and the crossover probability is decreased to 0.85::
 
     In [4]: rheia_opt.run_opt(dict_opt)
 
+
+.. _lab:runrdo:
 
 Run robust optimization
 -----------------------

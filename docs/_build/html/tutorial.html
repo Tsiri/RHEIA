@@ -209,7 +209,7 @@ More information on the <code class="file docutils literal notranslate"><span cl
 <p>The Python wrapper <code class="xref py py-mod docutils literal notranslate"><span class="pre">case_description</span></code> module couples the system model to the optimization and uncertainty quantification algorithms.
 More information on the Python wrapper is discussed in <a class="reference internal" href="connecting%20your%20own%20model.html#lab-wrapper"><span class="std std-ref">Python wrapper</span></a>.
 First, the photovoltaic-electrolyzer module is imported:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pv_electrolyzer_lib</span> <span class="k">as</span> <span class="nn">pv_elec</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rheia.CASES.PV_ELEC.lib_pv_electrolyzer</span> <span class="k">as</span> <span class="nn">pv_elec</span>
 </pre></div>
 </div>
 <p>Additionally, datasets and constants that remain constant during the multiple model evaluations are defined in the function <code class="xref py py-func docutils literal notranslate"><span class="pre">set_params()</span></code>
@@ -283,8 +283,8 @@ In this tutorial, the deterministic optimization is imported and the optimizatio
 </div>
 <p>In the dictionary, the case folder name <cite>PV_ELEC</cite> is provided, followed by the optimization type <cite>DET</cite> and the weigths for both objectives,
 i.e. minimization for the first returned objective <cite>lcoh</cite> and maximization for the second returned objective <cite>mH2</cite>.
-A computational budget of 3000 model evaluations is selected as stopping criterium and the number of available physical cores are used
-to parallelize the evaluations. The population contains 30 samples. These samples are generated based on Latin Hypercube Sampling
+A computational budget of 2000 model evaluations is selected as stopping criterium and the number of available physical cores are used
+to parallelize the evaluations. The population contains 20 samples. These samples are generated based on Latin Hypercube Sampling
 and the NSGA-II optimizer is characterized with a crossover probability of 0.9, mutation probability of 0.1 and eta of 0.2.
 As Latin Hypercube Sampling is selected for the characterization of the population and the NSGA-II characteristics are equal to
 the standard settings, these specific items are not mentioned in the optimization dictionary.
@@ -388,7 +388,7 @@ an absolute range with respect to the mean value:</p>
 </div>
 <div class="section" id="determination-of-the-polynomial-order">
 <h3><span class="section-number">4.3.1. </span>Determination of the polynomial order<a class="headerlink" href="#determination-of-the-polynomial-order" title="Permalink to this headline">¶</a></h3>
-<p>Based on the PCE trunctation scheme, the number of model evaluations required to construct a PCE for each design sample
+<p>Based on the PCE truncation scheme, the number of model evaluations required to construct a PCE for each design sample
 corresponds to 30, 240 and 1360 for a maximum polynomial degree of 1,2 and 3, respectively. The polynomial degree
 that leads to an accurate expansion is not known a priori and should, therefore, be determined iteratively.
 In a robust optimization framework, the expansion should be sufficiently accurate over the entire design space.
@@ -396,7 +396,7 @@ To determine the polynomial order, first a representative set of design samples 
 Then, a PCE for a specific polynomial degree is constructed for each design sample.
 Finally, the highest Leave-One-Out error from the PCEs is stored. If this error is acceptable,
 the polynomial order is selected for the robust optimization procedure. We refer to <a class="reference internal" href="uncertainty%20quantification.html#lab-detpolorder"><span class="std std-ref">Determine the polynomial order</span></a> for more details on the method.</p>
-<p>First, the design samples are constructed based on Latin Hypercube Sampling. 30 design samples are selected, based on a rule of thumb that states that
+<p>First, the design samples are constructed based on Latin Hypercube Sampling. 20 design samples are selected, based on a rule of thumb that states that
 10 samples per design variable are sufficient to evaluate the design space. The functions <code class="xref py py-func docutils literal notranslate"><span class="pre">get_design_variables()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">set_design_samples()</span></code>
 are used to store information on the design variables and to generate the samples through Latin Hypercube Sampling, respectively:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.UQ.uncertainty_quantification</span> <span class="k">as</span> <span class="nn">rheia_uq</span>
@@ -437,7 +437,7 @@ followed by the call of the <code class="xref py py-meth docutils literal notran
 <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">loo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">20</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">result_dir</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result_dirs</span><span class="p">):</span>
-   <span class="o">....</span><span class="p">:</span>     <span class="n">loo</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_LOO</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">objective</span><span class="p">))</span>
+   <span class="o">....</span><span class="p">:</span>     <span class="n">loo</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_LOO</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">objective</span><span class="p">)</span>
    <span class="o">....</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">loo</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -461,7 +461,7 @@ The highest Sobol’ index found for each stochastic parameter over the set of d
 determines the Sobol’ index on which the decision is made in this conservative approach.
 During the determination of the PCE polynomial degree in the previous section,
 the Sobol’ indices for a representative set of design samples has already been evaluated.
-The corresponding Sobol’ indices are saved for each sample in the folders <code class="file docutils literal notranslate"><span class="pre">sample_0</span></code>, <code class="file docutils literal notranslate"><span class="pre">sample_1</span></code>,…, <code class="file docutils literal notranslate"><span class="pre">sample_29</span></code>.
+The corresponding Sobol’ indices are saved for each sample in the folders <code class="file docutils literal notranslate"><span class="pre">sample_0</span></code>, <code class="file docutils literal notranslate"><span class="pre">sample_1</span></code>,…, <code class="file docutils literal notranslate"><span class="pre">sample_19</span></code>.
 The stochastic parameters with negligible effect are printed through the following commands,
 where a threshold for the Sobol’ index is set at 1/14 (= 1/number of uncertain parameters):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="n">pol_order</span> <span class="o">=</span> <span class="mi">2</span>
@@ -508,7 +508,7 @@ Thus, the 6 parameters with negligible contribution can be removed from <code cl
 <div class="section" id="run-robust-design-optimization">
 <h3><span class="section-number">4.3.3. </span>Run robust design optimization<a class="headerlink" href="#run-robust-design-optimization" title="Permalink to this headline">¶</a></h3>
 <p>With the design variables, model parameters, uncertainties and maximum polynomial degree characterized, the robust design optimization can be performed.
-Again, a population of 30 samples is selected. With 90 model evaluations required per design sample, a computational budget of 270000 is selected to reach at least 150 generations.
+Again, a population of 20 samples is selected. With 90 model evaluations required per design sample, a computational budget of 270000 is selected to reach at least 150 generations.
 The optimization dictionary is configurated as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="n">dict_opt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span>                  <span class="s1">&#39;PV_ELEC&#39;</span><span class="p">,</span>
    <span class="o">....</span><span class="p">:</span>             <span class="s1">&#39;objectives&#39;</span><span class="p">:</span>            <span class="p">{</span><span class="s1">&#39;ROB&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)},</span>

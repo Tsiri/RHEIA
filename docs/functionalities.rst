@@ -16,7 +16,7 @@ To determine the mean and standard deviation for each design sample evaluated du
 Uncertainty quantification can be performed separately as well, which provides, in addition to the statistical moments, the Sobol' indices, probability density function and
 cumulative distribution function. 
 
-The hydrogen models encollapse the 5 main topics were hydrogen proves interesting: power-to-power, power-to-mobility, power-to-gas, power-to-fuel and power-to-industry.
+The hydrogen models encollapse the 5 main topics were hydrogen proves to be interesting: power-to-power, power-to-mobility, power-to-gas, power-to-fuel and power-to-industry.
 For each model, a specific set of parameters are defined with uncertainty, which are considered during robust design optimization and uncertainty quantification. 
 Several models depend on the climate data and/or energy demand data. The framework provides climate data and energy demand data for numerous locations, 
 which enables the user to use the framework as a decision support tool, 

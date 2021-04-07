@@ -25,7 +25,7 @@ and the results directory (e.g. `results_1`): :file:`\\RESULTS\\CASE_1\\DET\\res
 In this folder, 3 folder are present: :file:`STATUS`, :file:`fitness` and :file:`population` (or :file:`fitness_light` and :file:`population_light`, see :ref:`lab:detprintreslight`).
 The :file:`STATUS` file consists of two columns: ITER and EVALS. In ITER, the finished generation number is saved, while the corresponding number in EVALS
 provides the actual computational budget spent after completing that generation.
-The :file:`population` and :file:`fitness` file contain the design samples and results, respectively. 
+The :file:`population` and :file:`fitness` files contain the design samples and results, respectively. 
 This information is stored for every design sample in every generation 
 (or in every :math:`i^\mathrm{th}` generation in case of light printing). The design sample on line :math:`j` in :file:`population` corresponds to the fitness 
 on line :math:`j` in :file:`fitness`.
@@ -47,7 +47,7 @@ Then, the method :py:meth:`get_fitness_population()` can be called::
 The function returns, for the last available generation, the objectives and the population.
 Additionally, the design samples and fitness values are sorted based on the first objective and saved in :file:`population_final_sorted` 
 and :file:`fitness_final_sorted`, respectively, in the results directory.
-For instance, the first two objectives can be plotted with respect to eachother as follows::
+For instance, the first two objectives can be plotted with respect to each other as follows::
 
     In [7]: import matplotlib.pyplot as plt
 
@@ -78,7 +78,7 @@ uncertainty quantification results
 
 The results path depends on the case name (e.g. `CASE_1`), the analysis type (UQ)
 and the results directory (e.g. `results_1`), i.e. :file:`\\RESULTS\\CASE_1\\UQ\\results_1`.
-In this folder, at least 1 folder is present: the :file:`samples`  file. This file includes the samples 
+In this folder, at least 1 file is present: the :file:`samples`  file. This file includes the samples 
 and the corresponding deterministic model response, when a system model is connected to the framework (i.e. 'create only samples' set to False).
 The second file and third file are named based on the selected maximum polynomial degree and the quantity of interest 
 (e.g. :file:`full_pce_order_2_output_2` and :file:`full_pce_order_2_output_2_Sobol_indices`).
@@ -129,4 +129,4 @@ the worst-case LOO error and the significant Sobol' indices can be presented thr
 
     In [12]: my_post_process_uq.get_max_sobol(results_dir,objective,threshold=1./15.)	
 	
-The threshold argument in get_max_sobol() provides the threshold for which Sobol' indices are considered significant.
+The threshold argument in get_max_sobol() provides the threshold from which Sobol' indices are considered significant.

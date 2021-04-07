@@ -191,17 +191,17 @@
 <p>where <span class="math notranslate nohighlight">\(\pmb{\alpha}\)</span> are the multi-indices and <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> is the considered set of multi-indices, for which the size is defined by a truncation scheme.
 A typical truncation scheme is limiting the polynomial order up to a certain degree, which constrains the number of multi-indices in the set to <span id="id1">[<a class="reference internal" href="bibliography.html#id189">Sud14</a>]</span>:</p>
 <p><span class="math notranslate nohighlight">\(|\mathcal{A}^{M,p}| = \dfrac{(p + M)!}{p!M!}\)</span>,</p>
-<p>where <span class="math notranslate nohighlight">\(p\)</span> corresponds to the polynomial order and <span class="math notranslate nohighlight">\(M = |\pmb{X}|\)</span> is the stochastic dimension, i.e. number of random variables.
+<p>where <span class="math notranslate nohighlight">\(p\)</span> corresponds to the polynomial order and <span class="math notranslate nohighlight">\(M = |\pmb{X}|\)</span> is the stochastic dimension, i.e. number of uncertainties (parameters and variables).
 The polynomial family that is orthogonal with respect to the assigned probability distributions are known for classic distributions <span id="id2">[<a class="reference internal" href="bibliography.html#id93">XK02</a>]</span>.
-As an example, Uniformly distributed stochastic input parameters associate with the Legendre polynomials.
-Consequently, <span class="math notranslate nohighlight">\(P+1\)</span> coefficients are present in a full PCE. To quantify these coefficients, Least-Square Minimization is applied, based on actual system model evaluations <span id="id3">[<a class="reference internal" href="bibliography.html#id189">Sud14</a>]</span>.
+As an example, uniformly distributed stochastic input parameters associate with the Legendre polynomials.
+Consequently, <span class="math notranslate nohighlight">\(P+1\)</span> coefficients are present in a full PCE. To quantify these coefficients, least-square minimization is applied, based on actual system model evaluations <span id="id3">[<a class="reference internal" href="bibliography.html#id189">Sud14</a>]</span>.
 To ensure a well-posed Least-Square Minimization, <span class="math notranslate nohighlight">\(2(P+1)\)</span> system model evaluations are usually required <span id="id4">[<a class="reference internal" href="bibliography.html#id189">Sud14</a>]</span>.
-When the coefficients are quantified, the mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> of the objective follow analytically:</p>
+When the coefficients are quantified, the mean (<span class="math notranslate nohighlight">\(\mu\)</span>) and standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) of the objective follow analytically:</p>
 <p><span class="math notranslate nohighlight">\(\mu = u_0\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(\sigma^2 = \sum_{i=1}^P u_i^2\)</span>.</p>
-<p>Next to these statistical moments, the contribution of each stochastic parameter to the variance of the objective provides valuable information on the system behavior under uncertainty.
-Generally, this contribution is quantified through Sobol’ indices. P
-CE provides an analytical solution to quantify these Sobol’ indices through post-processing of the coefficients (i.e.no additional model evaluations required). The total-order Sobol’ indices (<span class="math notranslate nohighlight">\(S_i^{T,\mathrm{PC}}\)</span>) quantify the total impact of a stochastic input parameter, including all interactions:</p>
+<p>Next to these statistical moments, the contribution of each stochastic parameter to the variance of the objective provides valuable information on the system behavior under uncertainties.
+Generally, this contribution is quantified through Sobol’ indices.
+PCE provides an analytical solution to quantify these Sobol’ indices through post-processing of the coefficients (i.e. no additional model evaluations required). The total-order Sobol’ indices (<span class="math notranslate nohighlight">\(S_i^{T,\mathrm{PC}}\)</span>) quantify the total impact of a stochastic input parameter, including all interactions:</p>
 <p><span class="math notranslate nohighlight">\(S_i^{T,\mathrm{PC}} = \sum_{\alpha \in A_i^T}^{} u_\alpha^2/\sum_{i=1}^P u_i^2 ~~~~~~ A_i^T = \{\alpha \in A | \alpha_i &gt; 0\}\)</span>.</p>
 <p>For every coefficient that is characterized by considering input parameter <span class="math notranslate nohighlight">\(i\)</span>, among others, at an order <span class="math notranslate nohighlight">\(&gt; 0\)</span> is added to the total Sobol’ index <span class="math notranslate nohighlight">\(S_i\)</span>.</p>
 </div>
@@ -211,10 +211,10 @@ CE provides an analytical solution to quantify these Sobol’ indices through po
 <div class="section" id="nsga-ii">
 <span id="lab-ssnsga2"></span><h3><span class="section-number">10.2.1. </span>NSGA-II<a class="headerlink" href="#nsga-ii" title="Permalink to this headline">¶</a></h3>
 <p>NSGA-II is a multi-objective genetic algorithm, suitable for optimization of complex, non-linear models <span id="id5">[<a class="reference internal" href="bibliography.html#id198">DPAM02</a>]</span>.
-First, this algorithm creates a set of design samples (i.e.population), based on Latin Hypercube Sampling <span id="id6">[<a class="reference internal" href="bibliography.html#id197">Ste87</a>]</span>.
-Thereafter, a second population (i.e.children) is generated with characteristics based on the previous population (i.e.parents),
+First, this algorithm creates a set of design samples (i.e. population), based on Latin Hypercube Sampling <span id="id6">[<a class="reference internal" href="bibliography.html#id197">Ste87</a>]</span>.
+Thereafter, a second population (i.e. children) is generated with characteristics based on the previous population (i.e. parents),
 following crossover and mutation rules. Each design sample out of both populations is evaluated through the uncertainty quantification algorithm
-and sorted based on their dominance in the objectives (i.e.mean and standard deviation of the LCOE). The top half of the sorted samples remain and represent the next population.
+and sorted based on their dominance in the objectives (i.e. mean and standard deviation of the quantity of interest). The top half of the sorted samples remain and represent the next population.
 The algorithm continues until either convergence is reached or the maximum number of iterations is realized. When the process is finalized, either the solution converged to a single design sample,
 achieving minimum mean and standard deviation, or a set of optimized design samples where each sample dominates every other design sample in at least one objective.</p>
 </div>
@@ -224,9 +224,9 @@ achieving minimum mean and standard deviation, or a set of optimized design samp
 i.e. number of generations &gt;= computational budget / population size. The population is spread over the design space. The higher the population size,
 the higher the number of explored areas in the design space. On the one hand, when the population size is small and the the number of mutations are limited, the population
 might converge to a local optimum. On the other hand, when the population size is large, a significant computational budget is spent at each generation,
-which limits the exploitation and thus results in suboptimal designs. There is no strict rule on the population size, as it highly depends on the number of design variables,
+which limits the exploitation and might result in suboptimal designs. There is no strict rule on the population size, as it highly depends on the number of design variables,
 the non-linearity of the relation between input-output of the system model and the number of local optima in this relation.
-Nevertheless, based on the experience of the authors in engineering optimization, the population size is suggested between 20 and 50. Below 20, the possibility of ending in a
+Nevertheless, based on the experience of the authors in engineering optimization (i.e. &lt;10 design variables), the population size is suggested between 20 and 50. Below 20, the possibility of ending in a
 local optimum is significant, while a population size larger than 50 does not add significant improvement in design space exploration as opposed to the increase in cost per generation.
 In other words, under a limited computational budget and large population, the number of generations might result in unsatisfactory exploitation.
 To ensure sufficient exploitation, we suggest to reach a number of generations of at least 75 generations. Above 250 generations, the gain in exploitation becomes limited.</p>

@@ -237,7 +237,7 @@
 
 <dl class="py class">
 <dt id="rheia.OPT.lib_genetic_algorithms.NSGA2">
-<em class="property">class </em><code class="sig-prename descclassname">rheia.OPT.lib_genetic_algorithms.</code><code class="sig-name descname">NSGA2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">case</span></em>, <em class="sig-param"><span class="n">config_obj</span></em>, <em class="sig-param"><span class="n">start_from_last_gen</span></em>, <em class="sig-param"><span class="n">file_add</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">rheia.OPT.lib_genetic_algorithms.</code><code class="sig-name descname">NSGA2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">case</span></em>, <em class="sig-param"><span class="n">config_obj</span></em>, <em class="sig-param"><span class="n">start_from_last_gen</span></em>, <em class="sig-param"><span class="n">file_add</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
 <dt id="rheia.OPT.lib_genetic_algorithms.NSGA2.append_fitness_to_file">
 <code class="sig-name descname">append_fitness_to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fitness</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.lib_genetic_algorithms.NSGA2.append_fitness_to_file" title="Permalink to this definition">¶</a></dt>
@@ -493,14 +493,14 @@ and computational budget spent.</p>
 &#64;subject::  Run ERGO framework</p>
 <dl class="py function">
 <dt id="rheia.OPT.optimization.create_starting_samples">
-<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">create_starting_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">tc</span></em>, <em class="sig-param"><span class="n">conf_obj</span></em>, <em class="sig-param"><span class="n">start_from_last_gen</span></em>, <em class="sig-param"><span class="n">file_add</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.create_starting_samples" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">create_starting_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">case_obj</span></em>, <em class="sig-param"><span class="n">conf_obj</span></em>, <em class="sig-param"><span class="n">start_from_last_gen</span></em>, <em class="sig-param"><span class="n">file_add</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.create_starting_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load the starting samples of the optimization run.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>run_dict</strong> (<em>dict</em>) – The dictionary with user-defined values for
 the characterization of the optimization.</p></li>
-<li><p><strong>tc</strong> (<em>object</em>) – The class object of the case.</p></li>
+<li><p><strong>case_obj</strong> (<em>object</em>) – The class object of the case.</p></li>
 <li><p><strong>conf_obj</strong> (<em>object</em>) – The optimizer configuration object.</p></li>
 <li><p><strong>start_from_last_gen</strong> (<em>bool</em>) – Boolean that determines if the starting samples
 start from a previously generated population.</p></li>
@@ -512,7 +512,7 @@ start from a previously generated population.</p></li>
 
 <dl class="py function">
 <dt id="rheia.OPT.optimization.load_configuration">
-<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">load_configuration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">tc</span></em>, <em class="sig-param"><span class="n">optimizer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.load_configuration" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">load_configuration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_dict</span></em>, <em class="sig-param"><span class="n">eval_func</span></em>, <em class="sig-param"><span class="n">optimizer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.load_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load default configuration dictionary.
 This dictionary includes information on the
 characterization of the optimization, including
@@ -525,7 +525,6 @@ of parallel processes.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>run_dict</strong> (<em>dict</em>) – The dictionary with user-defined values for
 the characterization of the optimization.</p></li>
-<li><p><strong>tc</strong> (<em>object</em>) – The class object of the case.</p></li>
 <li><p><strong>optimizer</strong> (<em>string</em>) – The name of the optimizer (currently equals to ‘NSGA2’).</p></li>
 </ul>
 </dd>
@@ -592,13 +591,13 @@ the characterization of the optimization.</p></li>
 
 <dl class="py function">
 <dt id="rheia.OPT.optimization.scale_samples_to_design_space">
-<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">scale_samples_to_design_space</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nondim_doe</span></em>, <em class="sig-param"><span class="n">tc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.scale_samples_to_design_space" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">rheia.OPT.optimization.</code><code class="sig-name descname">scale_samples_to_design_space</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nondim_doe</span></em>, <em class="sig-param"><span class="n">case_obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.OPT.optimization.scale_samples_to_design_space" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scales the starting sample to the given design space.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>nondim_doe</strong> (<em>ndarray</em>) – The non-dimensionalized design of experiment.</p></li>
-<li><p><strong>tc</strong> (<em>object</em>) – The class object of the case.</p></li>
+<li><p><strong>case_obj</strong> (<em>object</em>) – The class object of the case.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -627,8 +626,8 @@ the characterization of the optimization.</p></li>
 </div>
 <div class="section" id="module-rheia.UQ.uncertainty_quantification">
 <span id="uncertainty-quantification"></span><h2><span class="section-number">12.2. </span>Uncertainty Quantification<a class="headerlink" href="#module-rheia.UQ.uncertainty_quantification" title="Permalink to this headline">¶</a></h2>
-<p>Created on Tue Nov 22 14:33:58 2016
-&#64;author: Diederik Coppitters</p>
+<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">uncertainty_quantification</span></code> module provides functions to
+execute uncertainty quantification.</p>
 <dl class="py function">
 <dt id="rheia.UQ.uncertainty_quantification.get_design_variables">
 <code class="sig-prename descclassname">rheia.UQ.uncertainty_quantification.</code><code class="sig-name descname">get_design_variables</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">case</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.uncertainty_quantification.get_design_variables" title="Permalink to this definition">¶</a></dt>
@@ -779,7 +778,7 @@ from the existing samples file.</p>
 
 <dl class="py method">
 <dt id="rheia.UQ.lib_PCE.RandomExperiment.evaluate">
-<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">case_obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.RandomExperiment.evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">eval_func</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rheia.UQ.lib_PCE.RandomExperiment.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate the samples in the model
 and store the samples and outputs in the samples file.</p>
 </dd></dl>

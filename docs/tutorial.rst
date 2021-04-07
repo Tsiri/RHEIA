@@ -38,7 +38,7 @@ The Python wrapper :py:mod:`case_description` module couples the system model to
 More information on the Python wrapper is discussed in :ref:`lab:wrapper`. 
 First, the photovoltaic-electrolyzer module is imported:: 
 
-    import pv_electrolyzer_lib as pv_elec
+    import rheia.CASES.PV_ELEC.lib_pv_electrolyzer as pv_elec
 
 Additionally, datasets and constants that remain constant during the multiple model evaluations are defined in the function :py:func:`set_params()`
 In this tutorial, only the solar irradiance dataset is loaded for Brussels, using the :py:meth:`load_climate()` method from :py:class:`ReadData` in the :py:mod:`pv_electrolyzer_lib` module::
@@ -112,8 +112,8 @@ In this tutorial, the deterministic optimization is imported and the optimizatio
 
 In the dictionary, the case folder name `PV_ELEC` is provided, followed by the optimization type `DET` and the weigths for both objectives, 
 i.e. minimization for the first returned objective `lcoh` and maximization for the second returned objective `mH2`. 
-A computational budget of 3000 model evaluations is selected as stopping criterium and the number of available physical cores are used
-to parallelize the evaluations. The population contains 30 samples. These samples are generated based on Latin Hypercube Sampling 
+A computational budget of 2000 model evaluations is selected as stopping criterium and the number of available physical cores are used
+to parallelize the evaluations. The population contains 20 samples. These samples are generated based on Latin Hypercube Sampling 
 and the NSGA-II optimizer is characterized with a crossover probability of 0.9, mutation probability of 0.1 and eta of 0.2.
 As Latin Hypercube Sampling is selected for the characterization of the population and the NSGA-II characteristics are equal to
 the standard settings, these specific items are not mentioned in the optimization dictionary.  
@@ -228,7 +228,7 @@ an absolute range with respect to the mean value::
 Determination of the polynomial order
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Based on the PCE trunctation scheme, the number of model evaluations required to construct a PCE for each design sample
+Based on the PCE truncation scheme, the number of model evaluations required to construct a PCE for each design sample
 corresponds to 30, 240 and 1360 for a maximum polynomial degree of 1,2 and 3, respectively. The polynomial degree
 that leads to an accurate expansion is not known a priori and should, therefore, be determined iteratively. 
 In a robust optimization framework, the expansion should be sufficiently accurate over the entire design space.
@@ -237,7 +237,7 @@ Then, a PCE for a specific polynomial degree is constructed for each design samp
 Finally, the highest Leave-One-Out error from the PCEs is stored. If this error is acceptable, 
 the polynomial order is selected for the robust optimization procedure. We refer to :ref:`lab:detpolorder` for more details on the method.
 
-First, the design samples are constructed based on Latin Hypercube Sampling. 30 design samples are selected, based on a rule of thumb that states that
+First, the design samples are constructed based on Latin Hypercube Sampling. 20 design samples are selected, based on a rule of thumb that states that
 10 samples per design variable are sufficient to evaluate the design space. The functions :py:func:`get_design_variables` and :py:func:`set_design_samples`
 are used to store information on the design variables and to generate the samples through Latin Hypercube Sampling, respectively::
 
@@ -279,7 +279,7 @@ followed by the call of the :py:meth:`get_LOO` method::
     In [9]: loo = [0]*20
 
     In [11]: for index, result_dir in enumerate(result_dirs):
-       ....:     loo[index] = my_post_process_uq.get_LOO(result_dir, objective))
+       ....:     loo[index] = my_post_process_uq.get_LOO(result_dir, objective)
        ....: print(max(loo))
  
 For a maximum polynomial order 1, the worst-case LOO error is 0.0379.
@@ -303,7 +303,7 @@ The highest Sobol' index found for each stochastic parameter over the set of des
 determines the Sobol' index on which the decision is made in this conservative approach.
 During the determination of the PCE polynomial degree in the previous section, 
 the Sobol' indices for a representative set of design samples has already been evaluated.
-The corresponding Sobol' indices are saved for each sample in the folders :file:`sample_0`, :file:`sample_1`,..., :file:`sample_29`. 
+The corresponding Sobol' indices are saved for each sample in the folders :file:`sample_0`, :file:`sample_1`,..., :file:`sample_19`. 
 The stochastic parameters with negligible effect are printed through the following commands, 
 where a threshold for the Sobol' index is set at 1/14 (= 1/number of uncertain parameters)::
 
@@ -351,7 +351,7 @@ Run robust design optimization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 With the design variables, model parameters, uncertainties and maximum polynomial degree characterized, the robust design optimization can be performed.
-Again, a population of 30 samples is selected. With 90 model evaluations required per design sample, a computational budget of 270000 is selected to reach at least 150 generations.
+Again, a population of 20 samples is selected. With 90 model evaluations required per design sample, a computational budget of 270000 is selected to reach at least 150 generations.
 The optimization dictionary is configurated as follows::
 
     In [24]: dict_opt = {'case':                  'PV_ELEC',

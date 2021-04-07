@@ -104,6 +104,7 @@
 <li class="toctree-l1"><a class="reference internal" href="energy%20system%20models.html">11. Details on the energy system models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribution.html">13. How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 </ul>
 
             
@@ -191,7 +192,7 @@ and the results directory (e.g. <cite>results_1</cite>): <code class="file docut
 In this folder, 3 folder are present: <code class="file docutils literal notranslate"><span class="pre">STATUS</span></code>, <code class="file docutils literal notranslate"><span class="pre">fitness</span></code> and <code class="file docutils literal notranslate"><span class="pre">population</span></code> (or <code class="file docutils literal notranslate"><span class="pre">fitness_light</span></code> and <code class="file docutils literal notranslate"><span class="pre">population_light</span></code>, see <a class="reference internal" href="optimization.html#lab-detprintreslight"><span class="std std-ref">‘print results light’: [light_bool, gen_step]</span></a>).
 The <code class="file docutils literal notranslate"><span class="pre">STATUS</span></code> file consists of two columns: ITER and EVALS. In ITER, the finished generation number is saved, while the corresponding number in EVALS
 provides the actual computational budget spent after completing that generation.
-The <code class="file docutils literal notranslate"><span class="pre">population</span></code> and <code class="file docutils literal notranslate"><span class="pre">fitness</span></code> file contain the design samples and results, respectively.
+The <code class="file docutils literal notranslate"><span class="pre">population</span></code> and <code class="file docutils literal notranslate"><span class="pre">fitness</span></code> files contain the design samples and results, respectively.
 This information is stored for every design sample in every generation
 (or in every <span class="math notranslate nohighlight">\(i^\mathrm{th}\)</span> generation in case of light printing). The design sample on line <span class="math notranslate nohighlight">\(j\)</span> in <code class="file docutils literal notranslate"><span class="pre">population</span></code> corresponds to the fitness
 on line <span class="math notranslate nohighlight">\(j\)</span> in <code class="file docutils literal notranslate"><span class="pre">fitness</span></code>.
@@ -213,7 +214,7 @@ the analysis type (DET or ROB) and a boolean that determines if light printing w
 <p>The function returns, for the last available generation, the objectives and the population.
 Additionally, the design samples and fitness values are sorted based on the first objective and saved in <code class="file docutils literal notranslate"><span class="pre">population_final_sorted</span></code>
 and <code class="file docutils literal notranslate"><span class="pre">fitness_final_sorted</span></code>, respectively, in the results directory.
-For instance, the first two objectives can be plotted with respect to eachother as follows:</p>
+For instance, the first two objectives can be plotted with respect to each other as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -241,7 +242,7 @@ generation 5, 15 and 25 is done as follows:</p>
 <span id="lab-uqresults"></span><h2><span class="section-number">9.2. </span>uncertainty quantification results<a class="headerlink" href="#uncertainty-quantification-results" title="Permalink to this headline">¶</a></h2>
 <p>The results path depends on the case name (e.g. <cite>CASE_1</cite>), the analysis type (UQ)
 and the results directory (e.g. <cite>results_1</cite>), i.e. <code class="file docutils literal notranslate"><span class="pre">\RESULTS\CASE_1\UQ\results_1</span></code>.
-In this folder, at least 1 folder is present: the <code class="file docutils literal notranslate"><span class="pre">samples</span></code>  file. This file includes the samples
+In this folder, at least 1 file is present: the <code class="file docutils literal notranslate"><span class="pre">samples</span></code>  file. This file includes the samples
 and the corresponding deterministic model response, when a system model is connected to the framework (i.e. ‘create only samples’ set to False).
 The second file and third file are named based on the selected maximum polynomial degree and the quantity of interest
 (e.g. <code class="file docutils literal notranslate"><span class="pre">full_pce_order_2_output_2</span></code> and <code class="file docutils literal notranslate"><span class="pre">full_pce_order_2_output_2_Sobol_indices</span></code>).
@@ -291,7 +292,7 @@ the worst-case LOO error and the significant Sobol’ indices can be presented t
 <span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">my_post_process_uq</span><span class="o">.</span><span class="n">get_max_sobol</span><span class="p">(</span><span class="n">results_dir</span><span class="p">,</span><span class="n">objective</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mf">15.</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The threshold argument in get_max_sobol() provides the threshold for which Sobol’ indices are considered significant.</p>
+<p>The threshold argument in get_max_sobol() provides the threshold from which Sobol’ indices are considered significant.</p>
 </div>
 </div>
 

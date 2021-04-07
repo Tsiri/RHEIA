@@ -1,7 +1,7 @@
 .. _lab:stochasticdesignspace:
 
-Stochastic design space
-=======================
+Define the design and stochastic spaces
+=======================================
 
 In this section, the characterization of the model parameters and design variables is described.
 This characterization is performed through two files: :file:`design_space` and :file:`stochastic_space`.
@@ -27,7 +27,7 @@ The file uses whitespace as delimiter between the inputs related to the paramete
 design variables
 ^^^^^^^^^^^^^^^^
  
-The design variables are parameters that are controllable by the designer within a certain range. 
+The design variables are variables that are controllable by the designer within a certain range. 
 This range should be provided, to shape the search space for the optimizer. 
 To define a design variable, the set-up in the :file:`design_space` file is as follows::
 
@@ -50,7 +50,7 @@ An example for a configured design variable `n_pv` with a range between 1e-8 and
 model parameters
 ^^^^^^^^^^^^^^^^
 
-A model parameter corresponds to a parameter that usually cannot be controlled by the designer, or the decision on this parameter value is fixed. 
+A model parameter corresponds to a parameter that usually cannot be controlled by the designer (EX GRAV CONSTANT), or the decision on this parameter value is fixed(EX N PV PANELS ON ROOF FIXED). 
 Such a parameter can be considered deterministic or uncertain. In this file :file:`design_space`, the deterministic value (or mean value when the parameter is considered uncertain) is provided.
 The configuration of a model parameter is similar to the configuration of a design variable::
 
@@ -68,8 +68,8 @@ An example of a configured model parameter `opex_dcdc` with a mean value of 0.03
 
 .. _lab:ssexampleds:
 
-example design_space
-^^^^^^^^^^^^^^^^^^^^
+Example of design_space
+^^^^^^^^^^^^^^^^^^^^^^^
 Conclusively, an example of a configured :file:`design_space` file, which consists of 3 model parameters (par_1, par_2 and par_3) and 2 design variables (design_var_1 and design_var_2), is presented::
 
 	par_1        par 4
@@ -104,12 +104,12 @@ An example of a configured uncertain parameter `par_2`, characterized by a Unifo
 	par_2 absolute Uniform 1
 
 Note that it is not required to allocate an uncertainty to every design variable and model parameter defined in :file:`design_space`.
-In other words, when a parameter (or variable) is defined in :file:`design_space`, but not in U, the parameter (or variable) is considered deterministic. 
-Moreover, the order of appearance of parameters and variables in :file:`design_space` should not be kept in U.
+In other words, when a parameter (or variable) is defined in :file:`design_space`, but not in :file:`stochastic_space`, the parameter (or variable) is considered deterministic. 
+Moreover, the order of appearance of parameters and variables in :file:`design_space` should not be kept in :file:`stochastic_space`.
 
 .. _lab:ssdistributions:
 
-uncertainty characterization
+Uncertainty characterization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following distributions are available:
@@ -118,11 +118,11 @@ The following distributions are available:
 - Gaussian
 
 The meaning of deviation at the end of the line depends on the distribution. When a Uniform distribution is considered,
-the deviation refers to the absolute difference between the upper bound of the Uniform distribution and the mean: for :math:`\mathcal{U}(a,b)`, :math:`deviation = (b-a)/2`).
+the deviation refers to the absolute (or relative) difference between the upper bound of the Uniform distribution and the mean: for :math:`\mathcal{U}(a,b)`, :math:`deviation = (b-a)/2`).
 When a Gaussian distribution is considered, the value corresponds to the standard deviation: :math:`\mathcal{N}(mean,deviation)`.
 
-example stochastic_space
-^^^^^^^^^^^^^^^^^^^^^^^^
+Example of stochastic_space
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In summary, a :file:`stochastic_space` file corresponding to the illustrative :file:`design_space` example file in :ref:`lab:ssexampleds` might look like this::
 

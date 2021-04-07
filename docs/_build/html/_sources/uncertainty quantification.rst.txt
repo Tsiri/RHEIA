@@ -31,7 +31,7 @@ To characterize the uncertainty quantification, the following dictionary with pa
                'n jobs':                n_jobs,                 #optional, default is 1
               }  
 
-The items of the uncertainty quantification dictionary are described in the following subsections. This dictionary is used as the argument for the :py:func`run_uq()` function, 
+The items of the uncertainty quantification dictionary are described in the following subsections. This dictionary is used as the argument for the :py:func`run_uq` function, 
 which initiates the uncertainty quantification procedure::
 
     rheia_uq.run_uq(dict_uq)
@@ -46,7 +46,7 @@ If one of these items is not provided, the code will return an error.
 ~~~~~~~~~~~~~~~~~
 
 The string `case_name` corresponds to the name of the case. 
-This name should be equal to the name of the folder that comprises the case, which situates in the folder that contains the cases `CASES`. 
+This name should be equal to the name of the folder that comprises the case, which situates in the folder that contains the cases (i.e. :file:`CASES`). 
 To illustrate, if the case is defined in :file:`CASES\\CASE_1`, 
 the dictionary includes the following item::
 
@@ -168,7 +168,7 @@ When combining the examples in the previous section, a configurated uncertainty 
 
     In [4]: rheia_uq.run_uq(dict_uq)
 
-Alternatively, a uncertainty quantification dictionary which considers random sampling and generates 100,000 PDF and CDF samples on the PCE surrogate::
+Alternatively, an uncertainty quantification dictionary which considers random sampling and generates 100,000 PDF and CDF samples on the PCE surrogate::
  
     In [1]: import rheia.UQ.uncertainty_quantification as rheia_uq
 
@@ -187,8 +187,8 @@ The post-processing of the results is described in :ref:`lab:uqresults`.
 	
 .. _lab:sscreateonlysamples:
 
-Create samples for unconnected model
-------------------------------------
+Create samples for unconnected models
+-------------------------------------
 
 When it is burdensome to connect the system model to the framework, the framework provides the option to just generate the random samples for uncertainty quantification,
 based on the stochastic space defined in :file:`design_space` and :file:`stochastic_space`. These samples can then be evaluated in the model externally.
@@ -230,7 +230,7 @@ the Leave-One-Out (LOO) error. If the error is below a certain threshold, the PC
 To ensure accurate statistical moments during the robust optimization procedure, the polynomial order should be sufficient 
 over the entire design space. In other words, for each design sample, the polynomial order should be sufficient to construct an accuracte PCE.
 Latin Hypercube Sampling is used to construct a set of design samples, which provides a representation of the design space. If the worst-case LOO 
-for the corresponding PCEs is still below a certain threshold, the corresponding polynomial order can be considered sufficient to be used during
+among the corresponding PCEs is still below a certain threshold, the corresponding polynomial order can be considered sufficient to be used during
 the robust optimization procedure.
 
 After providing the name of the case, a dictionary with the design variable names, lower bounds and upper bounds can be defined
@@ -277,11 +277,11 @@ Considering the specific dictionary determined above, the results for the differ
           res_3
           res_4
 	
-Where in each folder, the LOO error is stored in `full_PCE_order_2_obj_1`.
+Where in each folder, the LOO error is stored in `full_PCE_order_1_obj_1`.
 
 The worst-case LOO error (i.e. the highest LOO error over the diffferent design samples) can be determined through 
 the post-processing module :py:mod:`lib_post_process`.
-Instantiating an object from the :py:class:`post_process` class is by passing the case name as an argument::
+Instantiating an object from the :py:class:`post_process` class is done by passing the case name as an argument::
 
 	In [4]: import rheia.POST_PROCESS.lib_post_process as rheia_pp
 

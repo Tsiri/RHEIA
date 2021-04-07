@@ -3,9 +3,8 @@
 Examples
 ========
 
-
-Power-to-power for a grid-connected household
----------------------------------------------
+Power-to-hydrogen-to-power for a grid-connected household
+---------------------------------------------------------
 
 In this first example, a robust design optimization is performed on a grid-connected household in Brussels, supported by a photovoltaic-hydrogen system.
 The hydrogen energy system consists of an electrolyzer stack, hydrogen storage tank and fuel cell stack.

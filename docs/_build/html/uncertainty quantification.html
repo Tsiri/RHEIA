@@ -114,7 +114,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#uncertainty-quantification-dictionary-example">8.1.3. uncertainty quantification dictionary example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#create-samples-for-unconnected-model">8.2. Create samples for unconnected model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-samples-for-unconnected-models">8.2. Create samples for unconnected models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#determine-the-polynomial-order">8.3. Determine the polynomial order</a></li>
 </ul>
 </li>
@@ -123,6 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="energy%20system%20models.html">11. Details on the energy system models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribution.html">13. How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 </ul>
 
             
@@ -218,7 +219,7 @@ More information on this Python wrapper is discussed in <a class="reference inte
           <span class="p">}</span>
 </pre></div>
 </div>
-<p>The items of the uncertainty quantification dictionary are described in the following subsections. This dictionary is used as the argument for the :py:func`run_uq()` function,
+<p>The items of the uncertainty quantification dictionary are described in the following subsections. This dictionary is used as the argument for the :py:func`run_uq` function,
 which initiates the uncertainty quantification procedure:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rheia_uq</span><span class="o">.</span><span class="n">run_uq</span><span class="p">(</span><span class="n">dict_uq</span><span class="p">)</span>
 </pre></div>
@@ -230,7 +231,7 @@ If one of these items is not provided, the code will return an error.</p>
 <div class="section" id="case-case-name">
 <h4><span class="section-number">8.1.1.1. </span>‘case’: case_name<a class="headerlink" href="#case-case-name" title="Permalink to this headline">¶</a></h4>
 <p>The string <cite>case_name</cite> corresponds to the name of the case.
-This name should be equal to the name of the folder that comprises the case, which situates in the folder that contains the cases <cite>CASES</cite>.
+This name should be equal to the name of the folder that comprises the case, which situates in the folder that contains the cases (i.e. <code class="file docutils literal notranslate"><span class="pre">CASES</span></code>).
 To illustrate, if the case is defined in <code class="file docutils literal notranslate"><span class="pre">CASES\CASE_1</span></code>,
 the dictionary includes the following item:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;case&#39;</span><span class="p">:</span> <span class="s1">&#39;CASE_1&#39;</span>
@@ -307,7 +308,7 @@ the Bool <cite>only_samples_bool</cite> can be set to True:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;create only samples&#39;</span><span class="p">:</span> <span class="kc">False</span>
 </pre></div>
 </div>
-<p>Additional information on how to create just the samples is present in <a class="reference internal" href="#lab-sscreateonlysamples"><span class="std std-ref">Create samples for unconnected model</span></a>.</p>
+<p>Additional information on how to create just the samples is present in <a class="reference internal" href="#lab-sscreateonlysamples"><span class="std std-ref">Create samples for unconnected models</span></a>.</p>
 </div>
 <div class="section" id="draw-pdf-cdf-draw-bool-n-samples">
 <h4><span class="section-number">8.1.2.3. </span>‘draw pdf cdf’: [draw_bool, n_samples]<a class="headerlink" href="#draw-pdf-cdf-draw-bool-n-samples" title="Permalink to this headline">¶</a></h4>
@@ -351,7 +352,7 @@ After importing multiprocessing, the item can be defined by:</p>
 <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">rheia_uq</span><span class="o">.</span><span class="n">run_uq</span><span class="p">(</span><span class="n">dict_uq</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Alternatively, a uncertainty quantification dictionary which considers random sampling and generates 100,000 PDF and CDF samples on the PCE surrogate:</p>
+<p>Alternatively, an uncertainty quantification dictionary which considers random sampling and generates 100,000 PDF and CDF samples on the PCE surrogate:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.UQ.uncertainty_quantification</span> <span class="k">as</span> <span class="nn">rheia_uq</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">dict_uq</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;case&#39;</span><span class="p">:</span> <span class="s1">&#39;CASE_1&#39;</span><span class="p">,</span>
@@ -369,8 +370,8 @@ After importing multiprocessing, the item can be defined by:</p>
 <p>The post-processing of the results is described in <a class="reference internal" href="post_processing.html#lab-uqresults"><span class="std std-ref">uncertainty quantification results</span></a>.</p>
 </div>
 </div>
-<div class="section" id="create-samples-for-unconnected-model">
-<span id="lab-sscreateonlysamples"></span><h2><span class="section-number">8.2. </span>Create samples for unconnected model<a class="headerlink" href="#create-samples-for-unconnected-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-samples-for-unconnected-models">
+<span id="lab-sscreateonlysamples"></span><h2><span class="section-number">8.2. </span>Create samples for unconnected models<a class="headerlink" href="#create-samples-for-unconnected-models" title="Permalink to this headline">¶</a></h2>
 <p>When it is burdensome to connect the system model to the framework, the framework provides the option to just generate the random samples for uncertainty quantification,
 based on the stochastic space defined in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> and <code class="file docutils literal notranslate"><span class="pre">stochastic_space</span></code>. These samples can then be evaluated in the model externally.
 To generate the samples, use (or make a copy of) the <code class="file docutils literal notranslate"><span class="pre">NO_MODEL</span></code> folder in <code class="file docutils literal notranslate"><span class="pre">CASES</span></code>.
@@ -408,7 +409,7 @@ the Leave-One-Out (LOO) error. If the error is below a certain threshold, the PC
 To ensure accurate statistical moments during the robust optimization procedure, the polynomial order should be sufficient
 over the entire design space. In other words, for each design sample, the polynomial order should be sufficient to construct an accuracte PCE.
 Latin Hypercube Sampling is used to construct a set of design samples, which provides a representation of the design space. If the worst-case LOO
-for the corresponding PCEs is still below a certain threshold, the corresponding polynomial order can be considered sufficient to be used during
+among the corresponding PCEs is still below a certain threshold, the corresponding polynomial order can be considered sufficient to be used during
 the robust optimization procedure.</p>
 <p>After providing the name of the case, a dictionary with the design variable names, lower bounds and upper bounds can be defined
 via the <code class="xref py py-func docutils literal notranslate"><span class="pre">get_design_variables()</span></code> function:</p>
@@ -453,10 +454,10 @@ Considering the specific dictionary determined above, the results for the differ
       <span class="n">res_4</span>
 </pre></div>
 </div>
-<p>Where in each folder, the LOO error is stored in <cite>full_PCE_order_2_obj_1</cite>.</p>
+<p>Where in each folder, the LOO error is stored in <cite>full_PCE_order_1_obj_1</cite>.</p>
 <p>The worst-case LOO error (i.e. the highest LOO error over the diffferent design samples) can be determined through
 the post-processing module <code class="xref py py-mod docutils literal notranslate"><span class="pre">lib_post_process</span></code>.
-Instantiating an object from the <code class="xref py py-class docutils literal notranslate"><span class="pre">post_process</span></code> class is by passing the case name as an argument:</p>
+Instantiating an object from the <code class="xref py py-class docutils literal notranslate"><span class="pre">post_process</span></code> class is done by passing the case name as an argument:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">rheia.POST_PROCESS.lib_post_process</span> <span class="k">as</span> <span class="nn">rheia_pp</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">my_post_process</span> <span class="o">=</span> <span class="n">rheia_pp</span><span class="o">.</span><span class="n">post_process</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
