@@ -361,19 +361,158 @@ which parameters are considered uncertain during the evaluation, we refer to :re
 Power-to-mobility
 -----------------
 
-renewable hydrogen production for a fleet of heavy-duty vehicles, e.g. trucks
+The mobility demand corresponds to a bus depot. The bus fleet at this depot can consist of
+hydrogen-fueled buses (i.e.\ powered by a hydrogen fuel cell), diesel-fueled buses or a mix of both. To determine the
+period in which these buses are fueled, the European daily bus refuelling profile is adopted :cite:`arya`.
+The energy consumption for both bus types is determined based on the energy consumption per unit of distance covered.
+To fuel the hydrogen-fueled buses, an on-site, grid-connected hydrogen refueling station is considered. In this
+hydrogen refueling station, a photovoltaic array is connected to a DC bus bar through a DC-DC converter with Maximum Power Point Tracking.
+The hydrogen is generated, compressed and stored in a Proton Exchange Membrane electrolyzer array, compressor and storage tank, respectively.
+Before dispensation, the hydrogen is cooled down in a cooling unit.      
 
-Power-to-industry
------------------
+.. _fig:pvmobscheme:
 
-renewable ammonia production
+.. figure:: PV_MOB_SCHEME.svg
+   :width: 80%
+   :align: center
 
-Power-to-gas
-------------
+   The bus fleet can consist of hydrogen-fueled buses, diesel-fueled buses or a mix of both. 
+   For the hydrogen-fueled buses, a grid-connected hydrogen refueling station is considered. 
+   In the hydrogen refueling station, a photovoltaic array produces electricity to generate hydrogen in the electrolyzer. 
+   The produced hydrogen is compressed and stored in storage tanks. Before the dispensation of the hydrogen, 
+   the hydrogen is cooled down to 233 K to limit the temperature in the bus tank.
 
-not yet decided
+The power management strategy for the hydrogen refueling station aims to continuously comply with the mobility demand. 
+During the refueling period, hydrogen is extracted from the storage tank. When the storage tank is empty and the hydrogen 
+demand is not satisfied, the remaining hydrogen is produced instantaneously in the electrolyzer array, compressed, cooled and dispensed. 
+To power the electrolyzer array, compression and cooling, first PV electricity is considered, followed by the power from the battery stack. 
+When the PV electricity does not comply with the electricity demand, grid electricity is used to cover the remaining demand. 
+Alternatively, when the storage tank is able to comply with the mobility demand, the PV electricity is used to
+generate and compress hydrogen in the electrolyzer array and the compressor. The generated hydrogen is stored in the hydrogen storage tank. 
+ 
+..
+	At the bus depot, a typical amount of 50 buses are parked
+	with an average utilisation rate of 250 km per bus per day
+ 
+The photovoltaic array model and electrolyzer array model are adopted from the PVlib Python package :cite:`pvlib` and from Saeed et al. :cite:`Saeed2015`, respectively.
+The DC-DC converters and DC-AC inverter operate at 100% electrical efficiency, and are sized based on the maximum power that passes through the component. 
+The lifetime of the electrolyzer array is determined based on the number of operating hours during the evaluated year.
+
+To evaluate the performance of the system, the Levelized Cost Of Driving (LCOD) and Carbon Intensity (CI) are selected. These performance indicators
+indicate the techno-economic and environmental performance of the system.
+The LCOD is presented as the annualized system cost over the annual distance travelled by the fleet:
+
+:math:`\mathrm{LCOD} = \dfrac{\mathrm{CAPEX}_\mathrm{a} + \mathrm{OPEX}_\mathrm{a} + \mathrm{Repl}_\mathrm{a} + G_\mathrm{c,a} - G_\mathrm{s,a} + \mathrm{diesel}_\mathrm{a}}{D}`.
+
+To determine the system cost, the annualized investment cost of all components :math:`\mathrm{CAPEX}_\mathrm{a}`, annualized operational cost :math:`\mathrm{OPEX}_\mathrm{a}`, annualized replacement cost :math:`R_\mathrm{c,a}`, 
+grid electricity cost :math:`G_\mathrm{c,a}`, the gain from selling excess electricity :math:`G_\mathrm{s,a}` and the annual diesel cost to fuel the diesel-fueled buses :math:`\mathrm{diesel}_\mathrm{a}` are evaluated.
+:math:`D` represents the annual distance travelled by the fleet.  
+
+Similarly to the LCOD, the environmental performance indicator evaluates the annualized GHG emission of the system per unit of distance travelled by the bus fleet, 
+i.e. Carbon Intensity (:math:`\mathrm{CI}`). The system GHG emissions represents the sum of the GHG emissions during construction of the components :math:`{\mathrm{GHG}}_\mathrm{comp,a}`, 
+the GHG emissions from grid electricity consumption :math:`\mathrm{GHG}_\mathrm{grid,a}` and the well-to-wheel GHG emissions from diesel consumption :math:`\mathrm{GHG}_\mathrm{diesel,a}`:
+
+:math:`\mathrm{CI} = \dfrac{{\mathrm{GHG}}_\mathrm{comp,a} + \mathrm{GHG}_\mathrm{grid,a} + \mathrm{GHG}_\mathrm{diesel,a}}{D}`.
+
+In addition to these performance indicators, additional model outputs are present, such as the amoun of grid electricity sold and bought.
+To select other model outputs as optimization objectives, we refer to :ref:`lab:wrapper`. 
+
+To optimize these performance indicators, the capacity of the photovoltaic array (:math:`\mathrm{n\_pv}`, :math:`\mathrm{kW}_\mathrm{p}`), electrolyzer array (:math:`\mathrm{n\_pemel}`, :math:`\mathrm{kW}`),
+hydrogen storage tank (:math:`\mathrm{n\_pemel}`, :math:`\mathrm{kWh}`) and the number of buses fueled by hydrogen (:math:`\mathrm{n\_h2\_bus}`) are considered as
+design variables. The capacity of the compressor and the cooling is quantified based on the highest hydrogen mass flow rate that is compressed and cooled during the evaluated year. 
+
+In the default uncertainty characterization of this model in this framework, only the aleatory uncertainty on the model parameters is considered. 
+The aleatory uncertainty represents the natural variation of the parameter and is therefore irreducible (i.e. the future evolution of the diesel price).
+Hence, the epistemic uncertainty (i.e. the uncertainty that is characterized by lack of knowledge, and that can be reduced by gaining more information) is not considered.
+The parameters affected by aleatory uncertainty are the grid electricity price, grid electricity GHG emissions, diesel price, energy consumption, 
+annual solar irradiance, average ambient temperature and the inflation rate.
+The uncertainty on the annual solar irradiance (:math:`\mathrm{u\_sol\_irr}`) 
+and the uncertainty on the annual average ambient temperature (:math:`\mathrm{u\_t\_amb}`) can be extracted from inter-annual variability.
+The characterization of the grid electricity price depends on the wholesale electricity price (:math:`\mathrm{elec\_cost}`), the profit 
+made by the distributor on this wholesale electricity price (:math:`\mathrm{elec\_cost\_profit}`) and the fraction of the retail electricity price that
+is represented by the wholesale electricity price (:math:`\mathrm{elec\_cost\_ratio}`). To illustrate, when :math:`\mathrm{elec\_cost\_ratio}` corresponds
+to 30%, then the final price for buying electricity from the grid depends for 30% on the wholesale electricity price and the profit made on this price, and for
+70% on other factors, e.g. distribution costs, taxes. The uncertainty on these three parameters follows from an evolving energy mix, market conditions and
+political decisions.
+Similar for the evolution of the diesel price (:math:`\mathrm{diesel\_cost}`) up to 2030, where the distribution integrates over low, middle and high diesel cost scenarios. 
+For the transport consumption, the uncertainty on the energy consumption per kilometer for diesel-fueled (:math:`\mathrm{cons\_diesel\_bus}`) and 
+hydrogen-fueled bus (:math:`\mathrm{cons\_h2\_bus}`) depends on the difference between predicted and real-world operating conditions.
+The uncertainty on the specific GHG emission for grid electricity consumption depends on the scenarios for the evolution of the electricity mix.
+The inflation rate (:math:`\mathrm{infl\_rate}`) is considered uncertain based on the unknown evolution of the inflation
+over the system lifetime, respectively. 
+The following table lists the uncertainty characterization of the specific parameters described above.
+
+.. list-table:: Stochastic space for the photovoltaic-hydrogen system
+   :widths: 40 40 40 30
+   :header-rows: 1
+   
+   * - parameter
+     - distribution
+     - unit
+     - ref.
+	 
+   * - :math:`\mathrm{u\_sol\_irr}`
+     - :math:`\mathcal{U}(90.1,109.9)` 
+     - :math:`\% ~ \mathrm{of} ~ \mathrm{annual} ~ \mathrm{solar} ~ \mathrm{irradiance}`
+     - :cite:`coppitters2020robust`
+
+   * - :math:`\mathrm{u\_t\_amb}`
+     - :math:`\mathcal{U}(-0.4,0.4)` 
+     - :math:`\mathrm{deviation} ~ \mathrm{from} ~ \mathrm{annual} ~ \mathrm{average} ~ \mathrm{in} ~ \mathrm{K}`
+     - :cite:`coppitters2020robust`
+
+   * - :math:`\mathrm{elec\_cost}`
+     - :math:`\mathcal{U}(46,97)` 
+     - :math:`{\large €} / \mathrm{MWh}`
+     - :cite:`coppitters2020robust`
+
+   * - :math:`\mathrm{elec\_cost\_profit}`
+     - :math:`\mathcal{U}(15,25)` 
+     - :math:`{\large €} / \mathrm{MWh}`
+     - :cite:`coppitters2020robust`
+
+   * - :math:`\mathrm{elec\_cost\_ratio}`
+     - :math:`\mathcal{U}(20,40)` 
+     - :math:`%`
+     - :cite:`coppitters2020robust`
+
+   * - :math:`\mathrm{diesel\_cost}`
+     - :math:`\mathcal{U}(1.42,2.31)` 
+     - :math:`{\large €} / \mathrm{l}`
+     - :cite:`duic2017eu28`
+
+   * - :math:`\mathrm{cons\_diesel\_bus}`
+     - :math:`\mathcal{U}(3.7,4.5)` 
+     - :math:`\mathrm{kWh} / \mathrm{km}`
+     - :cite:`frey2007comparing`
+
+   * - :math:`\mathrm{cons\_h2\_bus}`
+     - :math:`\mathcal{U}(3.0,3.2)` 
+     - :math:`\mathrm{kWh} / \mathrm{km}`
+     - :cite:`frey2007comparing`
+
+   * - :math:`\mathrm{co2\_elec}`
+     - :math:`\mathcal{U}(144,176)`
+     - :math:`\mathrm{g}_{\mathrm{CO}_{2,\mathrm{eq}}} \ \mathrm{kWh}`
+     - :cite:`co2elecdata`
+
+These uncertainties can be propagated through the system model, resulting in stochastic system outputs. The standard deviation of the system outputs, and the 
+impact of these uncertainties on the standard deviation of the system outputs, can be quantified by applying the uncertainty quantification algorithm (see :ref:`lab:uncertaintyquantification`),
+while the designs with optimized mean and the designs least-sensitive to these uncertainties can be found through robust design optimization (see :ref:`lab:runrdo`). 
+Not all these parameters need to be considered stochastic during these evaluations (e.g. the CAPEX of the components can be considered deterministic). To determine 
+which parameters are considered uncertain during the evaluation, we refer to :ref:`lab:stochasticdesignspace`.
 
 
+..
+	Power-to-industry
+	-----------------
+
+	renewable ammonia production
+
+	Power-to-gas
+	------------
+
+	not yet decided
 
 Data
 ----
@@ -383,7 +522,7 @@ As the energy demand is affected by the weather (i.e. space heating demand corre
 the analysis should be conducted with climate data that corresponds to the energy demand profiles. 
 Therefore, we adopt the Typical Meteorological Year data, hourly electricity demand data and hourly heat demand data provided by the National Renewable Energy Laboratory,
 as the former is used to construct the latter. To adapt the climate and demand profiles to the considered location, 
-we implemented the method from Montero Carrero et al.\ :cite:`Engine2019`.
+we implemented the method from Montero Carrero et al. :cite:`Engine2019`.
 
 In the provided hydrogen-based energy systems dependend on the solar irradiance, the yearly annual solar irradiance is provided as a model parameter in the form of a relative number
 to the provided yearly annual solar irradiance. In other words, characterizing 'sol_irr' with 1 in :file:`design_space` results 

@@ -101,9 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#power-to-fuel">11.1. Power-to-fuel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#power-to-power">11.2. Power-to-power</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#power-to-mobility">11.3. Power-to-mobility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#power-to-industry">11.4. Power-to-industry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#power-to-gas">11.5. Power-to-gas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data">11.6. Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data">11.4. Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">12. API reference</a></li>
@@ -186,11 +184,11 @@ For each valorization pathway, an energy system model is presented in this secti
 <span id="lab-pvelectrolyzermodel"></span><h2><span class="section-number">11.1. </span>Power-to-fuel<a class="headerlink" href="#power-to-fuel" title="Permalink to this headline">¶</a></h2>
 <p>In the power-to-fuel model, a photovoltaic array is coupled to an electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking.
 The electricity produced by the photovoltaic array is used to convert water into hydrogen and oxygen.</p>
-<div class="figure align-center" id="id43">
+<div class="figure align-center" id="id55">
 <a class="reference internal image-reference" href="_images/PV_ELEC_SCHEME.svg"><img alt="_images/PV_ELEC_SCHEME.svg" src="_images/PV_ELEC_SCHEME.svg" width="80%" /></a>
-<p class="caption"><span class="caption-text">The photovoltaic array is connected to the electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking.</span><a class="headerlink" href="#id43" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">The photovoltaic array is connected to the electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking.</span><a class="headerlink" href="#id55" title="Permalink to this image">¶</a></p>
 </div>
-<p>The photovoltaic array model and electrolyzer array model are adopted from the PVlib Python package <span id="id1">[<a class="reference internal" href="bibliography.html#id154">HHM18</a>]</span> and from Saeed et al. <span id="id2">[<a class="reference internal" href="bibliography.html#id137">SW15</a>]</span>, respectively.
+<p>The photovoltaic array model and electrolyzer array model are adopted from the PVlib Python package <span id="id1">[<a class="reference internal" href="bibliography.html#id157">HHM18</a>]</span> and from Saeed et al. <span id="id2">[<a class="reference internal" href="bibliography.html#id140">SW15</a>]</span>, respectively.
 The DC-DC converter operates at 100% electrical efficiency and the lifetime of the electrolyzer array is determined based on the number of operating hours during the evaluated year.
 For each system design, the Levelized Cost Of Hydrogen (LCOH) and the produced hydrogen <span class="math notranslate nohighlight">\(\dot{m}_{\mathrm{H}_2}\)</span> are considered the main performance indicators.
 The produced hydrogen is equal to the sum of the hourly produced hydrogen:</p>
@@ -215,10 +213,10 @@ DC-DC converter (<span class="math notranslate nohighlight">\(\mathrm{opex\_dcdc
 The interest rate (<span class="math notranslate nohighlight">\(\mathrm{int\_rate}\)</span>) and inflation rate (<span class="math notranslate nohighlight">\(\mathrm{infl\_rate}\)</span>) are considered uncertain based on the unknown finance type and unknown evolution of the inflation
 over the system lifetime, respectively. Finally, the lifetime of the electrolyzer array is considered uncertain (<span class="math notranslate nohighlight">\(\mathrm{life\_pemel}\)</span>) based on
 the lack of knowledge on the specific electrolyzer that will be adopted in the actual system.
-More details on the characterization of the stochastic parameters are described by Coppitters et al. <span id="id3">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span>.
+More details on the characterization of the stochastic parameters are described by Coppitters et al. <span id="id3">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span>.
 The following table lists the uncertainty characterization of the specific parameters described above.</p>
-<table class="colwidths-given docutils align-default" id="id44">
-<caption><span class="caption-text">Stochastic space for the photovoltaic-electrolyzer system</span><a class="headerlink" href="#id44" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id56">
+<caption><span class="caption-text">Stochastic space for the photovoltaic-electrolyzer system</span><a class="headerlink" href="#id56" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 27%" />
 <col style="width: 27%" />
@@ -236,62 +234,62 @@ The following table lists the uncertainty characterization of the specific param
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{u\_sol\_irr}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(90.1,109.9)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{annual} ~ \mathrm{solar} ~ \mathrm{irradiance}\)</span></p></td>
-<td><p><span id="id4">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id4">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{u\_t\_amb}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(-0.4,0.4)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathrm{deviation} ~ \mathrm{from} ~ \mathrm{annual} ~ \mathrm{average} ~ \mathrm{in} ~ \mathrm{K}\)</span></p></td>
-<td><p><span id="id5">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id5">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{capex\_pv}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(350,600)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}_\mathrm{p}\)</span></p></td>
-<td><p><span id="id6">[<a class="reference internal" href="bibliography.html#id138">InternationalEAgency19</a>]</span></p></td>
+<td><p><span id="id6">[<a class="reference internal" href="bibliography.html#id141">InternationalEAgency19</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{opex\_pv}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(16,19)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}_\mathrm{p} / \mathrm{year}\)</span></p></td>
-<td><p><span id="id7">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id7">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{capex\_pemel}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(1400,2100)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}\)</span></p></td>
-<td><p><span id="id8">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id8">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{opex\_pemel}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(3,5)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{capex\_pemel}\)</span></p></td>
-<td><p><span id="id9">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id9">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{repl\_pemel}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(15,20)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{capex\_pemel}\)</span></p></td>
-<td><p><span id="id10">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id10">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{life\_pemel}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(60000,100000)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathrm{operating} ~ \mathrm{hours}\)</span></p></td>
-<td><p><span id="id11">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id11">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{capex\_dcdc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(100,200)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}\)</span></p></td>
-<td><p><span id="id12">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id12">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{opex\_dcdc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(1,5)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{capex\_dcdc}\)</span></p></td>
-<td><p><span id="id13">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id13">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{int\_rate}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.04,0.08)\)</span></p></td>
 <td></td>
-<td><p><span id="id14">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id14">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{infl\_rate}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.01,0.03)\)</span></p></td>
 <td></td>
-<td><p><span id="id15">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id15">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -310,10 +308,10 @@ The hydrogen-based energy system consists of an electrolyzer stack, storage tank
 The electrolyzer array and fuel cell stack are integrated to store the excess of PV array electricity, while the fuel cell array
 generates electricity from the stored hydrogen when required.
 To transfer the DC electricity from the photovoltaic array and fuel cell array to the AC load, a DC-AC converter is connected.</p>
-<div class="figure align-center" id="id45">
+<div class="figure align-center" id="id57">
 <span id="fig-pvh2scheme"></span><a class="reference internal image-reference" href="_images/PV_H2_SCHEME.svg"><img alt="_images/PV_H2_SCHEME.svg" src="_images/PV_H2_SCHEME.svg" width="80%" /></a>
 <p class="caption"><span class="caption-text">The considered system includes the load connected to the grid and supported by a photovoltaic array and hydrogen-based energy system.
-The hydrogen-based energy system (electrolyzer, fuel cell and storage tank) enable the system to store an excess of PV array electricity and to comply, up to the available energy, with the demand when the solar irradiance is insufficient.</span><a class="headerlink" href="#id45" title="Permalink to this image">¶</a></p>
+The hydrogen-based energy system (electrolyzer, fuel cell and storage tank) enable the system to store an excess of PV array electricity and to comply, up to the available energy, with the demand when the solar irradiance is insufficient.</span><a class="headerlink" href="#id57" title="Permalink to this image">¶</a></p>
 </div>
 <p>To set the hierarchy between the subsystems, a typical power management strategy is implemented, which primarily aims to satisfy the demand.
 In this strategy, excess PV power (i.e. remaining PV power after complying with the power required by the load) is supplied to the electrolyzer stack.
@@ -321,8 +319,8 @@ When the hydrogen tank is full, or when the surplus power lies outside the elect
 the surplus energy is sold to the grid at the wholesale electricity price. In the opposite case, when the PV array does not cover the demand, the remaining demand is covered by the fuel cell array,
 if sufficient stored hydrogen is available and if the required power lies within the operating boundaries of the fuel cell array. If not, the grid covers the remaining demand.
 The price for buying electricity from the grid depends on the wholesale electricity price and the fraction of the wholesale electricity price to the retail electricity price.</p>
-<p>The photovoltaic array model and electrolyzer array model are adopted from the PVlib Python package <span id="id16">[<a class="reference internal" href="bibliography.html#id154">HHM18</a>]</span> and from Saeed et al. <span id="id17">[<a class="reference internal" href="bibliography.html#id137">SW15</a>]</span>, respectively.
-The fuel cell array model is adopted from Murugesan et al <span id="id18">[<a class="reference internal" href="bibliography.html#id149">MS13</a>]</span>. The DC-DC converters and DC-AC inverter operate at 100% electrical efficiency,
+<p>The photovoltaic array model and electrolyzer array model are adopted from the PVlib Python package <span id="id16">[<a class="reference internal" href="bibliography.html#id157">HHM18</a>]</span> and from Saeed et al. <span id="id17">[<a class="reference internal" href="bibliography.html#id140">SW15</a>]</span>, respectively.
+The fuel cell array model is adopted from Murugesan et al <span id="id18">[<a class="reference internal" href="bibliography.html#id152">MS13</a>]</span>. The DC-DC converters and DC-AC inverter operate at 100% electrical efficiency,
 and are sized based on the maximum power that passes through the component. The lifetime of the electrolyzer array and fuel cell array
 are determined based on the number of operating hours during the evaluated year.</p>
 <p>To evaluate the techno-economic performance of the system,
@@ -361,10 +359,10 @@ hydrogen storage tank (<span class="math notranslate nohighlight">\(\mathrm{opex
 The interest rate (<span class="math notranslate nohighlight">\(\mathrm{int\_rate}\)</span>) and inflation rate (<span class="math notranslate nohighlight">\(\mathrm{infl\_rate}\)</span>) are considered uncertain based on the unknown finance type and unknown evolution of the inflation
 over the system lifetime, respectively. Finally, the lifetime of the electrolyzer array and fuel cell array (<span class="math notranslate nohighlight">\(\mathrm{life\_pemel}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{life\_pemfc}\)</span>, respectively) are
 considered uncertain based on the lack of knowledge on the specific electrolyzer that will be adopted in the actual system.
-More details on the characterization of the stochastic parameters are described by Coppitters et al. <span id="id19">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span>.
+More details on the characterization of the stochastic parameters are described by Coppitters et al. <span id="id19">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span>.
 The following table lists the uncertainty characterization of the specific parameters described above.</p>
-<table class="colwidths-given docutils align-default" id="id46">
-<caption><span class="caption-text">Stochastic space for the photovoltaic-hydrogen system</span><a class="headerlink" href="#id46" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id58">
+<caption><span class="caption-text">Stochastic space for the photovoltaic-hydrogen system</span><a class="headerlink" href="#id58" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 27%" />
 <col style="width: 27%" />
@@ -382,112 +380,112 @@ The following table lists the uncertainty characterization of the specific param
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{u\_sol\_irr}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(90.1,109.9)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{annual} ~ \mathrm{solar} ~ \mathrm{irradiance}\)</span></p></td>
-<td><p><span id="id20">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id20">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{u\_t\_amb}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(-0.4,0.4)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathrm{deviation} ~ \mathrm{from} ~ \mathrm{annual} ~ \mathrm{average} ~ \mathrm{in} ~ \mathrm{K}\)</span></p></td>
-<td><p><span id="id21">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id21">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{u\_load\_elec}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(80,120)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{annual} ~ \mathrm{electric} ~ \mathrm{load}\)</span></p></td>
-<td><p><span id="id22">[<a class="reference internal" href="bibliography.html#id112">ZZL+13</a>]</span></p></td>
+<td><p><span id="id22">[<a class="reference internal" href="bibliography.html#id115">ZZL+13</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{elec\_cost}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(46,97)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{MWh}\)</span></p></td>
-<td><p><span id="id23">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id23">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{elec\_cost\_profit}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(15,25)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{MWh}\)</span></p></td>
-<td><p><span id="id24">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id24">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{elec\_cost\_ratio}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(20,40)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(%\)</span></p></td>
-<td><p><span id="id25">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id25">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{capex\_pv}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(350,600)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}_\mathrm{p}\)</span></p></td>
-<td><p><span id="id26">[<a class="reference internal" href="bibliography.html#id138">InternationalEAgency19</a>]</span></p></td>
+<td><p><span id="id26">[<a class="reference internal" href="bibliography.html#id141">InternationalEAgency19</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{opex\_pv}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(16,19)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}_\mathrm{p} / \mathrm{year}\)</span></p></td>
-<td><p><span id="id27">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id27">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{capex\_pemel}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(1400,2100)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}\)</span></p></td>
-<td><p><span id="id28">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id28">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{opex\_pemel}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(3,5)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{capex\_pemel}\)</span></p></td>
-<td><p><span id="id29">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id29">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{repl\_pemel}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(15,20)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{capex\_pemel}\)</span></p></td>
-<td><p><span id="id30">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id30">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{life\_pemel}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(60000,100000)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathrm{operating} ~ \mathrm{hours}\)</span></p></td>
-<td><p><span id="id31">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id31">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{capex\_pemfc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(1500,2400)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}\)</span></p></td>
-<td><p><span id="id32">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id32">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{opex\_pemfc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.045,0.135)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{h}\)</span></p></td>
-<td><p><span id="id33">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id33">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{repl\_pemfc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(25,30)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{capex\_pemfc}\)</span></p></td>
-<td><p><span id="id34">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id34">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{life\_pemfc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(20000,30000)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathrm{operating} ~ \mathrm{hours}\)</span></p></td>
-<td><p><span id="id35">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id35">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{capex\_tank}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(10.4,14.4)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kWh}\)</span></p></td>
-<td><p><span id="id36">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id36">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{opex\_tank}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(1,2)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{capex\_tank}\)</span></p></td>
-<td><p><span id="id37">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id37">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{capex\_dcdc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(100,200)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{kW}\)</span></p></td>
-<td><p><span id="id38">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id38">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{opex\_dcdc}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(1,5)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{capex\_dcdc}\)</span></p></td>
-<td><p><span id="id39">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id39">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{int\_rate}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.04,0.08)\)</span></p></td>
 <td></td>
-<td><p><span id="id40">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id40">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{infl\_rate}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mathcal{U}(0.01,0.03)\)</span></p></td>
 <td></td>
-<td><p><span id="id41">[<a class="reference internal" href="bibliography.html#id129">CDPC20</a>]</span></p></td>
+<td><p><span id="id41">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -499,24 +497,145 @@ which parameters are considered uncertain during the evaluation, we refer to <a 
 </div>
 <div class="section" id="power-to-mobility">
 <h2><span class="section-number">11.3. </span>Power-to-mobility<a class="headerlink" href="#power-to-mobility" title="Permalink to this headline">¶</a></h2>
-<p>renewable hydrogen production for a fleet of heavy-duty vehicles, e.g. trucks</p>
+<p>The mobility demand corresponds to a bus depot. The bus fleet at this depot can consist of
+hydrogen-fueled buses (i.e.powered by a hydrogen fuel cell), diesel-fueled buses or a mix of both. To determine the
+period in which these buses are fueled, the European daily bus refuelling profile is adopted <span id="id42">[<a class="reference internal" href="bibliography.html#id3">GWRM20</a>]</span>.
+The energy consumption for both bus types is determined based on the energy consumption per unit of distance covered.
+To fuel the hydrogen-fueled buses, an on-site, grid-connected hydrogen refueling station is considered. In this
+hydrogen refueling station, a photovoltaic array is connected to a DC bus bar through a DC-DC converter with Maximum Power Point Tracking.
+The hydrogen is generated, compressed and stored in a Proton Exchange Membrane electrolyzer array, compressor and storage tank, respectively.
+Before dispensation, the hydrogen is cooled down in a cooling unit.</p>
+<div class="figure align-center" id="id59">
+<span id="fig-pvmobscheme"></span><a class="reference internal image-reference" href="_images/PV_MOB_SCHEME.svg"><img alt="_images/PV_MOB_SCHEME.svg" src="_images/PV_MOB_SCHEME.svg" width="80%" /></a>
+<p class="caption"><span class="caption-text">The bus fleet can consist of hydrogen-fueled buses, diesel-fueled buses or a mix of both.
+For the hydrogen-fueled buses, a grid-connected hydrogen refueling station is considered.
+In the hydrogen refueling station, a photovoltaic array produces electricity to generate hydrogen in the electrolyzer.
+The produced hydrogen is compressed and stored in storage tanks. Before the dispensation of the hydrogen,
+the hydrogen is cooled down to 233 K to limit the temperature in the bus tank.</span><a class="headerlink" href="#id59" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="power-to-industry">
-<h2><span class="section-number">11.4. </span>Power-to-industry<a class="headerlink" href="#power-to-industry" title="Permalink to this headline">¶</a></h2>
-<p>renewable ammonia production</p>
-</div>
-<div class="section" id="power-to-gas">
-<h2><span class="section-number">11.5. </span>Power-to-gas<a class="headerlink" href="#power-to-gas" title="Permalink to this headline">¶</a></h2>
-<p>not yet decided</p>
+<p>The power management strategy for the hydrogen refueling station aims to continuously comply with the mobility demand.
+During the refueling period, hydrogen is extracted from the storage tank. When the storage tank is empty and the hydrogen
+demand is not satisfied, the remaining hydrogen is produced instantaneously in the electrolyzer array, compressed, cooled and dispensed.
+To power the electrolyzer array, compression and cooling, first PV electricity is considered, followed by the power from the battery stack.
+When the PV electricity does not comply with the electricity demand, grid electricity is used to cover the remaining demand.
+Alternatively, when the storage tank is able to comply with the mobility demand, the PV electricity is used to
+generate and compress hydrogen in the electrolyzer array and the compressor. The generated hydrogen is stored in the hydrogen storage tank.</p>
+<p>The photovoltaic array model and electrolyzer array model are adopted from the PVlib Python package <span id="id43">[<a class="reference internal" href="bibliography.html#id157">HHM18</a>]</span> and from Saeed et al. <span id="id44">[<a class="reference internal" href="bibliography.html#id140">SW15</a>]</span>, respectively.
+The DC-DC converters and DC-AC inverter operate at 100% electrical efficiency, and are sized based on the maximum power that passes through the component.
+The lifetime of the electrolyzer array is determined based on the number of operating hours during the evaluated year.</p>
+<p>To evaluate the performance of the system, the Levelized Cost Of Driving (LCOD) and Carbon Intensity (CI) are selected. These performance indicators
+indicate the techno-economic and environmental performance of the system.
+The LCOD is presented as the annualized system cost over the annual distance travelled by the fleet:</p>
+<p><span class="math notranslate nohighlight">\(\mathrm{LCOD} = \dfrac{\mathrm{CAPEX}_\mathrm{a} + \mathrm{OPEX}_\mathrm{a} + \mathrm{Repl}_\mathrm{a} + G_\mathrm{c,a} - G_\mathrm{s,a} + \mathrm{diesel}_\mathrm{a}}{D}\)</span>.</p>
+<p>To determine the system cost, the annualized investment cost of all components <span class="math notranslate nohighlight">\(\mathrm{CAPEX}_\mathrm{a}\)</span>, annualized operational cost <span class="math notranslate nohighlight">\(\mathrm{OPEX}_\mathrm{a}\)</span>, annualized replacement cost <span class="math notranslate nohighlight">\(R_\mathrm{c,a}\)</span>,
+grid electricity cost <span class="math notranslate nohighlight">\(G_\mathrm{c,a}\)</span>, the gain from selling excess electricity <span class="math notranslate nohighlight">\(G_\mathrm{s,a}\)</span> and the annual diesel cost to fuel the diesel-fueled buses <span class="math notranslate nohighlight">\(\mathrm{diesel}_\mathrm{a}\)</span> are evaluated.
+<span class="math notranslate nohighlight">\(D\)</span> represents the annual distance travelled by the fleet.</p>
+<p>Similarly to the LCOD, the environmental performance indicator evaluates the annualized GHG emission of the system per unit of distance travelled by the bus fleet,
+i.e. Carbon Intensity (<span class="math notranslate nohighlight">\(\mathrm{CI}\)</span>). The system GHG emissions represents the sum of the GHG emissions during construction of the components <span class="math notranslate nohighlight">\({\mathrm{GHG}}_\mathrm{comp,a}\)</span>,
+the GHG emissions from grid electricity consumption <span class="math notranslate nohighlight">\(\mathrm{GHG}_\mathrm{grid,a}\)</span> and the well-to-wheel GHG emissions from diesel consumption <span class="math notranslate nohighlight">\(\mathrm{GHG}_\mathrm{diesel,a}\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\mathrm{CI} = \dfrac{{\mathrm{GHG}}_\mathrm{comp,a} + \mathrm{GHG}_\mathrm{grid,a} + \mathrm{GHG}_\mathrm{diesel,a}}{D}\)</span>.</p>
+<p>In addition to these performance indicators, additional model outputs are present, such as the amoun of grid electricity sold and bought.
+To select other model outputs as optimization objectives, we refer to <a class="reference internal" href="connecting%20your%20own%20model.html#lab-wrapper"><span class="std std-ref">Python wrapper</span></a>.</p>
+<p>To optimize these performance indicators, the capacity of the photovoltaic array (<span class="math notranslate nohighlight">\(\mathrm{n\_pv}\)</span>, <span class="math notranslate nohighlight">\(\mathrm{kW}_\mathrm{p}\)</span>), electrolyzer array (<span class="math notranslate nohighlight">\(\mathrm{n\_pemel}\)</span>, <span class="math notranslate nohighlight">\(\mathrm{kW}\)</span>),
+hydrogen storage tank (<span class="math notranslate nohighlight">\(\mathrm{n\_pemel}\)</span>, <span class="math notranslate nohighlight">\(\mathrm{kWh}\)</span>) and the number of buses fueled by hydrogen (<span class="math notranslate nohighlight">\(\mathrm{n\_h2\_bus}\)</span>) are considered as
+design variables. The capacity of the compressor and the cooling is quantified based on the highest hydrogen mass flow rate that is compressed and cooled during the evaluated year.</p>
+<p>In the default uncertainty characterization of this model in this framework, only the aleatory uncertainty on the model parameters is considered.
+The aleatory uncertainty represents the natural variation of the parameter and is therefore irreducible (i.e. the future evolution of the diesel price).
+Hence, the epistemic uncertainty (i.e. the uncertainty that is characterized by lack of knowledge, and that can be reduced by gaining more information) is not considered.
+The parameters affected by aleatory uncertainty are the grid electricity price, grid electricity GHG emissions, diesel price, energy consumption,
+annual solar irradiance, average ambient temperature and the inflation rate.
+The uncertainty on the annual solar irradiance (<span class="math notranslate nohighlight">\(\mathrm{u\_sol\_irr}\)</span>)
+and the uncertainty on the annual average ambient temperature (<span class="math notranslate nohighlight">\(\mathrm{u\_t\_amb}\)</span>) can be extracted from inter-annual variability.
+The characterization of the grid electricity price depends on the wholesale electricity price (<span class="math notranslate nohighlight">\(\mathrm{elec\_cost}\)</span>), the profit
+made by the distributor on this wholesale electricity price (<span class="math notranslate nohighlight">\(\mathrm{elec\_cost\_profit}\)</span>) and the fraction of the retail electricity price that
+is represented by the wholesale electricity price (<span class="math notranslate nohighlight">\(\mathrm{elec\_cost\_ratio}\)</span>). To illustrate, when <span class="math notranslate nohighlight">\(\mathrm{elec\_cost\_ratio}\)</span> corresponds
+to 30%, then the final price for buying electricity from the grid depends for 30% on the wholesale electricity price and the profit made on this price, and for
+70% on other factors, e.g. distribution costs, taxes. The uncertainty on these three parameters follows from an evolving energy mix, market conditions and
+political decisions.
+Similar for the evolution of the diesel price (<span class="math notranslate nohighlight">\(\mathrm{diesel\_cost}\)</span>) up to 2030, where the distribution integrates over low, middle and high diesel cost scenarios.
+For the transport consumption, the uncertainty on the energy consumption per kilometer for diesel-fueled (<span class="math notranslate nohighlight">\(\mathrm{cons\_diesel\_bus}\)</span>) and
+hydrogen-fueled bus (<span class="math notranslate nohighlight">\(\mathrm{cons\_h2\_bus}\)</span>) depends on the difference between predicted and real-world operating conditions.
+The uncertainty on the specific GHG emission for grid electricity consumption depends on the scenarios for the evolution of the electricity mix.
+The inflation rate (<span class="math notranslate nohighlight">\(\mathrm{infl\_rate}\)</span>) is considered uncertain based on the unknown evolution of the inflation
+over the system lifetime, respectively.
+The following table lists the uncertainty characterization of the specific parameters described above.</p>
+<table class="colwidths-given docutils align-default" id="id60">
+<caption><span class="caption-text">Stochastic space for the photovoltaic-hydrogen system</span><a class="headerlink" href="#id60" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 27%" />
+<col style="width: 27%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>distribution</p></th>
+<th class="head"><p>unit</p></th>
+<th class="head"><p>ref.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{u\_sol\_irr}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(90.1,109.9)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\% ~ \mathrm{of} ~ \mathrm{annual} ~ \mathrm{solar} ~ \mathrm{irradiance}\)</span></p></td>
+<td><p><span id="id45">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{u\_t\_amb}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(-0.4,0.4)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathrm{deviation} ~ \mathrm{from} ~ \mathrm{annual} ~ \mathrm{average} ~ \mathrm{in} ~ \mathrm{K}\)</span></p></td>
+<td><p><span id="id46">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{elec\_cost}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(46,97)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{MWh}\)</span></p></td>
+<td><p><span id="id47">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{elec\_cost\_profit}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(15,25)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{MWh}\)</span></p></td>
+<td><p><span id="id48">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{elec\_cost\_ratio}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(20,40)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(%\)</span></p></td>
+<td><p><span id="id49">[<a class="reference internal" href="bibliography.html#id132">CDPC20</a>]</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{diesel\_cost}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(1.42,2.31)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\large €} / \mathrm{l}\)</span></p></td>
+<td><p><span id="id50">[<a class="reference internal" href="bibliography.html#id77">DuicvStefanicLulic+17</a>]</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{cons\_diesel\_bus}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(3.7,4.5)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathrm{kWh} / \mathrm{km}\)</span></p></td>
+<td><p><span id="id51">[<a class="reference internal" href="bibliography.html#id5">FRZ+07</a>]</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathrm{cons\_h2\_bus}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(3.0,3.2)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathrm{kWh} / \mathrm{km}\)</span></p></td>
+<td><p><span id="id52">[<a class="reference internal" href="bibliography.html#id5">FRZ+07</a>]</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{co2\_elec}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{U}(144,176)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathrm{g}_{\mathrm{CO}_{2,\mathrm{eq}}} \ \mathrm{kWh}\)</span></p></td>
+<td><p><span id="id53">[<a class="reference internal" href="bibliography.html#id4">UnitedNFCfCChange20</a>]</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>These uncertainties can be propagated through the system model, resulting in stochastic system outputs. The standard deviation of the system outputs, and the
+impact of these uncertainties on the standard deviation of the system outputs, can be quantified by applying the uncertainty quantification algorithm (see <a class="reference internal" href="uncertainty%20quantification.html#lab-uncertaintyquantification"><span class="std std-ref">Run the uncertainty quantification</span></a>),
+while the designs with optimized mean and the designs least-sensitive to these uncertainties can be found through robust design optimization (see <a class="reference internal" href="optimization.html#lab-runrdo"><span class="std std-ref">Run robust optimization</span></a>).
+Not all these parameters need to be considered stochastic during these evaluations (e.g. the CAPEX of the components can be considered deterministic). To determine
+which parameters are considered uncertain during the evaluation, we refer to <a class="reference internal" href="stochastic%20design%20space.html#lab-stochasticdesignspace"><span class="std std-ref">Define the design and stochastic spaces</span></a>.</p>
 </div>
 <div class="section" id="data">
-<h2><span class="section-number">11.6. </span>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">11.4. </span>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
 <p>The system performance depends on the climate and if present, on the electricity demand and heating demand.
 As the energy demand is affected by the weather (i.e. space heating demand correlates with the ambient temperature and solar irradiance),
 the analysis should be conducted with climate data that corresponds to the energy demand profiles.
 Therefore, we adopt the Typical Meteorological Year data, hourly electricity demand data and hourly heat demand data provided by the National Renewable Energy Laboratory,
 as the former is used to construct the latter. To adapt the climate and demand profiles to the considered location,
-we implemented the method from Montero Carrero et al.<span id="id42">[<a class="reference internal" href="bibliography.html#id123">MonteroCarreroSanchezP+19</a>]</span>.</p>
+we implemented the method from Montero Carrero et al. <span id="id54">[<a class="reference internal" href="bibliography.html#id126">MonteroCarreroSanchezP+19</a>]</span>.</p>
 <p>In the provided hydrogen-based energy systems dependend on the solar irradiance, the yearly annual solar irradiance is provided as a model parameter in the form of a relative number
 to the provided yearly annual solar irradiance. In other words, characterizing ‘sol_irr’ with 1 in <code class="file docutils literal notranslate"><span class="pre">design_space</span></code> results
 in a yearly annual solar irradiance equal to the sum of the hourly solar irradiance values provided in the dataset for the specific location.
