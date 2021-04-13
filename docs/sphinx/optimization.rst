@@ -42,6 +42,11 @@ located in the :py:mod:`optimization` module, which starts the optimization proc
 
     rheia_opt.run_opt(dict_opt)
 
+.. warning::
+   When parallel processing is considered (i.e. :py:data:`dict_opt['n jobs']` > 1), 
+   calling the :py:func:`run_opt()` function should be protected as the main 
+   entry point using :py:data:`if __name__ == '__main__'`:
+
 The dictionary includes necessary items and optional items. The items are clarified in the following sections.
 
 Necessary items
@@ -53,7 +58,7 @@ If one of these items is not provided, the code will return an error.
 'case': case_name
 ~~~~~~~~~~~~~~~~~
 
-The string `case_name` corresponds to the name of the case. 
+The string :py:data:`case_name` corresponds to the name of the case. 
 This name should be equal to the name of the folder that comprises the case, which situates in the folder that contains the cases (i.e. :file:`CASES`). 
 To illustrate, if the optimization case is defined in :file:`CASES\\CASE_1`, 
 the dictionary includes the following item::
@@ -63,12 +68,12 @@ the dictionary includes the following item::
 'objectives': {opt_type: (weights)} 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the item with `objectives` key, the optimization type and the weigths for the objectives are specified. 
-Two optimization types are available: deterministic optimization ('DET') and robust optimization ('ROB').
+In the item with :py:data:`'objectives'` key, the optimization type and the weigths for the objectives are specified. 
+Two optimization types are available: deterministic optimization (:py:data:`'DET'`) and robust optimization (:py:data:`'ROB'`).
 The weights are defined in a tuple and determine if the objective is either maximized or minimized.
 When minimization of an objective is desired, the weigth corresponds to -1. 
 Instead, when maximization is desired, the weight corresponds to 1. 
-For deterministic optimization ('DET'), the order of the weights corresponds to the order of the model outputs
+For deterministic optimization (:py:data:`'DET'`), the order of the weights corresponds to the order of the model outputs
 returned by the method :py:meth:`evaluate()` (see :ref:`lab:wrapper`).  
 For instance, for 2 objectives which should be minimized simultaneously in a deterministic optimization, the dictionary item reads::
 
@@ -114,7 +119,7 @@ The stopping criterium for the optimization is defined by the computational budg
 This is a common engineering stopping criterium, which is defined based on the time available
 to perform the optimization. To illustrate, when the system model takes 10 seconds to evaluate and 4 cores are available for parallel processing, 
 the computational budget for a deterministic optimization procedure of 1 hour is equal to 1440.
-The allocation of this computational budget through the integer `comp_budget` is illustrated below::
+The allocation of this computational budget through the integer :py:data:`comp_budget` is illustrated below::
 
 	'stop': ('BUDGET', 1440)
 
@@ -122,7 +127,7 @@ The allocation of this computational budget through the integer `comp_budget` is
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 The result directory corresponds to the folder where the results are stored. 
-For an illustrative deterministic optimization (`DET`) of a case (`CASE_1`), the results are stored in the folder :file:`RESULTS\\CASE_1\\DET\\results_1` 
+For an illustrative deterministic optimization (:py:data:`'DET'`) of a case (:py:data:`'CASE_1'`), the results are stored in the folder :file:`RESULTS\\CASE_1\\DET\\results_1` 
 by initiating the following key-value pair in the dictionary::
 
 'results dir': 'results_1'
@@ -152,17 +157,17 @@ The default configuration for these optional items is::
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Information can be provided to characterize the starting population. If no information is available on the starting population, 
-the population can be generated automatically by defining the string `pop_type` with 'AUTO'. 
-When 'AUTO' is selected, there are two ways of generating the population automatically: 
-randomly (`pop_method` = 'RANDOM') or through Latin Hypercube Sampling (`pop_method` = 'LHS'). 
+the population can be generated automatically by defining the string :py:data:`pop_type` with :py:data:`'AUTO'`. 
+When :py:data:`'AUTO'` is selected, there are two ways of generating the population automatically: 
+randomly (:py:data:`pop_method` = :py:data:`'RANDOM'`) or through Latin Hypercube Sampling (:py:data:`pop_method` = :py:data:`'LHS'`). 
 The default configuration for this item is the generation of the first population through LHS::
 
 	'x0': ('AUTO', 'LHS')
 
-Alternatively, when information on the starting population is available, the `pop_type` should be defined by 'CUSTOM'. 
+Alternatively, when information on the starting population is available, the :py:data:`pop_type` should be defined by :py:data:`'CUSTOM'`. 
 In that case, the starting population should be provided in a separate file,
-located in the case folder. The name of the file corresponds to the string that defines `pop_method`. 
-To illustrate for 'CASE_1', with a starting population saved in :file:`CASES\\CASE_1\\x0_start`, the item is defined as::
+located in the case folder. The name of the file corresponds to the string that defines :py:data:`pop_method`. 
+To illustrate for :py:data:`'CASE_1'`, with a starting population saved in :file:`CASES\\CASE_1\\x0_start`, the item is defined as::
 
 	'x0': ('CUSTOM', 'x0_start')
 
@@ -223,7 +228,7 @@ The default value corresponds to linear processing::
 
 	'n jobs': 1
 	
-Alternatively, the number of parallel processes can be retreived through the `cpu_count` function from the multiprocessing package.
+Alternatively, the number of parallel processes can be retreived through the :py:data:`cpu_count` function from the multiprocessing package.
 After importing multiprocessing, the item can be defined by::
 
     'n jobs': int(multiprocessing.cpu_count()/2)
@@ -247,7 +252,7 @@ When combining the examples in the previous section, a configurated optimization
 
     In [4]: rheia_opt.run_opt(dict_opt)
 
-In the example below, parallel processing is considered, the optimization starts from a predefined population, defined in `x0_start`, 
+In the example below, parallel processing is considered, the optimization starts from a predefined population, defined in :py:data:`'x0_start'`, 
 and the crossover probability is decreased to 0.85:
 
 .. code-block:: python
@@ -268,6 +273,10 @@ and the crossover probability is decreased to 0.85:
 
     rheia_opt.run_opt(dict_opt)
 
+.. warning::
+   When parallel processing is considered (i.e. :py:data:`dict_opt['n jobs']` > 1), 
+   calling the :py:func:`run_opt()` function should be protected as the main 
+   entry point using :py:data:`if __name__ == '__main__'`:
 
 .. _lab:runrdo:
 
@@ -298,7 +307,7 @@ and uncertainty quantification should be completed::
                 'sampling method':       sampling_method         #optional, default is 'SOBOL'
                 }
 
-This dictionary is used as the argument for the `run_opt()` function, which starts the optimization procedure::
+This dictionary is used as the argument for the :py:func:`run_opt()` function, which starts the optimization procedure::
 
     rheia_opt.run_opt(dict_opt)
 
@@ -327,7 +336,7 @@ Determining the appropriate polynomial order is case-specific. A method to deter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The model might return several outputs (i.e. for multi-objective optimization).
-The names of the different model outputs can be provided in the list `objective_names`. 
+The names of the different model outputs can be provided in the list :py:data:`objective_names`. 
 These names are chosen freely by the user, formatted in a string.
 If the model returns 3 outputs, the list can be constructed as::
 
@@ -335,17 +344,18 @@ If the model returns 3 outputs, the list can be constructed as::
  
 
 .. _lab:secobjofint:
+
 'objective of interest': obj_of_interest
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Despite that several outputs can be returned for each model evaluation, not all outputs might be of interest for the robust optimization.
-The quantities of interest should be provided in the list `obj_of_interest`. These names should be present in the list of all the objective names.
-To illustrate, for a robust optimization with the mean and standard deviation of 'output_2' and 'output_3' as objectives, 
+The quantities of interest should be provided in the list :py:data:`obj_of_interest`. These names should be present in the list of all the objective names.
+To illustrate, for a robust optimization with the mean and standard deviation of :py:data:`'output_2'` and :py:data:`'output_3'` as objectives, 
 the item in the dictionary is configurated as::
 
 	'objective of interest': ['output_2','output_3']
 
-Instead, if a robust optimization is desired with 'output_3' as quantity of interest::
+Instead, if a robust optimization is desired with :py:data:`'output_3'` as quantity of interest::
 
 	'objective of interest': ['output_3']
 
@@ -361,7 +371,7 @@ The item is described below.
 
 For the construction of a PCE, a number of model evaluation are required (see :ref:`lab:pce`). These samples can be generated
 in two different ways: randomly, or through a Sobol' sequence. 
-The random generation is called through the string 'RANDOM', while the Sobol' sequence is initiated through 'SOBOL'.
+The random generation is called through the string :py:data:`'RANDOM'`, while the Sobol' sequence is initiated through :py:data:`'SOBOL'`.
 The default configuration for generating the samples for PCE is through a Sobol' sequence::
 
 	'sampling method': 'SOBOL'
@@ -453,7 +463,7 @@ the design space is performed as follows:
 After providing the name of the case, a dictionary with the design variable names, lower bounds and upper bounds can be defined
 via the :py:func:`get_design_variables` function.
 From this dictionary, the design samples can be constructed through LHS via :py:func:`set_design_samples`. 
-Then, for each design sample in the array `X`, a :file:`design_space` file is constructed through the function :py:func:`write_design_space()`. 
+Then, for each design sample in the array :py:data:`X`, a :file:`design_space` file is constructed through the function :py:func:`write_design_space()`. 
 For each :file:`design_space` file, the PCE is constructed through the characterization of the uncertainty quantification dictionary. 
 For more information on the characterization of this dictionary, we refer to :ref:`lab:uncertaintyquantification`.
 The uncertainty quantification dictionary and the specific :file:`design_space` file is then provided to the :py:func:`run_uq` function.
@@ -469,7 +479,7 @@ Considering the specific dictionary determined above, the results for the differ
                 sample_3
                 sample_4
 	
-Where in each folder, the LOO error is stored in `full_PCE_order_1_obj_1`.
+Where in each folder, the LOO error is stored in :file:`full_PCE_order_1_obj_1`.
 
 Determine the polynomial order
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -549,8 +559,8 @@ Post-processing of the results
 ------------------------------
 
 An illustrative path directs towards the result files from optimization, 
-for which the path depends on the case name (e.g. `CASE_1`), the analysis type (DET or ROB)
-and the results directory (e.g. `results_1`), is defined as follows: :file:`\\RESULTS\\CASE_1\\DET\\results_1`.
+for which the path depends on the case name (e.g. :py:data:`'CASE_1'`), the analysis type (:py:data:`'DET'` or :py:data:`'ROB'`)
+and the results directory (e.g. :py:data:`'results_1'`), is defined as follows: :file:`\\RESULTS\\CASE_1\\DET\\results_1`.
 In this folder, 3 folder are present: :file:`STATUS`, :file:`fitness` and :file:`population`.
 The :file:`STATUS` file consists of two columns: ITER and EVALS. In ITER, the finished generation number is saved, while the corresponding number in EVALS
 provides the actual computational budget spent after completing that generation.
@@ -591,7 +601,7 @@ Plotting the results can be performed as follows:
     plt.show()
 
 The method :py:meth:`get_fitness_population()` returns, for the last available generation, the fitness values and the population.
-Alternatively, a number of generations can be plotted on the same graph by defining the optional argument :py:obj:`gen`. 
+Alternatively, a number of generations can be plotted on the same graph by defining the optional argument :py:data:`gen`. 
 This enables to evaluate the convergence of the result. To illustrate, plotting 
 generation 5, 15 and 25 can be done as follows:
 

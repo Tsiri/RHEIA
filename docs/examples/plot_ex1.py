@@ -25,7 +25,7 @@ hydrogen-based power-to-power system for a dwelling in Belgium.
 import rheia.POST_PROCESS.lib_post_process as rheia_pp
 import matplotlib.pyplot as plt
 
-case = 'PV_H2'
+case = 'H2_POWER'
 
 my_post_process = rheia_pp.PostProcess(case)
 

@@ -20,18 +20,19 @@ To perform a deterministic optimization, the following optimization dictionary h
 .. code-block:: python
    :linenos:
 
-    import rheia.OPT.optimization as rheia_opt
-    import multiprocessing as mp
+   import rheia.OPT.optimization as rheia_opt
+   import multiprocessing as mp
 
-    dict_opt = {'case':                'PV_ELEC',
-                'objectives':          {'DET': (-1, 1)}, 
-                'stop':                ('BUDGET', 2000),
-                'n jobs':              int(mp.cpu_count() / 2), 
-                'population size':     20,
-                'results dir':         'run_1',
-                }
+   dict_opt = {'case':                'H2_FUEL',
+               'objectives':          {'DET': (-1, 1)}, 
+               'stop':                ('BUDGET', 2000),
+               'n jobs':              int(mp.cpu_count() / 2), 
+               'population size':     20,
+               'results dir':         'run_1',
+               }
 
-    rheia_opt.run_opt(dict_opt)
+   if __name__ == '__main__':
+       rheia_opt.run_opt(dict_opt)
 
 In the dictionary, the case folder name `PV_ELEC` is provided, followed by the optimization type `DET` and the weigths for both objectives, 
 i.e. minimization for the first returned objective `lcoh` and maximization for the second returned objective `mH2`. 
@@ -54,32 +55,32 @@ The objectives and the corresponding inputs are plotted in function of the LCOH 
 .. code-block:: python
    :linenos:
 
-    import rheia.POST_PROCESS.lib_post_process as rheia_pp
-    import matplotlib.pyplot as plt
+   import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import matplotlib.pyplot as plt
 
-    case = 'PV_ELEC'
+   case = 'H2_FUEL'
 
-    my_post_process = rheia_pp.PostProcess(case)
+   my_post_process = rheia_pp.PostProcess(case)
 
-    eval_type = 'DET'
+   eval_type = 'DET'
 
-    my_opt_plot = rheia_pp.PostProcessOpt(my_post_process, eval_type)
+   my_opt_plot = rheia_pp.PostProcessOpt(my_post_process, eval_type)
 
-    result_dir = 'run_tutorial'
+   result_dir = 'run_tutorial'
 
-    y, x = my_opt_plot.get_fitness_population(result_dir)
+   y, x = my_opt_plot.get_fitness_population(result_dir)
 
-    plt.plot(y[0], y[1], '-o')
-    plt.xlabel('LCOH [euro/kg]')
-    plt.ylabel('m_h2 [kg]')
-    plt.show()
+   plt.plot(y[0], y[1], '-o')
+   plt.xlabel('LCOH [euro/kg]')
+   plt.ylabel('m_h2 [kg]')
+   plt.show()
 
-    for x_in in x:
-        plt.plot(y[0], x_in, '-o')
-    plt.legend(['n_dcdc_pv', 'n_elec'])
-    plt.xlabel('LCOH [euro/kg]')
-    plt.ylabel('capacity [kW]')
-    plt.show()
+   for x_in in x:
+       plt.plot(y[0], x_in, '-o')
+   plt.legend(['n_dcdc_pv', 'n_elec'])
+   plt.xlabel('LCOH [euro/kg]')
+   plt.ylabel('capacity [kW]')
+   plt.show()
 
 In this code block, a :py:class:`post_process` instance is instantiated first, followed by an :py:class:`optimization_plot` instance which contains 
 specific information on the optimization results. The fitness values and design samples can be plotted for the final generation 
@@ -117,24 +118,28 @@ We refer to :ref:`lab:detpolorder` for more details on this method.
 .. code-block:: python
    :linenos:
 
-    import rheia.UQ.uncertainty_quantification as rheia_uq
+   import rheia.UQ.uncertainty_quantification as rheia_uq
+   import multiprocessing as mp
 
-    n_des_var = 20
+   case = 'H2_FUEL'
 
-    var_dict = rheia_uq.get_design_variables(case)
+   n_des_var = 20
 
-    X = rheia_uq.set_design_samples(var_dict, n_des_var)
+   var_dict = rheia_uq.get_design_variables(case)
 
-    for iteration, x in enumerate(X):
-         rheia_uq.write_design_space(case, iteration, var_dict, x)
-         dict_uq = {'case':                  case,
-                    'n jobs':                int(mp.cpu_count()/2),
-                    'pol order':             1,
-                    'objective names':       ['LCOH','mh2'],
-                    'objective of interest': 'LCOH',
-                    'results dir':           'sample_%i' %iteration      
-                   }   
-        rheia_uq.run_uq(dict_uq, design_space = 'design_space_%i' %iteration)
+   X = rheia_uq.set_design_samples(var_dict, n_des_var)
+
+   for iteration, x in enumerate(X):
+       rheia_uq.write_design_space(case, iteration, var_dict, x)
+       dict_uq = {'case':                  case,
+                  'n jobs':                int(mp.cpu_count()/2),
+                  'pol order':             1,
+                  'objective names':       ['LCOH','mh2'],
+                  'objective of interest': 'LCOH',
+                  'results dir':           'sample_tutorial_%i' %iteration      
+                  }   
+       if __name__ == '__main__':
+           rheia_uq.run_uq(dict_uq, design_space = 'design_space_tutorial_%i' %iteration)
 
 The functions :py:func:`get_design_variables` and :py:func:`set_design_samples`
 are used to collect the bounds of the design variables and to generate the samples through Latin Hypercube Sampling, respectively.
@@ -142,7 +147,6 @@ Then, :file:`design_space` files are created through :py:func:`write_design_spac
 -- one for each design sample -- and a PCE is constructed for each sample. 
 At first, a polynomial degree of 1 is selected for evaluation.
 
-The results for each PCE is stored in :file:`RESULTS\\PV_ELEC\\UQ\\sample_0` ... :file:`\\sample_19`.
 For this tutorial, results were generated in advance and stored in :file:`RESULTS\\PV_ELEC\\UQ\\sample_tutorial_0` ... :file:`\\sample_tutorial_19`.
 To determine the worst-case LOO error for the 20 design samples, a :py:class:`post_process_uq` class object is instantiated, 
 followed by the call of the :py:meth:`get_loo` method:
@@ -150,25 +154,25 @@ followed by the call of the :py:meth:`get_loo` method:
 .. code-block:: python
    :linenos:
 
-    import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import rheia.POST_PROCESS.lib_post_process as rheia_pp
 
-    case = 'PV_ELEC'
+   case = 'H2_FUEL'
 
-    my_post_process = rheia_pp.PostProcess(case)
+   my_post_process = rheia_pp.PostProcess(case)
 
-    pol_order = 1
+   pol_order = 1
 
-    my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
+   my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
 
-    result_dirs = ['sample_tutorial_%i' %i for i in range(20)]
+   result_dirs = ['sample_tutorial_%i' %i for i in range(20)]
 
-    objective = 'LCOH'
+   objective = 'LCOH'
 
-    loo = [0]*20
-    for index, result_dir in enumerate(result_dirs):
-        loo[index] = my_post_process_uq.get_loo(result_dir, objective)
+   loo = [0]*20
+   for index, result_dir in enumerate(result_dirs):
+       loo[index] = my_post_process_uq.get_loo(result_dir, objective)
 
-    print(max(loo))
+   print(max(loo))
  
 For the samples provided within the framework (i.e. :file:`\\sample_tutorial_0` ... :file:`\\sample_tutorial_19`) and a maximum polynomial order 1, 
 the worst-case LOO error is 0.0701.
@@ -191,21 +195,21 @@ For a polynomial order of 2, the stochastic parameters with a negligible Sobol' 
 .. code-block:: python
    :linenos:
 
-    import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import rheia.POST_PROCESS.lib_post_process as rheia_pp
 
-    case = 'PV_ELEC'
+   case = 'H2_FUEL'
 
-    my_post_process = rheia_pp.PostProcess(case)
+   my_post_process = rheia_pp.PostProcess(case)
 
-    pol_order = 2
+   pol_order = 2
 
-    my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
+   my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
 
-    result_dirs = ['sample_tutorial_%i' %i for i in range(20)]
+   result_dirs = ['sample_tutorial_%i' %i for i in range(20)]
 
-    objective = 'LCOH'
+   objective = 'LCOH'
 
-    my_post_process_uq.get_max_sobol(result_dirs, objective, threshold=1./12.)	
+   my_post_process_uq.get_max_sobol(result_dirs, objective, threshold=1./12.)	
 
 A threshold for the Sobol' index is set at 1/12 (= 1/number of uncertain parameters).
 5 out of 12 stochastic parameters have a maximum Sobol' index below the threshold, 
@@ -231,21 +235,22 @@ The code is similar than for the deterministic design optimization procedure. Th
 .. code-block:: python
    :linenos:
 
-    import rheia.OPT.optimization as rheia_opt
-    import multiprocessing as mp
+   import rheia.OPT.optimization as rheia_opt
+   import multiprocessing as mp
 
-    dict_opt = {'case':                  'PV_ELEC',
-                'objectives':            {'ROB': (-1, -1)}, 
-                'stop':                  ('BUDGET', 2000),
-                'n jobs':                int(mp.cpu_count() / 2), 
-                'population size':       20,
-                'results dir':           'run_tutorial',
-                'pol order':             2,
-                'objective names':       ['LCOH', 'mh2'],
-                'objective of interest': ['LCOH'],
-                }
+   dict_opt = {'case':                  'H2_FUEL',
+               'objectives':            {'ROB': (-1, -1)}, 
+               'stop':                  ('BUDGET', 2000),
+               'n jobs':                int(mp.cpu_count() / 2), 
+               'population size':       20,
+               'results dir':           'run_tutorial',
+               'pol order':             2,
+               'objective names':       ['LCOH', 'mh2'],
+               'objective of interest': ['LCOH'],
+               }
 
-    rheia_opt.run_opt(dict_opt)
+   if __name__ == '__main__':
+       rheia_opt.run_opt(dict_opt)
 
 Again, a population of 20 samples is selected. 
 With 72 model evaluations required per design sample, a computational budget of 72000 is selected to reach at least 50 generations.
@@ -255,32 +260,32 @@ Similar to the deterministic design optimization, the optimization results can b
 .. code-block:: python
    :linenos:
 
-    import rheia.POST_PROCESS.lib_post_process as rheia_pp
-    import matplotlib.pyplot as plt
+   import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import matplotlib.pyplot as plt
 
-    case = 'PV_ELEC'
+   case = 'H2_FUEL'
 
-    my_post_process = rheia_pp.PostProcess(case)
+   my_post_process = rheia_pp.PostProcess(case)
 
-    eval_type = 'ROB'
+   eval_type = 'ROB'
 
-    my_opt_plot = rheia_pp.PostProcessOpt(my_post_process, eval_type)
+   my_opt_plot = rheia_pp.PostProcessOpt(my_post_process, eval_type)
 
-    result_dir = 'run_tutorial'
+   result_dir = 'run_tutorial'
 
-    y, x = my_opt_plot.get_fitness_population(result_dir)
+   y, x = my_opt_plot.get_fitness_population(result_dir)
 
-    plt.plot(y[0], y[1], '-o')
-    plt.xlabel('LCOH mean [euro/kg]')
-    plt.ylabel('LCOH standard deviation [euro/kg]')
-    plt.show()
+   plt.plot(y[0], y[1], '-o')
+   plt.xlabel('LCOH mean [euro/kg]')
+   plt.ylabel('LCOH standard deviation [euro/kg]')
+   plt.show()
 
-    for x_in in x:
-        plt.plot(y[0], x_in, '-o')
-    plt.legend(['n_dcdc_pv', 'n_elec'])
-    plt.xlabel('LCOH mean [euro/kg]')
-    plt.ylabel('LCOH standard deviation [euro/kg]')
-    plt.show()
+   for x_in in x:
+       plt.plot(y[0], x_in, '-o')
+   plt.legend(['n_dcdc_pv', 'n_elec'])
+   plt.xlabel('LCOH mean [euro/kg]')
+   plt.ylabel('LCOH standard deviation [euro/kg]')
+   plt.show()
 
 The results show a single design, which indicates that there is no trade-off between minimizing the LCOH mean and minimizing the LCOH standard deviation.
 The optimized design corresponds to a PV DC-DC converter of :math:`1.68 \mathrm{kW}` and an electrolyzer array of :math:`1.68 \mathrm{kW}`. 
@@ -303,19 +308,20 @@ The uncertainty quantification dictionary is then characterized and evaluated as
 .. code-block:: python
    :linenos:
 
-    import rheia.UQ.uncertainty_quantification as rheia_uq
-    import multiprocessing as mp
+   import rheia.UQ.uncertainty_quantification as rheia_uq
+   import multiprocessing as mp
 
-    dict_uq = {'case':                  'PV_ELEC',
-               'n jobs':                int(mp.cpu_count()/2),
-               'pol order':             2,
-               'objective names':       ['lcoh','mh2'],
-               'objective of interest': 'lcoh',
-               'draw pdf cdf':          [True, 1e5],
-               'results dir':           'opt_design'      
-               }  
+   dict_uq = {'case':                  'H2_FUEL',
+              'n jobs':                int(mp.cpu_count()/2),
+              'pol order':             2,
+              'objective names':       ['lcoh','mh2'],
+              'objective of interest': 'lcoh',
+              'draw pdf cdf':          [True, 1e5],
+              'results dir':           'opt_design_tutorial'      
+              }  
 
-    rheia_uq.run_uq(dict_uq, design_space = 'design_space_uq')
+   if __name__ == '__main__':
+       rheia_uq.run_uq(dict_uq, design_space = 'design_space_tutorial_uq')
 
 For this tutorial, the results of the uncertainty quantification are provided in :file:`RESULTS\\PV_ELEC\\UQ\\opt_design_tutorial`
 
@@ -324,24 +330,25 @@ The resulting Sobol' indices can be plotted in a bar chart:
 .. code-block:: python
    :linenos:
 
-    import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import matplotlib.pyplot as plt
 
-    case = 'PV_ELEC'
+   case = 'H2_FUEL'
 
-    my_post_process = rheia_pp.PostProcess(case)
+   my_post_process = rheia_pp.PostProcess(case)
 
-    pol_order = 2
+   pol_order = 2
 
-    my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
+   my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
 
-    result_dir = 'opt_design_tutorial'
+   result_dir = 'opt_design_tutorial'
 
-    objective = 'lcoh'
+   objective = 'lcoh'
 
-    names, sobol = my_post_process_uq.get_sobol(result_dir, objective)
+   names, sobol = my_post_process_uq.get_sobol(result_dir, objective)
 
-    plt.bar(names, sobol)
-    plt.show()
+   plt.barh(names, sobol)
+   plt.show()
 
 .. figure:: tut_sobol.png
    :width: 80%
@@ -353,14 +360,14 @@ dominate the uncertainty on the LCOH.
 Finally, the probability density function is plotted with the :py:meth:`get_pdf` method:
 
 .. code-block:: python
-   :lineno-start: 19
+   :lineno-start: 20
 
-    x_pdf, y_pdf = my_post_process_uq.get_pdf(result_dir, objective)
+   x_pdf, y_pdf = my_post_process_uq.get_pdf(result_dir, objective)
 
-    plt.plot(x_pdf, y_pdf)
-    plt.xlabel('lcoh')
-    plt.ylabel('probability density')
-    plt.show()
+   plt.plot(x_pdf, y_pdf)
+   plt.xlabel('lcoh')
+   plt.ylabel('probability density')
+   plt.show()
 
 .. figure:: tut_pdf.png
    :width: 80%
