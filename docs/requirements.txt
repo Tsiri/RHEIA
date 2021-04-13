@@ -1,6 +1,8 @@
 sphinxcontrib.bibtex
 sphinx_gallery
 matplotlib
+pandas
+pvlib
 ipython
 jupyter_client
 ipykernel
