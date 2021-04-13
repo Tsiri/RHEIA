@@ -258,11 +258,9 @@ The Sobol' indices can be represented in a bar chart:
 
     case = 'case_name'
 
-    my_post_process = rheia_pp.PostProcess(case)
-
     pol_order = 1
 
-    my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
+    my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
 
     result_dir = 'sample_0'
 

@@ -500,10 +500,9 @@ The worst-case LOO error (i.e. the highest LOO error over the diffferent design 
     import rheia.POST_PROCESS.lib_post_process as rheia_pp
 
     case = 'case_name'
-    my_post_process = rheia_pp.PostProcess(case)
 
     pol_order = 1
-    my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
+    my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
 
     n_samples = 5
     result_dirs = ['sample_%i' %i for i in range(n_samples)]
@@ -538,10 +537,9 @@ where a threshold for the Sobol' index is set at 1/number of uncertain parameter
     import rheia.POST_PROCESS.lib_post_process as rheia_pp
 
     case = 'case_name'
-    my_post_process = rheia_pp.PostProcess(case)
 
     pol_order = 1
-    my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
+    my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
 
     n_samples = 5
     result_dirs = ['sample_%i' %i for i in range(n_samples)]
@@ -578,11 +576,9 @@ Plotting the results can be performed as follows:
 
     case = 'case_name'
 
-    my_post_process = rheia_pp.PostProcess(case)
-
     eval_type = 'DET'
 
-    my_opt_plot = rheia_pp.PostProcessOpt(my_post_process, eval_type)
+    my_opt_plot = rheia_pp.PostProcessOpt(case, eval_type)
 
     result_dir = 'run_1'
 

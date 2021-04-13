@@ -17,7 +17,7 @@ Detailed information on characterizing the design variables is available in :ref
 
 To perform a deterministic optimization, the following optimization dictionary has to be characterized and passed as an argument to the :py:func:`run_opt` function. 
 
-.. code-block:: python
+.. ipython:: python
    :linenos:
 
    import rheia.OPT.optimization as rheia_opt
@@ -60,11 +60,9 @@ The objectives and the corresponding inputs are plotted in function of the LCOH 
 
    case = 'H2_FUEL'
 
-   my_post_process = rheia_pp.PostProcess(case)
-
    eval_type = 'DET'
 
-   my_opt_plot = rheia_pp.PostProcessOpt(my_post_process, eval_type)
+   my_opt_plot = rheia_pp.PostProcessOpt(case, eval_type)
 
    result_dir = 'run_tutorial'
 
@@ -158,11 +156,9 @@ followed by the call of the :py:meth:`get_loo` method:
 
    case = 'H2_FUEL'
 
-   my_post_process = rheia_pp.PostProcess(case)
-
    pol_order = 1
 
-   my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
+   my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
 
    result_dirs = ['sample_tutorial_%i' %i for i in range(20)]
 
@@ -199,11 +195,9 @@ For a polynomial order of 2, the stochastic parameters with a negligible Sobol' 
 
    case = 'H2_FUEL'
 
-   my_post_process = rheia_pp.PostProcess(case)
-
    pol_order = 2
 
-   my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
+   my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
 
    result_dirs = ['sample_tutorial_%i' %i for i in range(20)]
 
@@ -265,11 +259,9 @@ Similar to the deterministic design optimization, the optimization results can b
 
    case = 'H2_FUEL'
 
-   my_post_process = rheia_pp.PostProcess(case)
-
    eval_type = 'ROB'
 
-   my_opt_plot = rheia_pp.PostProcessOpt(my_post_process, eval_type)
+   my_opt_plot = rheia_pp.PostProcessOpt(case, eval_type)
 
    result_dir = 'run_tutorial'
 
@@ -335,11 +327,9 @@ The resulting Sobol' indices can be plotted in a bar chart:
 
    case = 'H2_FUEL'
 
-   my_post_process = rheia_pp.PostProcess(case)
-
    pol_order = 2
 
-   my_post_process_uq = rheia_pp.PostProcessUQ(my_post_process, pol_order)
+   my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
 
    result_dir = 'opt_design_tutorial'
 

@@ -7,49 +7,32 @@ import os
 import numpy as np
 
 
-class PostProcess:
-    """
-    The PostProcess object includes information on the name of the case
-    to be evaluated.
-
-    Parameters
-    ----------
-    case : str
-        Name of the case to be evaluated.
-
-    """
-
-    def __init__(self, case):
-        self.case = case
-        path = os.path.dirname(os.path.abspath(__file__))
-        self.path_start = os.path.abspath(os.path.join(path, os.pardir))
-        self.path = os.path.join(self.path_start,
-                                 'RESULTS',
-                                 case
-                                 )
-
-
-class PostProcessOpt(PostProcess):
+class PostProcessOpt():
     """
     The PostProcessOpt class provides methods to retrieve the fitness and
     population for the generations provided during the optimization.
 
     Parameters
     ----------
-    my_post_process : object
-        PostProcess object
+    case : str
+        Name of the case to be evaluated.
     eval_type : str
         The type of evaluation performed. Equals 'DET' for deterministic
         optimization and 'ROB' for robust optimization.
 
     """
 
-    def __init__(self, my_post_process, eval_type):
-        self.my_post_process = my_post_process
+    def __init__(self, case, eval_type):
+        path_file = os.path.dirname(os.path.abspath(__file__))
+        path_start = os.path.abspath(os.path.join(path_file, os.pardir))
+        path = os.path.join(path_start,
+                                 'RESULTS',
+                                 case
+                                 )
         self.n_pop = 0
         self.x_lines = []
         self.y_lines = []
-        self.result_path = os.path.join(self.my_post_process.path,
+        self.result_path = os.path.join(path,
                                         eval_type,
                                         )
         self.fitness_file = ''
@@ -226,22 +209,31 @@ class PostProcessOpt(PostProcess):
         return y_gen, x_gen
 
 
-class PostProcessUQ(PostProcess):
+class PostProcessUQ():
     """
     The PostProcessUQ class provides methods to retrieve the LOO error,
     plot the Sobol indices, PDF and CDF.
 
     Parameters
     ----------
-    my_post_process : object
-        PostProcess object
+    case : str
+        Name of the case to be evaluated.
     pol_order : int
         The polynomial order.
 
     """
 
-    def __init__(self, my_post_process, pol_order):
-        self.my_post_process = my_post_process
+    def __init__(self, case, pol_order):
+        path_file = os.path.dirname(os.path.abspath(__file__))
+        path_start = os.path.abspath(os.path.join(path_file, os.pardir))
+        path = os.path.join(path_start,
+                                 'RESULTS',
+                                 case
+                                 )
+        self.result_path = os.path.join(path,
+                                        'UQ',
+                                        )
+
         self.pol_order = pol_order
 
     def read_distr_file(self, distr_file):
@@ -301,8 +293,7 @@ class PostProcessUQ(PostProcess):
 
         """
 
-        sobol_file = os.path.join(self.my_post_process.path,
-                                  'UQ',
+        sobol_file = os.path.join(self.result_path,
                                   '%s' % result_dir,
                                   'full_pce_order_%i_%s_Sobol_indices' % (
                                       self.pol_order, objective)
@@ -340,8 +331,7 @@ class PostProcessUQ(PostProcess):
 
         """
 
-        pdf_file = os.path.join(self.my_post_process.path,
-                                'UQ',
+        pdf_file = os.path.join(self.result_path,
                                 '%s' % result_dir,
                                 'data_pdf_%s' % objective
                                 )
@@ -373,8 +363,7 @@ class PostProcessUQ(PostProcess):
 
         """
 
-        cdf_file = os.path.join(self.my_post_process.path,
-                                'UQ',
+        cdf_file = os.path.join(self.result_path,
                                 '%s' % result_dir,
                                 'data_cdf_%s' % objective
                                 )
@@ -404,8 +393,7 @@ class PostProcessUQ(PostProcess):
 
         """
 
-        loo_file = os.path.join(self.my_post_process.path,
-                                'UQ',
+        loo_file = os.path.join(self.result_path,
                                 '%s' % (result_dir),
                                 'full_pce_order_%i_%s' % (
                                     self.pol_order, objective)
