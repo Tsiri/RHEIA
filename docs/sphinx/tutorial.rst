@@ -18,7 +18,6 @@ Detailed information on characterizing the design variables is available in :ref
 To perform a deterministic optimization, the following optimization dictionary has to be characterized and passed as an argument to the :py:func:`run_opt` function. 
 
 .. ipython:: python
-   :linenos:
 
    import rheia.OPT.optimization as rheia_opt
    import multiprocessing as mp
