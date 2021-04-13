@@ -1,11 +1,6 @@
-matplotlib
-pandas
-pvlib
-ipython
-jupyter_client
-ipykernel
 sphinxcontrib.bibtex
 sphinx_gallery
+matplotlib
 
 --index-url https://test.pypi.org/simple/
 --extra-index-url https://pypi.org/simple
