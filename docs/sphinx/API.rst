@@ -1,3 +1,6 @@
+.. currentmodule:: rheia.OPT
+
+
 .. _lab:APIref:
 
 API reference
@@ -33,10 +36,6 @@ In addition, the name of the optimization class is loaded.
    
    rheia.OPT.optimization.parse_available_opt
    rheia.OPT.optimization.load_optimizer
-
-.. autosummary::
-   :toctree: generated/
-
    rheia.OPT.genetic_algorithms.return_opt_methods
    rheia.OPT.genetic_algorithms.return_opt_obj   
 
