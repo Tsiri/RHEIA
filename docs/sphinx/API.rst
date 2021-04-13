@@ -1,6 +1,3 @@
-.. currentmodule:: rheia
-
-
 .. _lab:APIref:
 
 API reference
@@ -11,29 +8,6 @@ API reference
    
 Optimization
 ------------
-
-Finally, an object from the optimization class is instantiated
-and the :py:meth:`run_optimizer` is called.
-The NSGA-II optimization class includes methods to perform the NSGA-II.
-
-.. autosummary::
-   :toctree: generated/
-   
-   rheia.OPT.genetic_algorithms.NSGA2
-   rheia.OPT.genetic_algorithms.NSGA2.nsga2_1iter
-   rheia.OPT.genetic_algorithms.NSGA2.run_optimizer
-
-The methods to create and evaluate the samples.
-
-.. autosummary::
-   :toctree: generated/
-
-   rheia.OPT.genetic_algorithms.NSGA2.define_samples_to_eval
-   rheia.OPT.genetic_algorithms.NSGA2.evaluate_samples
-   rheia.OPT.genetic_algorithms.NSGA2.assign_fitness_to_population
-   rheia.OPT.genetic_algorithms.NSGA2.read_doe
-   rheia.OPT.genetic_algorithms.NSGA2.eval_doe
-
 
 The main function that initiates the optimization procedure.
 
@@ -59,6 +33,10 @@ In addition, the name of the optimization class is loaded.
    
    rheia.OPT.optimization.parse_available_opt
    rheia.OPT.optimization.load_optimizer
+
+.. autosummary::
+   :toctree: generated/
+
    rheia.OPT.genetic_algorithms.return_opt_methods
    rheia.OPT.genetic_algorithms.return_opt_obj   
 
