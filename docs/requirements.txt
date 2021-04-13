@@ -1,4 +1,4 @@
 sphinxcontrib.bibtex
 sphinx_gallery
 matplotlib
--i https://test.pypi.org/simple/ rheia-vub
+https://test.pypi.org/simple/ rheia-vub
