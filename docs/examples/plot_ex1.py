@@ -27,11 +27,9 @@ import matplotlib.pyplot as plt
 
 case = 'H2_POWER'
 
-my_post_process = rheia_pp.PostProcess(case)
-
 eval_type = 'ROB'
 
-my_opt_plot = rheia_pp.PostProcessOpt(my_post_process, eval_type)
+my_opt_plot = rheia_pp.PostProcessOpt(case, eval_type)
 
 result_dir = 'run_tutorial'
 

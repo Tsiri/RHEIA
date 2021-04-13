@@ -148,13 +148,6 @@ result files.
 Post-processing
 ---------------
 
-The post-processing of the optimization and uncertainty quantification 
-is performed by instantiating a :py:class:`PostProcess` object.
-
-.. autosummary::
-   :toctree: generated/
-	rheia.POST_PROCESS.lib_post_process.PostProcess
-
 The optimization results are extracted with the methods in :py:class:`PostProcessOpt`.
 
 .. autosummary::
