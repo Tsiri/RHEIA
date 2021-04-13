@@ -1,2 +1,2 @@
 sphinxcontrib.bibtex
-sphinx_gallery.gen_gallery
+sphinx_gallery
