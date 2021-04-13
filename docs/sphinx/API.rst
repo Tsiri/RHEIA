@@ -177,24 +177,3 @@ The uncertainty quantification results are extracted with the methods in :py:cla
 	rheia.POST_PROCESS.lib_post_process.PostProcessUQ.get_cdf
 	rheia.POST_PROCESS.lib_post_process.PostProcessUQ.get_loo
 	rheia.POST_PROCESS.lib_post_process.PostProcessUQ.get_max_sobol
-
-Models
-------
-
-.. automodule:: rheia.CASES.PV_H2.case_description
-	:members:
-
-.. autoclass:: rheia.CASES.PV_H2.lib_pv_h2_3.Evaluation
-	:members:
-
-.. automodule:: rheia.CASES.PV_ELEC.case_description
-	:members:
-
-.. autoclass:: rheia.CASES.PV_ELEC.lib_pv_electrolyzer_5.Evaluation
-	:members:
-
-.. automodule:: rheia.CASES.H2_MOBILITY.case_description
-	:members:
-
-.. autoclass:: rheia.CASES.H2_MOBILITY.pv_h2_bat_mob_bus_lib_no_bat_no_conv.Evaluation
-	:members:
