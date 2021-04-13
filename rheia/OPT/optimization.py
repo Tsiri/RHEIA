@@ -147,8 +147,8 @@ def scale_samples_to_design_space(nondim_doe, space_obj):
 
     dim_doe = np.zeros(nondim_doe.shape)
     for j in range(space_obj.n_dim):
-        dim_doe[:, j] = ((space_obj.ub[j] - space_obj.lb[j]) *
-                         nondim_doe[:, j] + space_obj.lb[j])
+        dim_doe[:, j] = ((space_obj.u_b[j] - space_obj.l_b[j]) *
+                         nondim_doe[:, j] + space_obj.l_b[j])
 
     return dim_doe
 
@@ -200,7 +200,7 @@ def create_starting_samples(run_dict, space_obj, start_from_last_gen):
             os.path.abspath(__file__)))[0],
         'OPT',
         'INPUTS',
-        space_obj.case.upper(),
+        space_obj.case,
         '%iD' %
         space_obj.n_dim)
 

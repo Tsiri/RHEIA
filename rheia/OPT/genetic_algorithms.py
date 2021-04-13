@@ -464,8 +464,8 @@ class NSGA2:
             # test if the doe points situate in between the variable bounds
             violate = False
             for index, elem in enumerate(doe[-1]):
-                if (elem < self.space_obj.lb[index] or
-                        elem > self.space_obj.ub[index]):
+                if (elem < self.space_obj.l_b[index] or
+                        elem > self.space_obj.u_b[index]):
                     violate = True
 
             if violate:
@@ -602,8 +602,8 @@ class NSGA2:
                 # in place editing of individuals
                 tools.cxSimulatedBinaryBounded(ind1, ind2,
                                                self.run_dict['eta'],
-                                               self.space_obj.lb,
-                                               self.space_obj.ub)
+                                               self.space_obj.l_b,
+                                               self.space_obj.u_b)
 
                 # set the fitness to an empty tuple of modified individuals
                 del ind1.fitness.values
@@ -617,8 +617,8 @@ class NSGA2:
                 # apply mutation operator
                 # in place editing of individuals
                 tools.mutPolynomialBounded(mutant, self.run_dict['eta'],
-                                           self.space_obj.lb,
-                                           self.space_obj.ub,
+                                           self.space_obj.l_b,
+                                           self.space_obj.u_b,
                                            self.run_dict['mut prob'])
 
                 # set fitness to empty tuple of modified individuals
