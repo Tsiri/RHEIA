@@ -41,7 +41,7 @@ In addition, the name of the optimization class is loaded.
 
 Finally, an object from the optimization class is instantiated
 and the :py:meth:`run_optimizer` is called.
-The NSGA-II optimization class includes methods to perform NSGA-II.
+The NSGA-II optimization class includes methods to perform the NSGA-II.
 
 .. autosummary::
    :toctree: generated/
