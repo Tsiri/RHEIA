@@ -513,7 +513,7 @@ class StochasticDesignSpace(object):
                     tmp = line.split()
                     self.upar_dict[tmp[0]] = [tmp[1], tmp[2], float(tmp[3])]
 
-        elif (any(x in self.opt_type for x in ['ROB', 'UQ']) in self.opt_type
+        elif (any(x in self.opt_type for x in ['ROB', 'UQ'])
               and not os.path.isfile(path_to_read)):
 
             raise NameError(
