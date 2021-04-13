@@ -56,7 +56,7 @@ The methods to create and evaluate the samples.
    :toctree: generated/
 
    genetic_algorithms.NSGA2.define_samples_to_eval
-   .genetic_algorithms.NSGA2.evaluate_samples
+   genetic_algorithms.NSGA2.evaluate_samples
    genetic_algorithms.NSGA2.assign_fitness_to_population
    genetic_algorithms.NSGA2.read_doe
    genetic_algorithms.NSGA2.eval_doe
