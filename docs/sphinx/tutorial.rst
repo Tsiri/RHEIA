@@ -46,7 +46,7 @@ More information on defining the values for these NSGA-II parameters are illustr
 The detailed explanation for each item in the dictionary is described in :ref:`lab:optimization`.
 	
 When the run is complete (i.e. the computational budget is spent), the results are saved in :file:`RESULTS\\PV_ELEC\\DET\\run_1`.
-**To save time in this tutorial, results are already provided in :file:`RESULTS\\PV_ELEC\\DET\\run_tutorial`.**
+**To save time in this tutorial, results are already provided in** :file:`RESULTS\\PV_ELEC\\DET\\run_tutorial`.
 Also, due to the fact that the NSGA-II algorithm does not ensure mathematical optimality, the results stored in the tutorial
 might differ slightly from the ones obtained with this run.
 The objectives and the corresponding inputs are plotted in function of the LCOH (for the results stored in :file:`run_tutorial`): 
@@ -144,7 +144,7 @@ Then, :file:`design_space` files are created through :py:func:`write_design_spac
 -- one for each design sample -- and a PCE is constructed for each sample. 
 At first, a polynomial degree of 1 is selected for evaluation.
 
-For this tutorial, results were generated in advance and stored in :file:`RESULTS\\PV_ELEC\\UQ\\sample_tutorial_0` ... :file:`\\sample_tutorial_19`.
+**For this tutorial, results were generated in advance and stored in** :file:`RESULTS\\PV_ELEC\\UQ\\sample_tutorial_0` ... :file:`\\sample_tutorial_19`.
 To determine the worst-case LOO error for the 20 design samples, a :py:class:`post_process_uq` class object is instantiated, 
 followed by the call of the :py:meth:`get_loo` method:
 

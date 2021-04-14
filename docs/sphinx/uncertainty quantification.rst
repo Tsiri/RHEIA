@@ -228,7 +228,7 @@ The samples can be generated as follows:
 For this example, the samples are written in :file:`RESULTS\\NO_MODEL\\UQ\\results_1\\samples`. Once these samples are evaluated in the model on an external location,
 the results can be added to the :file:`RESULTS\\NO_MODEL\\UQ\\results_1\\samples` file. When the results are added for 'output_1', 'output_2', 'output_3', 
 the PCE can be constructed for the three quantities of interest. In that case, the value for 'create only samples' is set back to False (i.e. the default value).
-To illustrate, for a PCE on 'output_2'::
+To illustrate, for a PCE on 'output_2':
 
 .. code-block:: python
    :linenos:
@@ -283,14 +283,14 @@ The Sobol' indices can be represented in a bar chart:
 The LOO-error can be extracted:
 
 .. code-block:: python
-   :lineno-start: 19
+   :lineno-start: 17
 
    loo = my_post_process_uq.get_loo(result_dir, objective)
 	
 If the data for the Probability Density Function (PDF) and Cumulative Distribution Function (CDF) was generated, both functions can be plotted as follows:
 
 .. code-block:: python
-   :lineno-start: 20
+   :lineno-start: 18
 
    x_pdf, y_pdf = my_post_process_uq.get_pdf(result_dir, objective)
 
