@@ -656,9 +656,10 @@ Climate and demand data
 The system performance depends on the climate and if present, on the electricity demand and heating demand.
 As the energy demand is affected by the weather (i.e. space heating demand correlates with the ambient temperature and solar irradiance), 
 the analysis should be conducted with climate data that corresponds to the energy demand profiles. 
-Therefore, we adopt the Typical Meteorological Year data, hourly electricity demand data and hourly heat demand data provided by the National Renewable Energy Laboratory,
-as the former is used to construct the latter. To adapt the climate and demand profiles to the considered location, 
-we implemented the method from Montero Carrero et al. :cite:`Engine2019`.
+Therefore, we adopt the `Typical Meteorological Year data <https://nsrdb.nrel.gov/data-sets/archives.html>`_ and
+`hourly electricity demand data <https://openei.org/datasets/dataset/commercial-and-residential-hourly-load-profiles-for-all-tmy3-locations-in-the-united-states>`_ provided by the National Renewable Energy Laboratory,
+as the former is used to construct the latter. To adapt the climate and demand profiles to the considered location, `Codeminders <http://www.codeminders.com/weather_similarity/>`_ allows comparing meteorological data accumulated over more than a hundred years from weather stations worldwide.
+The method of converting the demand to the specified location has been presented by Montero Carrero et al. :cite:`Engine2019`.
 
 In the provided hydrogen-based energy systems dependend on the solar irradiance, the yearly annual solar irradiance is provided as a model parameter in the form of a relative number
 to the provided yearly annual solar irradiance. In other words, characterizing 'sol_irr' with 1 in :file:`design_space` results 
@@ -683,6 +684,16 @@ The climate data considered:
      - 1188 
      - 10.4
      - 3.98
+
+   * - Paris
+     - 1240 
+     - 11.2
+     - 5.35
+
+   * - Madrid (including cooling)
+     - 1803 
+     - 15.5
+     - 4.04
 
 
 The typical values for the energy demand are:
