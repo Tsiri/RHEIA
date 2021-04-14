@@ -4,6 +4,9 @@
 
 API reference
 =============
+  
+Optimization
+------------
 
 A function is present to evaluate if the input dictionary is properly
 characterized.
@@ -12,10 +15,6 @@ characterized.
    :toctree: generated/
 
    rheia.CASES.determine_stoch_des_space.check_dictionary
-
-   
-Optimization
-------------
 
 The main function that initiates the optimization procedure.
 
