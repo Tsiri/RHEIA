@@ -680,8 +680,8 @@ The climate data considered:
    
    * - location
      - annual solar irradiance [kWh/m2]
-     - average annual ambient temperature [C]
-	 - household electricity demand [MWh/year]
+     - average annual ambient temperature [°C]
+     - household electricity demand [MWh/year]
 	 
    * - Brussels
      - 1188 
