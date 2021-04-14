@@ -650,8 +650,8 @@ Evaluating a single design can be performed as follows:
 
 	not yet decided
 
-Data
-----
+Climate and demand data
+-----------------------
 
 The system performance depends on the climate and if present, on the electricity demand and heating demand.
 As the energy demand is affected by the weather (i.e. space heating demand correlates with the ambient temperature and solar irradiance), 
