@@ -18,6 +18,7 @@ Detailed information on characterizing the design variables is available in :ref
 To perform a deterministic optimization, the following optimization dictionary has to be characterized and passed as an argument to the :py:func:`run_opt` function. 
 
 .. code-block:: python
+   :linenos:
 
    import rheia.OPT.optimization as rheia_opt
    import multiprocessing as mp
@@ -83,13 +84,13 @@ specific information on the optimization results. The fitness values and design 
 through the :py:meth:`get_fitness_population()` method. This method enables to print out the Pareto front and the design variables 
 on the same x-axis (LCOH).
 
-.. figure:: images\tut_det_2000_y.png
+.. figure:: images/tut_det_2000_y.png
    :width: 80%
    :align: center
 
    A trade-off exists between minimizing the LCOH and maximizing the hydrogen production. 
    
-.. figure:: images\tut_det_2000_x.png
+.. figure:: images/tut_det_2000_x.png
    :width: 80%
    :align: center
      
@@ -338,7 +339,7 @@ The resulting Sobol' indices can be plotted in a bar chart:
    plt.barh(names, sobol)
    plt.show()
 
-.. figure:: images\tut_sobol.png
+.. figure:: images/tut_sobol.png
    :width: 80%
    :align: center
 
@@ -357,7 +358,7 @@ Finally, the probability density function is plotted with the :py:meth:`get_pdf`
    plt.ylabel('probability density')
    plt.show()
 
-.. figure:: images\tut_pdf.png
+.. figure:: images/tut_pdf.png
    :width: 80%
    :align: center
 

@@ -67,7 +67,7 @@ Four-bar truss system description
 
 The four-bar truss is presented below:
 
-.. figure:: images\fbt.png
+.. figure:: images/fbt.png
    :scale: 100 %
    :align: center
 
@@ -374,13 +374,13 @@ With the characterization complete for uncertainty quantification, the algorithm
   The results illustrate a LOO-error 0.005 for both the primary energy supply and CO2-emission.
   For illustration purposes, the Sobol' indices for primary energy supply and CO2-emission are shown below.
 
-  .. figure:: images\cyom_sobol_fuel.png
+  .. figure:: images/cyom_sobol_fuel.png
    :scale: 100 %
    :align: center
 
    The Sobol' indices for the primary energy supply.
 
-  .. figure:: images\cyom_sobol_co2.png
+  .. figure:: images/cyom_sobol_co2.png
    :scale: 100 %
    :align: center
 
