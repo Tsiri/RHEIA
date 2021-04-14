@@ -223,6 +223,8 @@ The samples can be generated as follows:
               'create only samples':   True,                
               }  
 
+   rheia_uq.run_uq(dict_uq)
+
 For this example, the samples are written in :file:`RESULTS\\NO_MODEL\\UQ\\results_1\\samples`. Once these samples are evaluated in the model on an external location,
 the results can be added to the :file:`RESULTS\\NO_MODEL\\UQ\\results_1\\samples` file. When the results are added for 'output_1', 'output_2', 'output_3', 
 the PCE can be constructed for the three quantities of interest. In that case, the value for 'create only samples' is set back to False (i.e. the default value).
@@ -231,12 +233,16 @@ To illustrate, for a PCE on 'output_2'::
 .. code-block:: python
    :linenos:
 
+   import rheia.UQ.uncertainty_quantification as rheia_uq
+
    dict_uq = {'case':                  'NO_MODEL',
               'pol order':             2,
               'objective names':       ['output_1', 'output_2', 'output_3'],
               'objective of interest': 'output_2',
               'results dir':           'results_1',      
               }  
+
+   rheia_uq.run_uq(dict_uq)
 
 .. warning::
 	Make sure that the result directory is equal to the result directory where the updated :file:`samples` file is saved.

@@ -380,42 +380,42 @@ When combining the examples in the previous section, a configurated optimization
 .. code-block:: python
    :linenos:
 
-    import rheia.OPT.optimization as rheia_opt
+   import rheia.OPT.optimization as rheia_opt
 
-    dict_opt = {'case':                  'CASE_1',
-                'objectives':            {'ROB': (-1,-1,-1,-1)}, 
-                'population size':       20,
-                'stop':                  ('BUDGET', 1440),
-                'results dir':           'results_1',
-                'pol order':             2,
-                'objective names':       ['output_1', 'output_2', 'output_3'],
-                'objective of interest': ['output_2','output_3'],
-                }
+   dict_opt = {'case':                  'CASE_1',
+               'objectives':            {'ROB': (-1,-1,-1,-1)}, 
+               'population size':       20,
+               'stop':                  ('BUDGET', 1440),
+               'results dir':           'results_1',
+               'pol order':             2,
+               'objective names':       ['output_1', 'output_2', 'output_3'],
+               'objective of interest': ['output_2','output_3'],
+               }
 
-    rheia_opt.run_opt(dict_opt)
+   rheia_opt.run_opt(dict_opt)
 
 An additional example, where parallel processing is considered, the mutation probability is decreased to 0.05 and the sampling method is random:
 
 .. code-block:: python
    :linenos:
 
-    import rheia.OPT.optimization as rheia_opt
-    import multiprocessing as mp
+   import rheia.OPT.optimization as rheia_opt
+   import multiprocessing as mp
 
-    dict_opt = {'case':                  'CASE_1',
-                'objectives':            {'ROB': (-1,-1,-1,-1)}, 
-                'population size':       20,
-                'stop':                  ('BUDGET', 1440),
-                'results dir':           'results_1',
-                'pol order':             2,
-                'objective names':       ['output_1', 'output_2', 'output_3'],
-                'objective of interest': ['output_2','output_3'],
-                'mut prob':              0.05,
-                'sampling method':       'RANDOM',
-                'n jobs':                int(mp.cpu_count()/2), 
-                }
+   dict_opt = {'case':                  'CASE_1',
+               'objectives':            {'ROB': (-1,-1,-1,-1)}, 
+               'population size':       20,
+               'stop':                  ('BUDGET', 1440),
+               'results dir':           'results_1',
+               'pol order':             2,
+               'objective names':       ['output_1', 'output_2', 'output_3'],
+               'objective of interest': ['output_2','output_3'],
+               'mut prob':              0.05,
+               'sampling method':       'RANDOM',
+               'n jobs':                int(mp.cpu_count()/2), 
+               }
 
-    rheia_opt.run_opt(dict_opt)
+   rheia_opt.run_opt(dict_opt)
 
 The post-processing of the results is described in :ref:`lab:optimizationresults`.
 
@@ -433,28 +433,27 @@ the design space is performed as follows:
 .. code-block:: python
    :linenos:
 
-    import rheia.UQ.uncertainty_quantification as rheia_uq
-    import multiprocessing as mp
+   import rheia.UQ.uncertainty_quantification as rheia_uq
+   import multiprocessing as mp
 
-    case = 'case_name'    
-    var_dict = rheia_uq.get_design_variables(case)
+   case = 'case_name'    
+   var_dict = rheia_uq.get_design_variables(case)
 
-    n_samples = 5
-    X = rheia_uq.set_design_samples(var_dict, n_samples)
+   n_samples = 5
+   X = rheia_uq.set_design_samples(var_dict, n_samples)
     
-    for iteration, x in enumerate(X):
+   for iteration, x in enumerate(X):
 
-        rheia_uq.write_design_space(case, iteration, var_dict, x)
+       rheia_uq.write_design_space(case, iteration, var_dict, x)
 
-        dict_uq = {'case':                  case,
-                   'pol order':             1,
-                   'objective names':       ['obj_1','obj_2'],
-                   'objective of interest': 'obj_1',
-                   'results dir':           'sample_%i' %iteration      
-
+       dict_uq = {'case':                  case,
+                  'pol order':             1,
+                  'objective names':       ['obj_1','obj_2'],
+                  'objective of interest': 'obj_1',
+                  'results dir':           'sample_%i' %iteration      
                   }  
 
-        rheia_uq.run_uq(dict_uq, design_space = 'design_space_%i' %iteration)
+       rheia_uq.run_uq(dict_uq, design_space = 'design_space_%i' %iteration)
 
 After providing the name of the case, a dictionary with the design variable names, lower bounds and upper bounds can be defined
 via the :py:func:`get_design_variables` function.
