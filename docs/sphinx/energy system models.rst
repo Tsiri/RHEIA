@@ -668,6 +668,23 @@ If the value is different (or subjected to uncertainty), all hourly solar irradi
 For the energy demand, the annual electricity (and heat) demand is provided in the model. This enables the user to scale the typical demand profiles for a specific location
 based on the number of demands (e.g. a community of 500 dwellings) or based on specific information on the annual energy demand.
 
+The climate data considered:
+
+.. list-table:: Climate data and energy demand data 
+   :widths: 40 40 40 40
+   :header-rows: 1
+   
+   * - location
+     - annual solar irradiance [kWh/m2]
+     - average annual ambient temperature [°C]
+	 - household electricity demand [MWh/year]
+	 
+   * - Brussels
+     - 1188 
+     - 10.4
+     - 3.98
+
+
 The typical values for the energy demand are:
 
 - dwelling
