@@ -211,16 +211,6 @@ class NSGA2:
             # in case of robust optimization, the values for the parameters
             # need to be defined by the PCE algorithm
 
-            # the path towards the PCE modules
-            #uq_path = os.path.join(os.path.abspath(
-            #    os.path.join(
-            #        os.path.dirname(__file__),
-            #        '..')),
-            #    'UQ')
-
-            #sys.path.insert(0, uq_path)
-            #import pce as uq
-
             # list for the deterministic params and the stochastic params
             samples_to_eval, unc_samples_to_eval = [], []
 
@@ -369,16 +359,6 @@ class NSGA2:
             # in case of robust optimization, the mean and standard deviation
             # need to be quantified based on the deterministic result from the
             # sample evaluations
-
-            # path towards the UQ modules
-            uq_path = os.path.join(os.path.abspath(
-                os.path.join(
-                    os.path.dirname(__file__),
-                    '..')),
-                'UQ')
-
-            #sys.path.insert(0, uq_path)
-            #import pce as uq
 
             # Attach parameters list to the sample
             temp = np.tile(list(self.space_obj.par_dict.values()),
