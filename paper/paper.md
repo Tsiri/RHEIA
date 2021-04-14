@@ -39,7 +39,7 @@ bibliography: paper.bib
 
 [//]: # (A summary describing the high-level functionality and purpose of the software for a diverse, non-specialist audience.)
 
-A test [@coppitters2020robust], test.  
+A test [@coppitters2020robust], test.     
 
 # Statement of need
 
