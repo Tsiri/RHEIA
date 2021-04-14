@@ -33,20 +33,19 @@ To perform a deterministic optimization, the following optimization dictionary h
    if __name__ == '__main__':
        rheia_opt.run_opt(dict_opt)
 
-In the dictionary, the case folder name `PV_ELEC` is provided, followed by the optimization type `DET` and the weigths for both objectives, 
-i.e. minimization for the first returned objective `lcoh` and maximization for the second returned objective `mH2`. 
+In the dictionary, the case folder name :py:data:`'H2_FUEL'` is provided, followed by the optimization type :py:data:`'DET'` and the weigths for both objectives, 
+i.e. minimization for the first returned objective :py:data:`lcoh` and maximization for the second returned objective :py:data:`m_h2`. 
 A computational budget of 2000 model evaluations is selected as stopping criterium and the number of available physical cores are used
 to parallelize the evaluations. The population contains 20 samples and the population and fitness values for each generation 
-are saved in the folder `run_1`. 
+are saved in the folder :py:data:`'run_1'`. 
 As Latin Hypercube Sampling is selected for the characterization of the population and the NSGA-II characteristics are equal to
 the default settings, these specific items are not mentioned in the optimization dictionary.  
 To run the optimization, the :py:func:`run_opt` function is called.
 More information on defining the values for these NSGA-II parameters are illustrated in :ref:`lab:choosepop`. 
 The detailed explanation for each item in the dictionary is described in :ref:`lab:optimization`.
-
 	
 When the run is complete (i.e. the computational budget is spent), the results are saved in :file:`RESULTS\\PV_ELEC\\DET\\run_1`.
-To save time in this tutorial, results are already provided in :file:`RESULTS\\PV_ELEC\\DET\\run_tutorial`.
+**To save time in this tutorial, results are already provided in :file:`RESULTS\\PV_ELEC\\DET\\run_tutorial`.**
 Also, due to the fact that the NSGA-II algorithm does not ensure mathematical optimality, the results stored in the tutorial
 might differ slightly from the ones obtained with this run.
 The objectives and the corresponding inputs are plotted in function of the LCOH (for the results stored in :file:`run_tutorial`): 
@@ -84,13 +83,13 @@ specific information on the optimization results. The fitness values and design 
 through the :py:meth:`get_fitness_population()` method. This method enables to print out the Pareto front and the design variables 
 on the same x-axis (LCOH).
 
-.. figure:: tut_det_2000_y.png
+.. figure:: images\tut_det_2000_y.png
    :width: 80%
    :align: center
 
    A trade-off exists between minimizing the LCOH and maximizing the hydrogen production. 
    
-.. figure:: tut_det_2000_x.png
+.. figure:: images\tut_det_2000_x.png
    :width: 80%
    :align: center
      
@@ -233,10 +232,10 @@ The code is similar than for the deterministic design optimization procedure. Th
 
    dict_opt = {'case':                  'H2_FUEL',
                'objectives':            {'ROB': (-1, -1)}, 
-               'stop':                  ('BUDGET', 2000),
+               'stop':                  ('BUDGET', 72000),
                'n jobs':                int(mp.cpu_count() / 2), 
                'population size':       20,
-               'results dir':           'run_tutorial',
+               'results dir':           'run_1',
                'pol order':             2,
                'objective names':       ['LCOH', 'mh2'],
                'objective of interest': ['LCOH'],
@@ -247,8 +246,8 @@ The code is similar than for the deterministic design optimization procedure. Th
 
 Again, a population of 20 samples is selected. 
 With 72 model evaluations required per design sample, a computational budget of 72000 is selected to reach at least 50 generations.
-The results for the tutorial are provided in :file:`RESULTS\\PV_ELEC\\ROB\\run_tutorial`.
-Similar to the deterministic design optimization, the optimization results can be plotted as follows (note that `eval_type` has changed into 'ROB'):
+**The results for the tutorial are provided in :file:`RESULTS\\PV_ELEC\\ROB\\run_tutorial`.**
+Similar to the deterministic design optimization, the optimization results can be plotted as follows (note that :py:data:`eval_type` has changed into :py:data:`'ROB'`):
 
 .. code-block:: python
    :linenos:
@@ -339,7 +338,7 @@ The resulting Sobol' indices can be plotted in a bar chart:
    plt.barh(names, sobol)
    plt.show()
 
-.. figure:: tut_sobol.png
+.. figure:: images\tut_sobol.png
    :width: 80%
    :align: center
 
@@ -358,7 +357,7 @@ Finally, the probability density function is plotted with the :py:meth:`get_pdf`
    plt.ylabel('probability density')
    plt.show()
 
-.. figure:: tut_pdf.png
+.. figure:: images\tut_pdf.png
    :width: 80%
    :align: center
 

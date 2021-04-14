@@ -19,7 +19,7 @@ Power-to-fuel
 In the power-to-fuel model, a photovoltaic array is coupled to an electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking.
 The electricity produced by the photovoltaic array is used to convert water into hydrogen and oxygen.
 
-.. figure:: PV_ELEC_SCHEME.svg
+.. figure:: images\PV_ELEC_SCHEME.svg
    :width: 80%
    :align: center
 
@@ -190,7 +190,7 @@ To transfer the DC electricity from the photovoltaic array and fuel cell array t
 
 .. _fig:pvh2scheme:
 
-.. figure:: PV_H2_SCHEME.svg
+.. figure:: images\PV_H2_SCHEME.svg
    :width: 80%
    :align: center
 
@@ -465,7 +465,7 @@ Before dispensation, the hydrogen is cooled down in a cooling unit.
 
 .. _fig:pvmobscheme:
 
-.. figure:: PV_MOB_SCHEME.svg
+.. figure:: images\PV_MOB_SCHEME.svg
    :width: 80%
    :align: center
 

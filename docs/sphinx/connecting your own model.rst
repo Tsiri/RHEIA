@@ -67,7 +67,7 @@ Four-bar truss system description
 
 The four-bar truss is presented below:
 
-.. figure:: fbt.png
+.. figure:: images\fbt.png
    :scale: 100 %
    :align: center
 
@@ -335,13 +335,13 @@ We refer to the :py:mod:`run_energyplan` module for additional details on the :p
 
 In the :py:mod:`case_description` module, the function to run the case in EnergyPLAN is imported from the :py:func:`run_energyplan()` module at the top of the script::
 
-	from run_energyplan import energyplan
+    from rheia.CASES.ENERGYPLAN.run_energyplan import energyplan
 
 The :py:func:`run_energyplan()` function is evaluated in :py:func:`evaluate()`, where the enumerate object :py:data:`x` is provided as an argument. For this case, no fixed parameters are provided as an argument::
 
-    def evaluate(x, params = []):
+    def evaluate(x, params=[]):
 
-        fuel, co2 = energyplan(x)
+        co2, fuel = energyplan(x)
         
         return co2, fuel
 
@@ -360,9 +360,9 @@ With the characterization complete for uncertainty quantification, the algorithm
 
 	
    dict_uq = {'case':                  'ENERGYPLAN',
-              'n jobs':                int(mp.cpu_count()/2),
+              'n jobs':                int(mp.cpu_count() / 2),
               'pol order':             1,
-              'objective names':       ['fuel','co2'],
+              'objective names':       ['co2', 'fuel'],
               'objective of interest': 'fuel',
               'results dir':           'run_1'      
               }  
@@ -374,13 +374,13 @@ With the characterization complete for uncertainty quantification, the algorithm
   The results illustrate a LOO-error 0.005 for both the primary energy supply and CO2-emission.
   For illustration purposes, the Sobol' indices for primary energy supply and CO2-emission are shown below.
 
-  .. figure:: cyom_sobol_fuel.png
+  .. figure:: images\cyom_sobol_fuel.png
    :scale: 100 %
    :align: center
 
    The Sobol' indices for the primary energy supply.
 
-  .. figure:: cyom_sobol_co2.png
+  .. figure:: images\cyom_sobol_co2.png
    :scale: 100 %
    :align: center
 

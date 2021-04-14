@@ -26,13 +26,13 @@ def evaluate(x_in, params=[]):
 
     Returns
     -------
-    fuel : float
-        primary energy consumption
     co2 : float
         total CO2-emission
+    fuel : float
+        primary energy consumption
     '''
 
     # evaluate EnergyPLAN model
-    fuel, co2 = energyplan(x_in)
+    co2, fuel = energyplan(x_in)
 
-    return fuel, co2
+    return co2, fuel
