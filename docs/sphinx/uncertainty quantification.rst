@@ -29,7 +29,7 @@ To characterize the uncertainty quantification, the following dictionary with pa
                'create only samples':   only_samples_bool,      #optional, default is False
                'draw pdf cdf':          [draw_bool, n_samples], #optional, default is [False]
                'n jobs':                n_jobs,                 #optional, default is 1
-              }  
+               }  
 
 The items of the uncertainty quantification dictionary are described in the following subsections. 
 This dictionary is used as the argument for the :py:func`run_uq` function, 
@@ -165,34 +165,34 @@ When combining the examples in the previous section, a configurated uncertainty 
 .. code-block:: python
    :linenos:
 
-    import rheia.UQ.uncertainty_quantification as rheia_uq
+   import rheia.UQ.uncertainty_quantification as rheia_uq
 
-    dict_uq = {'case': 'CASE_1',
-               'pol order': 2,
-               'objective names': ['output_1', 'output_2', 'output_3'],
-               'objective of interest': 'output_2',
-               'results dir': 'results_1'      
-               }  
+   dict_uq = {'case': 'CASE_1',
+              'pol order': 2,
+              'objective names': ['output_1', 'output_2', 'output_3'],
+              'objective of interest': 'output_2',
+              'results dir': 'results_1'      
+              }  
 
-    rheia_uq.run_uq(dict_uq)
+   rheia_uq.run_uq(dict_uq)
 
 Alternatively, an uncertainty quantification dictionary which considers random sampling and generates 100,000 PDF and CDF samples on the PCE surrogate:
  
 .. code-block:: python
    :linenos:
 
-    import rheia.UQ.uncertainty_quantification as rheia_uq
+   import rheia.UQ.uncertainty_quantification as rheia_uq
 
-    dict_uq = {'case': 'CASE_1',
-               'pol order': 2,
-               'objective names': ['output_1', 'output_2', 'output_3'],
-               'objective of interest': 'output_2',
-               'results dir': 'results_1'      
-               'sampling method': 'RANDOM',
-               'draw pdf cdf': [True, 1000000],                
-               }  
+   dict_uq = {'case': 'CASE_1',
+              'pol order': 2,
+              'objective names': ['output_1', 'output_2', 'output_3'],
+              'objective of interest': 'output_2',
+              'results dir': 'results_1'      
+              'sampling method': 'RANDOM',
+              'draw pdf cdf': [True, 1000000],                
+              }  
 
-    rheia_uq.run_uq(dict_uq)
+   rheia_uq.run_uq(dict_uq)
 
 The post-processing of the results is described in :ref:`lab:uqresults`.
 	
@@ -213,14 +213,14 @@ The samples can be generated as follows:
 .. code-block:: python
    :linenos:
 
-    import rheia.UQ.uncertainty_quantification as rheia_uq
+   import rheia.UQ.uncertainty_quantification as rheia_uq
 
-    dict_uq = {'case':                  'NO_MODEL',
-               'pol order':             2,
-               'objective names':       ['output_1', 'output_2', 'output_3'],
-               'objective of interest': 'output_2',
-               'results dir':           'results_1',      
-               'create only samples':   True,                
+   dict_uq = {'case':                  'NO_MODEL',
+              'pol order':             2,
+              'objective names':       ['output_1', 'output_2', 'output_3'],
+              'objective of interest': 'output_2',
+              'results dir':           'results_1',      
+              'create only samples':   True,                
               }  
 
 For this example, the samples are written in :file:`RESULTS\\NO_MODEL\\UQ\\results_1\\samples`. Once these samples are evaluated in the model on an external location,
@@ -228,11 +228,14 @@ the results can be added to the :file:`RESULTS\\NO_MODEL\\UQ\\results_1\\samples
 the PCE can be constructed for the three quantities of interest. In that case, the value for 'create only samples' is set back to False (i.e. the default value).
 To illustrate, for a PCE on 'output_2'::
 
-    dict_uq = {'case':                  'NO_MODEL',
-               'pol order':             2,
-               'objective names':       ['output_1', 'output_2', 'output_3'],
-               'objective of interest': 'output_2',
-               'results dir':           'results_1',      
+.. code-block:: python
+   :linenos:
+
+   dict_uq = {'case':                  'NO_MODEL',
+              'pol order':             2,
+              'objective names':       ['output_1', 'output_2', 'output_3'],
+              'objective of interest': 'output_2',
+              'results dir':           'results_1',      
               }  
 
 .. warning::
@@ -254,38 +257,38 @@ The Sobol' indices can be represented in a bar chart:
 .. code-block:: python
    :linenos:
 
-    import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import rheia.POST_PROCESS.lib_post_process as rheia_pp
 
-    case = 'case_name'
+   case = 'case_name'
 
-    pol_order = 1
+   pol_order = 1
 
-    my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
+   my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
 
-    result_dir = 'sample_0'
+   result_dir = 'sample_0'
 
-    objective = 'output_2'
+   objective = 'output_2'
 
-    names, sobol = my_post_process_uq.get_sobol(result_dir, objective)
+   names, sobol = my_post_process_uq.get_sobol(result_dir, objective)
 
-    plt.barh(names, sobol)
-    plt.show()
+   plt.barh(names, sobol)
+   plt.show()
 
 The LOO-error can be extracted:
 
 .. code-block:: python
    :lineno-start: 19
 
-    loo = my_post_process_uq.get_loo(result_dir, objective)
+   loo = my_post_process_uq.get_loo(result_dir, objective)
 	
 If the data for the Probability Density Function (PDF) and Cumulative Distribution Function (CDF) was generated, both functions can be plotted as follows:
 
 .. code-block:: python
    :lineno-start: 20
 
-    x_pdf, y_pdf = my_post_process_uq.get_pdf(result_dir, objective)
+   x_pdf, y_pdf = my_post_process_uq.get_pdf(result_dir, objective)
 
-    x_cdf, y_cdf = my_post_process_uq.get_pdf(result_dir, objective)
+   x_cdf, y_cdf = my_post_process_uq.get_pdf(result_dir, objective)
  
 
 

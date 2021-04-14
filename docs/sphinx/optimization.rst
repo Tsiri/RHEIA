@@ -45,7 +45,7 @@ located in the :py:mod:`optimization` module, which starts the optimization proc
 .. warning::
    When parallel processing is considered (i.e. :py:data:`dict_opt['n jobs']` > 1), 
    calling the :py:func:`run_opt()` function should be protected as the main 
-   entry point using :py:data:`if __name__ == '__main__'`:
+   entry point using :py:data:`if __name__ == '__main__'`.
 
 The dictionary includes necessary items and optional items. The items are clarified in the following sections.
 
@@ -241,16 +241,16 @@ When combining the examples in the previous section, a configurated optimization
 .. code-block:: python
    :linenos:
 
-    import rheia.OPT.optimization as rheia_opt
+   import rheia.OPT.optimization as rheia_opt
 
-    dict_opt = {'case':                'CASE_1',
-                'objectives':          {'DET': (-1,-1)}, 
-                'population size':     20,
-                'stop':                ('BUDGET', 1440),
-                'results dir':         'results_1',
-                }
+   dict_opt = {'case':                'CASE_1',
+               'objectives':          {'DET': (-1, -1)}, 
+               'population size':     20,
+               'stop':                ('BUDGET', 1440),
+               'results dir':         'results_1',
+               }
 
-    In [4]: rheia_opt.run_opt(dict_opt)
+   rheia_opt.run_opt(dict_opt)
 
 In the example below, parallel processing is considered, the optimization starts from a predefined population, defined in :py:data:`'x0_start'`, 
 and the crossover probability is decreased to 0.85:
@@ -258,25 +258,21 @@ and the crossover probability is decreased to 0.85:
 .. code-block:: python
    :linenos:
 
-    import rheia.OPT.optimization as rheia_opt
-    import multiprocessing as mp
+   import rheia.OPT.optimization as rheia_opt
+   import multiprocessing as mp
 
-    dict_opt = {'case':                'CASE_1',
-                'objectives':          {'DET': (-1,-1)}, 
-                'population size':     20,
-                'stop':                ('BUDGET', 1440),
-                'results dir':         'results_1',
-                'x0':                  ('CUSTOM', 'x0_start'), 
-                'cx prob':             0.85,
-                'n jobs':              int(mp.cpu_count()/2),
-                }
+   dict_opt = {'case':                'CASE_1',
+               'objectives':          {'DET': (-1, -1)}, 
+               'population size':     20,
+               'stop':                ('BUDGET', 1440),
+               'results dir':         'results_1',
+               'x0':                  ('CUSTOM', 'x0_start'), 
+               'cx prob':             0.85,
+               'n jobs':              int(mp.cpu_count() / 2),
+               }
 
-    rheia_opt.run_opt(dict_opt)
-
-.. warning::
-   When parallel processing is considered (i.e. :py:data:`dict_opt['n jobs']` > 1), 
-   calling the :py:func:`run_opt()` function should be protected as the main 
-   entry point using :py:data:`if __name__ == '__main__'`:
+   if __name__ == '__main__'
+       rheia_opt.run_opt(dict_opt)
 
 .. _lab:runrdo:
 
@@ -497,23 +493,23 @@ The worst-case LOO error (i.e. the highest LOO error over the diffferent design 
 .. code-block:: python
    :linenos:
 
-    import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import rheia.POST_PROCESS.lib_post_process as rheia_pp
 
-    case = 'case_name'
+   case = 'case_name'
 
-    pol_order = 1
-    my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
+   pol_order = 1
+   my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
 
-    n_samples = 5
-    result_dirs = ['sample_%i' %i for i in range(n_samples)]
+   n_samples = 5
+   result_dirs = ['sample_%i' %i for i in range(n_samples)]
 
-    objective = 'obj_1'
+   objective = 'obj_1'
 
-    loo = [0]*n_samples
-    for index, result_dir in enumerate(result_dirs):
-        loo[index] = my_post_process_uq.get_loo(result_dir, objective)
+   loo = [0]*n_samples
+   for index, result_dir in enumerate(result_dirs):
+       loo[index] = my_post_process_uq.get_loo(result_dir, objective)
 
-    print(max(loo))
+   print(max(loo))
 
 Where the :py:meth:`get_loo()` method returns the LOO error for every sample.
 Based on the worst-case LOO error, the maximum polynomial degree of the PCE for the robust design optimization can be evaluated.
@@ -534,19 +530,19 @@ where a threshold for the Sobol' index is set at 1/number of uncertain parameter
 .. code-block:: python
    :linenos:
 
-    import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import rheia.POST_PROCESS.lib_post_process as rheia_pp
 
-    case = 'case_name'
+   case = 'case_name'
 
-    pol_order = 1
-    my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
+   pol_order = 1
+   my_post_process_uq = rheia_pp.PostProcessUQ(case, pol_order)
 
-    n_samples = 5
-    result_dirs = ['sample_%i' %i for i in range(n_samples)]
+   n_samples = 5
+   result_dirs = ['sample_%i' %i for i in range(n_samples)]
 
-    objective = 'obj_1'
+   objective = 'obj_1'
 
-    my_post_process_uq.get_max_sobol(result_dirs, objective, threshold=1./10.)	
+   my_post_process_uq.get_max_sobol(result_dirs, objective, threshold=1./10.)	
 
 .. warning::
 	As the accuracy of this method depends mainly on the number of design samples considered, the results are only indicative.
@@ -571,30 +567,30 @@ Plotting the results can be performed as follows:
 .. code-block:: python
    :linenos:
 
-    import rheia.POST_PROCESS.lib_post_process as rheia_pp
-    import matplotlib.pyplot as plt
+   import rheia.POST_PROCESS.lib_post_process as rheia_pp
+   import matplotlib.pyplot as plt
 
-    case = 'case_name'
+   case = 'case_name'
 
-    eval_type = 'DET'
+   eval_type = 'DET'
 
-    my_opt_plot = rheia_pp.PostProcessOpt(case, eval_type)
+   my_opt_plot = rheia_pp.PostProcessOpt(case, eval_type)
 
-    result_dir = 'run_1'
+   result_dir = 'run_1'
 
-    y, x = my_opt_plot.get_fitness_population(result_dir)
+   y, x = my_opt_plot.get_fitness_population(result_dir)
 
-    plt.plot(y[0], y[1], '-o')
-    plt.xlabel('obj_1')
-    plt.ylabel('obj_2')
-    plt.show()
+   plt.plot(y[0], y[1], '-o')
+   plt.xlabel('obj_1')
+   plt.ylabel('obj_2')
+   plt.show()
 
-    for x_in in x:
-        plt.plot(y[0], x_in, '-o')
-    plt.legend(['x_1', 'x_2'])
-    plt.xlabel('obj_1')
-    plt.ylabel('x')
-    plt.show()
+   for x_in in x:
+       plt.plot(y[0], x_in, '-o')
+   plt.legend(['x_1', 'x_2'])
+   plt.xlabel('obj_1')
+   plt.ylabel('x')
+   plt.show()
 
 The method :py:meth:`get_fitness_population()` returns, for the last available generation, the fitness values and the population.
 Alternatively, a number of generations can be plotted on the same graph by defining the optional argument :py:data:`gen`. 
@@ -604,15 +600,12 @@ generation 5, 15 and 25 can be done as follows:
 .. code-block:: python
    :lineno-start: 27
 	
-    for i in [5,15,25]:
-        y,x = my_opt_plot.get_fitness_population(result_dir, gen = i)
-        plt.plot(y[0], y[1])
-    plt.xlabel('obj_1')
-    plt.ylabel('obj_2')
-    plt.show()
-
+   for i in [5,15,25]:
+       y,x = my_opt_plot.get_fitness_population(result_dir, gen = i)
+       plt.plot(y[0], y[1])
+   plt.xlabel('obj_1')
+   plt.ylabel('obj_2')
+   plt.show()
 
 When calling the :py:meth:`get_fitness_population()` method, the design samples and fitness values are sorted based on the first objective and saved in :file:`population_final_sorted` 
 and :file:`fitness_final_sorted`, respectively, in the results directory.
-	
-
