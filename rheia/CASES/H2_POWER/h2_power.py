@@ -517,6 +517,10 @@ class Evaluation:
 
         return p_consumed
 
+    ##########################
+    # fuel cell array module #
+    ##########################
+
     def polyfit_pemfc(self):
         """
         The fuel cell stack is evaluated over a range of input currents.
@@ -684,6 +688,10 @@ class Evaluation:
             p_produced = 0.
 
         return p_produced
+
+    #####################
+    # evaluation module #
+    #####################
 
     def evaluation(self):
         """

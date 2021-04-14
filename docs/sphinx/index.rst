@@ -25,7 +25,10 @@ Introduction
 ============
 
 The Robust optimization of renewable Hydrogen and dErIved energy cArrier systems (RHEIA) framework provides 
-a robust optimization and uncertainty quantification tool for hydrogen-based energy systems and external system models. 
+multi-objective optimization (deterministic and stochastic) and uncertainty quantification algorithms. 
+These algorithms can be applied on hydrogen-based energy systems, which are included in RHEIA.
+In addition, RHEIA allows to connect your own models to the algorithms as well.
+
 A brief overview on the features of RHEIA is provided in :ref:`lab:functionalities`, 
 followed by a detailed illustration on how to connect your own model (Python based, open source or closed source) in :ref:`lab:connectingyourownmodel`.
 If these features comply with your need, the installation procedure and package dependencies are illustrated in :ref:`installationlabel`. 
