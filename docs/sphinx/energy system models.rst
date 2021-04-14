@@ -658,7 +658,10 @@ As the energy demand is affected by the weather (i.e. space heating demand corre
 the analysis should be conducted with climate data that corresponds to the energy demand profiles. 
 Therefore, we adopt the `Typical Meteorological Year data <https://nsrdb.nrel.gov/data-sets/archives.html>`_ and
 `hourly electricity demand data <https://openei.org/datasets/dataset/commercial-and-residential-hourly-load-profiles-for-all-tmy3-locations-in-the-united-states>`_ provided by the National Renewable Energy Laboratory,
-as the former is used to construct the latter. To adapt the climate and demand profiles to the considered location, `Codeminders <http://www.codeminders.com/weather_similarity/>`_ allows comparing meteorological data accumulated over more than a hundred years from weather stations worldwide.
+as the former is used to construct the latter. As these databases contain information only on locations in the United States of America,
+`Codeminders <http://www.codeminders.com/weather_similarity/>`_ allows identifying the location in the United States of America with similar climate conditions than the location of interest.
+In addition, the cultural differences in electricity demand between the location in the USA and the location of interest is considered by scaling the annual electricity demand,
+based on the database from `Odysee-Mure https://www.odyssee-mure.eu/publications/efficiency-by-sector/households/electricity-consumption-dwelling.html>`_ (for European locations).
 The method of converting the demand to the specified location has been presented by Montero Carrero et al. :cite:`Engine2019`.
 
 In the provided hydrogen-based energy systems dependend on the solar irradiance, the yearly annual solar irradiance is provided as a model parameter in the form of a relative number
