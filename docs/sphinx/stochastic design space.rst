@@ -10,6 +10,7 @@ A model parameter corresponds to a parameter that usually cannot be controlled b
 or the decision on this parameter value is fixed (e.g. a fixed amount of photovoltaic panels on the roof). 
 Such a parameter can be considered deterministic or uncertain.
 The design variables and model parameters are characterized in two files: :file:`design_space` and :file:`stochastic_space`.
+These files are present in the case folder for the specific case considered (e.g. :file:`CASES\\H2_FUEL` for the `H2_FUEL` case).
 In :file:`design_space`, the deterministic values for the model parameters and the range for the design variables are provided.
 In :file:`stochastic_space`, the uncertainty is allocated to the specific model parameters and design variables.
 When a deterministic optimization is performed, only the :file:`design_space` file is required. 
