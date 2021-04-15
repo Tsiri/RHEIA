@@ -35,15 +35,15 @@ bibliography: paper.bib
 
 # Summary
 
-To limit global CO<sub>2</sub> emissions, hydrogen enables to integrate the 
-intermittent renewables (solar and wind) in the power, heating
-and mobility sector. The design of such hydrogen-based energy systems are subject to uncertainties, such as the costs related
+To limit global CO <sub>2</sub> emissions, hydrogen smoothens the integration of 
+intermittent renewables (i.e. solar and wind) in the power, heating
+and mobility sector. The performance of such hydrogen-based energy systems are subject to uncertainties, such as the costs related
 to the production of renewable hydrogen and the energy consumption of hydrogen-fueled
-buses. Therefore, RHEIA provides models to evaluate the techno-economic and environmental performance for 
-the main valorization pathways of hydrogen. In addition, a robust design optimization algorithm is included.
-This design optimization algorithm considers relevant uncertainties and yields the designs least-sensitive to its random environment (i.e. the robust design). 
+buses. RHEIA provides models to evaluate the techno-economic and environmental performance in 
+a power-to-fuel, power-to-power and power-to-mobility context. 
+In addition, a robust design optimization algorithm is included, which yields design solutions least-sensitive to the random environment (i.e. the robust design). 
 These robust designs ensure with the highest probability that the designs will operate near its expected performance in real-life conditions. 
-Consequently, RHEIA characterizes the advantages of the robust design as opposed to deterministic designs for hydrogen-based systems.
+Consequently, RHEIA enables to highlight the advantages of these robust designs for hydrogen-based energy systems.
 
 # Statement of need
 
