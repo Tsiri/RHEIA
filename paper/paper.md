@@ -50,21 +50,23 @@ effective guidelines to further reduce the uncertainty of the optimized designs.
 
 # Statement of need
 
-A Statement of Need section that clearly illustrates the research purpose of the software.
-
 In design optimization of renewable energy systems, incorporating hydrogen systems
-is still an anomaly [@Eriksson2017] and often only deterministic model 
-parameters are assumed. When uncertainties are considered, the applications are 
-often limited to linear models with a handful of uncertainties (<5), 
-characterized by generic ranges. Combined, these assumptions bring forward designs 
+is still an anomaly and often only deterministic model 
+parameters are assumed [@Eriksson2017]. This brings forward designs 
 that are highly sensitive to real-world uncertainties and result in a drastic mismatch between simulated and actual performances.
-Handling a large set of uncertainties leads to computational issues.
+Alternatively, robust design optimization considers uncertainties in design optimization
+and yielded improved design quality in structural mechanics, aerospace and automobile applications over the last two decades [@Chatterjee2017].
+Ensuring the computational tractability of quantifying the uncertainty during design optimization 
+is suggested through surrogate modelling techniques,
+but the applications are limited [@Chatterjee2017]. 
 To fill these research gaps, RHEIA provides a multi-objective robust design optimization 
 algorithm, for which the computational burden of uncertainty quantification is tackled
 by the Polynomial Chaos Expansion algorithm. In addition, RHEIA includes Python-based
 system models for the main valorization pathways of hydrogen: power-to-fuel, power-to-power
 and power-to-mobility. The significant techno-economic and environmental uncertainties
-for these models are characterized based on scientific literature.     
+for these models are characterized based on scientific literature.  Finally, RHEIA 
+allows to connect your own models to the robust design optimization and uncertainty
+quantification algorithm.   
 
 
 A list of key references, including to other software addressing related needs. Note that the references should include full names of venues, e.g., journals and conferences, not abbreviations only understood in the context of a specific discipline.
@@ -84,9 +86,10 @@ performed on an EnergyScope model [@limpensa2020impact].
 
 # Future work
 
-sparce PCE
-additional optimizers
-extra H2 models
+The following improvements will be made in future versions of RHEIA:
+- Including a sparse PCE algorithm, developed in our research group, to handle the curse-of-dimensionality for high-dimensional problems [@Abraham2017].
+- Including optimization algorithm alternatives (i.e. particle swarm optimization, firefly algorithm, cuckoo search), based on the evaluated algorithms in our research group [@Tsirikoglou2017].
+- Additional models on hydrogen-based energy carrier (e.g. ammonia, methane) production and utilization in power-to-gas applications. 
 
 # Acknowledgements
 
