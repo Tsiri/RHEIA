@@ -1,9 +1,9 @@
 ---
-title: 'RHEIA: Robust optimization of renewable Hydrogen and dErIved energy cArrier systems'
+title: 'RHEIA: Robust design optimization of renewable Hydrogen and dErIved energy cArrier systems'
 tags:
   - Python
   - hydrogen-based systems
-  - robust optimization
+  - robust design optimization
   - uncertainty quantification
 authors:
   - name: Diederik Coppitters

@@ -3,16 +3,16 @@
 A short description
 ===================
 
-RHEIA provides a tool to perform multi-objective deterministic optimization, robust optimization and uncertainty quantification.
-The deterministic optimization algorithm (Nondominated Sorting Genetic Algorithm, NSGA-II) considers deterministic values for the model parameters
-(i.e. parameters which are not controlled by the designer). In robust optimization, the model parameters can be considered uncertain
+RHEIA provides a tool to perform multi-objective deterministic design optimization, robust design optimization and uncertainty quantification.
+The deterministic design optimization algorithm (Nondominated Sorting Genetic Algorithm, NSGA-II) considers deterministic values for the model parameters
+(i.e. parameters which are not controlled by the designer). In robust design optimization, the model parameters can be considered uncertain
 (e.g. the uncertainty on the future evolution of the grid electricity price). As these model parameters are uncertain, the quantities of interest
-( i.e. the model outputs of interest, e.g. the levelized cost of electricity) are uncertain as well. Consequently, the objectives of the robust optimization are the 
+( i.e. the model outputs of interest, e.g. the levelized cost of electricity) are uncertain as well. Consequently, the objectives of the robust design optimization are the 
 optimization of the mean and the minimization of the standard deviation of one or more quantities of interest. While optimizing the mean corresponds to
 optimizing the stochastic performance, minimizing the standard deviation corresponds to minimizing the sensitivity of the quantity of interest to the random environment.
 Hence, in this approach, the robust design can be characterized (i.e. the design which achieves the lowest standard deviation on the quantity of interest).
 The advantages of this robust design can then be compared with the optimized deterministic designs and designs with an optimized mean on the quantity of interest. 
-To determine the mean and standard deviation on the quantity of interest for each design sample evaluated during the robust optimization procedure, an uncertainty quantification is performed (Polynomial Chaos Expansion).
+To determine the mean and standard deviation on the quantity of interest for each design sample evaluated during the robust design optimization procedure, an uncertainty quantification is performed (Polynomial Chaos Expansion).
 In addition to the mean and standard deviation, the Polynomial Chaos Expansion provides the probability density function,
 cumulative distribution function and the Sobol' indices on the quantity of interest.  
 

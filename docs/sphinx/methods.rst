@@ -50,7 +50,7 @@ For every coefficient that is characterized by considering input parameter :math
 Optimization
 ------------
 
-The Nondominated Sorting Genetic Algorithm (NSGA-II) is adopted to perform the deterministic and robust optimization.
+The Nondominated Sorting Genetic Algorithm (NSGA-II) is adopted to perform the deterministic and robust design optimization.
 A brief introduction to the algorithm is provided below. The details on the method are described in :cite:`Deb2002a`.
 Finally, a guideline towards setting the optimization parameters is provided, based on our experience.
 
@@ -62,8 +62,8 @@ NSGA-II
 NSGA-II is a multi-objective genetic algorithm, suitable for optimization of complex, non-linear models :cite:`Deb2002a`. 
 First, this algorithm creates a set of design samples (i.e. population), based on Latin Hypercube Sampling. 
 Thereafter, a second population (i.e. children) is generated with characteristics based on the previous population (i.e. parents), 
-following crossover and mutation rules. Each design sample out of both populations is evaluated in the system model (deterministic optimization) 
-or a PCE is constructed for each quantity of interest (robust optimization). 
+following crossover and mutation rules. Each design sample out of both populations is evaluated in the system model (deterministic design optimization) 
+or a PCE is constructed for each quantity of interest (robust design optimization). 
 The populations are sorted based on their dominance in the objectives. The top half of the sorted samples remain and represent the next population. 
 The algorithm continues until the maximum number of iterations is realized. When the process is finalized, either the solution corresponds to a single design sample, 
 which achieves the optimized value for all objectives considered, or a set of optimized design samples where each sample dominates every other design sample in at least one objective.
@@ -82,7 +82,7 @@ the non-linearity of the input-output relation in the system model and the numbe
 Nevertheless, based on the experience of the authors in engineering optimization (i.e. <10 design variables), the population size is suggested between 20 and 50. Below 20, the possibility of ending in a
 local optimum is significant, while a population size larger than 50 does not add significant improvement in design space exploration as opposed to the increase in cost per generation.
 Moreover, it is suggested to define the population size based on the number of CPUs available. To illustrate, when 4 CPUs are available, considering defining the population size at 20, 24, 28, 32, ...
-such that the CPUs are used at all time during the deterministic optimization (in robust optimization, the parallelization is performed on the samples for the PCE, for which the number of samples
+such that the CPUs are used at all time during the deterministic design optimization (in robust design optimization, the parallelization is performed on the samples for the PCE, for which the number of samples
 is defined by the truncation scheme). 
 To ensure sufficient exploitation, we suggest to reach a number of generations of at least 75 generations. Above 250 generations, the gain in exploitation becomes limited. 
 

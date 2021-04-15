@@ -3,7 +3,7 @@
 Tutorial
 ========
 
-In this tutorial, the deterministic optimization, robust optimization and uncertainty quantification procedure
+In this tutorial, the deterministic design optimization, robust design optimization and uncertainty quantification procedure
 is applied on a photovoltaic-electrolyzer system. 
 The system model evaluates the levelized cost of hydrogen and hydrogen production of a photovoltaic array coupled to an electrolyzer stack. 
 This coupling is realised through DC-DC converters. Additional details on the system operation are presented in :ref:`lab:pvelectrolyzermodel`.
@@ -16,7 +16,7 @@ can be designed such that the Levelized Cost Of Hydrogen (:math:`\mathrm{LCOH}`)
 The bounds for the design variables and the values for the model parameters can be adjusted in :file:`CASES\\H2_FUEL\\design_space`.
 Detailed information on characterizing the design variables is available in :ref:`lab:ssdesignspace`.
 
-To perform a deterministic optimization, the following optimization dictionary has to be characterized and passed as an argument to the :py:func:`run_opt` function. 
+To perform a deterministic design optimization, the following optimization dictionary has to be characterized and passed as an argument to the :py:func:`run_opt` function. 
 
 .. code-block:: python
    :linenos:

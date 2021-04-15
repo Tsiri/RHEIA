@@ -4,7 +4,7 @@ Installation
 ============
 
 RHEIA is a Python package. The following sections provide information on how to install Python, followed by the installation guide of RHEIA
-and the package dependencies for performing deterministic optimization, robust optimization and uncertainty quantification.
+and the package dependencies for performing deterministic design optimization, robust design optimization and uncertainty quantification.
 
 Installing Python
 -----------------
@@ -42,7 +42,7 @@ To perform uncertainty quantification:
 - Other packages:
    - pyDOE
 
-To perform deterministic optimization:
+To perform deterministic design optimization:
 
 - Included in Anaconda:
    - NumPy
@@ -50,7 +50,7 @@ To perform deterministic optimization:
    - pyDOE
    - DEAP
 
-To perform robust optimization:
+To perform robust design optimization:
 
 - Included in Anaconda:
    - NumPy
@@ -62,7 +62,7 @@ To perform robust optimization:
 Import what you need
 --------------------
 
-RHEIA allows to import the specific tool you need. To run deterministic or robust optimization::
+RHEIA allows to import the specific tool you need. To run deterministic or robust design optimization::
 
 	import rheia.OPT.optimization as rheia_opt
 

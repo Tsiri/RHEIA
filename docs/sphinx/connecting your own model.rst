@@ -186,7 +186,7 @@ Run a design optimization
 
 Once the characterization and coupling of the case is completed,
 the optimization dictionary can be completed to perform the design optimization. 
-To illustrate, for a deterministic optimization:
+To illustrate, for a deterministic design optimization:
 
 .. code-block:: python
    :linenos:
@@ -202,10 +202,10 @@ To illustrate, for a deterministic optimization:
     
    rheia_opt.run_opt(dict_opt)
 
-In this dictionary, a deterministic optimization is specified, for which both objectives should be minimized. The computational budget is set at 9000,
+In this dictionary, a deterministic design optimization is specified, for which both objectives should be minimized. The computational budget is set at 9000,
 which leads to at least 300 generations with a population size of 30. The number of jobs, crossover probability, mutation probability, eta, starting population
 and result printing are adopted from the standard setting and are therefore not specified in the dictionary. 
-Similarly, the optimization dictionary for robust optimization on the mean and standard deviation of the displacement can be characterized as follows:
+Similarly, the optimization dictionary for robust design optimization on the mean and standard deviation of the displacement can be characterized as follows:
 
 .. code-block:: python
    :linenos:
@@ -265,7 +265,7 @@ Connecting the model to the framework
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 First, a specific folder for the model should be created in the :file:`CASES` folder, e.g. :file:`ENERGYPLAN`.
-The necessary files are :file:`design_space`, the :py:mod:`case_description` module( and :file:`stochastic_space` for uncertainty quantification and robust optimization).
+The necessary files are :file:`design_space`, the :py:mod:`case_description` module( and :file:`stochastic_space` for uncertainty quantification and robust design optimization).
 In addition, a module to call the EnergyPLAN software :py:mod:`run_energyplan` 
 and a .txt file to provide the input that represent the current case (:file:`case.txt`) are included.
 This results in the following structure::

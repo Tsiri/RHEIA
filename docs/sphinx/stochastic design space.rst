@@ -13,8 +13,8 @@ The design variables and model parameters are characterized in two files: :file:
 These files are present in the case folder for the specific case considered (e.g. :file:`CASES\\H2_FUEL` for the `H2_FUEL` case).
 In :file:`design_space`, the deterministic values for the model parameters and the range for the design variables are provided.
 In :file:`stochastic_space`, the uncertainty is allocated to the specific model parameters and design variables.
-When a deterministic optimization is performed, only the :file:`design_space` file is required. 
-In the other cases, i.e. uncertainty quantification and robust optimization, both files are required.
+When a deterministic design optimization is performed, only the :file:`design_space` file is required. 
+In the other cases, i.e. uncertainty quantification and robust design optimization, both files are required.
 
 .. _lab:ssdesignspace:
 
@@ -23,7 +23,7 @@ The design_space file
 
 In the :file:`design_space` file, the design variables and the model parameters which need a quantification in your model are defined. 
 When performing uncertainty quantification, the :file:`design_space` file consists only of model parameters.
-In the case of deterministic optimization or robust optimization, the :file:`design_space` file requires design variables. 
+In the case of deterministic design optimization or robust design optimization, the :file:`design_space` file requires design variables. 
 Additionally, if some model parameters require a quantification outside the model, 
 the :file:`design_space` file includes both :ref:`lab:ssdesignvariables` and :ref:`lab:ssmodelparameters`.
 
@@ -86,7 +86,7 @@ The stochastic_space file
 -------------------------
 
 The uncertainty on the design variables and model parameters can be allocated through the file :file:`stochastic_space`. 
-This file is required when performing robust optimization and uncertainty quantification, where several parameters are subjected to uncertainty. 
+This file is required when performing robust design optimization and uncertainty quantification, where several parameters are subjected to uncertainty. 
 For every design variable and model parameter defined in :file:`design_space`, an uncertainty can be defined.
 
 Characterizing the uncertainties
