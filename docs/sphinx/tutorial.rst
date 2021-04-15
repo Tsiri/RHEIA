@@ -13,6 +13,7 @@ Deterministic design optimization
 
 For a fixed photovoltaic array of :math:`5~\mathrm{kW}_\mathrm{p}`, the capacity of the electrolyzer stack and the capacity of the DC-DC converter 
 can be designed such that the Levelized Cost Of Hydrogen (:math:`\mathrm{LCOH}`) and hydrogen production :math:`\dot{m}_{\mathrm{H}_2}` are optimized.
+The bounds for the design variables and the values for the model parameters can be adjusted in :file:`CASES\\H2_FUEL\\design_space`.
 Detailed information on characterizing the design variables is available in :ref:`lab:ssdesignspace`.
 
 To perform a deterministic optimization, the following optimization dictionary has to be characterized and passed as an argument to the :py:func:`run_opt` function. 
@@ -101,7 +102,7 @@ Robust design optimization
 
 The robust design optimization procedure simultaneously minimizes the mean and standard deviation of a quantity of interest.
 These statistical moments are quantified following the propagation of the input parameter uncertainties.
-The stochastic input parameters are characterized in the :file:`stochastic_space` file, which is added to the case folder `PV_ELEC`. 
+The stochastic input parameters are characterized in the :file:`CASES\\H2_FUEL\\stochastic_space` file. 
 More information on the construction of :file:`stochastic_space` is found in :ref:`lab:ssstochastic_space`.
 	
 Determination of the polynomial order

@@ -29,7 +29,7 @@ multi-objective optimization (deterministic and stochastic) and uncertainty quan
 These algorithms can be applied on hydrogen-based energy systems, which are included in RHEIA.
 In addition, RHEIA allows to connect your own models to the algorithms as well.
 
-A brief overview on the features of RHEIA is provided in :ref:`lab:functionalities`, 
+A brief overview on the features of RHEIA is provided in :ref:`lab:functionalities`,
 followed by a detailed illustration on how to connect your own model (Python based, open source or closed source) in :ref:`lab:connectingyourownmodel`.
 If these features comply with your need, the installation procedure and package dependencies are illustrated in :ref:`installationlabel`. 
 As a first step, the :ref:`lab:tutorial` provides an initiation of using the framework on a hydrogen-based energy system. 
