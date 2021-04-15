@@ -87,6 +87,7 @@ performed on an EnergyScope model [@limpensa2020impact].
 # Future work
 
 The following improvements will be made in future versions of RHEIA:
+
 - Including a sparse PCE algorithm, developed in our research group, to handle the curse-of-dimensionality for high-dimensional problems [@Abraham2017].
 - Including optimization algorithm alternatives (i.e. particle swarm optimization, firefly algorithm, cuckoo search), based on the evaluated algorithms in our research group [@Tsirikoglou2017].
 - Additional models on hydrogen-based energy carrier (e.g. ammonia, methane) production and utilization in power-to-gas applications. 
