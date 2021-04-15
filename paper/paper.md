@@ -55,20 +55,20 @@ experimental data.
 
 In design optimization studies of HRES, the optimal integration of battery systems and hydrogen-based energy systems in grid-connected 
 applications received limited attention. Moreover, the model parameters are often assumed fixed and free from inherent variations, 
-while the rare consideration of uncertainty is limited to linear models and only a handful of uncertain parameters (\SI{<5}), 
-characterized by generic ranges based on assumptions~\cite{rezaei2020economic}. Akbari~et~al.\ evaluated a distributed energy system, 
-subject to a general variability of \SI{\pm20}{\percent} for a handful of financial parameters and demand parameters~\cite{Akbari2014}. 
-Parisio~et~al.\ considered the converter efficiencies related to electricity and heat demand to be uncertain between a general range of \SI{\pm10}{\%} 
-on a linear model of an energy hub~\cite{Parisio2012}. These linear models are subject to large inherent uncertainty, while the variation of other 
-highly-uncertain parameters (e.g.\ investment cost, lifetime) during real-world design, planning and operation is ignored. Moreover, generic 
+while the rare consideration of uncertainty is limited to linear models and only a handful of uncertain parameters <5, 
+characterized by generic ranges based on assumptions. Akbari et al. evaluated a distributed energy system, 
+subject to a general variability of 20% for a handful of financial parameters and demand parameters. 
+Parisio~et~al. considered the converter efficiencies related to electricity and heat demand to be uncertain between a general range of 10% 
+on a linear model of an energy hub. These linear models are subject to large inherent uncertainty, while the variation of other 
+highly-uncertain parameters (e.g. investment cost, lifetime) during real-world design, planning and operation is ignored. Moreover, generic 
 variability ranges assume equal weights for every uncertainty, which leads to biased results. Combined, these assumptions bring forward designs 
 that are highly sensitive to real-world uncertainties and result in a drastic mismatch between simulated and actual performances. 
 To fill the research gap on design optimization under uncertainty of grid-connected, HRES including hydrogen storage and battery storage, 
 we provide the following main contributions: the significant techno-economic uncertain parameters are characterized by their uncertainty as 
-described in literature; to handle this large stochastic dimension, the advantages of the sparse PCE algorithm developed by Abraham~et~al.\ 
-are exploited for the first time in a surrogate-assisted RDO algorithm~\cite{Abraham2017}; the Cumulative Density Functions (CDF) of the 
+described in literature; to handle this large stochastic dimension, the advantages of the sparse PCE algorithm developed by Abraham~et~al. 
+are exploited for the first time in a surrogate-assisted RDO algorithm; the Cumulative Density Functions (CDF) of the 
 optimized designs are used to compare the respective stochastic performances, which provides new insights into the probability of attaining 
-an affordable levelized cost of electricity when combining battery storage and hydrogen storage with a PV array.\par
+an affordable levelized cost of electricity when combining battery storage and hydrogen storage with a PV array.
 
 
 Balancing of intermittent energy such as solar energy can be achieved by batteries and hydrogen-based storage. 
@@ -78,8 +78,8 @@ resulting in a drastic mismatch between simulated and actual performances. To fi
 hydrogen-based renewable energy systems, we performed a computationally efficient robust design optimization under different scenarios and 
 compared the stochastic performance based on the corresponding cumulative density functions. This paper provides the optimized stochastic designs 
 and the advantage of each design based on the financial flexibility of the system owner. The results illustrate that the economically preferred 
-solution is a photovoltaic array when the self-sufficiency ratio is irrelevant (\SI{\leq30}{\%}). When a higher self-sufficiency ratio threshold 
-is of interest, i.e.\ up to \SI{59}{\%}, photovoltaic-battery designs and photovoltaic-battery-hydrogen designs provide the cost-competitive 
+solution is a photovoltaic array when the self-sufficiency ratio is irrelevant 30%. When a higher self-sufficiency ratio threshold 
+is of interest, i.e. up to 59%, photovoltaic-battery designs and photovoltaic-battery-hydrogen designs provide the cost-competitive 
 alternatives which are least-sensitive to real-world uncertainty. Conclusively, including storage systems improves the probability of attaining 
 an affordable levelized cost of electricity over the system lifetime. Future work will focus on the integration of the heat demand.
 
