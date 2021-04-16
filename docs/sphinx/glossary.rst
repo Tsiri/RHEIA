@@ -1,8 +1,6 @@
 Glossary
 ========
 
-.. tabularcolumns:: |p{3pt}|p{5pt}|
-
 .. list-table::
    :header-rows: 1
    :widths: 1 2
@@ -21,8 +19,6 @@ Glossary
 
 
 
-
-.. tabularcolumns:: |p{40pt}|p{40pt}|
 
 .. list-table::
    :header-rows: 1
