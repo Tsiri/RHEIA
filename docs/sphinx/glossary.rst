@@ -1,28 +1,10 @@
 Glossary
 ========
 
-.. list-table::
-   :header-rows: 1
-   :width: 10%
-
-   * - Header A1 (Centre, 1/3)
-     - Header B1 (Right, 2/3)
-
-   * - DATA A1
-     - DATA B1
-
-
-
-
-
-
-
-
 
 .. list-table::
    :header-rows: 1
-   :width: 50 %
-   :stub-columns: 1
+   :width: 1 2
 
    * - Name
      - Description

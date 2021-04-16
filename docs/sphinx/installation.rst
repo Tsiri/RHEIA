@@ -21,6 +21,11 @@ The following command installs the most recent version of RHEIA and the package 
 
 	pip install rheia
 	
+Specific from a Jupyter Kernel::
+
+	import sys
+	!{sys.executable} -m pip install rheia
+	
 
 Package dependencies
 --------------------
@@ -33,7 +38,9 @@ To evaluate the hydrogen-based energy system models:
    - Matplotlib
    - NumPy
    - Pandas 
-
+- Other packages:
+   - pvlib
+   
 To perform uncertainty quantification:
 
 - Included in Anaconda:
