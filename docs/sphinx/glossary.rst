@@ -1,7 +1,7 @@
 Glossary
 ========
 
-.. tabularcolumns:: |L|L|
+.. tabularcolumns:: |p{3pt}|p{5pt}|
 
 .. list-table::
    :header-rows: 1
@@ -21,7 +21,7 @@ Glossary
 
 
 
-.. tabularcolumns:: |L|L|
+.. tabularcolumns:: |p{40pt}|p{40pt}|
 
 .. list-table::
    :header-rows: 1
