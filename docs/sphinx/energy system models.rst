@@ -139,40 +139,40 @@ Evaluating a single design can be performed as follows:
 .. code-block:: python
    :linenos:
 
-    import os
-    import rheia
-    import rheia.CASES.PV_ELEC.lib_pv_electrolyzer as lb
+   import os
+   import rheia
+   import rheia.CASES.PV_ELEC.lib_pv_electrolyzer as lb
 
-    path = os.path.dirname(rheia.__file__)
+   path = os.path.dirname(rheia.__file__)
 
-    # the climate file considered
-    filename_climate = os.path.join(path,
-                                    'CASES',
-                                    'DATA',
-                                    'climate',
-                                    'climate_Brussels.csv')
+   # the climate file considered
+   filename_climate = os.path.join(path,
+                                   'CASES',
+                                   'DATA',
+                                   'climate',
+                                   'climate_Brussels.csv')
 
-    # the object to read in the data
-    myData = lb.ReadData(filename_climate)
+   # the object to read in the data
+   myData = lb.ReadData(filename_climate)
 
-    # get the solar irradiance and ambient temperature
-    G, T = myData.load_climate()
+   # get the solar irradiance and ambient temperature
+   G, T = myData.load_climate()
 
-    # retrieve the deterministic values for the model parameters
-    parameters = myData.load_parameters()
+   # retrieve the deterministic values for the model parameters
+   parameters = myData.load_parameters()
 
-    # define the design to be tested
-    inputs = {'n_dcdc_pv': 5.,
-              'n_pemel': 4.}
+   # define the design to be tested
+   inputs = {'n_dcdc_pv': 5.,
+             'n_pemel': 4.}
 
-    # instantiate from the Evaluation class
-    myEvaluation = lb.Evaluation(G, T, {**parameters, **inputs})
+   # instantiate from the Evaluation class
+   myEvaluation = lb.Evaluation(G, T, {**parameters, **inputs})
 
-    # evaluate the system
-    myEvaluation.evaluation()
+   # evaluate the system
+   myEvaluation.evaluation()
 
-    # print the results
-    myEvaluation.print_results()
+   # print the results
+   myEvaluation.print_results()
 
 
 .. _lab:pvh2model:
@@ -402,52 +402,52 @@ Evaluating a single design can be performed as follows:
 .. code-block:: python
    :linenos:
 	
-    import os
-    import rheia
-    import rheia.CASES.PV_H2.lib_pv_h2 as lb
+   import os
+   import rheia
+   import rheia.CASES.PV_H2.lib_pv_h2 as lb
 
-    path = os.path.dirname(rheia.__file__)
+   path = os.path.dirname(rheia.__file__)
 
-    # the climate file considered
-    filename_climate = os.path.join(path,
-                                    'CASES',
-                                    'DATA',
-                                    'climate',
-                                    'climate_Brussels.csv')
-
-    filename_demand = os.path.join(path,
+   # the climate file considered
+   filename_climate = os.path.join(path,
                                    'CASES',
                                    'DATA',
-                                   'demand',
-                                   'load_Brussels_dwelling.csv')
+                                   'climate',
+                                   'climate_Brussels.csv')
 
-    # the object to read in the data
-    myData = lb.ReadData(filename_climate, filename_demand)
+   filename_demand = os.path.join(path,
+                                  'CASES',
+                                  'DATA',
+                                  'demand',
+                                  'load_Brussels_dwelling.csv')
+
+   # the object to read in the data
+   myData = lb.ReadData(filename_climate, filename_demand)
     
-    # get the solar irradiance and ambient temperature
-    G, T = myData.load_climate()
+   # get the solar irradiance and ambient temperature
+   G, T = myData.load_climate()
 
-    # get the electric load
-    load_elec = myData.load_demand()
+   # get the electric load
+   load_elec = myData.load_demand()
 
-    # retrieve the deterministic values for the model parameters
-    parameters = myData.load_parameters()
+   # retrieve the deterministic values for the model parameters
+   parameters = myData.load_parameters()
 
-    # define the design to be tested
-    inputs = {'n_pv':    10.,
-              'n_pemel': 2.,
-              'n_pemfc': 1.,
-              'n_tank':  100., 
-              }
+   # define the design to be tested
+   inputs = {'n_pv':    10.,
+             'n_pemel': 2.,
+             'n_pemfc': 1.,
+             'n_tank':  100., 
+             }
 
-    # instantiate from the Evaluation class
-    myEvaluation = lb.Evaluation(G, T, load_elec, {**parameters, **inputs})
+   # instantiate from the Evaluation class
+   myEvaluation = lb.Evaluation(G, T, load_elec, {**parameters, **inputs})
 
-    # evaluate the system
-    myEvaluation.evaluation()
+   # evaluate the system
+   myEvaluation.evaluation()
 
-    # print the results
-    myEvaluation.print_results()
+   # print the results
+   myEvaluation.print_results()
 
 
 
@@ -600,43 +600,43 @@ Evaluating a single design can be performed as follows:
 .. code-block:: python
    :linenos:
 
-    import os
-    import rheia
-    import rheia.CASES.PV_H2.lib_h2_mob as lb
+   import os
+   import rheia
+   import rheia.CASES.PV_H2.lib_h2_mob as lb
 
-    path = os.path.dirname(rheia.__file__)
+   path = os.path.dirname(rheia.__file__)
 
-    # the climate file considered
-    filename_climate = os.path.join(path,
-                                    'CASES',
-                                    'DATA',
-                                    'climate',
-                                    'climate_Brussels.csv')
+   # the climate file considered
+   filename_climate = os.path.join(path,
+                                   'CASES',
+                                   'DATA',
+                                   'climate',
+                                   'climate_Brussels.csv')
 
-    # the object to read in the data
-    myData = lb.ReadData(filename_climate)
+   # the object to read in the data
+   myData = lb.ReadData(filename_climate)
 
-    # get the solar irradiance and ambient temperature
-    G, T = myData.load_climate()
+   # get the solar irradiance and ambient temperature
+   G, T = myData.load_climate()
 
-    # retrieve the deterministic values for the model parameters
-    parameters = myData.load_parameters()
+   # retrieve the deterministic values for the model parameters
+   parameters = myData.load_parameters()
 
-    # define the design to be tested
-    inputs = {'n_pv':     1000.,
-              'n_pemel':  2000.,
-              'n_tank':   10000., 
-              'n_h2_bus': 1.,
-              }
+   # define the design to be tested
+   inputs = {'n_pv':     1000.,
+             'n_pemel':  2000.,
+             'n_tank':   10000., 
+             'n_h2_bus': 1.,
+             }
 
-    # instantiate from the Evaluation class
-    myEvaluation = lb.Evaluation(G, T, {**parameters, **inputs})
+   # instantiate from the Evaluation class
+   myEvaluation = lb.Evaluation(G, T, {**parameters, **inputs})
 
-    # evaluate the system
-    myEvaluation.evaluation()
+   # evaluate the system
+   myEvaluation.evaluation()
 
-    # print the results
-    myEvaluation.print_results()
+   # print the results
+   myEvaluation.print_results()
 
 
 ..
