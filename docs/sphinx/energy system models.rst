@@ -163,7 +163,7 @@ Evaluating a single design can be performed as follows:
 
    # define the design to be tested
    inputs = {'n_dcdc_pv': 5.,
-             'n_pemel': 4.}
+             'n_pemel':   4.}
 
    # instantiate from the Evaluation class
    my_evaluation = lb.Evaluation(sol_irr, t_amb, {**parameters, **inputs})
