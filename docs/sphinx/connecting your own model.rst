@@ -226,7 +226,6 @@ Similarly, the optimization dictionary for robust design optimization on the mea
 
 The details on running optimization or uncertainty quantification are provided in 
 :ref:`lab:optimization` and :ref:`lab:uncertaintyquantification`, respectively.
-The post-processing of the results is described in :ref:`lab:postprocessing`.
 
 EnergyPLAN closed-source model
 ------------------------------
@@ -388,4 +387,3 @@ With the characterization complete for uncertainty quantification, the algorithm
 
 The details on running optimization or uncertainty quantification are provided in 
 :ref:`lab:optimization` and :ref:`lab:uncertaintyquantification`, respectively.
-The post-processing of the results is described in :ref:`lab:postprocessing`.

@@ -37,8 +37,7 @@ Additional examples are illustrated in :ref:`lab:examples`.
 The models are characterized by a design space, which defines the design variables, and a stochastic space when parameter uncertainty is considered.
 Those spaces are defined in two files, which are elaborated in :ref:`lab:stochasticdesignspace`.
 The guides to perform the deterministic design optimization, robust design optimization and uncertainty quantification are present in :ref:`lab:optimization` and 
-:ref:`lab:uncertaintyquantification`, respectively. A first post-processing of the results can be performed following
-the steps detailed in :ref:`lab:postprocessing`, such as plotting the fitness values after an optimization or reading the significant Sobol' indices after uncertainty quantification.
+:ref:`lab:uncertaintyquantification`, respectively.
 The applied methods and energy system models are described in :ref:`lab:methods` and :ref:`lab:energysystemmodels`, respectively. 
 The documentation concludes with the :ref:`lab:APIref` and the details on how to contribute to the framework (:ref:`lab:contribution`).
 
