@@ -20,6 +20,7 @@
    API
    contribution
    bibliography
+   glossary
 
 Introduction
 ============
