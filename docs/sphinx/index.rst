@@ -38,8 +38,7 @@ The models are characterized by a design space, which defines the design variabl
 Those spaces are defined in two files, which are elaborated in :ref:`lab:stochasticdesignspace`.
 The guides to perform the deterministic design optimization, robust design optimization and uncertainty quantification are present in :ref:`lab:optimization` and 
 :ref:`lab:uncertaintyquantification`, respectively.
-The applied methods and energy system models are described in :ref:`lab:methods` and :ref:`lab:energysystemmodels`, respectively. 
-The documentation concludes with the :ref:`lab:APIref` and the details on how to contribute to the framework (:ref:`lab:contribution`).
+The hydrogen-based energy system models are described in :ref:`lab:energysystemmodels`, including the uncertainty characterization of the techno-economic and environmental parameters, a script to evaluate the performance of specific designs and a method to get the climate data and demand data for your location of interest. The documentation concludes with brief details on the optimization and uncertainty quantification algorithms (:ref:`lab:methods`), the :ref:`lab:APIref` and the details on how to contribute to the framework (:ref:`lab:contribution`).
 
 
 Support
