@@ -1,7 +1,7 @@
 Glossary
 ========
 
-.. tabularcolumns:: |\Yc{0.2}|\Yr{0.4}|
+.. tabularcolumns:: |L|L|
 
 .. list-table::
    :header-rows: 1
@@ -21,7 +21,7 @@ Glossary
 
 
 
-.. tabularcolumns:: |\Yc{0.2}|\Yr{0.4}|
+.. tabularcolumns:: |L|L|
 
 .. list-table::
    :header-rows: 1
