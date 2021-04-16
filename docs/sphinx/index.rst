@@ -1,5 +1,5 @@
 .. figure:: images/logo_4.svg
-   :width: 60%
+   :width: 80%
    :align: center
 
 .. toctree::
@@ -15,8 +15,8 @@
    stochastic design space
    optimization
    uncertainty quantification
-   methods
    energy system models
+   methods
    API
    contribution
    bibliography
