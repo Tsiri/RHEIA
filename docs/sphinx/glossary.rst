@@ -3,7 +3,7 @@ Glossary
 
 .. list-table::
    :header-rows: 1
-   :widths: auto
+   :width: 10%
 
    * - Header A1 (Centre, 1/3)
      - Header B1 (Right, 2/3)
@@ -21,7 +21,7 @@ Glossary
 
 .. list-table::
    :header-rows: 1
-   :width: 10 10
+   :width: 50 %
    :stub-columns: 1
 
    * - Name
