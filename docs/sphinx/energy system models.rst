@@ -669,7 +669,7 @@ The method of converting the demand to the specified location has been presented
 -  `Get the hourly electricity demand data <https://openei.org/datasets/dataset/commercial-and-residential-hourly-load-profiles-for-all-tmy3-locations-in-the-united-states>`_ for the location in the USA (e.g. Olympia);
 - Scale the hourly demand profile with the average annual demand for the location of interest (for European locations, the `Odysee-Mure <https://www.odyssee-mure.eu/publications/efficiency-by-sector/households/electricity-consumption-dwelling.html>`_ database can be used);
 - Convert the climate data and demand data file formats according to the climate and demand data files present in :file:`CASES\\DATA\\climate` and :file:`CASES\\DATA\\demand`, respectively.
-Add the climate data and demand data to :file:`CASES\\DATA\\climate` and :file:`CASES\\DATA\\demand`, respectively.
+- Add the climate data and demand data to :file:`CASES\\DATA\\climate` and :file:`CASES\\DATA\\demand`, respectively.
 
 In the provided hydrogen-based energy systems, the yearly annual solar irradiance is provided as a model parameter in the form of a relative number to the provided yearly annual solar irradiance. In other words, characterizing :py:data:'sol_irr' with 1 in :file:`design_space` results 
 in a yearly annual solar irradiance equal to the sum of the hourly solar irradiance values provided in the dataset for the specific location.
