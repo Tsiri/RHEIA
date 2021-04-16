@@ -1,11 +1,11 @@
 Glossary
 ========
 
-.. tabularcolumns:: |>{\centering\arraybackslash}\Y{0.1}|>{\raggedleft\arraybackslash}\Y{0.7}|
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.10\linewidth}|
 
 .. list-table::
    :header-rows: 1
-   :widths: 1 7
+   :widths: 1 1
 
    * - Name
      - Description
