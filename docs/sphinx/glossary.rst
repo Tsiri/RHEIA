@@ -1,11 +1,11 @@
 Glossary
 ========
 
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.10\linewidth}|
+.. tabularcolumns:: |\Yc{0.2}|\Yr{0.4}|
 
 .. list-table::
    :header-rows: 1
-   :widths: 1 1
+   :widths: 1 2
 
    * - Name
      - Description
