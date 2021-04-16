@@ -141,7 +141,7 @@ Evaluating a single design can be performed as follows:
 
    import os
    import rheia
-   import rheia.CASES.PV_ELEC.lib_pv_electrolyzer as lb
+   import rheia.CASES.H2_FUEL.h2_fuel as lb
 
    path = os.path.dirname(rheia.__file__)
 
@@ -153,26 +153,26 @@ Evaluating a single design can be performed as follows:
                                    'climate_Brussels.csv')
 
    # the object to read in the data
-   myData = lb.ReadData(filename_climate)
+   my_data = lb.ReadData(filename_climate)
 
    # get the solar irradiance and ambient temperature
-   G, T = myData.load_climate()
+   sol_irr, t_amb = my_data.load_climate()
 
    # retrieve the deterministic values for the model parameters
-   parameters = myData.load_parameters()
+   parameters = my_data.load_parameters()
 
    # define the design to be tested
    inputs = {'n_dcdc_pv': 5.,
              'n_pemel': 4.}
 
    # instantiate from the Evaluation class
-   myEvaluation = lb.Evaluation(G, T, {**parameters, **inputs})
+   my_evaluation = lb.Evaluation(sol_irr, t_amb, {**parameters, **inputs})
 
    # evaluate the system
-   myEvaluation.evaluation()
+   my_evaluation.evaluation()
 
    # print the results
-   myEvaluation.print_results()
+   my_evaluation.print_results()
 
 
 .. _lab:pvh2model:
@@ -404,7 +404,7 @@ Evaluating a single design can be performed as follows:
 	
    import os
    import rheia
-   import rheia.CASES.PV_H2.lib_pv_h2 as lb
+   import rheia.CASES.H2_POWER.h2_power as lb
 
    path = os.path.dirname(rheia.__file__)
 
@@ -422,16 +422,16 @@ Evaluating a single design can be performed as follows:
                                   'load_Brussels_dwelling.csv')
 
    # the object to read in the data
-   myData = lb.ReadData(filename_climate, filename_demand)
+   my_data = lb.ReadData(filename_climate, filename_demand)
     
    # get the solar irradiance and ambient temperature
-   G, T = myData.load_climate()
+   sol_irr, t_amb = my_data.load_climate()
 
    # get the electric load
-   load_elec = myData.load_demand()
+   load_elec = my_data.load_demand()
 
    # retrieve the deterministic values for the model parameters
-   parameters = myData.load_parameters()
+   parameters = my_data.load_parameters()
 
    # define the design to be tested
    inputs = {'n_pv':    10.,
@@ -441,13 +441,13 @@ Evaluating a single design can be performed as follows:
              }
 
    # instantiate from the Evaluation class
-   myEvaluation = lb.Evaluation(G, T, load_elec, {**parameters, **inputs})
+   my_evaluation = lb.Evaluation(sol_irr, t_amb, load_elec, {**parameters, **inputs})
 
    # evaluate the system
-   myEvaluation.evaluation()
+   my_evaluation.evaluation()
 
    # print the results
-   myEvaluation.print_results()
+   my_evaluation.print_results()
 
 
 
@@ -602,7 +602,7 @@ Evaluating a single design can be performed as follows:
 
    import os
    import rheia
-   import rheia.CASES.PV_H2.lib_h2_mob as lb
+   import rheia.CASES.H2_MOBILITY.h2_mobility as lb
 
    path = os.path.dirname(rheia.__file__)
 
@@ -614,13 +614,13 @@ Evaluating a single design can be performed as follows:
                                    'climate_Brussels.csv')
 
    # the object to read in the data
-   myData = lb.ReadData(filename_climate)
+   my_data = lb.ReadData(filename_climate)
 
    # get the solar irradiance and ambient temperature
-   G, T = myData.load_climate()
+   sol_irr, t_amb = my_data.load_climate()
 
    # retrieve the deterministic values for the model parameters
-   parameters = myData.load_parameters()
+   parameters = my_data.load_parameters()
 
    # define the design to be tested
    inputs = {'n_pv':     1000.,
@@ -630,13 +630,13 @@ Evaluating a single design can be performed as follows:
              }
 
    # instantiate from the Evaluation class
-   myEvaluation = lb.Evaluation(G, T, {**parameters, **inputs})
+   my_evaluation = lb.Evaluation(sol_irr, t_amb, {**parameters, **inputs})
 
    # evaluate the system
-   myEvaluation.evaluation()
+   my_evaluation.evaluation()
 
    # print the results
-   myEvaluation.print_results()
+   my_evaluation.print_results()
 
 
 ..
