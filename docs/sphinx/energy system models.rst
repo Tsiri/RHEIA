@@ -685,7 +685,7 @@ The locations with climate and demand data present in RHEIA:
    :header-rows: 1
    
    * - location
-     - annual solar irradiance [kWh/m:sup:`2`]
+     - annual solar irradiance [kWh/m\ :sup:`2`\]
      - average annual ambient temperature [°C]
      - household electricity demand [MWh/year]
 	 
