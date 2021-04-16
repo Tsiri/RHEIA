@@ -7,6 +7,26 @@ Glossary
    :header-rows: 1
    :widths: 1 2
 
+   * - Header A1 (Centre, 1/3)
+     - Header B1 (Right, 2/3)
+
+   * - DATA A1
+     - DATA B1
+
+
+
+
+
+
+
+
+
+.. tabularcolumns:: |\Yc{0.2}|\Yr{0.4}|
+
+.. list-table::
+   :header-rows: 1
+   :widths: 1 2
+
    * - Name
      - Description
 	 
