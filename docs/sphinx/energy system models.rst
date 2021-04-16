@@ -659,20 +659,26 @@ the analysis should be conducted with climate data that corresponds to the energ
 Therefore, we adopt the `Typical Meteorological Year data <https://nsrdb.nrel.gov/data-sets/archives.html>`_ and
 `hourly electricity demand data <https://openei.org/datasets/dataset/commercial-and-residential-hourly-load-profiles-for-all-tmy3-locations-in-the-united-states>`_ provided by the National Renewable Energy Laboratory,
 as the former is used to construct the latter. As these databases contain information only on locations in the United States of America,
-`Codeminders <http://www.codeminders.com/weather_similarity/>`_ allows identifying the location in the United States of America with similar climate conditions than the location of interest.
-In addition, the cultural differences in electricity demand between the location in the USA and the location of interest is considered by scaling the annual electricity demand,
-based on the annual electricity demand database from `Odysee-Mure <https://www.odyssee-mure.eu/publications/efficiency-by-sector/households/electricity-consumption-dwelling.html>`_ (for European locations).
-The method of converting the demand to the specified location has been presented by Montero Carrero et al. :cite:`Engine2019`.
+`Codeminders <http://www.codeminders.com/weather_similarity/>`_ allows identifying the location in the United States of America with similar climate conditions than for the location of interest.
+In addition to the difference in climate, the cultural differences between the location in the USA and the location of interest affects the demand as well. To take into account these cultural differences, the electricity demand profile from the location in the USA is scaled, based on the annual electricity demand for the location of interest, provided by `Odysee-Mure <https://www.odyssee-mure.eu/publications/efficiency-by-sector/households/electricity-consumption-dwelling.html>`_ (for European locations).
+The method of converting the demand to the specified location has been presented by Montero Carrero et al. :cite:`Engine2019` and is summarized as follows:
 
-In the provided hydrogen-based energy systems dependend on the solar irradiance, the yearly annual solar irradiance is provided as a model parameter in the form of a relative number
-to the provided yearly annual solar irradiance. In other words, characterizing 'sol_irr' with 1 in :file:`design_space` results 
+- Decide your location of interest (e.g. Brussels, Belgium);
+- Find the corresponding location in the USA with a similar climate via `Codeminders <http://www.codeminders.com/weather_similarity/>`_ (e.g. for Brussels, Olympia has a 99% overlap);
+- `Get the Typical Meteorological Year data <https://nsrdb.nrel.gov/data-sets/archives.html>`_ for the location in the USA (e.g. Olympia);
+-  `Get the hourly electricity demand data <https://openei.org/datasets/dataset/commercial-and-residential-hourly-load-profiles-for-all-tmy3-locations-in-the-united-states>`_ for the location in the USA (e.g. Olympia);
+- Scale the hourly demand profile with the average annual demand for the location of interest (for European locations, the `Odysee-Mure <https://www.odyssee-mure.eu/publications/efficiency-by-sector/households/electricity-consumption-dwelling.html>`_ database can be used);
+- Convert the climate data and demand data file formats according to the climate and demand data files present in :file:`CASES\\DATA\\climate` and :file:`CASES\\DATA\\demand`, respectively.
+Add the climate data and demand data to :file:`CASES\\DATA\\climate` and :file:`CASES\\DATA\\demand`, respectively.
+
+In the provided hydrogen-based energy systems, the yearly annual solar irradiance is provided as a model parameter in the form of a relative number to the provided yearly annual solar irradiance. In other words, characterizing :py:data:'sol_irr' with 1 in :file:`design_space` results 
 in a yearly annual solar irradiance equal to the sum of the hourly solar irradiance values provided in the dataset for the specific location.
 If the value is different (or subjected to uncertainty), all hourly solar irradiance values are scaled accordingly.
 
-For the energy demand, the annual electricity (and heat) demand is provided in the model. This enables the user to scale the typical demand profiles for a specific location
-based on the number of demands (e.g. a community of 500 dwellings) or based on specific information on the annual energy demand.
+The characterization of the energy demand in :file:`design_space` is similar. This enables the user to scale the typical demand profiles for a specific location
+based on the number of demands (e.g. a community of 500 dwellings).
 
-The climate data considered:
+The locations with climate and demand data present in RHEIA:
 
 .. list-table:: Climate data and energy demand data 
    :widths: 40 40 40 40
@@ -693,16 +699,8 @@ The climate data considered:
      - 11.2
      - 5.35
 
-   * - Madrid (including cooling)
+   * - Madrid
      - 1803 
      - 15.5
      - 4.04
 
-
-The typical values for the energy demand are:
-
-- dwelling
-	- Brussels, Belgium
-		- electricity: 3.76 MWh/year
-		- heat: 16.59 MWh/year
-	
