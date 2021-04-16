@@ -26,8 +26,7 @@ which illustrate the uncertainties that dominate the variance of the quantity of
 The hydrogen-based energy system models encollapse the main hydrogen valorization pathways: power-to-power, power-to-mobility and power-to-fuel.
 For each model, a specific set of parameters are defined with uncertainty, which are considered during robust design optimization and uncertainty quantification. 
 The techno-economic and environmental uncertainties are adopted from scientific literature.
-The models depend on the climate data and/or energy demand data. The framework provides climate data and energy demand data for numerous locations, 
-which enables the user to use the framework as a decision support tool, 
+The models depend on the climate data and/or energy demand data. The framework provides a method to gather climate data and energy demand data for your location of interest. This enables the user to use the framework as a decision support tool, 
 e.g. determining the optimized mean and standard deviation of the levelized cost of hydrogen for a photovoltaic-electrolyzer system in Brussels, Belgium. 
 Evidently, the climate and demand database can be extended by your own climate and energy demand data.
 
