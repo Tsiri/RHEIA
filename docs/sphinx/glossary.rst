@@ -6,6 +6,7 @@ Glossary
 .. list-table::
    :header-rows: 1
    :widths: 1 2
+   :stub-columns: 0.1
 
    * - Header A1 (Centre, 1/3)
      - Header B1 (Right, 2/3)
@@ -26,6 +27,7 @@ Glossary
 .. list-table::
    :header-rows: 1
    :widths: 1 2
+   :stub-columns: 1
 
    * - Name
      - Description
