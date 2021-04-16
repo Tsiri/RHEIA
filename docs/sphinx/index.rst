@@ -52,7 +52,7 @@ rheia.framework@gmail.com
 License
 =======
 
-The project is licensed under MIT license. 
+The project is licensed under MIT license `MIT license <https://github.com/DCoppitters/RHEIA/blob/master/LICENSE>`_. 
 
 
 Indices and tables
