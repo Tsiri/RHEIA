@@ -32,4 +32,3 @@ Evidently, the climate and demand database can be extended by your own climate a
 
 In addition to the hydrogen-based system models, the framework allows to connect your own model. 
 Through the Python wrapper, RHEIA enables to connect Python-based, open-source and closed-source system models.
-
