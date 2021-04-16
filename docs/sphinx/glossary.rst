@@ -2,7 +2,7 @@ Glossary
 ========
 
 .. list-table:: Glossary 
-   :widths: 40 40
+   :widths: 1 1
    :header-rows: 1
 
    * - Name
