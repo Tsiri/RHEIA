@@ -13,8 +13,8 @@ Thereafter, the connection of a Python-based model and a closed-source model is 
 Python wrapper
 --------------
 
-The Python wrapper module :py:mod:`case_description` enables to connect the system model to the uncertainty quantification and optimization algorithm.
-The module includes two functions: :py:func:`set_params()` and :py:func:`evaluate()`.
+The Python wrapper :py:mod:`case_description` enables to connect the system model to the Python-based uncertainty quantification and optimization algorithms.
+Essentially, the wrapper is based on a Python class object and includes two functions: :py:func:`set_params()` and :py:func:`evaluate()`.
 
 In :py:func:`set_params()`, data can be imported before the model evaluations commence. 
 In this way, the computational cost of importing data is spent only once,
@@ -73,8 +73,7 @@ The four-bar truss is presented below:
 
    The four-bar truss
 
-The aim is to minimize the volume of the truss and to minimize 
-the deflection of the outermost joint by controlling the cross-sectional areas of the bars. 
+The aim is to minimize both the volume of the truss and the deflection of the outermost joint by controlling the cross-sectional areas of the bars. 
 The volume :math:`V` and deflection :math:`d` are defined as:
 
 :math:`V = L (2A_1 + \sqrt{2} A_2 + \sqrt{A_3} + A_4 )`
@@ -119,8 +118,8 @@ This function is located in the :py:mod:`four_bar_truss` module.
 Connecting the case to the framework
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To connect the model to the optimization and uncertainty quantification framework, a specific folder for the model
-should be created in the general :file:`CASES` folder. In the :file:`CASES` folder, a reference folder :file:`CASES\\REF` is present, which includes the necessary
+To connect the model to the framework, a specific folder for the model should be created in the general :file:`CASES` folder. 
+In the :file:`CASES` folder, a reference folder :file:`CASES\\REF` is present, which includes the necessary
 files to characterize and connect a system model. 
 Make a copy of the :file:`REF` folder, paste it in the :file:`CASES` folder and rename it, e.g. into :file:`FOUR_BAR_TRUSS`.
 Hence, a new case folder is present: :file:`CASES\\FOUR_BAR_TRUSS`.
@@ -204,7 +203,7 @@ To illustrate, for a deterministic design optimization:
 
 In this dictionary, a deterministic design optimization is specified, for which both objectives should be minimized. The computational budget is set at 9000,
 which leads to at least 300 generations with a population size of 30. The number of jobs, crossover probability, mutation probability, eta, starting population
-and result printing are adopted from the standard setting and are therefore not specified in the dictionary. 
+and result printing are passed from the standard setting and are therefore not specified in the dictionary. 
 Similarly, the optimization dictionary for robust design optimization on the mean and standard deviation of the displacement can be characterized as follows:
 
 .. code-block:: python
@@ -349,7 +348,7 @@ The enumerate object :py:data:`x` contains the sample to be evaluated and the in
 Run an uncertainty quantification
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-With the characterization complete for uncertainty quantification, the algorithm can be initiated with:
+With the characterization complete for uncertainty quantification, the Polynomial Chaos Expansion (PCE) method can be initiated with:
 
 .. code-block:: python
    :linenos:
