@@ -4,8 +4,8 @@ Details on the energy system models
 ===================================
 
 Hydrogen can be used as an energy carrier in several contexts. Among others,
-power-to-power (reproduce electricity in fuel cell or gas turbine), power-to-mobility (hydrogen cars, buses, trucks,...) and 
-power-to-fuel (production of hydrogen, ammonia, methanol,...) are typical valorization pathways. 
+power-to-power (reproduce electricity in fuel cell or gas turbine), power-to-mobility (hydrogen cars, buses, trucks etc.) and 
+power-to-fuel (production of hydrogen, ammonia, methanol etc.) are typical valorization pathways. 
 For each valorization pathway, an energy system model is presented in this section. 
 
 ..
@@ -16,18 +16,18 @@ For each valorization pathway, an energy system model is presented in this secti
 Power-to-fuel
 -------------
 
-In the power-to-fuel model, a photovoltaic array is coupled to an electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking.
+In the power-to-fuel model, a photovoltaic array is coupled to an electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking (MPPT).
 The electricity produced by the photovoltaic array is used to convert water into hydrogen and oxygen.
 
 .. figure:: images/PV_ELEC_SCHEME.svg
    :width: 80%
    :align: center
 
-   The photovoltaic array is connected to the electrolyzer stack through a DC-DC converter with Maximum Power Point Tracking.
+   The photovoltaic array is connected to the electrolyzer stack through a DC-DC converter with MPPT.
    
 The photovoltaic array model and electrolyzer array model are adopted from the PVlib Python package :cite:`pvlib` and from Saeed et al. :cite:`Saeed2015`, respectively.
 The DC-DC converter operates at 100% electrical efficiency and the lifetime of the electrolyzer array is determined based on the number of operating hours during the evaluated year.
-For each system design, the Levelized Cost Of Hydrogen (LCOH) and the produced hydrogen :math:`\dot{m}_{\mathrm{H}_2}` are considered the main performance indicators.
+For each system design, the Levelized Cost Of Hydrogen (LCOH) and the produced hydrogen, :math:`\dot{m}_{\mathrm{H}_2}`, are considered the main performance indicators.
 The produced hydrogen is equal to the sum of the hourly produced hydrogen:
 
 :math:`\dot{m}_{\mathrm{H}_2} = \sum_{i=1}^{8760} \dot{m}_{\mathrm{H}_2,i}`.
@@ -56,7 +56,7 @@ The interest rate (:math:`\mathrm{int\_rate}`) and inflation rate (:math:`\mathr
 over the system lifetime, respectively. Finally, the lifetime of the electrolyzer array is considered uncertain (:math:`\mathrm{life\_pemel}`) based on 
 the lack of knowledge on the specific electrolyzer that will be adopted in the actual system.
 More details on the characterization of the stochastic parameters are described by Coppitters et al. :cite:`coppitters2020robust`.
-The following table lists the uncertainty characterization of the specific parameters described above.
+The following table lists the uncertainty characterization of the parameters described above.
 
 .. list-table:: Stochastic space for the photovoltaic-electrolyzer system
    :widths: 40 40 40 30
@@ -65,7 +65,7 @@ The following table lists the uncertainty characterization of the specific param
    * - parameter
      - distribution
      - unit
-     - ref.
+     - reference
 	 
    * - :math:`\mathrm{u\_sol\_irr}`
      - :math:`\mathcal{U}(90,110)` 
@@ -182,9 +182,9 @@ Power-to-power
 
 The considered system is a grid-connected load, supported by a photovoltaic array and a hydrogen-based energy system. 
 The grid is considered permanently available and able to cover the required power at any time of the year. 
-The PV array is coupled to a DC bus bar through a DC-DC converter with Maximum Power Point Tracking. 
+The PV array is coupled to a DC bus bar through a DC-DC converter with Maximum Power Point Tracking (MPPT). 
 The hydrogen-based energy system consists of an electrolyzer stack, storage tank and fuel cell array. 
-The electrolyzer array and fuel cell stack are integrated to store the excess of PV array electricity, while the fuel cell array 
+The electrolyzer array and fuel-cell stack are integrated to store the excess of PV array electricity, while the fuel cell array 
 generates electricity from the stored hydrogen when required. 
 To transfer the DC electricity from the photovoltaic array and fuel cell array to the AC load, a DC-AC converter is connected.
 
@@ -200,7 +200,7 @@ To transfer the DC electricity from the photovoltaic array and fuel cell array t
 To set the hierarchy between the subsystems, a typical power management strategy is implemented, which primarily aims to satisfy the demand. 
 In this strategy, excess PV power (i.e. remaining PV power after complying with the power required by the load) is supplied to the electrolyzer stack. 
 When the hydrogen tank is full, or when the surplus power lies outside the electrolyzer array operating range, 
-the surplus energy is sold to the grid at the wholesale electricity price. In the opposite case, when the PV array does not cover the demand, the remaining demand is covered by the fuel cell array, 
+the surplus energy is sold to the grid at the wholesale electricity price. In the opposite case, when the PV array does not cover the demand, the remaining demand is covered by the fuel-cell array, 
 if sufficient stored hydrogen is available and if the required power lies within the operating boundaries of the fuel cell array. If not, the grid covers the remaining demand.
 The price for buying electricity from the grid depends on the wholesale electricity price and the fraction of the wholesale electricity price to the retail electricity price.
 
@@ -229,7 +229,7 @@ In addition to these performance indicators, additional model outputs are presen
 To select other model outputs as optimization objectives, we refer to :ref:`lab:wrapper`. 
 
 To optimize these performance indicators, the capacity of the photovoltaic array (:math:`\mathrm{n\_pv}`, :math:`\mathrm{kW}_\mathrm{p}`), electrolyzer array (:math:`\mathrm{n\_pemel}`, :math:`\mathrm{kW}`),
-hydrogen storage tank (:math:`\mathrm{n\_pemel}`, :math:`\mathrm{kWh}`) and fuel cell array (:math:`\mathrm{n\_pemfc}`, :math:`\mathrm{kW}`) are considered as
+hydrogen storage tank (:math:`\mathrm{n\_pemel}`, :math:`\mathrm{kWh}`) and fuel-cell array (:math:`\mathrm{n\_pemfc}`, :math:`\mathrm{kW}`) are considered as
 design variables. 
 
 ..
@@ -255,7 +255,7 @@ Due to commissioning and maintenance quality, the operating expenditures on the 
 DC-DC converter (:math:`\mathrm{opex\_dcdc}`), DC-AC inverter (:math:`\mathrm{opex\_dcac}`), electrolyzer array (:math:`\mathrm{opex\_pemel}`), 
 hydrogen storage tank (:math:`\mathrm{opex\_tank}`) and fuel cell array (:math:`\mathrm{opex\_pemfc}`) can be considered uncertain.
 The interest rate (:math:`\mathrm{int\_rate}`) and inflation rate (:math:`\mathrm{infl\_rate}`) are considered uncertain based on the unknown finance type and unknown evolution of the inflation
-over the system lifetime, respectively. Finally, the lifetime of the electrolyzer array and fuel cell array (:math:`\mathrm{life\_pemel}` and :math:`\mathrm{life\_pemfc}`, respectively) are 
+over the system lifetime, respectively. Finally, the lifetime of the electrolyzer array and fuel-cell array (:math:`\mathrm{life\_pemel}` and :math:`\mathrm{life\_pemfc}`, respectively) are 
 considered uncertain based on the lack of knowledge on the specific electrolyzer that will be adopted in the actual system.
 More details on the characterization of the stochastic parameters are described by Coppitters et al. :cite:`coppitters2020robust`.
 The following table lists the uncertainty characterization of the specific parameters described above.
@@ -278,7 +278,7 @@ The following table lists the uncertainty characterization of the specific param
    * - parameter
      - distribution
      - unit
-     - ref.
+     - reference
 	 
    * - :math:`\mathrm{u\_sol\_irr}`
      - :math:`\mathcal{U}(90,110)` 
@@ -459,7 +459,7 @@ hydrogen-fueled buses (i.e.\ powered by a hydrogen fuel cell), diesel-fueled bus
 period in which these buses are fueled, the European daily bus refuelling profile is adopted :cite:`arya`.
 The energy consumption for both bus types is determined based on the energy consumption per unit of distance covered.
 To fuel the hydrogen-fueled buses, an on-site, grid-connected hydrogen refueling station is considered. In this
-hydrogen refueling station, a photovoltaic array is connected to a DC bus bar through a DC-DC converter with Maximum Power Point Tracking.
+hydrogen refueling station, a photovoltaic array is connected to a DC bus bar through a DC-DC converter with Maximum Power Point Tracking (MPPT).
 The hydrogen is generated, compressed and stored in a Proton Exchange Membrane electrolyzer array, compressor and storage tank, respectively.
 Before dispensation, the hydrogen is cooled down in a cooling unit.      
 
@@ -507,7 +507,7 @@ the GHG emissions from grid electricity consumption :math:`\mathrm{GHG}_\mathrm{
 
 :math:`\mathrm{CI} = \dfrac{{\mathrm{GHG}}_\mathrm{comp,a} + \mathrm{GHG}_\mathrm{grid,a} + \mathrm{GHG}_\mathrm{diesel,a}}{D}`.
 
-In addition to these performance indicators, additional model outputs are present, such as the amoun of grid electricity sold and bought.
+In addition to these performance indicators, additional model outputs are present, such as the amount of grid electricity sold and bought.
 To select other model outputs as optimization objectives, we refer to :ref:`lab:wrapper`. 
 
 To optimize these performance indicators, the capacity of the photovoltaic array (:math:`\mathrm{n\_pv}`, :math:`\mathrm{kW}_\mathrm{p}`), electrolyzer array (:math:`\mathrm{n\_pemel}`, :math:`\mathrm{kW}`),
@@ -542,7 +542,7 @@ The following table lists the uncertainty characterization of the specific param
    * - parameter
      - distribution
      - unit
-     - ref.
+     - reference
 	 
    * - :math:`\mathrm{u\_sol\_irr}`
      - :math:`\mathcal{U}(90,110)` 
@@ -653,8 +653,8 @@ Evaluating a single design can be performed as follows:
 Climate and demand data
 -----------------------
 
-The system performance depends on the climate and if present, on the electricity demand and heating demand.
-As the energy demand is affected by the weather (i.e. space heating demand correlates with the ambient temperature and solar irradiance), 
+The system performance depends on the climate and if present, on the electricity and heating demand.
+As the energy demand is affected by the weather (i.e. space heating demand correlates well with the ambient temperature and solar irradiance), 
 the analysis should be conducted with climate data that corresponds to the energy demand profiles. 
 Therefore, we adopt the `Typical Meteorological Year data <https://nsrdb.nrel.gov/data-sets/archives.html>`_ and
 `hourly electricity demand data <https://openei.org/datasets/dataset/commercial-and-residential-hourly-load-profiles-for-all-tmy3-locations-in-the-united-states>`_ provided by the National Renewable Energy Laboratory,
